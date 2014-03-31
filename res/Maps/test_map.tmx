@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="90" height="23" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tileset_jungle_test" tilewidth="32" tileheight="32">
+  <image source="../Tiles/tileset_jungle_test.png" width="96" height="96"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="90" height="23">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DyQ3AIBAEMAIJR/8NM03sK7bk1gAAAAAAAIC/eLJbeuSbn6VnrtyWPnkBblZURVggAAA=
+  </data>
+ </layer>
+</map>
