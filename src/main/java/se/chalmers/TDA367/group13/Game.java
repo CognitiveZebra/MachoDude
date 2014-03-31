@@ -33,7 +33,7 @@ public class Game extends BasicGame {
     }
     
     public static void main(String[] args) throws SlickException {
-        AppGameContainer app = new AppGameContainer(new Game());
+        AppGameContainer app = new AppGameContainer(new GameStateController("MachoDude"));
         app.setDisplayMode(WIDTH, HEIGHT, false);
         app.setForceExit(false);
         app.setTargetFrameRate(60);
