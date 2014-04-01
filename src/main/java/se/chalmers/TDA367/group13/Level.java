@@ -46,10 +46,9 @@ public class Level {
 
 	public void render(Graphics g) {
 		g.drawImage(smallBackground, 0, 0);
-		map.render((int) - oldCamX, 0);
 
 		for (Block b : blocks) {
-			g.drawImage(b.getImage(), b.getX(), b.getY());
+			b.render(g);
 		}
 
 	}
