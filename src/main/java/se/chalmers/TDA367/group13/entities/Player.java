@@ -13,7 +13,7 @@ public class Player extends Entity {
 	private SpriteSheet playerSheet;
 	private Animation still, walkLeft, walkRight, jumpLeft, jumpRight;
 	private long jumpStart;
-	private float jumpHeight = -32, xVelocity = 10, gravity = 9.81f;
+	private float jumpHeight = -32, xVelocity = 10,gravity = 9.81f, yVelocity = gravity;
 
 	public enum Direction {
 		LEFT, RIGHT;
@@ -29,35 +29,30 @@ public class Player extends Entity {
 		direction = Direction.RIGHT;
 		state = State.STILL;
 	}
-
-	public float nextX(Input input) {
-		if (input.isKeyDown(Input.KEY_A)) {
-			direction = Direction.LEFT;
-			state = State.WALKING;
-			return getX() - xVelocity;
-		} else if (input.isKeyDown(Input.KEY_D)) {
-			direction = Direction.RIGHT;
-			state = State.WALKING;
-			return getX() + xVelocity;
-		} else {
-			return getX();
-		}
+	
+	public void moveLeft(){
+		direction = Direction.LEFT;
+		setX(getX() - xVelocity);
 	}
-
-	public float nextY(Input input) {
-		if (input.isKeyPressed(Input.KEY_W) && state != State.JUMPING) {
-			jumpStart = System.currentTimeMillis();
-			state = State.JUMPING;
-		}
-
-		if (state == State.JUMPING) {
+	
+	public void moveRight(){
+		direction = Direction.RIGHT;
+		setX(getX() + xVelocity);
+	}
+	
+	public void moveY(){
+		setY(getY() + yVelocity);
+	}
+	
+	public void updateYVelocity(){
+		if(state == State.JUMPING){
 			float jumpTime = ((System.currentTimeMillis() - jumpStart) % 1000);
-			return getY() + jumpHeight + gravity * jumpTime;
+			yVelocity = jumpHeight + gravity * jumpTime;
 		} else {
-			return getY();
+			yVelocity = gravity;
 		}
 	}
-
+	
 	public void initAnimations() {
 		playerSheet = new SpriteSheet(getImage(), 32, 32);
 		// animation fixing goes here
@@ -85,4 +80,9 @@ public class Player extends Entity {
 	public void setState(State s) {
 		state = s;
 	}
+	
+	public void setJumpStart(long l){
+		jumpStart = l; 
+	}
+	
 }
