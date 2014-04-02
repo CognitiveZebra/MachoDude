@@ -24,7 +24,6 @@ public class Level {
 
 	public Level(Camera camera, TiledMap map, Image background) throws SlickException {
 		this.camera = camera;
-		oldCamX = camera.getX();
 		this.map = map;
 		this.background = background;
 		smallBackground = background.getSubImage(0, 0, 1440, 896);
@@ -53,19 +52,18 @@ public class Level {
 
 	}
 
-	public void update() {
-		cameraMovement = camera.getX() - oldCamX;
-		oldCamX = camera.getX();
-		
+	public void updateBackground() {
 		smallBackground = this.background.getSubImage((int) camera.getX(), 0, 1440, 736);
-		for (Block r : blocks) {
-			r.setX(r.getX() - cameraMovement);
-		}
-
 	}
 	
 	public List<Block> getBlocks() {
 		return blocks;
+	}
+	
+	public void moveBlocks(float f) {
+		for (Block r : blocks) {
+			r.setX(r.getX() + f);
+		}
 	}
 
 }
