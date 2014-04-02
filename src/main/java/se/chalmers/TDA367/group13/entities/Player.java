@@ -88,6 +88,10 @@ public class Player extends Entity {
 		state = s;
 	}
 	
+	public State getState(){
+		return state;
+	}
+	
 	public void setJumpStart(long l){
 		jumpStart = l; 
 	}
