@@ -21,7 +21,7 @@ public class GameModel {
 		
 		try {
 			level = new Level_1();
-			player = new Player(300, 300, new Image("res/Sprites/machodudehorse.png"));
+			player = new Player(300, 300, "res/Sprites/machodudehorse.png");
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -41,7 +41,7 @@ public class GameModel {
 			if(isLegal(level.getBlocks(), nextPos)){
 				if(nextPos.getCenterX() > container.getWidth()/2){
 					level.moveBlocks(player.getX() - nextPos.getX());
-					
+					camera.moveCamera(player.getX() - nextPos.getX());
 				} else {
 					player = nextPos;
 				}
