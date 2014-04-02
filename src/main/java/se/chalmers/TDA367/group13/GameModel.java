@@ -51,10 +51,19 @@ public class GameModel {
 			} 
 		}
 		
-		if(input.isKeyDown(Input.KEY_W) && player.getState() != State.JUMPING){
-			player.setState(State.JUMPING);
-			player.setJumpStart(System.currentTimeMillis());
-		} 
+		if(input.isKeyDown(Input.KEY_W)){
+			if(player.getState() != State.JUMPING){
+				player.setState(State.JUMPING);
+				player.setJumpStart(System.currentTimeMillis());
+				player.setJumpCharge(System.currentTimeMillis());
+			} else if(System.currentTimeMillis() - player.getJumpCharge() < 500) {
+				player.setJumpStart(System.currentTimeMillis());
+			}
+		} else {
+			player.setJumpCharge(0);
+		}
+		
+
 		
 		
 		player.updateYVelocity();
