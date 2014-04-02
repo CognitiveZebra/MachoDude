@@ -55,7 +55,12 @@ public class Player extends Entity {
 	
 	public void initAnimations() {
 		playerSheet = new SpriteSheet(getImage(), 32, 32);
-		// animation fixing goes here
+		Image[] oneFrameAnimation = new Image[]{getImage()};
+		still = new Animation(oneFrameAnimation,100);
+		walkLeft = new Animation(oneFrameAnimation,100);
+		walkRight = new Animation(oneFrameAnimation,100);
+		jumpLeft = new Animation(oneFrameAnimation,100);
+		jumpRight = new Animation(oneFrameAnimation,100);	
 	}
 
 	public void render(Graphics g) {
