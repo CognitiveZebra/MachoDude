@@ -43,6 +43,7 @@ public class GameModel {
 			if(isLegal(level.getBlocks(), nextPos)){
 				
 				if(nextPos.getCenterX() > (container.getWidth()/2)){
+					player.setState(State.WALKING);
 					level.moveBlocks(player.getX() - nextPos.getX());
 					level.getCamera().move(player.getX() - nextPos.getX());
 				} else {
