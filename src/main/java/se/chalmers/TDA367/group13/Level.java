@@ -13,8 +13,6 @@ import se.chalmers.TDA367.group13.entities.Block;
 public class Level {
 
 	private TiledMap map;
-	protected static final float LEVEL_FLOOR = 640;
-	public static final float LEVEL_WIDTH = 1440;
 	private LinkedList<Block> blocks;
 	private Image smallBackground;
 	private Image background;
@@ -26,7 +24,7 @@ public class Level {
 		this.camera = camera;
 		this.map = map;
 		this.background = background;
-		smallBackground = background.getSubImage(0, 0, 1440, 896);
+		smallBackground = background.getSubImage(0, 0, 1216, 768);
 
 		blocks = new LinkedList<Block>();
 
@@ -53,7 +51,7 @@ public class Level {
 	}
 
 	public void updateBackground() {
-		smallBackground = this.background.getSubImage((int) camera.getX(), 0, 1440, 736);
+		smallBackground = this.background.getSubImage((int) camera.getX(), 0, 1216, 768);
 	}
 	
 	public LinkedList<Block> getBlocks() {
