@@ -3,12 +3,13 @@ package se.chalmers.TDA367.group13;
 import java.util.LinkedList;
 
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 
 import se.chalmers.TDA367.group13.entities.Block;
 import se.chalmers.TDA367.group13.entities.Player;
+import se.chalmers.TDA367.group13.entities.Player.State;
 
 public class GameModel {
 
@@ -29,30 +30,39 @@ public class GameModel {
 	}
 	
 	public void update (Input input){
-		Player nextPos = player;
+		Rectangle nextPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+
 		
 		if(input.isKeyDown(Input.KEY_A)){
-			nextPos.moveLeft();
+			nextPos.setX(player.nextLeftX());
 			if(isLegal(level.getBlocks(), nextPos)){
-				player = nextPos;
+				player.moveLeft();
 			}
-		}else if(input.isKeyDown(Input.KEY_D)){
-			nextPos.moveRight();
+		} else if(input.isKeyDown(Input.KEY_D)){
+			nextPos.setX(player.nextRightX());
 			if(isLegal(level.getBlocks(), nextPos)){
-				if(nextPos.getCenterX() > container.getWidth()/2){
+				
+				if(nextPos.getCenterX() > (container.getWidth()/2)){
 					level.moveBlocks(player.getX() - nextPos.getX());
 					level.getCamera().move(player.getX() - nextPos.getX());
 				} else {
-					player = nextPos;
+					player.moveRight();
 				}
 			} 
+		} else if(input.isKeyDown(Input.KEY_W)){
+				
+		} else {
+			if(player.getState() != State.JUMPING){
+				player.setState(State.STILL);
+			}
 		}
+		
 		
 	}
 	
-	public boolean isLegal(LinkedList<Block> blocks, Player player){
+	public boolean isLegal(LinkedList<Block> blocks, Rectangle hitbox){
 		for(Block b : blocks){
-			if(b.intersects(player)){
+			if(hitbox.intersects(b)){
 				return false;
 			}
 		}
