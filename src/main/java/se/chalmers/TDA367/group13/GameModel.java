@@ -41,6 +41,7 @@ public class GameModel {
 			if(isLegal(level.getBlocks(), nextPos)){
 				if(nextPos.getCenterX() > container.getWidth()/2){
 					level.moveBlocks(player.getX() - nextPos.getX());
+					
 				} else {
 					player = nextPos;
 				}
