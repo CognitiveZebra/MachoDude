@@ -15,7 +15,7 @@ public class Player extends Entity {
 	private XMLPackedSheet playerSheet;
 	private Animation stillLeft, stillRight, walkLeft, walkRight, jumpLeft, jumpRight;
 	private long jumpStart;
-	private float jumpHeight = -10, xVelocity = 10,gravity = 9.81f, yVelocity = gravity;
+	private float jumpHeight = -7, xVelocity = 4,gravity = 9.81f, yVelocity = gravity;
 
 	public enum Direction {
 		LEFT, RIGHT;
@@ -31,7 +31,8 @@ public class Player extends Entity {
 		setImage(playerSheet.getSprite("Still.png"));
 		initAnimations();
 		direction = Direction.RIGHT;
-		state = State.STILL;
+		jumpStart = System.currentTimeMillis();
+		state = State.JUMPING;
 	}
 	
 	public float nextLeftX(){
@@ -47,13 +48,11 @@ public class Player extends Entity {
 	}
 	
 	public void moveLeft(){
-		setState(State.WALKING);
 		direction = Direction.LEFT;
 		setX(getX() - xVelocity);
 	}
 	
 	public void moveRight(){
-		setState(State.WALKING);
 		direction = Direction.RIGHT;
 		setX(getX() + xVelocity);
 	}
