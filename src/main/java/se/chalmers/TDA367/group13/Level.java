@@ -49,6 +49,10 @@ public class Level {
 		}
 
 	}
+	
+	public Camera getCamera() {
+		return camera;
+	}
 
 	public void updateBackground() {
 		smallBackground = this.background.getSubImage((int) camera.getX(), 0, 1216, 768);
