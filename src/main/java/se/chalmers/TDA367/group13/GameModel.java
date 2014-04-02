@@ -43,36 +43,31 @@ public class GameModel {
 			if(isLegal(level.getBlocks(), nextPos)){
 				
 				if(nextPos.getCenterX() > (container.getWidth()/2)){
-					player.setState(State.WALKING);
 					level.moveBlocks(player.getX() - nextPos.getX());
 					level.getCamera().move(player.getX() - nextPos.getX());
 				} else {
 					player.moveRight();
 				}
 			} 
-		} else if(input.isKeyDown(Input.KEY_W) && player.getState() != State.JUMPING){
+		}
+		
+		if(input.isKeyDown(Input.KEY_W) && player.getState() != State.JUMPING){
 			player.setState(State.JUMPING);
 			player.setJumpStart(System.currentTimeMillis());
-			player.updateYVelocity();
-			nextPos.setY(player.nextY());
-			if (isLegal(level.getBlocks(), nextPos)) {
-				player.moveY();
-			}
-			
-		} else {
-			if(player.getState() != State.JUMPING){
-				player.setState(State.STILL);
-			}
-		}
+		} 
+		
+		
 		player.updateYVelocity();
 		nextPos.setY(player.nextY());
-		if (isLegal(level.getBlocks(), nextPos)) {
+		if(player.getState() == State.JUMPING && isLegal(level.getBlocks(), nextPos)){
 			player.moveY();
 		} else {
-			//TODO 
-		}
-		
-		
+			if(input.isKeyDown(Input.KEY_D)||input.isKeyDown(Input.KEY_A)){
+				player.setState(State.WALKING);
+			} else {
+				player.setState(State.STILL);
+			}
+		}		
 	}
 	
 	public boolean isLegal(LinkedList<Block> blocks, Rectangle hitbox){
