@@ -62,4 +62,8 @@ public class GameModel {
 	public Level getLevel(){
 		return level;
 	}
+	
+	public Player getPlayer(){
+		return player;
+	}
 }
