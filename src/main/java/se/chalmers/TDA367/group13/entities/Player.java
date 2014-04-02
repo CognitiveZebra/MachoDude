@@ -28,6 +28,7 @@ public class Player extends Entity {
 	public Player(float x, float y, String sheet, String xml) throws SlickException {
 		super(x, y, new Image(sheet));
 		playerSheet = new XMLPackedSheet(sheet, xml);
+		setImage(playerSheet.getSprite("Still.png"));
 		initAnimations();
 		direction = Direction.RIGHT;
 		state = State.STILL;
