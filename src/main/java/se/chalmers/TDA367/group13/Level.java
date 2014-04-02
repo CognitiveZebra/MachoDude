@@ -1,6 +1,6 @@
 package se.chalmers.TDA367.group13;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.newdawn.slick.Graphics;
@@ -15,7 +15,7 @@ public class Level {
 	private TiledMap map;
 	protected static final float LEVEL_FLOOR = 640;
 	public static final float LEVEL_WIDTH = 1440;
-	private List<Block> blocks;
+	private LinkedList<Block> blocks;
 	private Image smallBackground;
 	private Image background;
 	private float cameraMovement;
@@ -29,7 +29,7 @@ public class Level {
 		this.background = background;
 		smallBackground = background.getSubImage(0, 0, 1440, 896);
 
-		blocks = new ArrayList<Block>();
+		blocks = new LinkedList<Block>();
 
 		for (int x = 0; x < map.getWidth(); x++) {
 			for (int y = 0; y < map.getHeight(); y++) {
