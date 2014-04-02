@@ -13,8 +13,6 @@ public class GameView {
 
 	public void render(Graphics g){
 		renderLevel(g);
-		renderEntities(g);
-		renderEnemies(g);
 		renderPlayer(g);
 	}
 
@@ -22,17 +20,17 @@ public class GameView {
 		model.getLevel().render(g);
 	}
 	
-	public void renderEnemies(Graphics g){
-		for(Enemy e : model.getEnemies()){
-			e.render(g);
-		}
-	}
-	
-	public void renderEntities(Graphics g){
-		for(Entity e : model.getEntities()){
-			e.render(g);
-		}
-	}
+//	public void renderEnemies(Graphics g){
+//		for(Enemy e : model.getEnemies()){
+//			e.render(g);
+//		}
+//	}
+//	
+//	public void renderEntities(Graphics g){
+//		for(Entity e : model.getEntities()){
+//			e.render(g);
+//		}
+//	}
 		
 	public void renderPlayer(Graphics g){
 		model.getPlayer().render(g);
