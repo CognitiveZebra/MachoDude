@@ -56,7 +56,7 @@ public class Level {
 		smallBackground = this.background.getSubImage((int) camera.getX(), 0, 1440, 736);
 	}
 	
-	public List<Block> getBlocks() {
+	public LinkedList<Block> getBlocks() {
 		return blocks;
 	}
 	
