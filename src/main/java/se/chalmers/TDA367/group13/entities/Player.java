@@ -13,7 +13,7 @@ public class Player extends Entity {
 	private Direction direction;
 	private State state;
 	private XMLPackedSheet playerSheet;
-	private Animation still, walkLeft, walkRight, jumpLeft, jumpRight;
+	private Animation stillLeft, stillRight, walkLeft, walkRight, jumpLeft, jumpRight;
 	private long jumpStart;
 	private float jumpHeight = -32, xVelocity = 10,gravity = 9.81f, yVelocity = gravity;
 
@@ -78,7 +78,8 @@ public class Player extends Entity {
 		
 		
 		
-		still = new Animation(new Image[]{playerSheet.getSprite("Still.png")},100);
+		stillLeft = new Animation(new Image[]{playerSheet.getSprite("Still.png")},100);
+		stillRight = new Animation(new Image[]{playerSheet.getSprite("Still.png").getFlippedCopy(true, false)},100);
 		walkLeft = new Animation(left,100);
 		walkRight = new Animation(right,100);
 		jumpLeft = new Animation(new Image[]{playerSheet.getSprite("jump.png")},100);
@@ -92,13 +93,13 @@ public class Player extends Entity {
 			animation = (direction == Direction.LEFT) ? jumpLeft : jumpRight;
 			break;
 		case STILL:
-			animation = still;
+			animation = (direction == Direction.LEFT) ? stillLeft: stillRight;
 			break;
 		case WALKING:
 			animation = (direction == Direction.LEFT) ? walkLeft : walkRight;
 			break;
 		default:
-			animation = still;
+			animation = stillLeft;
 			break;
 		}
 		g.drawAnimation(animation, getX(), getY());
