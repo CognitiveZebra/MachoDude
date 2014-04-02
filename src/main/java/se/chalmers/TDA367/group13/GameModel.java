@@ -50,12 +50,26 @@ public class GameModel {
 					player.moveRight();
 				}
 			} 
-		} else if(input.isKeyDown(Input.KEY_W)){
-				
+		} else if(input.isKeyDown(Input.KEY_W) && player.getState() != State.JUMPING){
+			player.setState(State.JUMPING);
+			player.setJumpStart(System.currentTimeMillis());
+			player.updateYVelocity();
+			nextPos.setY(player.nextY());
+			if (isLegal(level.getBlocks(), nextPos)) {
+				player.moveY();
+			}
+			
 		} else {
 			if(player.getState() != State.JUMPING){
 				player.setState(State.STILL);
 			}
+		}
+		player.updateYVelocity();
+		nextPos.setY(player.nextY());
+		if (isLegal(level.getBlocks(), nextPos)) {
+			player.moveY();
+		} else {
+			//TODO 
 		}
 		
 		
