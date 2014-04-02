@@ -13,6 +13,7 @@ public class Player extends Entity {
 	private Direction direction;
 	private State state;
 	private XMLPackedSheet playerSheet;
+	private Image [] right, left, standLeft, standRight, jumpingLeft, jumpingRight;
 	private Animation stillLeft, stillRight, walkLeft, walkRight, jumpLeft, jumpRight;
 	private long jumpStart;
 	private float jumpHeight = -7, xVelocity = 4,gravity = 9.81f, yVelocity = gravity;
@@ -71,22 +72,32 @@ public class Player extends Entity {
 	}
 	
 	public void initAnimations() {
-		Image[]  left = {playerSheet.getSprite("walk1.png"),playerSheet.getSprite("walk2.png"),
-				playerSheet.getSprite("walk3.png"),playerSheet.getSprite("walk4.png")};
+		left = new Image[]
+			{playerSheet.getSprite("walk1.png"),playerSheet.getSprite("walk2.png"),
+			playerSheet.getSprite("walk3.png"),playerSheet.getSprite("walk4.png")};
 		
-		Image[]  right = {playerSheet.getSprite("walk1.png").getFlippedCopy(true, false),
+		right = new Image[]
+				{playerSheet.getSprite("walk1.png").getFlippedCopy(true, false),
 				playerSheet.getSprite("walk2.png").getFlippedCopy(true, false),
 				playerSheet.getSprite("walk3.png").getFlippedCopy(true, false),
 				playerSheet.getSprite("walk4.png").getFlippedCopy(true, false)};
 		
+		standLeft = new Image[]{playerSheet.getSprite("Still.png")};
+		standRight = new Image[]{playerSheet.getSprite("Still.png").getFlippedCopy(true, false)};
+		
+		jumpingLeft = new Image[]{playerSheet.getSprite("jump.png")};
+		jumpingRight =new Image[]{playerSheet.getSprite("jump.png").getFlippedCopy(true, false)};
+		
+		resize(2);
 		
 		
-		stillLeft = new Animation(new Image[]{playerSheet.getSprite("Still.png")},100);
-		stillRight = new Animation(new Image[]{playerSheet.getSprite("Still.png").getFlippedCopy(true, false)},100);
+		
+		stillLeft = new Animation(standLeft,100);
+		stillRight = new Animation(standRight,100);
 		walkLeft = new Animation(left,100);
 		walkRight = new Animation(right,100);
-		jumpLeft = new Animation(new Image[]{playerSheet.getSprite("jump.png")},100);
-		jumpRight = new Animation(new Image[]{playerSheet.getSprite("jump.png").getFlippedCopy(true, false)},100);	
+		jumpLeft = new Animation(jumpingLeft,100);
+		jumpRight = new Animation(jumpingRight,100);	
 	}
 
 	public void render(Graphics g) {
@@ -118,6 +129,26 @@ public class Player extends Entity {
 	
 	public void setJumpStart(long l){
 		jumpStart = l; 
+	}
+	
+	public Image[] resizeImages(Image[] images, float scale){
+		for (int i = 0; i<images.length; i++){
+			images[i].setFilter(Image.FILTER_NEAREST);
+			images[i] = images[i].getScaledCopy(scale);
+		
+		}
+		return images;
+	}
+	
+	public void resize(float scale){
+		right = resizeImages(right, scale); 
+		left = resizeImages(left, scale); 
+		standLeft =  resizeImages(standLeft, scale);
+		standRight = resizeImages(standRight, scale); 
+		jumpingLeft = resizeImages(jumpingLeft, scale); 
+		jumpingRight = resizeImages(jumpingRight, scale);
+		
+		setImage(standRight[0]);
 	}
 	
 }
