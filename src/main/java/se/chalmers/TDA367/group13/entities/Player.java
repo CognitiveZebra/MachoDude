@@ -4,13 +4,15 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.XMLPackedSheet;
 
 public class Player extends Entity {
 
 	private Direction direction;
 	private State state;
-	private SpriteSheet playerSheet;
+	private XMLPackedSheet playerSheet;
 	private Animation still, walkLeft, walkRight, jumpLeft, jumpRight;
 	private long jumpStart;
 	private float jumpHeight = -32, xVelocity = 10,gravity = 9.81f, yVelocity = gravity;
@@ -23,8 +25,9 @@ public class Player extends Entity {
 		WALKING, STILL, JUMPING;
 	}
 
-	public Player(float x, float y, Image spriteSheet) {
-		super(x, y, spriteSheet);
+	public Player(float x, float y, String sheet, String xml) throws SlickException {
+		super(x, y, new Image(sheet));
+		playerSheet = new XMLPackedSheet(sheet, xml);
 		initAnimations();
 		direction = Direction.RIGHT;
 		state = State.STILL;
@@ -54,13 +57,12 @@ public class Player extends Entity {
 	}
 	
 	public void initAnimations() {
-		playerSheet = new SpriteSheet(getImage(), 32, 32);
-		Image[] oneFrameAnimation = new Image[]{getImage()};
-		still = new Animation(oneFrameAnimation,100);
-		walkLeft = new Animation(oneFrameAnimation,100);
-		walkRight = new Animation(oneFrameAnimation,100);
-		jumpLeft = new Animation(oneFrameAnimation,100);
-		jumpRight = new Animation(oneFrameAnimation,100);	
+		Image[]  left = {playerSheet.getSprite("walk1.png"),playerSheet.getSprite("walk2.png"),playerSheet.getSprite("walk3.png"),playerSheet.getSprite("walk4.png")};
+		still = new Animation(left,100);
+		walkLeft = new Animation(left,100);
+		walkRight = new Animation(left,100);
+		jumpLeft = new Animation(left,100);
+		jumpRight = new Animation(left,100);	
 	}
 
 	public void render(Graphics g) {
