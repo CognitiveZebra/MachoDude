@@ -14,8 +14,8 @@ public class Player extends Entity {
 	private State state;
 	private XMLPackedSheet playerSheet;
 	private Animation stillLeft, stillRight, walkLeft, walkRight, jumpLeft, jumpRight;
-	private long jumpStart;
-	private float jumpHeight = -7, xVelocity = 4,gravity = 9.81f, yVelocity = gravity;
+	private long jumpStart, jumpCharge = 0;
+	private float jumpHeight = -4, xVelocity = 4,gravity = 9.81f, yVelocity = gravity;
 
 	public enum Direction {
 		LEFT, RIGHT;
@@ -119,5 +119,18 @@ public class Player extends Entity {
 	public void setJumpStart(long l){
 		jumpStart = l; 
 	}
+	
+	public long getJumpStart(){
+		return jumpStart; 
+	}
+	
+	public void setJumpCharge(long l){
+		jumpCharge = l; 
+	}
+	
+	public long getJumpCharge(){
+		return jumpCharge; 
+	}
+	
 	
 }
