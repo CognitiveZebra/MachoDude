@@ -12,11 +12,11 @@ public class Camera {
 		this.x = x;
 	}
 	
-	public void setX(float x) {
-		this.x = x;
-	}
-	
 	public float getX(){
 		return x;
+	}
+	
+	public void move(float f) {
+		x = x + f;
 	}
 }
