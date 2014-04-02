@@ -57,12 +57,21 @@ public class Player extends Entity {
 	}
 	
 	public void initAnimations() {
-		Image[]  left = {playerSheet.getSprite("walk1.png"),playerSheet.getSprite("walk2.png"),playerSheet.getSprite("walk3.png"),playerSheet.getSprite("walk4.png")};
-		still = new Animation(left,100);
+		Image[]  left = {playerSheet.getSprite("walk1.png"),playerSheet.getSprite("walk2.png"),
+				playerSheet.getSprite("walk3.png"),playerSheet.getSprite("walk4.png")};
+		
+		Image[]  right = {playerSheet.getSprite("walk1.png").getFlippedCopy(true, false),
+				playerSheet.getSprite("walk2.png").getFlippedCopy(true, false),
+				playerSheet.getSprite("walk3.png").getFlippedCopy(true, false),
+				playerSheet.getSprite("walk4.png").getFlippedCopy(true, false)};
+		
+		
+		
+		still = new Animation(new Image[]{playerSheet.getSprite("Still.png")},100);
 		walkLeft = new Animation(left,100);
-		walkRight = new Animation(left,100);
-		jumpLeft = new Animation(left,100);
-		jumpRight = new Animation(left,100);	
+		walkRight = new Animation(right,100);
+		jumpLeft = new Animation(new Image[]{playerSheet.getSprite("jump.png")},100);
+		jumpRight = new Animation(new Image[]{playerSheet.getSprite("jump.png").getFlippedCopy(true, false)},100);	
 	}
 
 	public void render(Graphics g) {
