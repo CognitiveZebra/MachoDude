@@ -43,11 +43,13 @@ public class Player extends Entity {
 	}
 	
 	public void moveLeft(){
+		setState(State.WALKING);
 		direction = Direction.LEFT;
 		setX(getX() - xVelocity);
 	}
 	
 	public void moveRight(){
+		setState(State.WALKING);
 		direction = Direction.RIGHT;
 		setX(getX() + xVelocity);
 	}
