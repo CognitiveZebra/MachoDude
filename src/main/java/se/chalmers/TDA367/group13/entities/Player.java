@@ -34,6 +34,14 @@ public class Player extends Entity {
 		state = State.STILL;
 	}
 	
+	public float nextLeftX(){
+		return x - xVelocity;
+	}
+	
+	public float nextRightX(){
+		return x + xVelocity;
+	}
+	
 	public void moveLeft(){
 		direction = Direction.LEFT;
 		setX(getX() - xVelocity);
