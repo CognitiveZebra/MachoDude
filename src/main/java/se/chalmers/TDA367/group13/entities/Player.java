@@ -15,7 +15,7 @@ public class Player extends Entity {
 	private XMLPackedSheet playerSheet;
 	private Animation stillLeft, stillRight, walkLeft, walkRight, jumpLeft, jumpRight;
 	private long jumpStart;
-	private float jumpHeight = -32, xVelocity = 10,gravity = 9.81f, yVelocity = gravity;
+	private float jumpHeight = -10, xVelocity = 10,gravity = 9.81f, yVelocity = gravity;
 
 	public enum Direction {
 		LEFT, RIGHT;
@@ -64,7 +64,7 @@ public class Player extends Entity {
 	
 	public void updateYVelocity(){
 		if(state == State.JUMPING){
-			float jumpTime = ((System.currentTimeMillis() - jumpStart) % 1000);
+			float jumpTime =  (((System.currentTimeMillis() - jumpStart))*(float)Math.pow(10, -3));
 			yVelocity = jumpHeight + gravity * jumpTime;
 		} else {
 			yVelocity = gravity;
