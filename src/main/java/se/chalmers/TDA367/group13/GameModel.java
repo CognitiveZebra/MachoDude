@@ -21,7 +21,7 @@ public class GameModel {
 		
 		try {
 			level = new Level_1();
-			player = new Player(300, 300, "res/Sprites/MachoDude/sheet",  "res/Sprites/MachoDude/sheet.xml");
+			player = new Player(300, 300, "res/Sprites/MachoDude/sheet.png",  "res/Sprites/MachoDude/sheet.xml");
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
