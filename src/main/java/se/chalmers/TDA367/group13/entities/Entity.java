@@ -24,5 +24,10 @@ public abstract class Entity extends Rectangle {
 	public void render(Graphics g) {
 		g.drawImage(image, getX(), getY());
 	}
+	
+	public void resize(float scale){
+		image.getScaledCopy(scale);
+		image.setFilter(Image.FILTER_NEAREST);
+	}
 
 }
