@@ -96,4 +96,8 @@ public class GameModel {
 	public Player getPlayer(){
 		return player;
 	}
+	
+	public void startMusic(){
+		level.loopMusic();
+	}
 }

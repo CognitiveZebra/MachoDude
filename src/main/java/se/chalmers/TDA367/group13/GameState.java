@@ -21,6 +21,7 @@ public class GameState extends BasicGameState{
 		model = new GameModel(gc);
 		view = new GameView(model);
 		input = gc.getInput();
+		model.startMusic();
 	}
 
 	@Override

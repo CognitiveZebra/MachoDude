@@ -5,13 +5,15 @@ import java.util.List;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
 import se.chalmers.TDA367.group13.entities.Block;
 
 public class Level {
-
+	
+	private Music music;
 	private TiledMap map;
 	private LinkedList<Block> blocks;
 	private Image smallBackground;
@@ -20,10 +22,11 @@ public class Level {
 	private float oldCamX;
 	private Camera camera;
 
-	public Level(Camera camera, TiledMap map, Image background) throws SlickException {
+	public Level(Camera camera, TiledMap map, Image background, Music music) throws SlickException {
 		this.camera = camera;
 		this.map = map;
 		this.background = background;
+		this.music = music;
 		smallBackground = background.getSubImage(0, 0, 1216, 768);
 
 		blocks = new LinkedList<Block>();
@@ -66,6 +69,14 @@ public class Level {
 		for (Block r : blocks) {
 			r.setX(r.getX() + f);
 		}
+	}
+	
+	public void setMusic(Music music){
+		this.music = music;
+	}
+	
+	public void loopMusic(){
+		music.loop();
 	}
 
 }
