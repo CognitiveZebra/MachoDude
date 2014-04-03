@@ -87,17 +87,16 @@ public class Player extends Entity {
 		
 		jumpingLeft = new Image[]{playerSheet.getSprite("jump.png")};
 		jumpingRight =new Image[]{playerSheet.getSprite("jump.png").getFlippedCopy(true, false)};
+	
+		resize(2);	
+		int animationSpeed = 200;
 		
-		resize(2);
-		
-		
-		
-		stillLeft = new Animation(standLeft,100);
-		stillRight = new Animation(standRight,100);
-		walkLeft = new Animation(left,100);
-		walkRight = new Animation(right,100);
-		jumpLeft = new Animation(jumpingLeft,100);
-		jumpRight = new Animation(jumpingRight,100);	
+		stillLeft = new Animation(standLeft,animationSpeed);
+		stillRight = new Animation(standRight,animationSpeed);
+		walkLeft = new Animation(left,animationSpeed);
+		walkRight = new Animation(right,animationSpeed);
+		jumpLeft = new Animation(jumpingLeft,animationSpeed);
+		jumpRight = new Animation(jumpingRight,animationSpeed);	
 	}
 
 	public void render(Graphics g) {
