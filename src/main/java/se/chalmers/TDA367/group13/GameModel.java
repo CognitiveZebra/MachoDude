@@ -30,21 +30,21 @@ public class GameModel {
 	}
 	
 	public void update (Input input){
-		Rectangle nextPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+		Rectangle nextXPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
 		
 		if(input.isKeyDown(Input.KEY_A)){
-			nextPos.setX(player.nextLeftX());
-			if(isLegal(level.getBlocks(), nextPos)){
+			nextXPos.setX(player.nextLeftX());
+			if(isLegal(level.getBlocks(), nextXPos)){
 				player.moveLeft();
 			}
 		} else if(input.isKeyDown(Input.KEY_D)){
-			nextPos.setX(player.nextRightX());
-			if(isLegal(level.getBlocks(), nextPos)){
+			nextXPos.setX(player.nextRightX());
+			if(isLegal(level.getBlocks(), nextXPos)){
 				
-				if(nextPos.getCenterX() > (container.getWidth()/2)){
-					level.moveBlocks(player.getX() - nextPos.getX());
-					level.getCamera().move(player.getX() - nextPos.getX());
+				if(nextXPos.getCenterX() > (container.getWidth()/2)){
+					level.moveBlocks(player.getX() - nextXPos.getX());
+					level.getCamera().move(player.getX() - nextXPos.getX());
 				} else {
 					player.moveRight();
 				}
@@ -65,10 +65,10 @@ public class GameModel {
 		
 
 		
-		
+		Rectangle nextYPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 		player.updateYVelocity();
-		nextPos.setY(player.nextY());
-		if(player.getState() == State.JUMPING && isLegal(level.getBlocks(), nextPos)){
+		nextYPos.setY(player.nextY());
+		if(isLegal(level.getBlocks(), nextYPos)){
 			player.moveY();
 		} else {
 			if(input.isKeyDown(Input.KEY_D)||input.isKeyDown(Input.KEY_A)){
@@ -85,8 +85,8 @@ public class GameModel {
 				return false;
 			}
 		}
-		
-		return true;
+	
+		return (hitbox.getX() > 0);
 	}
 	
 	public Level getLevel(){
