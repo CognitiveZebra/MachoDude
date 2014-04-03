@@ -16,6 +16,7 @@ public class GameModel {
 	private GameContainer container;
 	private Level level;
 	private Player player;
+	private float collisionY;
 
 	public GameModel(GameContainer gc) {
 		this.container = gc;
@@ -69,7 +70,7 @@ public class GameModel {
 		nextYPos.setY(player.nextY());
 		if (isLegal(level.getBlocks(), nextYPos)) {
 			player.moveY();
-		} else if(!input.isKeyDown(Input.KEY_W)) {
+		} else if(collisionY > player.getY()){
  				player.setState(State.STILL);
 		}
 		
@@ -84,6 +85,7 @@ public class GameModel {
 	public boolean isLegal(LinkedList<Block> blocks, Rectangle hitbox) {
 		for (Block b : blocks) {
 			if (hitbox.intersects(b)) {
+				collisionY = b.getY();
 				return false;
 			}
 		}
