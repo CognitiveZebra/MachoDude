@@ -139,6 +139,7 @@ public class Player extends Entity {
 		return images;
 	}
 	
+	@Override
 	public void resize(float scale){
 		right = resizeImages(right, scale); 
 		left = resizeImages(left, scale); 
@@ -155,8 +156,8 @@ public class Player extends Entity {
 		return jumpStart; 
 	}
 	
-	public void setJumpCharge(long l){
-		jumpCharge = l; 
+	public void setJumpCharge(long t){
+		jumpCharge = t; 
 	}
 	
 	public long getJumpCharge(){
