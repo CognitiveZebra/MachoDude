@@ -28,4 +28,8 @@ public abstract class Weapon extends Entity {
 	public void setDamage(float damage) {
 		this.damage = damage;
 	}
+	
+	public void pointAt(float x, float y){
+		// rotate weapon towards cursor
+	}
 }
