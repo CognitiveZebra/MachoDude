@@ -12,6 +12,7 @@ public class Player extends Entity {
 
 	private Direction direction;
 	private State state;
+	private Weapon weapon;
 	private XMLPackedSheet playerSheet;
 	private Image [] right, left, standLeft, standRight, jumpingLeft, jumpingRight;
 	private Animation stillLeft, stillRight, walkLeft, walkRight, jumpLeft, jumpRight;
@@ -34,6 +35,7 @@ public class Player extends Entity {
 		direction = Direction.RIGHT;
 		jumpStart = System.currentTimeMillis();
 		state = State.JUMPING;
+		weapon = new TestWeapon(x, y);
 	}
 	
 	public float nextLeftX(){
