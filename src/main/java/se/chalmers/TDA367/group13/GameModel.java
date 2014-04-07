@@ -32,8 +32,7 @@ public class GameModel {
 	}
 
 	public void update(Input input) {
-		Rectangle nextXPos = new Rectangle(player.getX(), player.getY(),
-				player.getWidth(), player.getHeight());
+		Rectangle nextXPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
 		if (input.isKeyDown(Input.KEY_A)) {
 			nextXPos.setX(player.nextLeftX());
@@ -43,8 +42,9 @@ public class GameModel {
 		} else if (input.isKeyDown(Input.KEY_D)) {
 			nextXPos.setX(player.nextRightX());
 			if (isLegal(level.getBlocks(), nextXPos)) {
-				if (nextXPos.getCenterX() > (container.getWidth() / 2) && !(-level.getCamera().getX() > (level.getWidth() / 2))) {
+				if (nextXPos.getCenterX() > (container.getWidth() / 2) && !(-level.getCamera().getX() > (level.getWidth() - container.getWidth()))) {
 					level.moveBlocks(player.getX() - nextXPos.getX());
+					level.moveEnemies(player.getX() - nextXPos.getX());
 					level.getCamera().move(player.getX() - nextXPos.getX());
 				} else {
 					player.moveRight();
