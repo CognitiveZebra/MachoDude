@@ -48,9 +48,57 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="10" name="EnemyTiles" tilewidth="32" tileheight="32">
+  <image source="../Tiles/EnemyTiles.png" width="96" height="96"/>
+  <tile id="0">
+   <properties>
+    <property name="enemy" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="enemy" value="2"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="enemy" value="3"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="enemy" value="4"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="enemy" value="5"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="enemy" value="6"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="enemy" value="7"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="enemy" value="8"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="enemy" value="9"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="Tile Layer 1" width="76" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2ZSw7AIAhE+//c/8J106XFqSCEzEtma/BJNMRpys1csihlHVy7B1vJrpRjcO0e0BcGfWHQFwZ9YdAXBn1h0BcGfWHQF0ZGX9KM1zO3ZfQl7amnzsi+/vbJWXJ95O6oKbIvyz6pIZ1RZF+WfVJD8hHZlwfSGXn4sny/rPHw5XEvaUFfGNq+Wv4DWtbS+lPQjpar15em/+yhL9zXA85I+PKAHAAA
+   H4sIAAAAAAAAC+2VyQ6AIAwF3Rf+/4OFgweJrIosziQTjQdt2j7pOgAAAAAAACgNkbuAQumlg8UxX2mf4rsfk3S2uCSpLj+xe7JKN4u7x7drzG6OPTHNqIYMv7EnoZhm1GqGn2KaUYrZ+ML5FcZfz69YWu2X0K76/d0zV9aUtl6dut7Rguq/49odvOaIfoX16wD6VK2egBwAAA==
   </data>
  </layer>
 </map>
