@@ -32,4 +32,8 @@ public abstract class Weapon extends Entity {
 	public void pointAt(float x, float y){
 		// rotate weapon towards cursor
 	}
+	
+	public abstract void fireWeapon();
+	
+	
 }
