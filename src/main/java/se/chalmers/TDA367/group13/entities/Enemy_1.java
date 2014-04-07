@@ -18,15 +18,15 @@ public class Enemy_1 extends Enemy{
 	
 	public void initAnimations() {
 		
-		left = new Image[]
+		right = new Image[]
 				{enemySheet.getSprite("walk1"),enemySheet.getSprite("walk2")};
 			
-		right = new Image[]
+		left = new Image[]
 				{enemySheet.getSprite("walk1").getFlippedCopy(true, false),
 				enemySheet.getSprite("walk2").getFlippedCopy(true, false)};
 					
-		standLeft = new Image[]{enemySheet.getSprite("walk1")};
-		standRight = new Image[]{enemySheet.getSprite("walk1").getFlippedCopy(true, false)};
+		standRight = new Image[]{enemySheet.getSprite("walk1")};
+		standLeft = new Image[]{enemySheet.getSprite("walk1").getFlippedCopy(true, false)};
 		
 		int animationSpeed = 200;
 		

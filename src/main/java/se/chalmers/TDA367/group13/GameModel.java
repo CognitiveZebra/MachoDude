@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
 import se.chalmers.TDA367.group13.entities.Block;
+import se.chalmers.TDA367.group13.entities.Enemy;
 import se.chalmers.TDA367.group13.entities.Player;
 import se.chalmers.TDA367.group13.entities.Player.State;
 
@@ -79,8 +80,12 @@ public class GameModel {
 				player.setState(State.WALKING);
 			}
 		}
+		
+		level.updateEnemies(player);
 
 	}
+
+
 
 	public boolean isLegal(LinkedList<Block> blocks, Rectangle hitbox) {
 		for (Block b : blocks) {

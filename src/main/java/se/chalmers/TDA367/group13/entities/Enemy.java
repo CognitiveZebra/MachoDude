@@ -4,6 +4,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
 
+import se.chalmers.TDA367.group13.entities.Enemy.Direction;
+
 public abstract class Enemy extends Entity {
 
 	protected XMLPackedSheet enemySheet;
@@ -14,7 +16,7 @@ public abstract class Enemy extends Entity {
 		super(x, y-new Image(sheet).getHeight(), new Image(sheet));
 		enemySheet = new XMLPackedSheet(sheet, xml);
 		setImage(enemySheet.getSprite("walk1"));
-		direction = Direction.RIGHT;
+		direction = Direction.LEFT;
 		state = State.STILL;
 	}
 	
@@ -24,6 +26,11 @@ public abstract class Enemy extends Entity {
 	
 	public enum State {
 		WALKING, STILL;
+	}
+
+	public void setDirection(Direction d) {
+		direction = d;
+		
 	}
 
 

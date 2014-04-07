@@ -11,7 +11,9 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import se.chalmers.TDA367.group13.entities.Block;
 import se.chalmers.TDA367.group13.entities.Enemy;
+import se.chalmers.TDA367.group13.entities.Enemy.Direction;
 import se.chalmers.TDA367.group13.entities.Enemy_1;
+import se.chalmers.TDA367.group13.entities.Player;
 
 public class Level {
 	
@@ -79,6 +81,10 @@ public class Level {
 		return blocks;
 	}
 	
+	public LinkedList<Enemy> getEnemies() {
+		return enemies;
+	}
+	
 	public void moveBlocks(float f) {
 		for (Block r : blocks) {
 			r.setX(r.getX() + f);
@@ -102,6 +108,17 @@ public class Level {
 
 	public float getWidth() {
 		return (map.getWidth() * map.getTileWidth());
+	}
+
+	public void updateEnemies(Player player) {
+		for (Enemy e : enemies) {
+			if (e.getCenterX() < player.getCenterX()) {
+				e.setDirection(Direction.RIGHT);
+			} else {
+				e.setDirection(Direction.LEFT);
+			}
+		}
+		
 	}
 
 
