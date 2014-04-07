@@ -10,12 +10,15 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
 import se.chalmers.TDA367.group13.entities.Block;
+import se.chalmers.TDA367.group13.entities.Enemy;
+import se.chalmers.TDA367.group13.entities.Enemy_1;
 
 public class Level {
 	
 	private Music music;
 	private TiledMap map;
 	private LinkedList<Block> blocks;
+	private LinkedList<Enemy> enemies;
 	private Image smallBackground;
 	private Image background;
 	private Camera camera;
@@ -28,13 +31,23 @@ public class Level {
 		smallBackground = background.getSubImage(0, 0, 1216, 768);
 
 		blocks = new LinkedList<Block>();
+		enemies = new LinkedList<Enemy>();
 
 		for (int x = 0; x < map.getWidth(); x++) {
 			for (int y = 0; y < map.getHeight(); y++) {
 				int tileID = map.getTileId(x, y, 0);
-				String block = map.getTileProperty(tileID, "blocked","notblocking");
-				if (block != "notblocking") {
+				String block = map.getTileProperty(tileID, "blocked","false");
+				String enemy = map.getTileProperty(tileID, "enemy","false");
+				if (block.equals("true")) {
 					blocks.add(new Block(x * map.getTileWidth(), y* map.getTileWidth(), map.getTileImage(x, y, 0)));
+				}
+				switch (enemy) {
+				case "1":
+					enemies.add(new Enemy_1(x * map.getTileWidth(), y* map.getTileWidth()));
+					System.out.println(enemies.size());
+					break;
+				default:
+					break;
 				}
 
 			}
@@ -47,6 +60,9 @@ public class Level {
 
 		for (Block b : blocks) {
 			b.render(g);
+		}
+		for (Enemy e : enemies) {
+			e.render(g);
 		}
 
 	}
@@ -69,6 +85,13 @@ public class Level {
 		}
 	}
 	
+	public void moveEnemies(float f) {
+		for (Enemy e : enemies) {
+			e.setX(e.getX() + f);
+		}
+	}
+
+	
 	public void setMusic(Music music){
 		this.music = music;
 	}
@@ -80,5 +103,6 @@ public class Level {
 	public float getWidth() {
 		return (map.getWidth() * map.getTileWidth());
 	}
+
 
 }
