@@ -18,8 +18,6 @@ public class Level {
 	private LinkedList<Block> blocks;
 	private Image smallBackground;
 	private Image background;
-	private float cameraMovement;
-	private float oldCamX;
 	private Camera camera;
 
 	public Level(Camera camera, TiledMap map, Image background, Music music) throws SlickException {
@@ -77,6 +75,10 @@ public class Level {
 	
 	public void loopMusic(){
 		music.loop();
+	}
+
+	public float getWidth() {
+		return (map.getWidth() * map.getTileWidth());
 	}
 
 }

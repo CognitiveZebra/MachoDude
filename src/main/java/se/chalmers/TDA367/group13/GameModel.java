@@ -43,7 +43,7 @@ public class GameModel {
 		} else if (input.isKeyDown(Input.KEY_D)) {
 			nextXPos.setX(player.nextRightX());
 			if (isLegal(level.getBlocks(), nextXPos)) {
-				if (nextXPos.getCenterX() > (container.getWidth() / 2)) {
+				if (nextXPos.getCenterX() > (container.getWidth() / 2) && !(-level.getCamera().getX() > (level.getWidth() / 2))) {
 					level.moveBlocks(player.getX() - nextXPos.getX());
 					level.getCamera().move(player.getX() - nextXPos.getX());
 				} else {
@@ -89,7 +89,7 @@ public class GameModel {
 				return false;
 			}
 		}
-		return (hitbox.getX() > 0);
+		return (hitbox.getX() > 0 && hitbox.getMaxX() < container.getWidth());
 	}
 
 	public Level getLevel() {
