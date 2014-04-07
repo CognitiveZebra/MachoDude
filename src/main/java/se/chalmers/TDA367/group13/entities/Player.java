@@ -118,6 +118,7 @@ public class Player extends Entity {
 			break;
 		}
 		g.drawAnimation(animation, getX(), getY());
+		weapon.render(g);
 	}
 
 	public void setState(State s) {

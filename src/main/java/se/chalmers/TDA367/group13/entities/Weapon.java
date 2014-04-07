@@ -5,6 +5,7 @@ import org.newdawn.slick.Image;
 public abstract class Weapon extends Entity {
 	private String name;
 	private float damage;
+	private double angle;
 	
 	public Weapon(float x, float y, Image image, String name, float damage){
 		super(x, y, image);
@@ -30,6 +31,21 @@ public abstract class Weapon extends Entity {
 	}
 	
 	public void pointAt(float x, float y){
-		// rotate weapon towards cursor
+
+		double deltaY;
+		double deltaX;
+		double newAngle;
+		
+		deltaY = y - this.y;
+		deltaX = x - this.x;
+		
+		newAngle = Math.atan(deltaY/deltaX);
+		angle += newAngle - angle;
+		
+		getImage().setRotation((float)Math.toDegrees(angle));		
 	}
+	
+	public abstract void fireWeapon();
+	
+	
 }
