@@ -116,15 +116,25 @@ public class Level {
 	public void updateEnemies(Player player) {
 		for (Enemy e : enemies) {
 			if(e.getX() < Game.WIDTH) {
-				if (Math.abs((e.getCenterX() - player.getCenterX())) < 20) {
+				
+
+
+				Rectangle nextYPos;
+				if (e.getDirection() == Direction.LEFT) {
+					nextYPos = new Rectangle(e.getX()-e.getWidth(), e.getY(), e.getWidth(), e.getHeight());
+				} else {
+					nextYPos = new Rectangle(e.getMaxX(), e.getY(), e.getWidth(), e.getHeight());
+				}
+				
+				nextYPos.setY(e.getNextY());
+				if (isLegal(nextYPos)) {
+					e.setDirection(((e.getDirection() == Direction.LEFT) ?  Direction.RIGHT: Direction.LEFT));
+				}
+				
+				if (Math.abs((e.getCenterX() - player.getCenterX())) < 20 || isLegal(nextYPos)) {
 					e.setState(State.STILL);
 				} else {
 					e.setState(State.WALKING);
-				}
-				if (e.getCenterX() < player.getCenterX()) {
-					e.setDirection(Direction.RIGHT);
-				} else {
-					e.setDirection(Direction.LEFT);
 				}
 		
 				if (e.getState() == State.WALKING) {
@@ -142,14 +152,15 @@ public class Level {
 							e.moveRight();
 						} else {
 							e.setDirection(Direction.LEFT);
-						}
+						} 
 					}
 				}
-				Rectangle nextYPos = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
-				nextYPos.setY(e.getNextY());
-				if (isLegal(nextYPos)) {
-					e.moveY();
+				if (e.getCenterX() < player.getCenterX()) {
+					e.setDirection(Direction.RIGHT);
+				} else {
+					e.setDirection(Direction.LEFT);
 				}
+
 			}
 		}
 
