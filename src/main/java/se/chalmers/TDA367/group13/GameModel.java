@@ -97,6 +97,15 @@ public class GameModel {
 		return (hitbox.getX() > 0 && hitbox.getMaxX() < container.getWidth());
 	}
 
+	public boolean isEnemyCollision(LinkedList<Enemy> enemies, Rectangle hitbox){
+		for(Enemy e : enemies){
+			if(hitbox.intersects(e)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public Level getLevel() {
 		return level;
 	}
