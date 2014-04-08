@@ -38,17 +38,12 @@ public class GameModel {
 		if (input.isKeyDown(Input.KEY_A)) {
 			nextXPos.setX(player.nextLeftX());
 			if (isLegal(level.getBlocks(), nextXPos)) {
-				if(isEnemyCollision(level.getEnemies(), nextXPos)){
-					player.loseHealth();
-				}
 				player.moveLeft();
 			} 
 		} else if (input.isKeyDown(Input.KEY_D)) {
 			nextXPos.setX(player.nextRightX());
 			if (isLegal(level.getBlocks(), nextXPos)) {
-				if(isEnemyCollision(level.getEnemies(), nextXPos)){
-					player.loseHealth();
-				}
+
 				if (nextXPos.getCenterX() > (container.getWidth() / 2) && !(-level.getCamera().getX() > (level.getWidth() - container.getWidth()))) {
 					level.moveBlocks(player.getX() - nextXPos.getX());
 					level.moveEnemies(player.getX() - nextXPos.getX());
@@ -88,6 +83,10 @@ public class GameModel {
 		}
 		
 		level.updateEnemies(player);
+		
+		if(isEnemyCollision(level.getEnemies(), nextXPos)){
+			player.loseHealth();
+		}
 
 	}
 
