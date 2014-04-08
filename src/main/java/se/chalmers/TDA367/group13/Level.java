@@ -155,10 +155,12 @@ public class Level {
 						} 
 					}
 				}
-				if (e.getCenterX() < player.getCenterX()) {
-					e.setDirection(Direction.RIGHT);
-				} else {
-					e.setDirection(Direction.LEFT);
+				if (Math.abs((e.getCenterX() - player.getCenterX())) < 250) {
+					if (e.getCenterX() < player.getCenterX()) {
+						e.setDirection(Direction.RIGHT);
+					} else {
+						e.setDirection(Direction.LEFT);
+					}
 				}
 
 			}
