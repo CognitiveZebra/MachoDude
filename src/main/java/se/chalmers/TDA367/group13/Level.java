@@ -115,8 +115,8 @@ public class Level {
 
 	public void updateEnemies(Player player) {
 		for (Enemy e : enemies) {
-			if(e.getMaxX() < Game.WIDTH) {
-				if (Math.abs((e.getCenterX() - player.getCenterX())) < 50) {
+			if(e.getX() < Game.WIDTH) {
+				if (Math.abs((e.getCenterX() - player.getCenterX())) < 20) {
 					e.setState(State.STILL);
 				} else {
 					e.setState(State.WALKING);
