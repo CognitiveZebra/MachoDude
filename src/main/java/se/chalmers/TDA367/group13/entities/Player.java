@@ -18,6 +18,7 @@ public class Player extends Entity {
 	private Animation stillLeft, stillRight, walkLeft, walkRight, jumpLeft, jumpRight;
 	private long jumpStart, jumpCharge = 0;
 	private float jumpHeight = -4, xVelocity = 4,gravity = 9.81f, yVelocity = gravity;
+	private int health = 3;
 
 	public enum Direction {
 		LEFT, RIGHT;
@@ -165,6 +166,15 @@ public class Player extends Entity {
 	
 	public long getJumpCharge(){
 		return jumpCharge; 
+	}
+	
+	public void loseHealth(){
+		if(health != 0){
+			health = health -1;
+		} else {
+			System.out.println("Boom, you're dead");
+			//TODO: GameOverState call
+		}
 	}
 	
 	
