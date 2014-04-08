@@ -1,5 +1,6 @@
 package se.chalmers.TDA367.group13.entities;
 
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -32,11 +33,11 @@ public class Player extends Entity {
 		super(x, y, new Image(sheet));
 		playerSheet = new XMLPackedSheet(sheet, xml);
 		setImage(playerSheet.getSprite("Still.png"));
+		weapon = new TestWeapon(x, y);
 		initAnimations();
 		direction = Direction.RIGHT;
 		jumpStart = System.currentTimeMillis();
 		state = State.JUMPING;
-		weapon = new TestWeapon(x, y);
 	}
 	
 	public float nextLeftX(){
@@ -119,6 +120,15 @@ public class Player extends Entity {
 			break;
 		}
 		g.drawAnimation(animation, getX(), getY());
+		if (direction == Direction.LEFT){
+		weapon.setX(x + 5);
+		weapon.setY(y + 20);
+		}
+		else{
+			weapon.setX(x + 30);
+			weapon.setY(y + 20);
+		}
+		weapon.pointAt(Mouse.getX(), Mouse.getY());
 		weapon.render(g);
 	}
 
@@ -153,6 +163,7 @@ public class Player extends Entity {
 		jumpingRight = resizeImages(jumpingRight, scale);
 		
 		setImage(standRight[0]);
+		weapon.resize(scale);
 	}
 	
 

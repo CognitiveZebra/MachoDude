@@ -26,8 +26,9 @@ public abstract class Entity extends Rectangle {
 	}
 	
 	public void resize(float scale){
-		image.getScaledCopy(scale);
 		image.setFilter(Image.FILTER_NEAREST);
+		image = image.getScaledCopy(scale);
+		
 	}
 
 }
