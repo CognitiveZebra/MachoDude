@@ -8,6 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GameStateController extends StateBasedGame {
 	private static MenuState menuState;
 	private static GameState gameState;
+	private static QuitState quitState;
 
 	
 	public GameStateController(String name) {
@@ -18,10 +19,12 @@ public class GameStateController extends StateBasedGame {
 	public void initStatesList(GameContainer arg0) throws SlickException {
 		menuState = new MenuState();
 		gameState = new GameState();
+		quitState = new QuitState();
 
 		
 		addState(menuState);
 		addState(gameState);
+		addState(quitState);
 	}
 	
 	public static GameState getGameState() {
@@ -30,6 +33,10 @@ public class GameStateController extends StateBasedGame {
 	
 	public static MenuState getMenuState() {
 		return menuState;
+	}
+	
+	public static QuitState getQuitState() {
+		return quitState;
 	}
 
 }
