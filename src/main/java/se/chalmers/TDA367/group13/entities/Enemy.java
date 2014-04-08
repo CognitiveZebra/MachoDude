@@ -19,7 +19,7 @@ public abstract class Enemy extends Entity {
 		enemySheet = new XMLPackedSheet(sheet, xml);
 		setImage(enemySheet.getSprite("walk1"));
 		direction = Direction.LEFT;
-		state = State.WALKING;
+		state = State.STILL;
 	}
 	
 	public enum Direction {

@@ -9,9 +9,9 @@ import org.newdawn.slick.SlickException;
 public class Game extends BasicGame {
 
     /** Screen width */
-    private static final int WIDTH = 1216;
+    public static final int WIDTH = 1216;
     /** Screen height */
-    private static final int HEIGHT = 768;
+    public static final int HEIGHT = 768;
     
     /** A counter... */
     private int counter;

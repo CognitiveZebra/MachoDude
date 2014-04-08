@@ -1,7 +1,6 @@
 package se.chalmers.TDA367.group13;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -51,7 +50,6 @@ public class Level {
 				case "1":
 					enemies.add(new Enemy_1(x * map.getTileWidth(), y
 							* map.getTileWidth()));
-					System.out.println(enemies.size());
 					break;
 				default:
 					break;
@@ -117,32 +115,34 @@ public class Level {
 
 	public void updateEnemies(Player player) {
 		for (Enemy e : enemies) {
-			if (Math.abs((e.getCenterX() - player.getCenterX())) < 50) {
-				e.setState(State.STILL);
-			} else {
-				e.setState(State.WALKING);
-			}
-			if (e.getCenterX() < player.getCenterX()) {
-				e.setDirection(Direction.RIGHT);
-			} else {
-				e.setDirection(Direction.LEFT);
-			}
-
-			if (e.getState() == State.WALKING) {
-				Rectangle nextXPos = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
-				if (e.getDirection() == Direction.LEFT) {
-					nextXPos.setX(e.getNextLeftX());
-					if (isLegal(nextXPos)) {
-						e.moveLeft();
-					} else {
-						e.setDirection(Direction.RIGHT);
-					}
-				} else if (e.getDirection() == Direction.RIGHT) {
-					nextXPos.setX(e.getNextRightX());
-					if (isLegal(nextXPos)) {
-						e.moveRight();
-					} else {
-						e.setDirection(Direction.LEFT);
+			if(e.getMaxX() < Game.WIDTH) {
+				if (Math.abs((e.getCenterX() - player.getCenterX())) < 50) {
+					e.setState(State.STILL);
+				} else {
+					e.setState(State.WALKING);
+				}
+				if (e.getCenterX() < player.getCenterX()) {
+					e.setDirection(Direction.RIGHT);
+				} else {
+					e.setDirection(Direction.LEFT);
+				}
+		
+				if (e.getState() == State.WALKING) {
+					Rectangle nextXPos = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
+					if (e.getDirection() == Direction.LEFT) {
+						nextXPos.setX(e.getNextLeftX());
+						if (isLegal(nextXPos)) {
+							e.moveLeft();
+						} else {
+							e.setDirection(Direction.RIGHT);
+						}
+					} else if (e.getDirection() == Direction.RIGHT) {
+						nextXPos.setX(e.getNextRightX());
+						if (isLegal(nextXPos)) {
+							e.moveRight();
+						} else {
+							e.setDirection(Direction.LEFT);
+						}
 					}
 				}
 				Rectangle nextYPos = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
@@ -154,6 +154,7 @@ public class Level {
 		}
 
 	}
+
 
 	public boolean isLegal(Rectangle hitbox) {
 		for (Block b : blocks) {
