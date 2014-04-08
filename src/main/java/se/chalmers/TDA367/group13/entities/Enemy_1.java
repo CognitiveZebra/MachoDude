@@ -10,6 +10,7 @@ public class Enemy_1 extends Enemy{
 
 	private Image[] right, left, standLeft, standRight;
 	private Animation stillLeft, stillRight, walkLeft, walkRight;
+	private float walkingspeed = 1;
 
 	public Enemy_1(float x, float y) throws SlickException {
 		super(x, y, "res/Sprites/Enemies/Enemy_1/Enemy_1.png", "res/Sprites/Enemies/Enemy_1/sheet.xml");
@@ -57,7 +58,9 @@ public class Enemy_1 extends Enemy{
 	@Override
 	public void resize(float scale){
 		standLeft =  resizeImages(standLeft, scale);
-		standRight = resizeImages(standRight, scale); 
+		standRight = resizeImages(standRight, scale);
+		right = resizeImages(right, scale); 
+		left = resizeImages(left, scale); 
 		
 		setImage(standRight[0]);
 	}
@@ -69,5 +72,10 @@ public class Enemy_1 extends Enemy{
 		
 		}
 		return images;
+	}
+
+	@Override
+	public float getWalkingSpeed() {
+		return walkingspeed ;
 	}
 }
