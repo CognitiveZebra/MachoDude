@@ -8,6 +8,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
+import org.newdawn.slick.particles.ConfigurableEmitter;
+import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -18,6 +20,8 @@ public class MenuState extends BasicGameState {
 	private Input input;
 	private Menu menu;
 	private Point mouse;
+	private ParticleFactory pf;
+	private ParticleSystem ps;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
@@ -26,16 +30,20 @@ public class MenuState extends BasicGameState {
 		background = new Image("res/Backgrounds/Jungle_Test.gif");
 		initMenu();
 		input = gc.getInput();
-
-		
+		pf = new ParticleFactory();
+		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"), 2000);
+		ConfigurableEmitter rainEmitter = pf.createEmitter("rain");
+		ps.addEmitter(rainEmitter);
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		g.drawImage(background,0,0);
-		menu.render(g);
+
+		ps.render();
 		
+		menu.render(g);
 	}
 
 	@Override
@@ -66,6 +74,8 @@ public class MenuState extends BasicGameState {
 				sbg.enterState(menu.getSelected().getID());
 			}
 		}
+		
+		ps.update(delta);
 	}
 	
 	public void initMenu(){
