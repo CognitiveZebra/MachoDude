@@ -82,6 +82,7 @@ public abstract class Weapon extends Entity {
 		for (Projectile projectile : projectiles)
 			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
 	}
+
 	
 	@Override
 	public void resize(float scale){
@@ -99,6 +100,7 @@ public abstract class Weapon extends Entity {
 		for (Projectile projectile : projectiles)
 			projectile.update();
 	}
+
 
 	public abstract void fireWeapon();
 

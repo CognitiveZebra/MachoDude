@@ -31,7 +31,7 @@ public class GameState extends BasicGameState{
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)	throws SlickException {
-		model.update(input);
+		model.update(input,delta);
 	}
 
 	@Override

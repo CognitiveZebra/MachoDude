@@ -10,6 +10,7 @@ import org.newdawn.slick.geom.Rectangle;
 import se.chalmers.TDA367.group13.entities.Block;
 import se.chalmers.TDA367.group13.entities.Enemy;
 import se.chalmers.TDA367.group13.entities.Player;
+import se.chalmers.TDA367.group13.entities.Projectile;
 import se.chalmers.TDA367.group13.entities.Player.State;
 
 public class GameModel {
@@ -32,7 +33,7 @@ public class GameModel {
 
 	}
 
-	public void update(Input input) {
+	public void update(Input input, int delta) {
 		Rectangle nextXPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
 		if (input.isKeyDown(Input.KEY_A)) {
@@ -86,7 +87,11 @@ public class GameModel {
 		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY(), player.getDirection());
 		if (input.isMouseButtonDown(input.MOUSE_LEFT_BUTTON)) 
 			player.getWeapon().fireWeapon();
-		player.getWeapon().updateProjectiles();
+		for (Projectile projectile : player.getWeapon().getProjectiles())
+			if(isLegal(level.getBlocks(), projectile))
+				projectile.update();
+			else
+				player.getWeapon().getProjectiles().remove(projectile);
 		
 		
 		if(isEnemyCollision(level.getEnemies(), nextXPos)){
