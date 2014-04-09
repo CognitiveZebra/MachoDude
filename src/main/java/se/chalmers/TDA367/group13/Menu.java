@@ -39,8 +39,7 @@ public class Menu {
 	public void up(){
 		int currentPos = menuItems.indexOf(selected);
 		int nextPos = currentPos + 1;
-		
-		System.out.println("currentPos: " + currentPos + "nextPos" + nextPos);
+
 		if(nextPos >= menuItems.size()){
 			setSelected(menuItems.getFirst());
 	
@@ -52,7 +51,7 @@ public class Menu {
 	public void down(){
 		int currentPos = menuItems.indexOf(selected);
 		int nextPos = currentPos - 1;
-		System.out.println("currentPos: " + currentPos + "nextPos" + nextPos);
+
 		if(nextPos < 0){
 			setSelected(menuItems.getLast());
 
