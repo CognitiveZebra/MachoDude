@@ -16,7 +16,6 @@ public class MenuItem extends Entity{
 	private String name; 
 	private Color selectedColor = new Color(0,0,0,0.4f);
 	public Rectangle selectedRec;
-	public boolean isSelected;
 	AngelCodeFont font32;
 	
 
@@ -32,7 +31,7 @@ public class MenuItem extends Entity{
 		selectedRec = new Rectangle(getX() - 3, getY() - 3, getWidth() + 6, getHeight() + 6 );
 	}
 
-	public void render(Graphics g){
+	public void render(Graphics g, boolean isSelected){
 		
 		//blue frame behind image when selected
 		if(isSelected){
@@ -40,7 +39,7 @@ public class MenuItem extends Entity{
 			g.fill(selectedRec);
 		}
 		
-		//menu-item image
+		//menu item image
 		super.render(g);
 		
 		//darker shade over image when selected
