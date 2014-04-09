@@ -9,7 +9,7 @@ public class Enemy_1_Weapon extends Weapon {
 		super(x, y, new Image("res/Sprites/Enemies/Enemy_1/Enemy_1-Arm.png"),new Image("res/Sprites/Enemies/Enemy_1/Enemy_1-Arm.png").getFlippedCopy(true, false), "Enemy_1_Weapon", 1);
 	}
 	
-	public void fireWeapon(){
+	public void fireWeapon(Direction direction){
 		System.out.println("Shots fired!");
 	}
 	

@@ -14,10 +14,10 @@ public class TestWeapon extends Weapon {
 		cooldown = 300;
 	}
 	
-	public void fireWeapon(){
+	public void fireWeapon(Direction direction){
 
 		if ((System.currentTimeMillis()-time) > cooldown){
-		getProjectiles().add(new Projectile(x, y, getImage().copy(), getAngle(), 10));
+		getProjectiles().add(new Projectile(x, y, getImage().copy(), getAngle(), 10, direction));
 		time = System.currentTimeMillis();
 		}
 		

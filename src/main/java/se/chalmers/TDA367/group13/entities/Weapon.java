@@ -102,7 +102,7 @@ public abstract class Weapon extends Entity {
 	}
 
 
-	public abstract void fireWeapon();
+	public abstract void fireWeapon(Direction direction);
 
 	public Image getRightImage() {
 		return rightImage;

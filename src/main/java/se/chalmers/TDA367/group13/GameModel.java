@@ -86,7 +86,7 @@ public class GameModel {
 		
 		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY(), player.getDirection());
 		if (input.isMouseButtonDown(input.MOUSE_LEFT_BUTTON)) 
-			player.getWeapon().fireWeapon();
+			player.getWeapon().fireWeapon(player.getDirection());
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
 		for (Projectile projectile : player.getWeapon().getProjectiles()) {
 			if(isLegal(level.getBlocks(), projectile)) {
