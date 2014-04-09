@@ -1,17 +1,31 @@
 package se.chalmers.TDA367.group13.entities;
 
+import java.util.LinkedList;
+
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 public abstract class Weapon extends Entity {
 	private String name;
 	private float damage;
 	private float angle;
+	private LinkedList<Projectile> projectiles;
 	
 	public Weapon(float x, float y, Image image, String name, float damage){
 		super(x, y, image);
 		this.name = name;
 		this.damage = damage;
+		projectiles = new LinkedList<Projectile>();
 		
+		
+	}
+
+	public LinkedList<Projectile> getProjectiles() {
+		return projectiles;
+	}
+
+	public void setProjectiles(LinkedList<Projectile> projectiles) {
+		this.projectiles = projectiles;
 	}
 
 	public String getName() {
@@ -51,6 +65,15 @@ public abstract class Weapon extends Entity {
 
 	public void setAngle(float angle) {
 		this.angle = angle;
+	}
+	
+	@Override
+	public void render(Graphics g) {
+		super.render(g);
+		for (Projectile projectile : projectiles)
+		{
+			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
+		}
 	}
 
 	public abstract void fireWeapon();

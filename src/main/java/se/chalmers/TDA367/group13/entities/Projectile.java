@@ -13,6 +13,7 @@ public class Projectile extends Entity {
 		this.angle = angle;
 		this.speed = speed;
 		vector = new Vector2f(angle);
+		vector.normalise();
 	}
 	
 	public void update(){

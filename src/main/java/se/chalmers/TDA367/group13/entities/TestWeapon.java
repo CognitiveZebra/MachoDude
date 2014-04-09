@@ -10,7 +10,7 @@ public class TestWeapon extends Weapon {
 	}
 	
 	public void fireWeapon(){
-		new Projectile(x, y, getImage(), getAngle(), 3);
+		getProjectiles().add(new Projectile(x, y, getImage(), getAngle(), 3));
 	}
 
 }
