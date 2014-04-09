@@ -60,15 +60,12 @@ public class Enemy_1 extends Enemy{
 			break;
 		}
 		g.drawAnimation(animation, getX(), getY());
-		g.drawRect(weapon.getX(), weapon.getY(), weapon.getWidth(), weapon.getHeight());
 		
 		if (direction == Direction.LEFT){
 			weapon.setCenterX(x + leftShoulder.getX());
 			weapon.setCenterY(y + leftShoulder.getY());
-		//	weapon.setImage(weapon.getLeftImage());
 		}
 		else{
-		//	weapon.setImage(weapon.getRightImage());
 			weapon.setCenterX(x + rightShoulder.getX());
 			weapon.setCenterY(y + rightShoulder.getY());
 		}
@@ -100,5 +97,10 @@ public class Enemy_1 extends Enemy{
 	@Override
 	public float getWalkingSpeed() {
 		return walkingspeed ;
+	}
+
+	@Override
+	public Weapon getWeapon() {
+		return weapon;
 	}
 }
