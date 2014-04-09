@@ -87,17 +87,18 @@ public class GameModel {
 		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY(), player.getDirection());
 		if (input.isMouseButtonDown(input.MOUSE_LEFT_BUTTON)) 
 			player.getWeapon().fireWeapon();
-		for (Projectile projectile : player.getWeapon().getProjectiles())
-			if(isLegal(level.getBlocks(), projectile))
+		LinkedList<Projectile> removed = new LinkedList<Projectile>();
+		for (Projectile projectile : player.getWeapon().getProjectiles()) {
+			if(isLegal(level.getBlocks(), projectile)) {
 				projectile.update();
-			else
-				player.getWeapon().getProjectiles().remove(projectile);
-		
-		
+			} else {
+				removed.add(projectile);
+			}
+		}
+		player.getWeapon().getProjectiles().removeAll(removed);
 		if(isEnemyCollision(level.getEnemies(), nextXPos)){
 			player.loseHealth();
 		}
-
 	}
 
 
