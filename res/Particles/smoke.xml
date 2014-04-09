@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<emitter imageName="" name="Healing Particle">
+  <spawnInterval enabled="true" max="50.0" min="40.0"/>
+  <spawnCount enabled="true" max="3.0" min="1.0"/>
+  <initialLife enabled="true" max="8000.0" min="3000.0"/>
+  <initialSize enabled="true" max="18.0" min="7.0"/>
+  <xOffset enabled="true" max="0.0" min="0.0"/>
+  <yOffset enabled="true" max="4.0" min="-4.0"/>
+  <initialDistance enabled="false" max="0.0" min="0.0"/>
+  <speed enabled="true" max="20.0" min="12.0"/>
+  <length enabled="false" max="1000.0" min="500.0"/>
+  <spread value="600.0"/>
+  <angularOffset value="900.0"/>
+  <growthFactor value="14.0"/>
+  <gravityFactor value="0.0"/>
+  <startAlpha value="255.0"/>
+  <endAlpha value="0.0"/>
+  <color>
+    <step b="0.4" g="0.4" offset="0.0" r="0.4"/>
+    <step b="0.6" g="0.6" offset="0.5" r="0.6"/>
+    <step b="0.8" g="0.8" offset="1.0" r="0.8"/>
+  </color>
+</emitter>
