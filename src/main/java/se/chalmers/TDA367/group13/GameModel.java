@@ -81,7 +81,6 @@ public class GameModel {
 				player.setState(State.WALKING);
 			}
 		}
-		
 		level.updateEnemies(player);
 		
 		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY());
