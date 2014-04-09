@@ -165,6 +165,7 @@ public class Level {
 					} else {
 						e.setDirection(Direction.LEFT);
 					}
+					e.getWeapon().pointAt(player.getCenterX(), player.getCenterY());
 				}
 
 			}

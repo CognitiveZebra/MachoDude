@@ -48,6 +48,8 @@ public abstract class Enemy extends Entity {
 	}
 
 	public abstract float getWalkingSpeed();
+	
+	public abstract Weapon getWeapon();
 
 	public float getNextRightX() {
 		return x + getWalkingSpeed();
