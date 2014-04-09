@@ -10,14 +10,15 @@ public class Projectile extends Entity {
 	
 	public Projectile(float x, float y, Image image, float angle, float speed){
 		super (x, y, image);
+		getImage().rotate(angle);
 		this.angle = angle;
 		this.speed = speed;
-		vector = new Vector2f(angle);
+		vector = new Vector2f(Math.toDegrees(angle));
 		vector.normalise();
 	}
 	
 	public void update(){
-		setX(x + (speed*vector.getX()));
-		setY(y + (speed*vector.getY()));
+		setX(getX() + (speed*vector.x));
+		setY(getY() - (speed*vector.y));
 	}
 }
