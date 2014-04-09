@@ -39,7 +39,7 @@ public abstract class Weapon extends Entity {
 		deltaY = y - this.y;
 		deltaX = x - this.x;
 		
-		newAngle = Math.atan(deltaY/deltaX);
+		newAngle = Math.atan2(deltaY,deltaX);
 		angle += newAngle - angle;
 		
 		getImage().setRotation((float)Math.toDegrees(angle));		
