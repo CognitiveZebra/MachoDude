@@ -11,6 +11,7 @@ public abstract class Enemy extends Entity {
 
 	protected XMLPackedSheet enemySheet;
 	protected Direction direction;
+	protected Weapon weapon;
 	protected State state;
 	private float gravity = 9.81f;
 
