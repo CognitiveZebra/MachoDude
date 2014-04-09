@@ -4,8 +4,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
 
-import se.chalmers.TDA367.group13.entities.Enemy.Direction;
-import se.chalmers.TDA367.group13.entities.Enemy.State;
 
 public abstract class Enemy extends Entity {
 
@@ -23,9 +21,7 @@ public abstract class Enemy extends Entity {
 		state = State.STILL;
 	}
 	
-	public enum Direction {
-		LEFT, RIGHT;
-	}
+
 	
 	public enum State {
 		WALKING, STILL;

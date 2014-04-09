@@ -83,7 +83,7 @@ public class GameModel {
 		}
 		level.updateEnemies(player);
 		
-		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY());
+		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY(), player.getDirection());
 		if (input.isMouseButtonDown(input.MOUSE_LEFT_BUTTON)) 
 			player.getWeapon().fireWeapon();
 		player.getWeapon().updateProjectiles();

@@ -5,11 +5,15 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
 
 public abstract class Entity extends Rectangle {
-	private Image image;
+	protected Image image;
 
 	public Entity(float x, float y, Image image) {
 		super(x, y, image.getWidth(), image.getHeight());
 		this.image = image;
+	}
+	
+	public enum Direction {
+		LEFT, RIGHT;
 	}
 
 	public Image getImage() {

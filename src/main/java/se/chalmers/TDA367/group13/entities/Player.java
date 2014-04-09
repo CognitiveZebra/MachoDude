@@ -1,17 +1,12 @@
 package se.chalmers.TDA367.group13.entities;
 
-import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Point;
 
-import se.chalmers.TDA367.group13.entities.Enemy.Direction;
 
 public class Player extends Entity {
 
@@ -26,9 +21,7 @@ public class Player extends Entity {
 	private int health = 3;
 	private Point rightShoulder, leftShoulder;
 
-	public enum Direction {
-		LEFT, RIGHT;
-	}
+
 
 	public enum State {
 		WALKING, STILL, JUMPING;
@@ -135,7 +128,7 @@ public class Player extends Entity {
 			weapon.setCenterX(x + rightShoulder.getX());
 			weapon.setCenterY(y + rightShoulder.getY());
 		}
-		weapon.render(g);
+		weapon.render(g, direction);
 	}
 
 	public void setState(State s) {
@@ -144,6 +137,10 @@ public class Player extends Entity {
 	
 	public State getState(){
 		return state;
+	}
+	
+	public Direction getDirection() {
+		return direction;
 	}
 	
 	public void setJumpStart(long l){

@@ -11,9 +11,9 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import se.chalmers.TDA367.group13.entities.Block;
 import se.chalmers.TDA367.group13.entities.Enemy;
-import se.chalmers.TDA367.group13.entities.Enemy.Direction;
 import se.chalmers.TDA367.group13.entities.Enemy.State;
 import se.chalmers.TDA367.group13.entities.Enemy_1;
+import se.chalmers.TDA367.group13.entities.Entity.Direction;
 import se.chalmers.TDA367.group13.entities.Player;
 
 public class Level {
@@ -165,9 +165,14 @@ public class Level {
 					} else {
 						e.setDirection(Direction.LEFT);
 					}
-					e.getWeapon().pointAt(player.getCenterX(), player.getCenterY());
+					e.getWeapon().pointAt(player.getCenterX(), player.getCenterY(), e.getDirection());
 				} else {
-					e.getWeapon().getImage().setRotation(0);
+					if (e.getDirection() == Direction.RIGHT) {
+						e.getWeapon().setImage(e.getWeapon().getRightImage());
+					} else if (e.getDirection() == Direction.LEFT) {
+						e.getWeapon().setImage(e.getWeapon().getLeftImage());
+					}
+					
 				}
 
 			}

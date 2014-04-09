@@ -6,8 +6,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 
-import se.chalmers.TDA367.group13.entities.Player.Direction;
-
 
 public class Enemy_1 extends Enemy{
 

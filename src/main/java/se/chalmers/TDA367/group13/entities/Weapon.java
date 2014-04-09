@@ -5,14 +5,18 @@ import java.util.LinkedList;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
+
 public abstract class Weapon extends Entity {
 	private String name;
 	private float damage;
 	private float angle;
+	private Image rightImage, leftImage;
 	private LinkedList<Projectile> projectiles;
 	
-	public Weapon(float x, float y, Image image, String name, float damage){
-		super(x, y, image);
+	public Weapon(float x, float y, Image rightImage, Image leftImage, String name, float damage){
+		super(x, y, rightImage);
+		this.rightImage = rightImage;
+		this.leftImage = leftImage;
 		this.name = name;
 		this.damage = damage;
 		projectiles = new LinkedList<Projectile>();
@@ -44,17 +48,22 @@ public abstract class Weapon extends Entity {
 		this.damage = damage;
 	}
 	
-	public void pointAt(float x, float y){
-
+	public void pointAt(float x, float y, Direction direction){
 		double deltaY;
 		double deltaX;
 		double newAngle;
 		deltaY = this.y - y;
 		deltaX = x - this.x;
-		
 		newAngle = Math.atan2(deltaY,deltaX);
 		angle += newAngle - angle;
-		getImage().setRotation(-(float)Math.toDegrees(angle));
+		if (direction == Direction.RIGHT) {
+			setImage(rightImage);
+			getImage().setRotation(-(float)Math.toDegrees(angle));
+		} else if  (direction == Direction.LEFT) {
+			setImage(leftImage);
+			getImage().setRotation(-(float)Math.toDegrees(angle) - 180);
+		}
+
 
 	}
 
@@ -67,11 +76,23 @@ public abstract class Weapon extends Entity {
 		this.angle = angle;
 	}
 	
-	@Override
-	public void render(Graphics g) {
+	public void render(Graphics g, Direction direction) {
 		super.render(g);
+		
 		for (Projectile projectile : projectiles)
 			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
+	}
+	
+	@Override
+	public void resize(float scale){
+		rightImage.setFilter(Image.FILTER_NEAREST);
+		rightImage = rightImage.getScaledCopy(scale);
+		
+		leftImage.setFilter(Image.FILTER_NEAREST);
+		leftImage = leftImage.getScaledCopy(scale);
+		
+		setImage(rightImage);
+		
 	}
 	
 	public void updateProjectiles(){
@@ -80,6 +101,14 @@ public abstract class Weapon extends Entity {
 	}
 
 	public abstract void fireWeapon();
+
+	public Image getRightImage() {
+		return rightImage;
+	}
+	
+	public Image getLeftImage() {
+		return leftImage;
+	}
 	
 	
 }
