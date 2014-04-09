@@ -128,7 +128,6 @@ public class Player extends Entity {
 			weapon.setX(x + 30);
 			weapon.setY(y + 20);
 		}
-		weapon.pointAt(Mouse.getX(), Mouse.getY());
 		weapon.render(g);
 	}
 
@@ -188,5 +187,8 @@ public class Player extends Entity {
 		}
 	}
 	
+	public Weapon getWeapon() {
+		return weapon;
+	}
 	
 }

@@ -35,15 +35,15 @@ public abstract class Weapon extends Entity {
 		double deltaY;
 		double deltaX;
 		double newAngle;
-		
-		deltaY = y - this.y;
+		deltaY = this.y - y;
 		deltaX = x - this.x;
 		
 		newAngle = Math.atan2(deltaY,deltaX);
 		angle += newAngle - angle;
-		
-		getImage().setRotation((float)Math.toDegrees(angle));		
+		getImage().setRotation(-(float)Math.toDegrees(angle));
+
 	}
+
 	
 	public abstract void fireWeapon();
 	
