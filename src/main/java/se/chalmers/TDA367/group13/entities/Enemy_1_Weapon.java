@@ -6,7 +6,7 @@ import org.newdawn.slick.SlickException;
 public class Enemy_1_Weapon extends Weapon {
 	
 	Enemy_1_Weapon(float x, float y) throws SlickException {
-		super(x, y, new Image("res/Sprites/Enemies/Enemy_1/Enemy_1-Arm.png").getFlippedCopy(true, false), "Enemy_1_Weapon", 1);
+		super(x, y, new Image("res/Sprites/Enemies/Enemy_1/Enemy_1-Arm.png"), "Enemy_1_Weapon", 1);
 	}
 	
 	public void fireWeapon(){

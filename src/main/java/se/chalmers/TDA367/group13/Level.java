@@ -166,6 +166,8 @@ public class Level {
 						e.setDirection(Direction.LEFT);
 					}
 					e.getWeapon().pointAt(player.getCenterX(), player.getCenterY());
+				} else {
+					e.getWeapon().getImage().setRotation(0);
 				}
 
 			}
