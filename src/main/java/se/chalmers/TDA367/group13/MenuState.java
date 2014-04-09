@@ -34,6 +34,7 @@ public class MenuState extends BasicGameState {
 		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"), 2000);
 		ConfigurableEmitter rainEmitter = pf.createEmitter("rain");
 		ps.addEmitter(rainEmitter);
+		
 	}
 
 	@Override

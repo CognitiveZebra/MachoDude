@@ -2,12 +2,16 @@ package se.chalmers.TDA367.group13.entities;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.XMLPackedSheet;
+import org.newdawn.slick.geom.Point;
+
+import se.chalmers.TDA367.group13.entities.Enemy.Direction;
 
 public class Player extends Entity {
 
@@ -20,6 +24,7 @@ public class Player extends Entity {
 	private long jumpStart, jumpCharge = 0;
 	private float jumpHeight = -4, xVelocity = 4,gravity = 9.81f, yVelocity = gravity;
 	private int health = 3;
+	private Point rightShoulder, leftShoulder;
 
 	public enum Direction {
 		LEFT, RIGHT;
@@ -33,6 +38,8 @@ public class Player extends Entity {
 		super(x, y, new Image(sheet));
 		playerSheet = new XMLPackedSheet(sheet, xml);
 		setImage(playerSheet.getSprite("Still.png"));
+		rightShoulder = new Point(29, 13);
+		leftShoulder = new Point(15, 13);
 		weapon = new TestWeapon(x, y);
 		initAnimations();
 		direction = Direction.RIGHT;
@@ -121,12 +128,12 @@ public class Player extends Entity {
 		}
 		g.drawAnimation(animation, getX(), getY());
 		if (direction == Direction.LEFT){
-		weapon.setX(x + 5);
-		weapon.setY(y + 20);
+			weapon.setCenterX(x + leftShoulder.getX());
+			weapon.setCenterY(y + leftShoulder.getY());
 		}
 		else{
-			weapon.setX(x + 30);
-			weapon.setY(y + 20);
+			weapon.setCenterX(x + rightShoulder.getX());
+			weapon.setCenterY(y + rightShoulder.getY());
 		}
 		weapon.render(g);
 	}
@@ -160,7 +167,8 @@ public class Player extends Entity {
 		standRight = resizeImages(standRight, scale); 
 		jumpingLeft = resizeImages(jumpingLeft, scale); 
 		jumpingRight = resizeImages(jumpingRight, scale);
-		
+		leftShoulder.setLocation(leftShoulder.getX() * scale, leftShoulder.getY() *scale);
+		rightShoulder.setLocation(rightShoulder.getX() * scale, rightShoulder.getY() *scale);
 		setImage(standRight[0]);
 		weapon.resize(scale);
 	}

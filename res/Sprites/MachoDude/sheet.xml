@@ -1,8 +1,8 @@
 <sheet>
-	<sprite name="walk4.png" x="0" y="0" width="38" height="51" />
-	<sprite name="walk1.png" x="38" y="0" width="35" height="50" />
-	<sprite name="walk3.png" x="73" y="0" width="45" height="50" />
-	<sprite name="Still.png" x="118" y="0" width="37" height="49" />
-	<sprite name="walk2.png" x="155" y="0" width="35" height="49" />
-	<sprite name="jump.png" x="190" y="0" width="42" height="48" />
+	<sprite name="walk4.png" x="0" y="0" width="45" height="51" />
+	<sprite name="walk1.png" x="45" y="0" width="45" height="50" />
+	<sprite name="walk3.png" x="90" y="0" width="45" height="50" />
+	<sprite name="Still.png" x="135" y="0" width="45" height="49" />
+	<sprite name="walk2.png" x="180" y="0" width="45" height="49" />
+	<sprite name="jump.png" x="225" y="0" width="45" height="48" />
 </sheet>

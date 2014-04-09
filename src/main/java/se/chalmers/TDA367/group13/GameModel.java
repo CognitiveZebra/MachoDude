@@ -33,7 +33,7 @@ public class GameModel {
 
 	}
 
-	public void update(Input input) {
+	public void update(Input input, int delta) {
 		Rectangle nextXPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
 		if (input.isKeyDown(Input.KEY_A)) {
@@ -82,7 +82,6 @@ public class GameModel {
 				player.setState(State.WALKING);
 			}
 		}
-		
 		level.updateEnemies(player);
 		
 		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY());
