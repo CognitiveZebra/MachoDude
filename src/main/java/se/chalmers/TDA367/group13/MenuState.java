@@ -46,14 +46,24 @@ public class MenuState extends BasicGameState {
 		
 		for(MenuItem item : menu.getItems()){
 
-			item.isSelected = (item.contains(mouse)) ? true : false;
+			if(item.contains(mouse)){
+				menu.setSelected(item);
+			}
 			
 			if(item.contains(mouse) && isMousePressed){
 					sbg.enterState(item.getID());
 			}
-									
-			if(input.isKeyDown(Input.KEY_ENTER)){
-				sbg.enterState(GameStateController.getGameState().getID());
+			
+			if(input.isKeyPressed(Input.KEY_DOWN)){
+				menu.down();
+			}
+			
+			if(input.isKeyPressed(Input.KEY_UP)){
+				menu.up();
+			}
+			
+			if(input.isKeyDown(Input.KEY_ENTER) && item.equals(menu.getSelected())){
+				sbg.enterState(menu.getSelected().getID());
 			}
 		}
 	}
