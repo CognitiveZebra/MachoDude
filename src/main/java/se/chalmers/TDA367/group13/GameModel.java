@@ -85,10 +85,10 @@ public class GameModel {
 		level.updateEnemies(player);
 		
 		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY());
-		if (input.isMouseButtonDown(input.MOUSE_LEFT_BUTTON)) {
+		if (input.isMouseButtonDown(input.MOUSE_LEFT_BUTTON)) 
 			player.getWeapon().fireWeapon();
-			System.out.println("Shots fired");
-		}
+		player.getWeapon().updateProjectiles();
+		
 		
 		if(isEnemyCollision(level.getEnemies(), nextXPos)){
 			player.loseHealth();

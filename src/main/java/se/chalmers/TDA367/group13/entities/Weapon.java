@@ -71,9 +71,12 @@ public abstract class Weapon extends Entity {
 	public void render(Graphics g) {
 		super.render(g);
 		for (Projectile projectile : projectiles)
-		{
 			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
-		}
+	}
+	
+	public void updateProjectiles(){
+		for (Projectile projectile : projectiles)
+			projectile.update();
 	}
 
 	public abstract void fireWeapon();
