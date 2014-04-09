@@ -10,7 +10,7 @@ public class TestWeapon extends Weapon {
 	}
 	
 	public void fireWeapon(){
-		System.out.println("Shots fired!");
+		new Projectile(x, y, getImage(), getAngle(), 3);
 	}
 
 }
