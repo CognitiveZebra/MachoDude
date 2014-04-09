@@ -84,6 +84,8 @@ public class GameModel {
 		
 		level.updateEnemies(player);
 		
+		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY());
+		
 		if(isEnemyCollision(level.getEnemies(), nextXPos)){
 			player.loseHealth();
 		}

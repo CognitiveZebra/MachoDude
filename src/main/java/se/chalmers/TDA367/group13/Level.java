@@ -154,6 +154,10 @@ public class Level {
 							e.setDirection(Direction.LEFT);
 						} 
 					}
+					nextXPos.setX(e.getNextLeftX());
+					if (!isLegal(nextXPos)) {
+						e.setState(State.STILL);
+					}
 				}
 				if (Math.abs((e.getCenterX() - player.getCenterX())) < 250) {
 					if (e.getCenterX() < player.getCenterX()) {
