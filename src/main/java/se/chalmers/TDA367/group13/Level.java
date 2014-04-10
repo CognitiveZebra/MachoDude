@@ -178,7 +178,10 @@ public class Level {
 				}
 				LinkedList<Projectile> removed = new LinkedList<Projectile>();
 				for (Projectile projectile : e.getWeapon().getProjectiles()) {
-					if(isLegal(projectile)) {
+					if (projectile.intersects(player)) {
+						player.loseHealth();
+						removed.add(projectile);
+					} else if (isLegal(projectile)) {
 						projectile.update();
 					} else {
 						removed.add(projectile);
