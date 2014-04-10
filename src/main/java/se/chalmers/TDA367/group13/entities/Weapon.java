@@ -10,13 +10,14 @@ public abstract class Weapon extends Entity {
 	private String name;
 	private float damage;
 	private float angle;
-	private Image rightImage, leftImage;
+	private Image rightImage, leftImage, projectileImage;
 	private LinkedList<Projectile> projectiles;
 	
-	public Weapon(float x, float y, Image rightImage, Image leftImage, String name, float damage){
+	public Weapon(float x, float y, Image rightImage, Image leftImage, Image projectileImage, String name, float damage){
 		super(x, y, rightImage);
 		this.rightImage = rightImage;
 		this.leftImage = leftImage;
+		this.projectileImage = projectileImage;
 		this.name = name;
 		this.damage = damage;
 		projectiles = new LinkedList<Projectile>();
@@ -92,6 +93,9 @@ public abstract class Weapon extends Entity {
 		leftImage.setFilter(Image.FILTER_NEAREST);
 		leftImage = leftImage.getScaledCopy(scale);
 		
+		projectileImage.setFilter(Image.FILTER_NEAREST);
+		projectileImage = projectileImage.getScaledCopy(scale);
+		
 		setImage(rightImage);
 		
 	}
@@ -110,6 +114,10 @@ public abstract class Weapon extends Entity {
 	
 	public Image getLeftImage() {
 		return leftImage;
+	}
+	
+	public Image getProjectileImage() {
+		return projectileImage;
 	}
 	
 	
