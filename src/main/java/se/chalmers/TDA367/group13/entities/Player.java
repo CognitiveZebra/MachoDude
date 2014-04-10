@@ -7,6 +7,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Point;
 
+import se.chalmers.TDA367.group13.Game;
+
 
 public class Player extends Entity {
 
@@ -20,6 +22,8 @@ public class Player extends Entity {
 	private float jumpHeight = -4, xVelocity = 4,gravity = 9.81f, yVelocity = gravity;
 	private int health = 3;
 	private Point rightShoulder, leftShoulder;
+	private HealthBar [] hearts = new HealthBar[3];
+	private HealthBar healthBar;
 
 
 
@@ -38,6 +42,9 @@ public class Player extends Entity {
 		direction = Direction.RIGHT;
 		jumpStart = System.currentTimeMillis();
 		state = State.JUMPING;
+		//healthBar = new HealthBar((float)Game.WIDTH, 0f);
+		for(int i = 0; i < hearts.length; i++)
+			hearts[i] = new HealthBar((float)Game.WIDTH, 0f);
 	}
 	
 	public float nextLeftX(){
@@ -129,6 +136,17 @@ public class Player extends Entity {
 			weapon.setCenterY(y + rightShoulder.getY());
 		}
 		weapon.render(g, direction);
+		
+		if(health < 3) {
+			hearts[0].state = HealthBar.State.EMPTY;
+		} else if (health < 2){
+			hearts[1].state = HealthBar.State.EMPTY;
+		} else if (health < 1){
+			hearts[2].state = HealthBar.State.EMPTY;
+		}
+		for(int i = 0; i < hearts.length; i++)
+			hearts[i].render(g);
+		
 	}
 
 	public void setState(State s) {
