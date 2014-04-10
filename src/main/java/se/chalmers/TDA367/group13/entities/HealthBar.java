@@ -1,52 +1,47 @@
 package se.chalmers.TDA367.group13.entities;
 
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import se.chalmers.TDA367.group13.Game;
 
-public class HealthBar extends Entity {
+public class HealthBar {
 
-	public State state;
+	private Image fullImage, emptyImage;
+	private Image [] hearts;
+	private float spacing;
+	private int orgHealth;
 	
-	public enum State{
-		EMPTY, FILLED
-	}
-	
-	public HealthBar(float x, float y) throws SlickException {
-		super(x, y, new Image("res/Sprites/MachoDude/Heart-Full.png"));
-		
-		state = State.FILLED;
-
-	}
-	
-
-	@Override
-	public void render(Graphics g){
-		
-		
-		
-		switch(state){
-		
-		case EMPTY:
-			try {
-				setImage(new Image("res/Sprites/MachoDude/Heart-Empty.png"));
-			} catch (SlickException e) {
-				e.printStackTrace();
-			}
-			g.drawImage(getImage(), 0, 0);
-			break;
-		case FILLED:
-			try {
-				setImage(new Image("/res/Sprites/MachoDude/Heart-Full.png"));
-			} catch (SlickException e) {
-				e.printStackTrace();
-			}
-			g.drawImage(getImage(), 0, 0);
-			break;
+	public HealthBar(int health) throws SlickException {
+		fullImage = new Image("res/Sprites/MachoDude/Heart-Full.png");
+		emptyImage = new Image("res/Sprites/MachoDude/Heart-Empty.png");
+		hearts = new Image[health];
+		orgHealth = health;
+		resize(5);
+		for (int i = 0; i < health; i++) {
+			hearts[i] = fullImage.copy();
 		}
+	}
+	
+
+	public void render(Graphics g, int health){
+
+		
+		for (int i = 0; i < orgHealth - health; i++) {
+			hearts[i] = emptyImage.copy();
+		}
+		for (int i = 0; i < hearts.length; i++) {
+			g.drawImage(hearts[i], Game.WIDTH - (i+1)*(hearts[i].getWidth()+ spacing), hearts[i].getWidth()/11);
+		} 
+	}
+	
+	public void resize(float scale) {
+		fullImage.setFilter(Image.FILTER_NEAREST);
+		fullImage = fullImage.getScaledCopy(scale);
+		emptyImage.setFilter(Image.FILTER_NEAREST);
+		emptyImage= emptyImage.getScaledCopy(scale);
+		spacing = fullImage.getWidth()/11;
 	}
 	
 }
