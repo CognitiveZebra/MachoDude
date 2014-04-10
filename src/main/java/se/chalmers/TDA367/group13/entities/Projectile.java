@@ -4,8 +4,6 @@ package se.chalmers.TDA367.group13.entities;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
-import se.chalmers.TDA367.group13.entities.Entity.Direction;
-
 public class Projectile extends Entity {
 	private float angle, speed;
 	private Vector2f vector;

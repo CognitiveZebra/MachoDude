@@ -10,8 +10,8 @@ import org.newdawn.slick.geom.Rectangle;
 import se.chalmers.TDA367.group13.entities.Block;
 import se.chalmers.TDA367.group13.entities.Enemy;
 import se.chalmers.TDA367.group13.entities.Player;
-import se.chalmers.TDA367.group13.entities.Projectile;
 import se.chalmers.TDA367.group13.entities.Player.State;
+import se.chalmers.TDA367.group13.entities.Projectile;
 
 public class GameModel {
 
