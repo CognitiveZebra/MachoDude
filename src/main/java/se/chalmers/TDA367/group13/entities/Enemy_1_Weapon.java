@@ -5,13 +5,29 @@ import org.newdawn.slick.SlickException;
 
 public class Enemy_1_Weapon extends Weapon {
 	
+	private long time;
+	private float cooldown;
+
 	Enemy_1_Weapon(float x, float y) throws SlickException {
-		super(x, y, new Image("res/Sprites/Enemies/Enemy_1/Enemy_1-Arm.png"),new Image("res/Sprites/Enemies/Enemy_1/Enemy_1-Arm.png").getFlippedCopy(true, false), "Enemy_1_Weapon", 1);
+		super(x, y, new Image("res/Sprites/Enemies/Enemy_1/Enemy_1-Arm.png"),new Image("res/Sprites/Enemies/Enemy_1/Enemy_1-Arm.png").getFlippedCopy(true, false), new Image("res/Sprites/Enemies/Enemy_1/Enemy_1-Projectilet.png").getFlippedCopy(true, false), "Enemy_1_Weapon", 1);
+		time = System.currentTimeMillis();
+		cooldown = 300;
 	}
 	
 	public void fireWeapon(Direction direction){
-		System.out.println("Shots fired!");
+
+		if (direction == Direction.RIGHT) {
+			if ((System.currentTimeMillis()-time) > cooldown){
+				getProjectiles().add(new Projectile(x, y, getProjectileImage().copy().getFlippedCopy(true, false), getAngle(), 5, direction));
+				time = System.currentTimeMillis();
+			}
+		} else if (direction == Direction.LEFT) {
+			if ((System.currentTimeMillis()-time) > cooldown){
+				getProjectiles().add(new Projectile(x, y, getProjectileImage().copy(), getAngle(), 5, direction));
+				time = System.currentTimeMillis();
+			}
+		}
+		
 	}
-	
 
 }

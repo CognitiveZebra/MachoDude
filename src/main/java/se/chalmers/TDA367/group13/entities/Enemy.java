@@ -3,6 +3,7 @@ package se.chalmers.TDA367.group13.entities;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
+import org.newdawn.slick.geom.Point;
 
 
 public abstract class Enemy extends Entity {

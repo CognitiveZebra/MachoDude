@@ -16,9 +16,9 @@ public class Enemy_1 extends Enemy{
 
 	public Enemy_1(float x, float y) throws SlickException {
 		super(x, y, "res/Sprites/Enemies/Enemy_1/Enemy_1.png", "res/Sprites/Enemies/Enemy_1/sheet.xml");
-		weapon = new Enemy_1_Weapon(x, y);
 		rightShoulder = new Point(6, 13);
 		leftShoulder = new Point(11, 13);
+		weapon = new Enemy_1_Weapon(x, y);
 		initAnimations();
 	}
 	
@@ -67,7 +67,7 @@ public class Enemy_1 extends Enemy{
 			weapon.setCenterX(x + rightShoulder.getX());
 			weapon.setCenterY(y + rightShoulder.getY());
 		}
-		weapon.render(g);
+		weapon.render(g, direction);
 	}
 	
 	@Override
@@ -101,4 +101,5 @@ public class Enemy_1 extends Enemy{
 	public Weapon getWeapon() {
 		return weapon;
 	}
+
 }

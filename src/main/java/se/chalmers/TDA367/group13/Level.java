@@ -15,6 +15,7 @@ import se.chalmers.TDA367.group13.entities.Enemy.State;
 import se.chalmers.TDA367.group13.entities.Enemy_1;
 import se.chalmers.TDA367.group13.entities.Entity.Direction;
 import se.chalmers.TDA367.group13.entities.Player;
+import se.chalmers.TDA367.group13.entities.Projectile;
 
 public class Level {
 
@@ -166,6 +167,7 @@ public class Level {
 						e.setDirection(Direction.LEFT);
 					}
 					e.getWeapon().pointAt(player.getCenterX(), player.getCenterY(), e.getDirection());
+					e.getWeapon().fireWeapon(e.getDirection());
 				} else {
 					if (e.getDirection() == Direction.RIGHT) {
 						e.getWeapon().setImage(e.getWeapon().getRightImage());
@@ -174,6 +176,15 @@ public class Level {
 					}
 					
 				}
+				LinkedList<Projectile> removed = new LinkedList<Projectile>();
+				for (Projectile projectile : e.getWeapon().getProjectiles()) {
+					if(isLegal(projectile)) {
+						projectile.update();
+					} else {
+						removed.add(projectile);
+					}
+				}
+				e.getWeapon().getProjectiles().removeAll(removed);
 
 			}
 		}
