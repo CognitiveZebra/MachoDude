@@ -174,7 +174,7 @@ public class Level {
 					} else if (e.getDirection() == Direction.LEFT) {
 						e.getWeapon().setImage(e.getWeapon().getLeftImage());
 					}
-					
+					e.getWeapon().getImage().setRotation(0);
 				}
 				LinkedList<Projectile> removed = new LinkedList<Projectile>();
 				for (Projectile projectile : e.getWeapon().getProjectiles()) {
