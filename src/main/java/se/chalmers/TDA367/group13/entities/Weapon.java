@@ -5,13 +5,17 @@ import java.util.LinkedList;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
+import se.chalmers.TDA367.group13.entities.Entity.Direction;
+
 
 public abstract class Weapon extends Entity {
+	protected long time;
+	protected float cooldown;
 	private String name;
 	private float damage;
 	private float angle;
 	private Image rightImage, leftImage, projectileImage;
-	private LinkedList<Projectile> projectiles;
+	protected LinkedList<Projectile> projectiles;
 	
 	public Weapon(float x, float y, Image rightImage, Image leftImage, Image projectileImage, String name, float damage){
 		super(x, y, rightImage);
@@ -48,6 +52,7 @@ public abstract class Weapon extends Entity {
 	public void setDamage(float damage) {
 		this.damage = damage;
 	}
+	
 	
 	public void pointAt(float x, float y, Direction direction){
 		double deltaY;
@@ -119,6 +124,10 @@ public abstract class Weapon extends Entity {
 	public Image getProjectileImage() {
 		return projectileImage;
 	}
+
+
+
+
 	
 	
 }

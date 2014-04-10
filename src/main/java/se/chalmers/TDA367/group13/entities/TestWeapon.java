@@ -1,11 +1,11 @@
 package se.chalmers.TDA367.group13.entities;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class TestWeapon extends Weapon {
-	private long time;
-	private float cooldown ;
+
 	
 	
 	TestWeapon(float x, float y) throws SlickException {
@@ -27,6 +27,17 @@ public class TestWeapon extends Weapon {
 			}
 		}
 		
+	}
+	
+	@Override
+	public void render(Graphics g, Direction direction){
+		if ((System.currentTimeMillis()-time) > cooldown) {
+			super.render(g, direction);
+		}
+		for (Projectile projectile : projectiles){
+			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
+		}
+			
 	}
 
 }
