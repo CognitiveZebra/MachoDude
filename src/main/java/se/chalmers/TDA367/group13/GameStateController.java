@@ -9,6 +9,7 @@ public class GameStateController extends StateBasedGame {
 	private static MenuState menuState;
 	private static GameState gameState;
 	private static QuitState quitState;
+	private static GameOverState gameOverState;
 
 	
 	public GameStateController(String name) {
@@ -20,11 +21,13 @@ public class GameStateController extends StateBasedGame {
 		menuState = new MenuState();
 		gameState = new GameState();
 		quitState = new QuitState();
+		gameOverState = new GameOverState();
 
 		
 		addState(menuState);
 		addState(gameState);
 		addState(quitState);
+		addState(gameOverState);
 	}
 	
 	public static GameState getGameState() {
@@ -37,6 +40,10 @@ public class GameStateController extends StateBasedGame {
 	
 	public static QuitState getQuitState() {
 		return quitState;
+	}
+	
+	public static GameOverState getGameOverState(){
+		return gameOverState;
 	}
 
 }

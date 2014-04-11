@@ -21,6 +21,8 @@ public class Player extends Entity {
 	private int health = 5;
 	private Point rightShoulder, leftShoulder;
 	private HealthBar healthBar;
+	public boolean isDead = false;
+	
 
 
 
@@ -194,12 +196,14 @@ public class Player extends Entity {
 			health = health -1;
 			lastHurt = System.currentTimeMillis();
 			if (health == 0){
-				System.out.println("Boom, you're dead");
-				//TODO: GameOverState call
+				isDead = true;
 			}
 		}
 	}
 	
+	public boolean isDead(){
+		return isDead;
+	}
 	public Weapon getWeapon() {
 		return weapon;
 	}
