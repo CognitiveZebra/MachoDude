@@ -31,7 +31,6 @@ public class GameState extends BasicGameState{
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)	throws SlickException {
-		System.out.println(model.getPlayer().isDead());
 		if(model.getPlayer().isDead()){
 			sbg.enterState(GameStateController.getGameOverState().getID());
 		} else {
