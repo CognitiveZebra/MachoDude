@@ -13,6 +13,8 @@ public abstract class Enemy extends Entity {
 	protected Weapon weapon;
 	protected State state;
 	private float gravity = 9.81f;
+	protected int health;
+	private boolean isDead;
 
 	public Enemy(float x, float y, String sheet, String xml) throws SlickException {
 		super(x, y-new Image(sheet).getHeight() - 5, new Image(sheet));
@@ -71,6 +73,18 @@ public abstract class Enemy extends Entity {
 	public void moveY() {
 		setY(getY() + gravity);		
 	}
+
+	public void loseHealth(){
+			health = health -1;
+			if (health == 0){
+				isDead = true;
+			}
+	}
+	
+	public boolean isDead() {
+		return isDead;
+	}
+
 
 
 }

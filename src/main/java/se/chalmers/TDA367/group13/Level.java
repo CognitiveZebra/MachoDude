@@ -26,6 +26,7 @@ public class Level {
 	private Image smallBackground;
 	private Image background;
 	private Camera camera;
+	private LinkedList<Projectile> projectiles;
 
 	public Level(Camera camera, TiledMap map, Image background, Music music)
 			throws SlickException {
@@ -35,6 +36,7 @@ public class Level {
 		this.music = music;
 		smallBackground = background.getSubImage(0, 0, 1216, 768);
 
+		projectiles = new LinkedList<Projectile>();
 		blocks = new LinkedList<Block>();
 		enemies = new LinkedList<Enemy>();
 
@@ -50,7 +52,7 @@ public class Level {
 				switch (enemy) {
 				case "1":
 					enemies.add(new Enemy_1(x * map.getTileWidth(), y
-							* map.getTileWidth()));
+							* map.getTileWidth(), this));
 					break;
 				default:
 					break;
@@ -70,7 +72,10 @@ public class Level {
 		for (Enemy e : enemies) {
 			e.render(g);
 		}
-
+		
+		for (Projectile projectile : projectiles) {
+			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
+		}
 	}
 
 	public Camera getCamera() {
@@ -115,10 +120,13 @@ public class Level {
 	}
 
 	public void updateEnemies(Player player) {
+		LinkedList<Enemy> dead = new LinkedList<Enemy>();
 		for (Enemy e : enemies) {
 			if(e.getX() < Game.WIDTH) {
 				
-
+				if (e.isDead()) {
+					dead.add(e);
+				}
 
 				Rectangle nextYPos;
 				if (e.getDirection() == Direction.LEFT) {
@@ -176,22 +184,22 @@ public class Level {
 					}
 					e.getWeapon().getImage().setRotation(0);
 				}
-				LinkedList<Projectile> removed = new LinkedList<Projectile>();
-				for (Projectile projectile : e.getWeapon().getProjectiles()) {
-					if (projectile.intersects(player)) {
-						player.loseHealth();
-						removed.add(projectile);
-					} else if (isLegal(projectile)) {
-						projectile.update();
-					} else {
-						removed.add(projectile);
-					}
-				}
-				e.getWeapon().getProjectiles().removeAll(removed);
 
 			}
 		}
-
+		LinkedList<Projectile> removed = new LinkedList<Projectile>();
+		for (Projectile projectile : getProjectiles()) {
+			if (projectile.intersects(player)) {
+				player.loseHealth();
+				removed.add(projectile);
+			} else if (isLegal(projectile)) {
+				projectile.update();
+			} else {
+				removed.add(projectile);
+			}
+		}
+		getProjectiles().removeAll(removed);
+		enemies.removeAll(dead);
 	}
 
 
@@ -202,6 +210,10 @@ public class Level {
 			}
 		}
 		return true;
+	}
+
+	public LinkedList<Projectile> getProjectiles() {
+		return projectiles;
 	}
 
 }

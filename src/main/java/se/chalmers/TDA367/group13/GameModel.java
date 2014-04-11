@@ -89,8 +89,13 @@ public class GameModel {
 		if (input.isMouseButtonDown(input.MOUSE_LEFT_BUTTON)) 
 			player.getWeapon().fireWeapon(player.getDirection());
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
+		
 		for (Projectile projectile : player.getWeapon().getProjectiles()) {
-			if(isLegal(level.getBlocks(), projectile)) {
+			Enemy victim = getVictim(level.getEnemies(), projectile);
+			if (victim != null) {
+				victim.loseHealth();
+				removed.add(projectile);
+			} else if(isLegal(level.getBlocks(), projectile)) {
 				projectile.update();
 			} else {
 				removed.add(projectile);
@@ -121,6 +126,15 @@ public class GameModel {
 			}
 		}
 		return false;
+	}
+	
+	public Enemy getVictim(LinkedList<Enemy> enemies, Rectangle hitbox) {
+		for(Enemy e : enemies){
+			if(hitbox.intersects(e)){
+				return e;
+			}
+		}
+		return null;
 	}
 	
 	public Level getLevel() {

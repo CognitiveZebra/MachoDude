@@ -6,6 +6,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 
+import se.chalmers.TDA367.group13.Level;
+
 
 public class Enemy_1 extends Enemy{
 
@@ -14,11 +16,12 @@ public class Enemy_1 extends Enemy{
 	private Point rightShoulder, leftShoulder;
 	private float walkingspeed = 1;
 
-	public Enemy_1(float x, float y) throws SlickException {
+	public Enemy_1(float x, float y, Level level) throws SlickException {
 		super(x, y, "res/Sprites/Enemies/Enemy_1/Enemy_1.png", "res/Sprites/Enemies/Enemy_1/sheet.xml");
 		rightShoulder = new Point(6, 13);
 		leftShoulder = new Point(11, 13);
-		weapon = new Enemy_1_Weapon(x, y);
+		weapon = new Enemy_1_Weapon(x, y, level);
+		health = 2;
 		initAnimations();
 	}
 	
