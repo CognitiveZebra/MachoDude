@@ -5,8 +5,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Boss_1 extends Entity {
-	private Image image, jaw, laserBegin, laserBeam;
-	private int health, jawPosition;
+	private Image jaw, laserBegin, laserBeam;
+	private float health, jawPosition;
 	
 	
 	public Boss_1(float x, float y) throws SlickException{
@@ -15,7 +15,7 @@ public class Boss_1 extends Entity {
 		this.laserBegin = new Image("/res/Sprites/Bosses/1/laser_begin.png");
 		this.laserBeam = new Image("/res/Sprites/Bosses/1/laser_beam.png");
 		this.health = 20;
-		this.jawPosition = (int) (getY()+20); // This position is just preliminary and not really based on anything
+		this.jawPosition = (getY()+100); // This position is just preliminary and not really based on anything
 	}
 
 	public Image getJaw() {
@@ -28,7 +28,7 @@ public class Boss_1 extends Entity {
 	}
 
 
-	public int getHealth() {
+	public float getHealth() {
 		return health;
 	}
 
@@ -38,7 +38,7 @@ public class Boss_1 extends Entity {
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(image, getX(), getY());
+		super.render(g);
 		g.drawImage(jaw, getX(), jawPosition);
 	}
 	
@@ -49,11 +49,36 @@ public class Boss_1 extends Entity {
 		jaw.setFilter(Image.FILTER_NEAREST);
 		jaw = jaw.getScaledCopy(scale);
 		setImage(image);
-		setJaw(jaw);
+		jawPosition = (getY()+100);
+	}
+	
+	public void resizeBeam(float scale){
+		laserBegin.setFilter(Image.FILTER_NEAREST);
+		laserBegin = laserBegin.getScaledCopy(scale);
+		laserBeam.setFilter(Image.FILTER_NEAREST);
+		laserBeam = jaw.getScaledCopy(scale);
 	}
 	
 	public void fireLaser(){
 		new Projectile(getX(), getY(), laserBeam, 0, 20, Direction.LEFT );
+	}
+	
+	public float getJawPosition() {
+		return jawPosition;
+	}
+
+	public void setJawPosition(float jawPosition) {
+		this.jawPosition = jawPosition;
+	}
+
+	public void setHealth(float health) {
+		this.health = health;
+	}
+
+	@Override
+	public void setY(float y){
+		this.y = y;
+		this.jawPosition = y+20;
 	}
 }
 
