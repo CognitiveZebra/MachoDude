@@ -1,9 +1,9 @@
 package se.chalmers.TDA367.group13.entities;
 
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
-import org.newdawn.slick.geom.Point;
 
 
 public abstract class Enemy extends Entity {
@@ -13,9 +13,7 @@ public abstract class Enemy extends Entity {
 	protected Weapon weapon;
 	protected State state;
 	private float gravity = 9.81f;
-	protected int health;
-	private boolean isDead;
-
+	protected int health, maxHealth;
 	public Enemy(float x, float y, String sheet, String xml) throws SlickException {
 		super(x, y-new Image(sheet).getHeight() - 5, new Image(sheet));
 		enemySheet = new XMLPackedSheet(sheet, xml);
@@ -29,7 +27,7 @@ public abstract class Enemy extends Entity {
 	public enum State {
 		WALKING, STILL;
 	}
-
+	
 	public void setDirection(Direction d) {
 		direction = d;
 	}
@@ -74,15 +72,16 @@ public abstract class Enemy extends Entity {
 		setY(getY() + gravity);		
 	}
 
-	public void loseHealth(){
-			health = health -1;
-			if (health == 0){
-				isDead = true;
-			}
+	public void loseHealth(){	
+		health = health -1;
 	}
 	
 	public boolean isDead() {
-		return isDead;
+		return health <= 0;
+	}
+	
+	public boolean isHurt(){
+		return health < maxHealth;
 	}
 
 
