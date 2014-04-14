@@ -34,7 +34,7 @@ public class QuitState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		if(enterTime + duration < System.currentTimeMillis()){
-			System.exit(0);
+			gc.exit();
 		}
 	}
 
