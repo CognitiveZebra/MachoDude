@@ -49,7 +49,13 @@ public class Boss_1 extends Entity {
 		jaw.setFilter(Image.FILTER_NEAREST);
 		jaw = jaw.getScaledCopy(scale);
 		setImage(image);
-		setJaw(jaw);
+	}
+	
+	public void resizeBeam(float scale){
+		laserBegin.setFilter(Image.FILTER_NEAREST);
+		laserBegin = laserBegin.getScaledCopy(scale);
+		laserBeam.setFilter(Image.FILTER_NEAREST);
+		laserBeam = jaw.getScaledCopy(scale);
 	}
 	
 	public void fireLaser(){
