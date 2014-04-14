@@ -18,7 +18,7 @@ public abstract class Enemy extends Entity {
 	
 	
 	public Enemy(float x, float y, String sheet, String xml) throws SlickException {
-		super(x, y-new Image(sheet).getHeight() - 5, new Image(sheet));
+		super(x, y-new Image(sheet).getHeight()-6, new Image(sheet));
 		enemySheet = new XMLPackedSheet(sheet, xml);
 		setImage(enemySheet.getSprite("walk1"));
 		direction = Direction.LEFT;

@@ -38,6 +38,14 @@ public class Game extends BasicGame {
         app.setForceExit(false);
         app.setTargetFrameRate(60);
         app.start();
+        
+        
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+
+            public void run() {
+            	System.out.println("Fighting spirit?");
+            }
+        }));
     }
 
 }
