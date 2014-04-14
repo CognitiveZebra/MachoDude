@@ -10,6 +10,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 import se.chalmers.TDA367.group13.entities.Block;
+import se.chalmers.TDA367.group13.entities.Boss_1;
 import se.chalmers.TDA367.group13.entities.Enemy;
 import se.chalmers.TDA367.group13.entities.Enemy.State;
 import se.chalmers.TDA367.group13.entities.Enemy_1;
@@ -26,6 +27,7 @@ public class Level {
 	private Image smallBackground;
 	private Image background;
 	private Camera camera;
+	private Boss_1 boss;
 	private LinkedList<Projectile> projectiles;
 
 	public Level(Camera camera, TiledMap map, Image background, Music music)
@@ -35,6 +37,8 @@ public class Level {
 		this.background = background;
 		this.music = music;
 		smallBackground = background.getSubImage(0, 0, 1216, 768);
+		boss = new Boss_1(300, 300);
+		boss.resize(5);
 
 		projectiles = new LinkedList<Projectile>();
 		blocks = new LinkedList<Block>();
@@ -65,6 +69,7 @@ public class Level {
 
 	public void render(Graphics g) {
 		g.drawImage(smallBackground, 0, 0);
+		boss.render(g);
 
 		for (Block b : blocks) {
 			b.render(g);

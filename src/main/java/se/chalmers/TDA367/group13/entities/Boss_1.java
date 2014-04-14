@@ -5,7 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Boss_1 extends Entity {
-	private Image image, jaw, laserBegin, laserBeam;
+	private Image jaw, laserBegin, laserBeam;
 	private float health, jawPosition;
 	
 	
@@ -15,7 +15,7 @@ public class Boss_1 extends Entity {
 		this.laserBegin = new Image("/res/Sprites/Bosses/1/laser_begin.png");
 		this.laserBeam = new Image("/res/Sprites/Bosses/1/laser_beam.png");
 		this.health = 20;
-		this.jawPosition = (getY()+20); // This position is just preliminary and not really based on anything
+		this.jawPosition = (getY()+100); // This position is just preliminary and not really based on anything
 	}
 
 	public Image getJaw() {
@@ -49,6 +49,7 @@ public class Boss_1 extends Entity {
 		jaw.setFilter(Image.FILTER_NEAREST);
 		jaw = jaw.getScaledCopy(scale);
 		setImage(image);
+		jawPosition = (getY()+100);
 	}
 	
 	public void resizeBeam(float scale){
