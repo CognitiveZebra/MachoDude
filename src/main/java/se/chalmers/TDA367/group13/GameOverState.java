@@ -25,7 +25,7 @@ public class GameOverState extends BasicGameState {
 	private ParticleSystem ps;
 	private Point mouse;
 	private AngelCodeFont font32;
-	
+	private int score;
 	
 
 
@@ -52,11 +52,12 @@ public class GameOverState extends BasicGameState {
 
 		String s = "GAME OVER";
 		g.setFont(font32);
-		g.drawString(s,gc.getWidth() / 2 - g.getFont().getWidth(s)/2,gc.getHeight() / 2 - g.getFont().getHeight(s)/2 );
+		g.drawString(s,gc.getWidth() / 2 - g.getFont().getWidth(s)/2, 250 );
 		ps.render();
 		
 		menu.render(g);
-		
+		String scoreString = "Your score: " + score;
+		g.drawString(scoreString,gc.getWidth() / 2 - g.getFont().getWidth(scoreString)/2, 300);
 	}
 
 	@Override
@@ -94,7 +95,6 @@ public class GameOverState extends BasicGameState {
 	}
 		
 
-
 	@Override
 	public int getID() {
 		return ID;
@@ -115,5 +115,9 @@ public class GameOverState extends BasicGameState {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void setScore(int score){
+		this.score = score;
 	}
 }
