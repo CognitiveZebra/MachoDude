@@ -17,8 +17,8 @@ public abstract class Enemy extends Entity {
 	private HealthBarEnemy healthbar = new HealthBarEnemy();
 	
 	
-	public Enemy(float x, float y, String sheet, String xml) throws SlickException {
-		super(x, y-new Image(sheet).getHeight()-6, new Image(sheet));
+	public Enemy(float x, float y, String sheet, String xml, int scale) throws SlickException {
+		super(x, y - new Image(sheet).getWidth()*scale - 1, new Image(sheet));
 		enemySheet = new XMLPackedSheet(sheet, xml);
 		setImage(enemySheet.getSprite("walk1"));
 		direction = Direction.LEFT;

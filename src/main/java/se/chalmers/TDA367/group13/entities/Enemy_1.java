@@ -15,9 +15,10 @@ public class Enemy_1 extends Enemy{
 	private Animation stillLeft, stillRight, walkLeft, walkRight;
 	private Point rightShoulder, leftShoulder;
 	private float walkingspeed = 1;
+	private final static int scale = 2;
 
 	public Enemy_1(float x, float y, Level level) throws SlickException {
-		super(x, y, "res/Sprites/Enemies/Enemy_1/Enemy_1.png", "res/Sprites/Enemies/Enemy_1/sheet.xml");
+		super(x, y, "res/Sprites/Enemies/Enemy_1/Enemy_1.png", "res/Sprites/Enemies/Enemy_1/sheet.xml", scale);
 		rightShoulder = new Point(6, 13);
 		leftShoulder = new Point(11, 13);
 		weapon = new Enemy_1_Weapon(x, y, level);
@@ -40,7 +41,7 @@ public class Enemy_1 extends Enemy{
 		
 		int animationSpeed = 200;
 		
-		resize(2);	
+		resize(scale);	
 		
 		stillLeft = new Animation(standLeft,animationSpeed);
 		stillRight = new Animation(standRight,animationSpeed);
@@ -85,7 +86,6 @@ public class Enemy_1 extends Enemy{
 		leftShoulder.setLocation(leftShoulder.getX() * scale, leftShoulder.getY() *scale);
 		rightShoulder.setLocation(rightShoulder.getX() * scale, rightShoulder.getY() *scale);
 		weapon.resize(scale);
-		
 		setImage(standRight[0]);
 	}
 	

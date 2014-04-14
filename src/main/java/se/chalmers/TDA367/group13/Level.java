@@ -48,9 +48,8 @@ public class Level {
 
 		for (int x = 0; x < map.getWidth(); x++) {
 			for (int y = 0; y < map.getHeight(); y++) {
-				int tileID = map.getTileId(x, y, 0);
-				String block = map.getTileProperty(tileID, "blocked", "false");
-				String enemy = map.getTileProperty(tileID, "enemy", "false");
+				String block = map.getTileProperty(map.getTileId(x, y, 0), "blocked", "false");
+				String enemy = map.getTileProperty(map.getTileId(x, y, 1), "enemy", "false");
 				if (block.equals("true")) {
 					blocks.add(new Block(x * map.getTileWidth(), y
 							* map.getTileWidth(), map.getTileImage(x, y, 0)));
