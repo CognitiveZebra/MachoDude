@@ -96,9 +96,14 @@
    </properties>
   </tile>
  </tileset>
- <layer name="Tile Layer 1" width="76" height="24">
+ <layer name="blockLayer" width="76" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2VyQ6AIAwF3Rf+/4OFgweJrIosziQTjQdt2j7pOgAAAAAAACgNkbuAQumlg8UxX2mf4rsfk3S2uCSpLj+xe7JKN4u7x7drzG6OPTHNqIYMv7EnoZhm1GqGn2KaUYrZ+ML5FcZfz69YWu2X0K76/d0zV9aUtl6dut7Rguq/49odvOaIfoX16wD6VK2egBwAAA==
+   H4sIAAAAAAAAC+3VyQ6AIAxFUZz1/3/YsjDGBW3AkArek7ytaTpICAAAAAAAtGGQjEomv9I+aZYsSla/0qoq3ZNNsis5qlbtx2NPUjNq4YY99iQ1o15v+K3UjDxvmPcrz1/fr1L062bdWozWqyvWN3pI/O9Yu0Oed0S/8vp1AhppgBiAHAAA
+  </data>
+ </layer>
+ <layer name="enemyLayer" width="76" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SIQ4AMAgEMDT/f/A8AsUylrTmCIrkiAAAAIC/5esDWM1/7KUbAJiRJevc7eCGA13CiZiAHAAA
   </data>
  </layer>
 </map>
