@@ -2,32 +2,44 @@ package se.chalmers.TDA367.group13.entities;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.RoundedRectangle;
 
 public class HealthBarEnemy {
 	private float height = 5, yOffset = -10;
+	private RoundedRectangle bg, bar;
+	private Color barColor, bgColor;
 
 
 	public void render(Enemy e, Graphics g){
 		if(e.isHurt()){
-			g.setColor(Color.black);
-			//frame
-			g.drawRect(e.getX()-1,e.getY()-1+yOffset,e.getWidth()+1, height+1);
-			g.setColor(this.getColor(e.health, e.maxHealth));
-			//health bar
-			g.fillRect(e.getX(),e.getY()+yOffset,(float) (e.getWidth()*getRatio(e.health,e.maxHealth)),height);
+			
+			updateHealthBar(e);
+			g.setColor(bgColor);
+			g.fill(bg);
+			g.setColor(barColor);
+			g.fill(bar);
+
 		}
 	}
 	
 	public Color getColor(int health, int max){
-		double percent = getRatio(health,max);
-		if(percent <=  0.33) return new Color(250,20,20);
-		else if(percent <= 0.66) return new Color(255,83,0);
-		else return new Color(20,250,20);
+		double ratio = getRatio(health,max);
+		double ratiotInverse = 1 - ratio; 
+		float red = (float)(ratiotInverse);
+		float green = (float)(ratio);
+		float blue = 0;
+		return new Color(red, green, blue);
 	}
 
 	private double getRatio(int health, int max) {
 		return (double)health/(double)max;
+	}
+	
+	public void updateHealthBar(Enemy e){
+		bg = new RoundedRectangle(e.getX(),e.getY()+yOffset,e.getWidth(), height, 2f);
+		bar = new RoundedRectangle(e.getX(),e.getY()+yOffset,(float) (e.getWidth()*getRatio(e.health,e.maxHealth)),height, 2f);
+		barColor = getColor(e.health, e.maxHealth);
+		bgColor = getColor(e.health, e.maxHealth).darker().darker();
 	}
 	
 }

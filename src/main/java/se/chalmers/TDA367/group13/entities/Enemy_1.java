@@ -15,16 +15,14 @@ public class Enemy_1 extends Enemy{
 	private Animation stillLeft, stillRight, walkLeft, walkRight;
 	private Point rightShoulder, leftShoulder;
 	private float walkingspeed = 1;
-	private HealthBarEnemy healthBar;
 
 	public Enemy_1(float x, float y, Level level) throws SlickException {
 		super(x, y, "res/Sprites/Enemies/Enemy_1/Enemy_1.png", "res/Sprites/Enemies/Enemy_1/sheet.xml");
 		rightShoulder = new Point(6, 13);
 		leftShoulder = new Point(11, 13);
 		weapon = new Enemy_1_Weapon(x, y, level);
-		maxHealth = 5;
+		maxHealth = 15;
 		health = maxHealth;
-		healthBar = new HealthBarEnemy();
 		initAnimations();
 	}
 	
@@ -51,6 +49,8 @@ public class Enemy_1 extends Enemy{
 	}
 	
 	public void render(Graphics g) {
+		super.render(g);
+		
 		Animation animation;
 		switch (state) {
 		case STILL:
@@ -74,7 +74,6 @@ public class Enemy_1 extends Enemy{
 			weapon.setCenterY(y + rightShoulder.getY());
 		}
 		weapon.render(g, direction);
-		healthBar.render(this, g);
 	}
 	
 	@Override
