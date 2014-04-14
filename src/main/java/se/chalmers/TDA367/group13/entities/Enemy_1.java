@@ -24,7 +24,7 @@ public class Enemy_1 extends Enemy{
 		weapon = new Enemy_1_Weapon(x, y, level);
 		maxHealth = 5;
 		health = maxHealth;
-		healthBar = new HealthBarEnemy(maxHealth);
+		healthBar = new HealthBarEnemy();
 		initAnimations();
 	}
 	
