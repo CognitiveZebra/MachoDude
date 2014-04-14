@@ -14,6 +14,9 @@ public abstract class Enemy extends Entity {
 	protected State state;
 	private float gravity = 9.81f;
 	protected int health, maxHealth;
+	private HealthBarEnemy healthbar = new HealthBarEnemy();
+	
+	
 	public Enemy(float x, float y, String sheet, String xml) throws SlickException {
 		super(x, y-new Image(sheet).getHeight() - 5, new Image(sheet));
 		enemySheet = new XMLPackedSheet(sheet, xml);
@@ -22,7 +25,10 @@ public abstract class Enemy extends Entity {
 		state = State.STILL;
 	}
 	
-
+	@Override 
+	public void render(Graphics g){
+		healthbar.render(this,g);
+	}
 	
 	public enum State {
 		WALKING, STILL;
