@@ -2,23 +2,23 @@ package se.chalmers.TDA367.group13.entities;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.RoundedRectangle;
 
 public class HealthBarEnemy {
 	private float height = 5, yOffset = -10;
-	private Rectangle frame, bar;
-	private Color barColor;
+	private RoundedRectangle bg, bar;
+	private Color barColor, bgColor;
 
 
 	public void render(Enemy e, Graphics g){
 		if(e.isHurt()){
 			
 			updateHealthBar(e);
-			
+			g.setColor(bgColor);
+			g.fill(bg);
 			g.setColor(barColor);
 			g.fill(bar);
-			g.setColor(Color.black);
-			g.draw(frame);
+
 		}
 	}
 	
@@ -36,9 +36,10 @@ public class HealthBarEnemy {
 	}
 	
 	public void updateHealthBar(Enemy e){
-		frame = new Rectangle(e.getX(),e.getY()+yOffset,e.getWidth(), height);
-		bar = new Rectangle(e.getX(),e.getY()+yOffset,(float) (e.getWidth()*getRatio(e.health,e.maxHealth)),height);
+		bg = new RoundedRectangle(e.getX(),e.getY()+yOffset,e.getWidth(), height, 2f);
+		bar = new RoundedRectangle(e.getX(),e.getY()+yOffset,(float) (e.getWidth()*getRatio(e.health,e.maxHealth)),height, 2f);
 		barColor = getColor(e.health, e.maxHealth);
+		bgColor = getColor(e.health, e.maxHealth).darker().darker();
 	}
 	
 }
