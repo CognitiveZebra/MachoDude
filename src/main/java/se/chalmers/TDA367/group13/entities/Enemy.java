@@ -82,7 +82,7 @@ public abstract class Enemy extends Entity implements IMoveable, IDestructable {
 		health = health -1;
 	}
 	
-	public boolean isDead() {
+	public boolean isDestroyed() {
 		return health <= 0;
 	}
 	

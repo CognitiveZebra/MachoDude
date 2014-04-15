@@ -133,7 +133,7 @@ public class Level {
 		for (Enemy e : enemies) {
 			if(e.getX() < Game.WIDTH) {
 				
-				if (e.isDead()) {
+				if (e.isDestroyed()) {
 					dead.add(e);
 					score++;
 					System.out.println("Your score:" + score);
