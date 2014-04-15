@@ -14,7 +14,6 @@ public class GameState extends BasicGameState{
 	private GameView view;
 	private GameModel model;
 	private Input input;
-	private int highscore;
 
 	
 	@Override
@@ -33,8 +32,7 @@ public class GameState extends BasicGameState{
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)	throws SlickException {
 		if(model.getPlayer().isDead()){
-			
-			highscore = (highscore < model.getLevel().getScore()) ? model.getLevel().getScore() : highscore; 
+
 			GameStateController.getGameOverState().setScore(model.getLevel().getScore());
 			sbg.enterState(GameStateController.getGameOverState().getID());
 		} else {
@@ -52,10 +50,6 @@ public class GameState extends BasicGameState{
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		
-	}
-
-	
-	public int getHighscore(){
-		return highscore;
+		
 	}
 }
