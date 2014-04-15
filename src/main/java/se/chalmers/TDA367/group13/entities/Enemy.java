@@ -6,7 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
 
 
-public abstract class Enemy extends Entity {
+public abstract class Enemy extends Entity implements IMoveable, IDestructable {
 
 	protected XMLPackedSheet enemySheet;
 	protected Direction direction;
