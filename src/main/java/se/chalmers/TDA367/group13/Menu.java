@@ -36,7 +36,7 @@ public class Menu {
 		return selected;
 	}
 	
-	public void up(){
+	public void down(){
 		int currentPos = menuItems.indexOf(selected);
 		int nextPos = currentPos + 1;
 
@@ -48,7 +48,7 @@ public class Menu {
 		}
 	}
 	
-	public void down(){
+	public void up(){
 		int currentPos = menuItems.indexOf(selected);
 		int nextPos = currentPos - 1;
 
