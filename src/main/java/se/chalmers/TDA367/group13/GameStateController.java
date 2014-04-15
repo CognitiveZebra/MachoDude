@@ -10,6 +10,7 @@ public class GameStateController extends StateBasedGame {
 	private static GameState gameState;
 	private static QuitState quitState;
 	private static GameOverState gameOverState;
+	private static SettingsState settingsState;
 
 	
 	public GameStateController(String name) {
@@ -22,12 +23,14 @@ public class GameStateController extends StateBasedGame {
 		gameState = new GameState();
 		quitState = new QuitState();
 		gameOverState = new GameOverState();
+		settingsState = new SettingsState();
 
 		
 		addState(menuState);
 		addState(gameState);
 		addState(quitState);
 		addState(gameOverState);
+		addState(settingsState);
 	}
 	
 	public static GameState getGameState() {
@@ -42,8 +45,12 @@ public class GameStateController extends StateBasedGame {
 		return quitState;
 	}
 	
-	public static GameOverState getGameOverState(){
+	public static GameOverState getGameOverState() {
 		return gameOverState;
+	}
+	
+	public static SettingsState getSettingsState() {
+		return settingsState;
 	}
 
 }

@@ -1,6 +1,4 @@
 package se.chalmers.TDA367.group13;
-import java.util.LinkedList;
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -53,7 +51,6 @@ public class GameState extends BasicGameState{
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		
 		
 	}
 }
