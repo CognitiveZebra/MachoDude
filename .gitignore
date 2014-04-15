@@ -55,6 +55,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
+.save
 
 # External tool builders
 .externalToolBuilders/
