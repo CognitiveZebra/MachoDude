@@ -33,6 +33,8 @@ public class GameState extends BasicGameState{
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)	throws SlickException {
 		if(model.getPlayer().isDead()){
 			
+			Stats.addEnemyCount(model.getLevel().getScore());
+			
 			if(Highscore.readHighscore() < model.getLevel().getScore()){
 				Highscore.writeHighscore(model.getLevel().getScore());
 			}
