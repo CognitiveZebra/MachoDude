@@ -38,12 +38,12 @@ public class GameModel {
 		
 		Rectangle nextXPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
-		if (input.isKeyDown(SettingsState.getLeftKey())) {
+		if (input.isKeyDown(Controls.getLeftKey())) {
 			nextXPos.setX(player.nextLeftX());
 			if (isLegal(level.getBlocks(), nextXPos)) {
 				player.moveLeft();
 			} 
-		} else if (input.isKeyDown(SettingsState.getRightKey())) {
+		} else if (input.isKeyDown(Controls.getRightKey())) {
 			nextXPos.setX(player.nextRightX());
 			if (isLegal(level.getBlocks(), nextXPos)) {
 
@@ -57,7 +57,7 @@ public class GameModel {
 			}
 		}
 
-		if (input.isKeyDown(SettingsState.getJumpKey())) {
+		if (input.isKeyDown(Controls.getJumpKey())) {
 			if (player.getState() != State.JUMPING) {
 				player.setState(State.JUMPING);
 				player.setJumpStart(System.currentTimeMillis());
@@ -80,7 +80,7 @@ public class GameModel {
 		}
 		
 		if(player.getState() != State.JUMPING){
-			if(input.isKeyDown(SettingsState.getRightKey()) || input.isKeyDown(SettingsState.getLeftKey())) {
+			if(input.isKeyDown(Controls.getRightKey()) || input.isKeyDown(Controls.getLeftKey())) {
 				player.setState(State.WALKING);
 			}
 		}
@@ -88,9 +88,9 @@ public class GameModel {
 		level.updateEnemies(player);
 		
 		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY(), player.getDirection());
-		if (input.isMouseButtonDown(SettingsState.getShootKey())) 
+		if (input.isMouseButtonDown(Controls.getShootKey())) 
 			player.getWeapon().fireWeapon(player.getDirection());
-		LinkedList<Projectile> removed = new LinkedList<Projectile>();
+			LinkedList<Projectile> removed = new LinkedList<Projectile>();
 		
 		for (Projectile projectile : player.getWeapon().getProjectiles()) {
 			Enemy victim = getVictim(level.getEnemies(), projectile);

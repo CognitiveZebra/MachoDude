@@ -8,8 +8,6 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
-import se.chalmers.TDA367.group13.entities.Entity;
-
 
 public class SettingsItem extends MenuItem{
 	private int ID, control;
@@ -82,11 +80,11 @@ public class SettingsItem extends MenuItem{
 		this.control = control;
 		switch (ID) {
 			case 0: 
-				SettingsState.setRightKey(control);
+				Controls.setRightKey(control);
 				break;
-			case 1: SettingsState.setLeftKey(control);break;
-			case 2: SettingsState.setJumpKey(control);break;
-			case 3: SettingsState.setShootKey(control);break;
+			case 1: Controls.setLeftKey(control);break;
+			case 2: Controls.setJumpKey(control);break;
+			case 3: Controls.setShootKey(control);break;
 		default:
 			break;
 		}

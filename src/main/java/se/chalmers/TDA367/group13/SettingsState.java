@@ -114,10 +114,10 @@ public class SettingsState extends BasicGameState{
 			menuItemImage = new Image("res/GUI/menuItem.png");
 			int settingMiddleX = gc.getWidth()/2 - menuItemImage.getWidth()/2;
 			int menuMiddleX = gc.getWidth()/2 - menuItemImage.getWidth()/2;
-			SettingsItem rightButton = new SettingsItem(settingMiddleX, 100, menuItemImage, "RIGHT", RIGHT, getRightKey());
-			SettingsItem leftButton = new SettingsItem(settingMiddleX, 225, menuItemImage, "LEFT",LEFT, getLeftKey());
-			SettingsItem jumpButton = new SettingsItem(settingMiddleX, 350, menuItemImage, "JUMP",JUMP, getJumpKey());
-			SettingsItem shootButton = new SettingsItem(settingMiddleX, 475, menuItemImage, "SHOOT",SHOOT, getShootKey());
+			SettingsItem rightButton = new SettingsItem(settingMiddleX, 100, menuItemImage, "RIGHT", RIGHT, Controls.getRightKey());
+			SettingsItem leftButton = new SettingsItem(settingMiddleX, 225, menuItemImage, "LEFT",LEFT, Controls.getLeftKey());
+			SettingsItem jumpButton = new SettingsItem(settingMiddleX, 350, menuItemImage, "JUMP",JUMP, Controls.getJumpKey());
+			SettingsItem shootButton = new SettingsItem(settingMiddleX, 475, menuItemImage, "SHOOT",SHOOT, Controls.getShootKey());
 			MenuItem mainButton = new MenuItem(menuMiddleX, gc.getHeight() - 150, menuItemImage, "MAIN MENU", GameStateController.getMenuState().getID());
 			
 			LinkedList<SettingsItem> SettingsItems = new LinkedList<SettingsItem>();
@@ -156,38 +156,6 @@ public class SettingsState extends BasicGameState{
 	public void mousePressed(int button, int x, int y) {
 		if(settable)
 		this.button = button;
-	}
-	
-	public static int getRightKey() {
-		return rightKey;
-	}
-
-	public static void setRightKey(int rightKey) {
-		SettingsState.rightKey = rightKey;
-	}
-
-	public static int getLeftKey() {
-		return leftKey;
-	}
-
-	public static void setLeftKey(int leftKey) {
-		SettingsState.leftKey = leftKey;
-	}
-
-	public static int getJumpKey() {
-		return jumpKey;
-	}
-
-	public static void setJumpKey(int jumpKey) {
-		SettingsState.jumpKey = jumpKey;
-	}
-
-	public static int getShootKey() {
-		return shootKey;
-	}
-
-	public static void setShootKey(int shootKey) {
-		SettingsState.shootKey = shootKey;
 	}
 
 }
