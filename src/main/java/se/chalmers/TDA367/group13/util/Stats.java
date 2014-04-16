@@ -5,14 +5,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Time;
 import java.util.Scanner;
 
 public class Stats {
 	private static Scanner scanner;
 	private static BufferedWriter bw;
 	private static FileWriter fw;
-	private static int highscore, enemiesKilled;
+	private static int highscore, enemiesKilled, score;
+
+
 	private static long timePlayed;
 
 	public static void readStats() {
@@ -26,6 +27,7 @@ public class Stats {
 				enemiesKilled = scanner.nextInt();
 				timePlayed = scanner.nextLong();
 				scanner.close();
+				score = 0;
 			} else {
 				Stats.reset();
 				Stats.saveStats();
@@ -111,11 +113,31 @@ public class Stats {
 		Stats.timePlayed = timePlayed;
 	}
 
-	public static void addEnemiesKilled(int i) {
-		enemiesKilled += i;
+	public static void incrementEnemiesKilled() {
+		enemiesKilled++;
 	}
 
 	public static void addTimePlayed(long time) {
 		timePlayed += time;
+	}
+	
+	public static int getScore() {
+		return score;
+	}
+
+	public static void setScore(int score) {
+		Stats.score = score;
+		
+		if(Stats.score > highscore){
+			highscore = score;
+		}
+	}
+	
+	public static void addScore(int i){
+		score += i;
+		
+		if(Stats.score > highscore){
+			highscore = score;
+		}
 	}
 }

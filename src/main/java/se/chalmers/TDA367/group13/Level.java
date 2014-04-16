@@ -18,6 +18,7 @@ import se.chalmers.TDA367.group13.entities.Enemy_1;
 import se.chalmers.TDA367.group13.entities.Entity.Direction;
 import se.chalmers.TDA367.group13.entities.Player;
 import se.chalmers.TDA367.group13.entities.Projectile;
+import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
 
 public class Level {
@@ -31,7 +32,6 @@ public class Level {
 	private Camera camera;
 	private Boss_1 boss;
 	private LinkedList<Projectile> projectiles;
-	private int score = 0;
 
 	public Level(Camera camera, TiledMap map, Image background, Music music)
 			throws SlickException {
@@ -86,7 +86,7 @@ public class Level {
 		
 		g.setColor(Color.white);
 		g.setFont(Util.getFont32());
-		g.drawString("Score: " + score, 100, 10);
+		g.drawString("Score: " + Stats.getScore(), 100, 10);
 	}
 
 	public Camera getCamera() {
@@ -137,8 +137,8 @@ public class Level {
 				
 				if (e.isDestroyed()) {
 					dead.add(e);
-					score++;
-					System.out.println("Your score:" + score);
+					Stats.addScore(e.getValue());
+					Stats.incrementEnemiesKilled();
 				}
 
 				Rectangle nextYPos;
@@ -227,10 +227,5 @@ public class Level {
 
 	public LinkedList<Projectile> getProjectiles() {
 		return projectiles;
-	}
-	
-	public int getScore(){
-		return score;
-	}
-
+	}	
 }

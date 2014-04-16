@@ -15,7 +15,7 @@ public abstract class Enemy extends Entity implements IMoveable, IDestructable {
 	private float gravity = 9.81f;
 	protected int health, maxHealth;
 	private HealthBarEnemy healthbar = new HealthBarEnemy();
-	
+	protected int value = 1;
 	
 	public Enemy(float x, float y, String sheet, String xml, int scale) throws SlickException {
 		super(x, y - new Image(sheet).getWidth()*scale - 1, new Image(sheet));
@@ -88,6 +88,10 @@ public abstract class Enemy extends Entity implements IMoveable, IDestructable {
 	
 	public boolean isHurt(){
 		return health < maxHealth;
+	}
+	
+	public int getValue(){
+		return value;
 	}
 
 

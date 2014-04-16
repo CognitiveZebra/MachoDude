@@ -26,7 +26,6 @@ public class GameOverState extends BasicGameState {
 	private ParticleFactory pf;
 	private ParticleSystem ps;
 	private Point mouse;
-	private int score;
 	
 
 
@@ -55,9 +54,9 @@ public class GameOverState extends BasicGameState {
 		ps.render();
 		
 		menu.render(g);
-		String scoreString = "Your score: " + score;
+		String scoreString = "Your score: " + Stats.getScore();
 		g.drawString(scoreString,gc.getWidth() / 2 - g.getFont().getWidth(scoreString)/2, 300);
-		String highscoreString = "Your Highscore is: " + Stats.getHighscore();
+		String highscoreString = "Your Highscore: " + Stats.getHighscore();
 		g.drawString(highscoreString,gc.getWidth() / 2 - g.getFont().getWidth(highscoreString)/2, 350);
 		
 	}
@@ -117,9 +116,5 @@ public class GameOverState extends BasicGameState {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void setScore(int score){
-		this.score = score;
 	}
 }
