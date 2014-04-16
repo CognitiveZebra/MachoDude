@@ -100,6 +100,7 @@ public class SettingsItem extends MenuItem{
 			default: return Input.getKeyName(control); 
 		}
 	}
+
 	
 }
 

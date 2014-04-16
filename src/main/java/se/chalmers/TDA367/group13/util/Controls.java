@@ -14,6 +14,13 @@ public class Controls {
 	
 	private static int rightKey, leftKey, jumpKey, shootKey;
 	
+	public static void reset() {
+    	setRightKey(Input.KEY_D);
+    	setLeftKey(Input.KEY_A);
+    	setJumpKey(Input.KEY_W);
+    	setShootKey(Input.MOUSE_LEFT_BUTTON);
+	}
+	
 	public static void readControls() {
         Scanner sc = null;
 
