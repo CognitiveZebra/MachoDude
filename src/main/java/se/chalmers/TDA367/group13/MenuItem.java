@@ -22,6 +22,10 @@ public class MenuItem extends Entity{
 		this.ID = ID;
 		selectedRec = new Rectangle(getX() - 3, getY() - 3, getWidth() + 6, getHeight() + 6 );
 	}
+	
+	public MenuItem(float x, float y, Image image, String name) {
+		this(x,y,image,name, -1);
+	}
 
 	public void render(Graphics g, boolean isSelected){
 		

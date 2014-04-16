@@ -40,7 +40,7 @@ public class Stats {
 		}
 	}
 
-	private static void reset() {
+	public static void reset() {
 		highscore = 0;
 		enemiesKilled = 0;
 		timePlayed = 0;

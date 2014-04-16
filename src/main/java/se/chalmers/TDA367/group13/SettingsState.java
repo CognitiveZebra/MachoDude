@@ -106,7 +106,7 @@ public class SettingsState extends BasicGameState{
 			}
 			
 			if(item.contains(mouse) && isMousePressed){
-				if (item.getID() == 0) {
+				if (item.getID() == -1) {
 					Controls.reset();
 					resetSettingsItems();
 				} else {
@@ -146,7 +146,7 @@ public class SettingsState extends BasicGameState{
 			SettingsItem leftButton = new SettingsItem(settingMiddleX, 200, menuItemImage, "LEFT",LEFT, Controls.getLeftKey());
 			SettingsItem jumpButton = new SettingsItem(settingMiddleX, 300, menuItemImage, "JUMP",JUMP, Controls.getJumpKey());
 			SettingsItem shootButton = new SettingsItem(settingMiddleX, 400, menuItemImage, "SHOOT",SHOOT, Controls.getShootKey());
-			MenuItem resetButton = new MenuItem(menuMiddleX, 525, menuItemImage, "RESET CONTROLS", 0);
+			MenuItem resetButton = new MenuItem(menuMiddleX, 525, menuItemImage, "RESET CONTROLS");
 			MenuItem mainButton = new MenuItem(menuMiddleX, 625, menuItemImage, "MAIN MENU", GameStateController.getMenuState().getID());
 			
 			

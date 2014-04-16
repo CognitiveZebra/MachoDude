@@ -70,7 +70,11 @@ public class StatsState extends BasicGameState {
 			}
 			
 			if(item.contains(mouse) && isMousePressed){
+				if(menu.getSelected().getID() > 0){
 					game.enterState(item.getID());
+				} else {
+					Stats.reset();
+				}
 			}
 			
 			if(input.isKeyPressed(Input.KEY_DOWN)){
@@ -82,7 +86,12 @@ public class StatsState extends BasicGameState {
 			}
 			
 			if(input.isKeyPressed(Input.KEY_ENTER) && item.equals(menu.getSelected())){
-				game.enterState(menu.getSelected().getID());
+				if(menu.getSelected().getID() > 0){
+					game.enterState(menu.getSelected().getID());
+				} else {
+					Stats.reset();
+				}
+
 			}
 		}
 		
@@ -100,10 +109,12 @@ public class StatsState extends BasicGameState {
 			itemImage = new Image("res/GUI/menuItem.png");
 			int middleX = gc.getWidth()/2 - itemImage.getWidth()/2;
 
-			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 200, itemImage, "MAIN MENU", GameStateController.getMenuState().getID());
+			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 300, itemImage, "MAIN MENU", GameStateController.getMenuState().getID());
+			MenuItem resetButton = new MenuItem(middleX, gc.getHeight() - 200, itemImage, "RESET STATS");
 			
 			LinkedList<MenuItem> items = new LinkedList<MenuItem>();
 			items.add(mainButton);
+			items.add(resetButton);
 			menu = new Menu(items);
 		} catch (SlickException e) {
 			e.printStackTrace();
