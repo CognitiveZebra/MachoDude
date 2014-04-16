@@ -115,6 +115,7 @@ public class GameModel {
 		if(player.isDead()){
 			gameEnded = System.currentTimeMillis();
 			Stats.addTimePlayed(gameEnded - gameStarted);
+			Stats.incrementDeaths();
 			throw new GameOverException();
 		}
 	}

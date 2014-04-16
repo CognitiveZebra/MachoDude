@@ -11,7 +11,7 @@ public class Stats {
 	private static Scanner scanner;
 	private static BufferedWriter bw;
 	private static FileWriter fw;
-	private static int highscore, enemiesKilled, score;
+	private static int highscore, enemiesKilled, score, deaths;
 
 
 	private static long timePlayed;
@@ -26,14 +26,17 @@ public class Stats {
 				highscore = scanner.nextInt();
 				enemiesKilled = scanner.nextInt();
 				timePlayed = scanner.nextLong();
+				deaths = scanner.nextInt();
 				scanner.close();
 				score = 0;
 			} else {
 				Stats.reset();
 				Stats.saveStats();
+				readStats();
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			Stats.reset();
+			Stats.saveStats();
 		}
 	}
 
@@ -41,6 +44,7 @@ public class Stats {
 		highscore = 0;
 		enemiesKilled = 0;
 		timePlayed = 0;
+		deaths = 0;
 	}
 
 	public static String getStatsString() {
@@ -63,8 +67,8 @@ public class Stats {
 
 		String timeString = String.format("Days %d, Hours %d, Minutes %d, Seconds %d", days, hours, minutes, seconds);
 		return String.format(
-				"Highscore: %d\nEnemies killed: %d\nTime Played: %s",
-				highscore, enemiesKilled, timeString);
+				"Highscore: %d\nEnemies killed: %d\nTime Played: %s\nDeath count: %d",
+				highscore, enemiesKilled, timeString, deaths);
 	}
 
 	public static void saveStats() {
@@ -78,7 +82,7 @@ public class Stats {
 			fw = new FileWriter(file);
 			bw = new BufferedWriter(fw);
 
-			String save = highscore + ";" + enemiesKilled + ";" + timePlayed;
+			String save = highscore + ";" + enemiesKilled + ";" + timePlayed + ";" + deaths;
 			bw.write(save);
 
 			bw.close();
@@ -139,5 +143,17 @@ public class Stats {
 		if(Stats.score > highscore){
 			highscore = score;
 		}
+	}
+
+	public static int getDeaths() {
+		return deaths;
+	}
+
+	public static void setDeaths(int deaths) {
+		Stats.deaths = deaths;
+	}
+	
+	public static void incrementDeaths(){
+		deaths++;
 	}
 }
