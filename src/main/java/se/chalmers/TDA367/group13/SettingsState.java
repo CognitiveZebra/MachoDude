@@ -20,7 +20,6 @@ import se.chalmers.TDA367.group13.util.Controls;
 public class SettingsState extends BasicGameState{
 	public static final int ID = 15, RIGHT = 0,LEFT = 1,JUMP = 2,SHOOT = 3;
 	GameContainer gc;
-	private static int rightKey, leftKey, jumpKey, shootKey;
 	private Image background, menuItemImage;
 	private Input input;
 	private SettingsView settingsView;
@@ -36,7 +35,6 @@ public class SettingsState extends BasicGameState{
 		this.gc = gc;
 		input = gc.getInput();
 		background = new Image("res/Backgrounds/Jungle_Test.gif");
-		Controls.readControls();
 		initSettings();
 		input = gc.getInput();
 		pf = new ParticleFactory();
@@ -107,7 +105,6 @@ public class SettingsState extends BasicGameState{
 			}
 			
 			if(item.contains(mouse) && isMousePressed){
-				Controls.writeControls();
 				sbg.enterState(item.getID());
 			}
 		}

@@ -30,7 +30,7 @@ public class Controls {
 	            }
 	            sc.close();
         	} else {
-        		writeControls();
+        		saveControls();
         	}
 
         } catch (FileNotFoundException e) {
@@ -38,7 +38,7 @@ public class Controls {
         }
 	}
 
-	public static void writeControls() {
+	public static void saveControls() {
 		Writer writer = null;
 		try {
 			File file = new File("res/User/Controls/controls.save");
@@ -52,7 +52,6 @@ public class Controls {
             	setJumpKey(Input.KEY_W);
             	setShootKey(Input.MOUSE_LEFT_BUTTON);
 			} else {
-				System.out.println("snopparna");
 				writer = new PrintWriter(file, "UTF-8");
 				writer.write(String.format("%s;%s;%s;%s;", getRightKey(),
              											getLeftKey(),
