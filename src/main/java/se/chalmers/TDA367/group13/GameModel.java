@@ -36,7 +36,7 @@ public class GameModel {
 
 	}
 
-	public void update(Input input, int delta) {
+	public void update(Input input, int delta) throws GameOverException {
 		
 		Rectangle nextXPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
@@ -108,6 +108,10 @@ public class GameModel {
 		player.getWeapon().getProjectiles().removeAll(removed);
 		if(isEnemyCollision(level.getEnemies(), nextXPos)){
 			player.loseHealth();
+		}
+		
+		if(player.isDead()){
+			throw new GameOverException();
 		}
 	}
 
