@@ -15,6 +15,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.TDA367.group13.util.Controls;
+
 public class SettingsState extends BasicGameState{
 	public static final int ID = 15, RIGHT = 0,LEFT = 1,JUMP = 2,SHOOT = 3;
 	GameContainer gc;

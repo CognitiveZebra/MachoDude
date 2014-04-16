@@ -6,6 +6,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Rectangle;
 
+import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.util.Util;
 
 
