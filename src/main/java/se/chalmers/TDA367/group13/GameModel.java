@@ -22,8 +22,10 @@ public class GameModel {
 	private Player player;
 	private float collisionY;
 	private int Score = 0;
+	private long gameStarted, gameEnded;
 
 	public GameModel(GameContainer gc) {
+		gameStarted = System.currentTimeMillis();
 		Stats.setScore(0);
 		this.container = gc;
 		try {
@@ -111,6 +113,8 @@ public class GameModel {
 		}
 		
 		if(player.isDead()){
+			gameEnded = System.currentTimeMillis();
+			Stats.addTimePlayed(gameEnded - gameStarted);
 			throw new GameOverException();
 		}
 	}
