@@ -43,8 +43,8 @@ public class Stats {
 
 	public static String getStatsString() {
 		long time = timePlayed;
-		
-		long timeMinute = 1000*60;
+		long timeSecond = 1000;
+		long timeMinute = timeSecond*60;
 		long timeHour = timeMinute*60;
 		long timeDay = timeHour*24;
 		
@@ -55,9 +55,11 @@ public class Stats {
 		time = time - (timeHour*hours);
  
 		long minutes = time / timeMinute;
+		time = time - (timeMinute*minutes);
+		
+		long seconds = time / timeSecond;
 
-
-		String timeString = String.format("Days %d, Hours %d, Minutes %d", days, hours, minutes);
+		String timeString = String.format("Days %d, Hours %d, Minutes %d, Seconds %d", days, hours, minutes, seconds);
 		return String.format(
 				"Highscore: %d\nEnemies killed: %d\nTime Played: %s",
 				highscore, enemiesKilled, timeString);
