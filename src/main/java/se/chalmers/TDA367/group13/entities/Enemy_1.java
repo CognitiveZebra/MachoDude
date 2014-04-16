@@ -22,7 +22,7 @@ public class Enemy_1 extends Enemy{
 		rightShoulder = new Point(6, 13);
 		leftShoulder = new Point(11, 13);
 		weapon = new Enemy_1_Weapon(x, y, level);
-		maxHealth = 15;
+		maxHealth = 5;
 		health = maxHealth;
 		initAnimations();
 	}
