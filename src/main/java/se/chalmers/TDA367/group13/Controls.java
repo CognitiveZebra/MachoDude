@@ -52,7 +52,6 @@ public class Controls {
             	SettingsState.setJumpKey(Input.KEY_W);
             	SettingsState.setShootKey(Input.MOUSE_LEFT_BUTTON);
 			} else {
-				System.out.println("snopparna");
 				writer = new PrintWriter(file, "UTF-8");
 				writer.write(String.format("%s;%s;%s;%s;", SettingsState.getRightKey(),
              											SettingsState.getLeftKey(),
