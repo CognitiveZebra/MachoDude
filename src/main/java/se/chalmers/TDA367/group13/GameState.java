@@ -39,6 +39,8 @@ public class GameState extends BasicGameState{
 				Stats.setHighscore(model.getLevel().getScore());
 			}
 			
+			Stats.saveStats();
+			
 			GameStateController.getGameOverState().setScore(model.getLevel().getScore());
 			sbg.enterState(GameStateController.getGameOverState().getID());
 		} else {
