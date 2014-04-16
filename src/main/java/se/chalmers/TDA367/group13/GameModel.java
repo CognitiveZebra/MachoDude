@@ -88,7 +88,7 @@ public class GameModel {
 		level.updateEnemies(player);
 		
 		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY(), player.getDirection());
-		if (input.isMouseButtonDown(Controls.getShootKey())) 
+		if (input.isMouseButtonDown(Controls.getShootKey()) || input.isKeyDown(Controls.getShootKey())) 
 			player.getWeapon().fireWeapon(player.getDirection());
 			LinkedList<Projectile> removed = new LinkedList<Projectile>();
 		
