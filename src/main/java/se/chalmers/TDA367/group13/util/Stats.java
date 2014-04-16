@@ -44,14 +44,18 @@ public class Stats {
 	public static String getStatsString() {
 		long time = timePlayed;
 		
-		long days = time /1000*60*60*24;
-		time = time % 1000*60*60*24;
+		long timeMinute = 1000*60;
+		long timeHour = timeMinute*60;
+		long timeDay = timeHour*24;
+		
+		long days = time / timeDay;
+		time = time - (timeDay*days);
  
-		long hours = time / 1000*60*60;
-		time = time % 1000*60*60;
+		long hours = time / timeHour;
+		time = time - (timeHour*hours);
  
-		long minutes = time / 1000*60;
-		time = time % 1000*60;
+		long minutes = time / timeMinute;
+
 
 		String timeString = String.format("Days %d, Hours %d, Minutes %d", days, hours, minutes);
 		return String.format(
