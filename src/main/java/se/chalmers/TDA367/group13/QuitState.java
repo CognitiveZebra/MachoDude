@@ -7,12 +7,13 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.TDA367.group13.util.Util;
+
 
 
 public class QuitState extends BasicGameState {
 	private static final int ID = 666;
 	private long enterTime, duration = 1000;
-	private AngelCodeFont font32;
 	
 	@Override
 	public void enter(GameContainer gc, StateBasedGame sbg)
@@ -26,7 +27,7 @@ public class QuitState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		String s = "FIGHTING SPIRIT?";
-		g.setFont(font32);
+		g.setFont(Util.getFont32());
 		g.drawString(s,gc.getWidth() / 2 - g.getFont().getWidth(s)/2,gc.getHeight() / 2 - g.getFont().getHeight(s)/2 );
 	}
 
@@ -44,8 +45,9 @@ public class QuitState extends BasicGameState {
 	}
 
 	@Override
-	public void init(GameContainer arg0, StateBasedGame arg1)
+	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		font32 = new AngelCodeFont("res/Fonts/Visitor1.fnt", "res/Fonts/Visitor1_0.png");
+		
 	}
+
 }

@@ -18,6 +18,7 @@ import se.chalmers.TDA367.group13.entities.Enemy_1;
 import se.chalmers.TDA367.group13.entities.Entity.Direction;
 import se.chalmers.TDA367.group13.entities.Player;
 import se.chalmers.TDA367.group13.entities.Projectile;
+import se.chalmers.TDA367.group13.util.Util;
 
 public class Level {
 
@@ -84,7 +85,8 @@ public class Level {
 		}
 		
 		g.setColor(Color.white);
-		g.drawString("Score: " + score, 100, 100);
+		g.setFont(Util.getFont32());
+		g.drawString("Score: " + score, 100, 10);
 	}
 
 	public Camera getCamera() {

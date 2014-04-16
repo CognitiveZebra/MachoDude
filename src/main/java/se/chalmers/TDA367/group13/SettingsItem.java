@@ -1,12 +1,12 @@
 package se.chalmers.TDA367.group13;
 
-import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+
+import se.chalmers.TDA367.group13.util.Util;
 
 
 public class SettingsItem extends MenuItem{
@@ -14,7 +14,6 @@ public class SettingsItem extends MenuItem{
 	private String title, controlText;
 	private Color selectedColor = new Color(0,0,0,0.4f);
 	public Rectangle selectedRec;
-	AngelCodeFont font32;
 	
 
 	public SettingsItem(float x, float y, Image image, String title, int ID, int control) {
@@ -34,12 +33,6 @@ public class SettingsItem extends MenuItem{
 				break;
 			default:
 				controlText = Input.getKeyName(control); 
-		}
-		
-		try {
-			font32 = new AngelCodeFont("res/Fonts/Visitor1.fnt", "res/Fonts/Visitor1_0.png");
-		} catch (SlickException e) {
-			e.printStackTrace();
 		}
 		selectedRec = new Rectangle(getX() - 3, getY() - 3, getWidth() + 6, getHeight() + 6 );
 	}
@@ -63,7 +56,7 @@ public class SettingsItem extends MenuItem{
 		
 		//white text over everything else
 		g.setColor(Color.white);
-		g.setFont(font32);
+		g.setFont(Util.getFont32());
 		g.drawString(title, getX() - 200, getY() + getHeight() / 2 - g.getFont().getHeight(title)/2);
 		g.drawString(controlText, getX() + getWidth() / 2 - g.getFont().getWidth(controlText)/2, getY() + getHeight() / 2 - g.getFont().getHeight(controlText)/2);
 	}

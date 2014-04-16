@@ -1,14 +1,12 @@
 package se.chalmers.TDA367.group13;
 
-import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
 import se.chalmers.TDA367.group13.entities.Entity;
+import se.chalmers.TDA367.group13.util.Util;
 
 
 public class MenuItem extends Entity{
@@ -16,18 +14,12 @@ public class MenuItem extends Entity{
 	private String name; 
 	private Color selectedColor = new Color(0,0,0,0.4f);
 	public Rectangle selectedRec;
-	AngelCodeFont font32;
 	
 
 	public MenuItem(float x, float y, Image image, String name, int ID) {
 		super(x, y, image);
 		this.name = name;
 		this.ID = ID;
-		try {
-			font32 = new AngelCodeFont("res/Fonts/Visitor1.fnt", "res/Fonts/Visitor1_0.png");
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
 		selectedRec = new Rectangle(getX() - 3, getY() - 3, getWidth() + 6, getHeight() + 6 );
 	}
 
@@ -50,7 +42,7 @@ public class MenuItem extends Entity{
 		
 		//white text over everything else
 		g.setColor(Color.white);
-		g.setFont(font32);
+		g.setFont(Util.getFont32());
 		g.drawString(name, getX() + getWidth() / 2 - g.getFont().getWidth(name)/2, getY() + getHeight() / 2 - g.getFont().getHeight(name)/2);
 	}
 	

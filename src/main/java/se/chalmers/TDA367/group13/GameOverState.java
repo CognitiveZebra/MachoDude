@@ -2,7 +2,6 @@ package se.chalmers.TDA367.group13;
 
 import java.util.LinkedList;
 
-import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -14,6 +13,9 @@ import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.TDA367.group13.util.Highscore;
+import se.chalmers.TDA367.group13.util.Util;
+
 public class GameOverState extends BasicGameState {
 
 	public static final int ID = 1337;
@@ -24,7 +26,6 @@ public class GameOverState extends BasicGameState {
 	private ParticleFactory pf;
 	private ParticleSystem ps;
 	private Point mouse;
-	private AngelCodeFont font32;
 	private int score;
 	
 
@@ -39,9 +40,7 @@ public class GameOverState extends BasicGameState {
 		pf = new ParticleFactory();
 		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"), 2000);
 		ConfigurableEmitter rainEmitter = pf.createEmitter("rain");
-		ps.addEmitter(rainEmitter);
-		font32 = new AngelCodeFont("res/Fonts/Visitor1.fnt", "res/Fonts/Visitor1_0.png");
-		
+		ps.addEmitter(rainEmitter);		
 	}
 
 	@Override
@@ -51,7 +50,7 @@ public class GameOverState extends BasicGameState {
 		g.drawImage(background,0,0);
 
 		String s = "GAME OVER";
-		g.setFont(font32);
+		g.setFont(Util.getFont32());
 		g.drawString(s,gc.getWidth() / 2 - g.getFont().getWidth(s)/2, 250 );
 		ps.render();
 		

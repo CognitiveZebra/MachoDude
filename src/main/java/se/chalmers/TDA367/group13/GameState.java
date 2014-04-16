@@ -6,6 +6,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.TDA367.group13.util.Highscore;
+import se.chalmers.TDA367.group13.util.Stats;
+
 
 public class GameState extends BasicGameState{
 	public static final int ID = 3;
