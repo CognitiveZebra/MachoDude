@@ -1,0 +1,8 @@
+<sheet>
+	<sprite name="open5.png" x="0" y="0" width="23" height="38" />
+	<sprite name="open4.png" x="23" y="0" width="23" height="36" />
+	<sprite name="open3.png" x="46" y="0" width="23" height="34" />
+	<sprite name="open2.png" x="69" y="0" width="23" height="32" />
+	<sprite name="open1.png" x="92" y="0" width="23" height="30" />
+	<sprite name="still.png" x="0" y="38" width="23" height="28" />
+</sheet>
