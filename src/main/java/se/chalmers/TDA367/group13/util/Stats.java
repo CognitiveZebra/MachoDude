@@ -11,9 +11,7 @@ public class Stats {
 	private static Scanner scanner;
 	private static BufferedWriter bw;
 	private static FileWriter fw;
-	private static int highscore, enemiesKilled, score, deaths;
-
-
+	private static int highscore, enemiesKilled, score, deaths, damageTaken;
 	private static long timePlayed;
 
 	public static void readStats() {
@@ -27,6 +25,7 @@ public class Stats {
 				enemiesKilled = scanner.nextInt();
 				timePlayed = scanner.nextLong();
 				deaths = scanner.nextInt();
+				damageTaken = scanner.nextInt();
 				scanner.close();
 				score = 0;
 			} else {
@@ -37,6 +36,7 @@ public class Stats {
 		} catch (FileNotFoundException e) {
 			Stats.reset();
 			Stats.saveStats();
+			readStats();
 		}
 	}
 
@@ -45,6 +45,7 @@ public class Stats {
 		enemiesKilled = 0;
 		timePlayed = 0;
 		deaths = 0;
+		damageTaken = 0;
 	}
 
 	public static String getStatsString() {
@@ -67,8 +68,8 @@ public class Stats {
 
 		String timeString = String.format("Days %d, Hours %d, Minutes %d, Seconds %d", days, hours, minutes, seconds);
 		return String.format(
-				"Highscore: %d\nEnemies killed: %d\nTime Played: %s\nDeath count: %d",
-				highscore, enemiesKilled, timeString, deaths);
+				"Highscore: %d\nEnemies killed: %d\nTime Played: %s\nDeath count: %d\nDamage Taken: %d",
+				highscore, enemiesKilled, timeString, deaths, damageTaken);
 	}
 
 	public static void saveStats() {
@@ -82,7 +83,7 @@ public class Stats {
 			fw = new FileWriter(file);
 			bw = new BufferedWriter(fw);
 
-			String save = highscore + ";" + enemiesKilled + ";" + timePlayed + ";" + deaths;
+			String save = highscore + ";" + enemiesKilled + ";" + timePlayed + ";" + deaths + ";" + damageTaken;
 			bw.write(save);
 
 			bw.close();
@@ -156,4 +157,18 @@ public class Stats {
 	public static void incrementDeaths(){
 		deaths++;
 	}
+
+	public static int getDamageTaken() {
+		return damageTaken;
+	}
+
+	public static void setDamageTaken(int damageTaken) {
+		Stats.damageTaken = damageTaken;
+	}
+	
+	public static void incrementDamageTaken(){
+		damageTaken++;
+	}
+	
+	
 }

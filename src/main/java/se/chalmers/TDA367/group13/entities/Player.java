@@ -7,6 +7,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Point;
 
+import se.chalmers.TDA367.group13.util.Stats;
+
 
 public class Player extends Entity {
 
@@ -21,9 +23,6 @@ public class Player extends Entity {
 	private int health = 5;
 	private Point rightShoulder, leftShoulder;
 	private HealthBar healthBar;
-	public boolean isDead = false;
-	
-
 
 
 	public enum State {
@@ -195,14 +194,12 @@ public class Player extends Entity {
 		if ((System.currentTimeMillis()-lastHurt) > invinsibility){
 			health = health -1;
 			lastHurt = System.currentTimeMillis();
-			if (health == 0){
-				isDead = true;
-			}
+			Stats.incrementDamageTaken();
 		}
 	}
 	
 	public boolean isDead(){
-		return isDead;
+		return health <= 0;
 	}
 	public Weapon getWeapon() {
 		return weapon;
