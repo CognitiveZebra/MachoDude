@@ -79,18 +79,24 @@ public class SettingsState extends BasicGameState{
 			}
 			
 			if(item.getText().equals("??")){
-					if (key != null) {
-						item.setControl(key);
-						item.setText(item.getControlText());
-						key = null;
+				if (key != null) {
+					item.setControl(key);
+					item.setText(item.getControlText());
+					key = null;
+					settable = false;
+				}
+				for (SettingsItem i : settingsView.getSettingsItems()) {
+					if(i.contains(mouse) && !i.equals(item)){
+						i.setText(i.getControlText());
+						button = null;
 						settable = false;
-					}
-					if (button != null) {
+					} else if (button != null){
 						item.setControl(button);
 						item.setText(item.getControlText());
 						button = null;
 						settable = false;
 					}
+				}
 		
 			}
 		}
