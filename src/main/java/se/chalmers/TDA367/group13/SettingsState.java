@@ -60,6 +60,7 @@ public class SettingsState extends BasicGameState{
 		mouse = new Point(input.getMouseX(), input.getMouseY());
 		boolean isMousePressed = input.isMousePressed(Input.MOUSE_LEFT_BUTTON);
 		
+		
 		for(SettingsItem item : settingsView.getSettingsItems()){
 
 			if(item.contains(mouse)){
@@ -105,7 +106,14 @@ public class SettingsState extends BasicGameState{
 			}
 			
 			if(item.contains(mouse) && isMousePressed){
-				sbg.enterState(item.getID());
+				if (item.getID() == 0) {
+					Controls.reset();
+					resetSettingsItems();
+				} else {
+					sbg.enterState(item.getID());
+				}
+					
+				
 			}
 		}
 
@@ -114,20 +122,39 @@ public class SettingsState extends BasicGameState{
 		
 	}
 	
+	private void resetSettingsItems() {
+		for (SettingsItem item : settingsView.getSettingsItems()) {
+			switch (item.getID()) {
+			case RIGHT: item.setControl(Controls.getRightKey());	break;
+			case LEFT: 	item.setControl(Controls.getLeftKey()); 	break;
+			case JUMP:	item.setControl(Controls.getJumpKey()); 	break;
+			case SHOOT: item.setControl(Controls.getShootKey()); 	break;
+			default:
+				break;
+			}
+			item.setText(item.getControlText());
+		}
+		
+	}
+
 	public void initSettings(){
 		try {
 			menuItemImage = new Image("res/GUI/menuItem.png");
 			int settingMiddleX = gc.getWidth()/2 - menuItemImage.getWidth()/2;
 			int menuMiddleX = gc.getWidth()/2 - menuItemImage.getWidth()/2;
 			SettingsItem rightButton = new SettingsItem(settingMiddleX, 100, menuItemImage, "RIGHT", RIGHT, Controls.getRightKey());
-			SettingsItem leftButton = new SettingsItem(settingMiddleX, 225, menuItemImage, "LEFT",LEFT, Controls.getLeftKey());
-			SettingsItem jumpButton = new SettingsItem(settingMiddleX, 350, menuItemImage, "JUMP",JUMP, Controls.getJumpKey());
-			SettingsItem shootButton = new SettingsItem(settingMiddleX, 475, menuItemImage, "SHOOT",SHOOT, Controls.getShootKey());
-			MenuItem mainButton = new MenuItem(menuMiddleX, gc.getHeight() - 150, menuItemImage, "MAIN MENU", GameStateController.getMenuState().getID());
+			SettingsItem leftButton = new SettingsItem(settingMiddleX, 200, menuItemImage, "LEFT",LEFT, Controls.getLeftKey());
+			SettingsItem jumpButton = new SettingsItem(settingMiddleX, 300, menuItemImage, "JUMP",JUMP, Controls.getJumpKey());
+			SettingsItem shootButton = new SettingsItem(settingMiddleX, 400, menuItemImage, "SHOOT",SHOOT, Controls.getShootKey());
+			MenuItem resetButton = new MenuItem(menuMiddleX, 525, menuItemImage, "RESET CONTROLS", 0);
+			MenuItem mainButton = new MenuItem(menuMiddleX, 625, menuItemImage, "MAIN MENU", GameStateController.getMenuState().getID());
+			
 			
 			LinkedList<SettingsItem> SettingsItems = new LinkedList<SettingsItem>();
 			LinkedList<MenuItem> menuItems = new LinkedList<MenuItem>();
+
 			menuItems.add(mainButton);
+			menuItems.add(resetButton);
 			
 			
 			SettingsItems.add(rightButton);

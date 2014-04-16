@@ -4,6 +4,8 @@ import java.util.LinkedList;
 
 import org.newdawn.slick.Graphics;
 
+import se.chalmers.TDA367.group13.entities.Entity;
+
 
 public class SettingsView {
 	private LinkedList<SettingsItem> settingsItems;
