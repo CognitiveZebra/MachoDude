@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13;
+package se.chalmers.TDA367.group13.util;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
