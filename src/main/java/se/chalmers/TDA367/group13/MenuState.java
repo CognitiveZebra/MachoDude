@@ -16,7 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class MenuState extends BasicGameState {
 	public static final int ID = 2;
 	GameContainer gc;
-	private Image background, itemImage; 
+	private Image background, itemImage, settingsImage; 
 	private Input input;
 	private Menu menu;
 	private Point mouse;
@@ -81,15 +81,20 @@ public class MenuState extends BasicGameState {
 	
 	public void initMenu(){
 		try {
-			itemImage = new Image("res/Sprites/menuItem.png");
+			itemImage = new Image("res/GUI/menuItem.png");
+			settingsImage = new Image("res/GUI/settingsButton.png");
 			int middleX = gc.getWidth()/2 - itemImage.getWidth()/2;
 
 			MenuItem playButton = new MenuItem(middleX, gc.getHeight() - 300, itemImage, "PLAY", GameStateController.getGameState().getID());
-			MenuItem playButton2 = new MenuItem(middleX, gc.getHeight() - 200, itemImage, "QUIT", GameStateController.getQuitState().getID());
+			MenuItem quitButton = new MenuItem(middleX, gc.getHeight() - 200, itemImage, "QUIT", GameStateController.getQuitState().getID());
+			MenuItem settingsButton = new MenuItem(20, gc.getHeight() - settingsImage.getHeight() - 20, settingsImage, "", GameStateController.getSettingsState().getID());
 			
 			LinkedList<MenuItem> items = new LinkedList<MenuItem>();
+			
 			items.add(playButton);
-			items.add(playButton2);
+			items.add(quitButton);
+			items.add(settingsButton);
+			
 			menu = new Menu(items);
 		} catch (SlickException e) {
 			e.printStackTrace();

@@ -6,7 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
 
 
-public abstract class Enemy extends Entity {
+public abstract class Enemy extends Entity implements IMoveable, IDestructable {
 
 	protected XMLPackedSheet enemySheet;
 	protected Direction direction;
@@ -82,7 +82,7 @@ public abstract class Enemy extends Entity {
 		health = health -1;
 	}
 	
-	public boolean isDead() {
+	public boolean isDestroyed() {
 		return health <= 0;
 	}
 	

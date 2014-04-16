@@ -2,7 +2,7 @@ package se.chalmers.TDA367.group13.entities;
 
 import org.newdawn.slick.Image;
 
-public class DestructableBlock extends Block {
+public class DestructableBlock extends Block implements IDestructable {
 	private float health;
 	private float maxHealth;
 

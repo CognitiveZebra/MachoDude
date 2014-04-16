@@ -57,6 +57,7 @@ local.properties
 .loadpath
 *.save
 
+
 # External tool builders
 .externalToolBuilders/
 

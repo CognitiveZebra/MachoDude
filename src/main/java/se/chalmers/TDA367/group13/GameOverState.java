@@ -105,7 +105,7 @@ public class GameOverState extends BasicGameState {
 	
 	public void initMenu(){
 		try {
-			itemImage = new Image("res/Sprites/menuItem.png");
+			itemImage = new Image("res/GUI/menuItem.png");
 			int middleX = gc.getWidth()/2 - itemImage.getWidth()/2;
 
 			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 300, itemImage, "MAIN MENU", GameStateController.getMenuState().getID());
