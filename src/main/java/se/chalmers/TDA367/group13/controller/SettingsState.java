@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13;
+package se.chalmers.TDA367.group13.controller;
 
 import java.util.LinkedList;
 
@@ -15,7 +15,11 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.TDA367.group13.factory.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Controls;
+import se.chalmers.TDA367.group13.view.MenuItem;
+import se.chalmers.TDA367.group13.view.SettingsItem;
+import se.chalmers.TDA367.group13.view.SettingsView;
 
 public class SettingsState extends BasicGameState{
 	public static final int ID = 15, RIGHT = 0,LEFT = 1,JUMP = 2,SHOOT = 3;

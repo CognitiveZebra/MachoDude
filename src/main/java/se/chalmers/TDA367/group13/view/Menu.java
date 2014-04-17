@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13;
+package se.chalmers.TDA367.group13.view;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

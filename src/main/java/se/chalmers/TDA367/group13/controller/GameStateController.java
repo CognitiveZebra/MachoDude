@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13;
+package se.chalmers.TDA367.group13.controller;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;

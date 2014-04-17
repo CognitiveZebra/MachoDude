@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13;
+package se.chalmers.TDA367.group13.controller;
 
 import java.util.LinkedList;
 
@@ -13,56 +13,46 @@ import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.TDA367.group13.util.Stats;
-import se.chalmers.TDA367.group13.util.Util;
+import se.chalmers.TDA367.group13.factory.ParticleFactory;
+import se.chalmers.TDA367.group13.view.Menu;
+import se.chalmers.TDA367.group13.view.MenuItem;
 
-public class GameOverState extends BasicGameState {
-
-	public static final int ID = 1337;
-	private Image itemImage, background;
-	private Menu menu;
-	private GameContainer gc;
+public class MenuState extends BasicGameState {
+	public static final int ID = 2;
+	GameContainer gc;
+	private Image background, itemImage, settingsImage; 
 	private Input input;
+	private Menu menu;
+	private Point mouse;
 	private ParticleFactory pf;
 	private ParticleSystem ps;
-	private Point mouse;
-	
-
 
 	@Override
-	public void init(GameContainer container, StateBasedGame game)
+	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		this.gc = container;
+		this.gc = gc;
 		background = new Image("res/Backgrounds/Jungle_Test.gif");
 		initMenu();
-		input = container.getInput();
+		input = gc.getInput();
 		pf = new ParticleFactory();
 		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"), 2000);
 		ConfigurableEmitter rainEmitter = pf.createEmitter("rain");
-		ps.addEmitter(rainEmitter);		
+		ps.addEmitter(rainEmitter);
+		
 	}
 
 	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		
 		g.drawImage(background,0,0);
 
-		String s = "GAME OVER";
-		g.setFont(Util.getFont32());
-		g.drawString(s,gc.getWidth() / 2 - g.getFont().getWidth(s)/2, 250 );
 		ps.render();
 		
 		menu.render(g);
-		String scoreString = "Your score: " + Stats.getScore();
-		g.drawString(scoreString,gc.getWidth() / 2 - g.getFont().getWidth(scoreString)/2, 300);
-		String highscoreString = "Your Highscore: " + Stats.getHighscore();
-		g.drawString(highscoreString,gc.getWidth() / 2 - g.getFont().getWidth(highscoreString)/2, 350);
-		
 	}
 
 	@Override
-	public void update(GameContainer container, StateBasedGame game, int delta)
+	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		mouse = new Point(input.getMouseX(), input.getMouseY());
 		boolean isMousePressed = input.isMousePressed(Input.MOUSE_LEFT_BUTTON);
@@ -74,47 +64,52 @@ public class GameOverState extends BasicGameState {
 			}
 			
 			if(item.contains(mouse) && isMousePressed){
-					game.enterState(item.getID());
-			}
-			
-			if(input.isKeyPressed(Input.KEY_DOWN)){
-				menu.down();
-			}
-			
-			if(input.isKeyPressed(Input.KEY_UP)){
-				menu.up();
-			}
-			
-			if(input.isKeyDown(Input.KEY_ENTER) && item.equals(menu.getSelected())){
-				game.enterState(menu.getSelected().getID());
+					sbg.enterState(item.getID());
 			}
 		}
 		
-
+		if(input.isKeyPressed(Input.KEY_DOWN)){
+			menu.down();
+		}
+		
+		if(input.isKeyPressed(Input.KEY_UP)){
+			menu.up();
+		}
+		
+		if(input.isKeyPressed(Input.KEY_ENTER)){
+			sbg.enterState(menu.getSelected().getID());
+		}
 		
 		ps.update(delta);
-	}
-		
-
-	@Override
-	public int getID() {
-		return ID;
 	}
 	
 	public void initMenu(){
 		try {
 			itemImage = new Image("res/GUI/menuItem.png");
+			settingsImage = new Image("res/GUI/settingsButton.png");
 			int middleX = gc.getWidth()/2 - itemImage.getWidth()/2;
 
-			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 300, itemImage, "MAIN MENU", GameStateController.getMenuState().getID());
+			MenuItem playButton = new MenuItem(middleX, gc.getHeight() - 400, itemImage, "PLAY", GameStateController.getGameState().getID());
+			MenuItem statsButton = new MenuItem(middleX, gc.getHeight() - 300, itemImage, "STATS", GameStateController.getStatsState().getID());
 			MenuItem quitButton = new MenuItem(middleX, gc.getHeight() - 200, itemImage, "QUIT", GameStateController.getQuitState().getID());
+			MenuItem settingsButton = new MenuItem(20, gc.getHeight() - settingsImage.getHeight() - 20, settingsImage, "", GameStateController.getSettingsState().getID());
 			
 			LinkedList<MenuItem> items = new LinkedList<MenuItem>();
-			items.add(mainButton);
+			
+			items.add(playButton);
+			items.add(statsButton);
 			items.add(quitButton);
+			items.add(settingsButton);
+			
 			menu = new Menu(items);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public int getID() {
+		return ID;
+	}
+
 }

@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13;
+package se.chalmers.TDA367.group13.view;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;

@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13;
+package se.chalmers.TDA367.group13.controller;
 
 import java.util.LinkedList;
 
@@ -13,8 +13,11 @@ import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.TDA367.group13.factory.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
+import se.chalmers.TDA367.group13.view.Menu;
+import se.chalmers.TDA367.group13.view.MenuItem;
 
 public class StatsState extends BasicGameState {
 

@@ -6,6 +6,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import se.chalmers.TDA367.group13.controller.GameStateController;
 import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.util.Stats;
 

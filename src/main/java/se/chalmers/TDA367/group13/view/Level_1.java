@@ -1,9 +1,11 @@
-package se.chalmers.TDA367.group13;
+package se.chalmers.TDA367.group13.view;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
+
+import se.chalmers.TDA367.group13.util.Camera;
 
 public class Level_1 extends Level{
 

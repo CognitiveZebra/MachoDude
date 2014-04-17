@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13;
+package se.chalmers.TDA367.group13.view;
 
 import java.util.LinkedList;
 
@@ -10,6 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
+import se.chalmers.TDA367.group13.Game;
 import se.chalmers.TDA367.group13.entities.Block;
 import se.chalmers.TDA367.group13.entities.Boss_1;
 import se.chalmers.TDA367.group13.entities.Enemy;
@@ -18,6 +19,7 @@ import se.chalmers.TDA367.group13.entities.Enemy_1;
 import se.chalmers.TDA367.group13.entities.Entity.Direction;
 import se.chalmers.TDA367.group13.entities.Player;
 import se.chalmers.TDA367.group13.entities.Projectile;
+import se.chalmers.TDA367.group13.util.Camera;
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
 

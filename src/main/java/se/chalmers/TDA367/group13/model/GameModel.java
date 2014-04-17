@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13;
+package se.chalmers.TDA367.group13.model;
 
 import java.util.LinkedList;
 
@@ -12,8 +12,11 @@ import se.chalmers.TDA367.group13.entities.Enemy;
 import se.chalmers.TDA367.group13.entities.Player;
 import se.chalmers.TDA367.group13.entities.Player.State;
 import se.chalmers.TDA367.group13.entities.Projectile;
+import se.chalmers.TDA367.group13.exception.GameOverException;
 import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.util.Stats;
+import se.chalmers.TDA367.group13.view.Level;
+import se.chalmers.TDA367.group13.view.Level_1;
 
 public class GameModel {
 

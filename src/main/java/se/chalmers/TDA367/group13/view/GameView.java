@@ -1,8 +1,10 @@
-package se.chalmers.TDA367.group13;
+package se.chalmers.TDA367.group13.view;
 
 import javax.swing.text.html.parser.Entity;
 
 import org.newdawn.slick.Graphics;
+
+import se.chalmers.TDA367.group13.model.GameModel;
 
 public class GameView {
 	GameModel model; 
