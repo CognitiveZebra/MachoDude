@@ -30,9 +30,6 @@ public class StatsState extends BasicGameState {
 	private ParticleSystem ps;
 	private Point mouse;
 
-	
-
-
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -40,28 +37,25 @@ public class StatsState extends BasicGameState {
 		background = new Image("res/Backgrounds/Jungle_Test.gif");
 		initMenu();
 		input = container.getInput();
-		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"), 2000);
+		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"),
+				2000);
 		ConfigurableEmitter rainEmitter;
-		try {
-			rainEmitter = ParticleFactory.createEmitter("rain");
-			ps.addEmitter(rainEmitter);	
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	
+		rainEmitter = ParticleFactory.createEmitter("rain");
+		ps.addEmitter(rainEmitter);
+
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		
-		g.drawImage(background,0,0);
+
+		g.drawImage(background, 0, 0);
 		ps.render();
 		menu.render(g);
 		g.setFont(Util.getFont32());
 		String stats = Stats.getStatsString();
-		g.drawString(stats,gc.getWidth() / 2 - g.getFont().getWidth(stats)/2, 200);
-
+		g.drawString(stats,
+				gc.getWidth() / 2 - g.getFont().getWidth(stats) / 2, 200);
 
 	}
 
@@ -70,31 +64,32 @@ public class StatsState extends BasicGameState {
 			throws SlickException {
 		mouse = new Point(input.getMouseX(), input.getMouseY());
 		boolean isMousePressed = input.isMousePressed(Input.MOUSE_LEFT_BUTTON);
-		
-		for(MenuItem item : menu.getItems()){
 
-			if(item.contains(mouse)){
+		for (MenuItem item : menu.getItems()) {
+
+			if (item.contains(mouse)) {
 				menu.setSelected(item);
 			}
-			
-			if(item.contains(mouse) && isMousePressed){
-				if(menu.getSelected().getID() > 0){
+
+			if (item.contains(mouse) && isMousePressed) {
+				if (menu.getSelected().getID() > 0) {
 					game.enterState(item.getID());
 				} else {
 					Stats.reset();
 				}
 			}
-			
-			if(input.isKeyPressed(Input.KEY_DOWN)){
+
+			if (input.isKeyPressed(Input.KEY_DOWN)) {
 				menu.down();
 			}
-			
-			if(input.isKeyPressed(Input.KEY_UP)){
+
+			if (input.isKeyPressed(Input.KEY_UP)) {
 				menu.up();
 			}
-			
-			if(input.isKeyPressed(Input.KEY_ENTER) && item.equals(menu.getSelected())){
-				if(menu.getSelected().getID() > 0){
+
+			if (input.isKeyPressed(Input.KEY_ENTER)
+					&& item.equals(menu.getSelected())) {
+				if (menu.getSelected().getID() > 0) {
 					game.enterState(menu.getSelected().getID());
 				} else {
 					Stats.reset();
@@ -102,24 +97,26 @@ public class StatsState extends BasicGameState {
 
 			}
 		}
-		
+
 		ps.update(delta);
 	}
-		
 
 	@Override
 	public int getID() {
 		return ID;
 	}
-	
-	public void initMenu(){
+
+	public void initMenu() {
 		try {
 			itemImage = new Image("res/GUI/menuItem.png");
-			int middleX = gc.getWidth()/2 - itemImage.getWidth()/2;
+			int middleX = gc.getWidth() / 2 - itemImage.getWidth() / 2;
 
-			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 300, itemImage, "MAIN MENU", GameStateController.getMenuState().getID());
-			MenuItem resetButton = new MenuItem(middleX, gc.getHeight() - 200, itemImage, "RESET STATS");
-			
+			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 300,
+					itemImage, "MAIN MENU", GameStateController.getMenuState()
+							.getID());
+			MenuItem resetButton = new MenuItem(middleX, gc.getHeight() - 200,
+					itemImage, "RESET STATS");
+
 			LinkedList<MenuItem> items = new LinkedList<MenuItem>();
 			items.add(mainButton);
 			items.add(resetButton);

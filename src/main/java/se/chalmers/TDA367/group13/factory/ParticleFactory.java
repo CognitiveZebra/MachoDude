@@ -8,21 +8,28 @@ import org.newdawn.slick.particles.ParticleIO;
 
 public class ParticleFactory {
 
-	public static ConfigurableEmitter createEmitter(String emitter) throws IOException{
+	public static ConfigurableEmitter createEmitter(String emitter){
+		String path = "res/Particles/rain.xml";
+		
 		switch(emitter){
 		case "rain":
-			return  ParticleIO.loadEmitter("res/Particles/rain.xml");
+			path = "res/Particles/rain.xml"; break;
 		case "rainSplatter":
-			return ParticleIO.loadEmitter("res/Particles/rainSplatter.xml");
+			path = "res/Particles/rainSplatter.xml"; break;
 		case "smoke": 
-			return ParticleIO.loadEmitter("res/Particles/smoke.xml");
+			path = "res/Particles/smoke.xml"; break;
 		case "blood":
-			return ParticleIO.loadEmitter("res/Particles/blood.xml");
+			path = "res/Particles/blood.xml"; break;
 		case "fire":
-			return ParticleIO.loadEmitter("res/Particles/fire.xml");
-		default:
-			return null;
+			path = "res/Particles/fire.xml"; break; 
 		}
-	}
 
+		try {
+			return ParticleIO.loadEmitter(path);
+		} catch (IOException e) {
+
+		}
+		return null; 
+	}	
+		
 }
