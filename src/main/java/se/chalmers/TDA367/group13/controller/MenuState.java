@@ -25,7 +25,6 @@ public class MenuState extends BasicGameState {
 	private Input input;
 	private Menu menu;
 	private Point mouse;
-	private ParticleFactory pf;
 	private ParticleSystem ps;
 
 	@Override
@@ -35,11 +34,10 @@ public class MenuState extends BasicGameState {
 		background = new Image("res/Backgrounds/Jungle_Test.gif");
 		initMenu();
 		input = gc.getInput();
-		pf = new ParticleFactory();
 		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"), 2000);
 		ConfigurableEmitter rainEmitter;
 		try {
-			rainEmitter = pf.createEmitter("rain");
+			rainEmitter = ParticleFactory.createEmitter("rain");
 			ps.addEmitter(rainEmitter);
 		} catch (IOException e) {
 			e.printStackTrace();

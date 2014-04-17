@@ -27,7 +27,6 @@ public class GameOverState extends BasicGameState {
 	private Menu menu;
 	private GameContainer gc;
 	private Input input;
-	private ParticleFactory pf;
 	private ParticleSystem ps;
 	private Point mouse;
 	
@@ -40,11 +39,10 @@ public class GameOverState extends BasicGameState {
 		background = new Image("res/Backgrounds/Jungle_Test.gif");
 		initMenu();
 		input = container.getInput();
-		pf = new ParticleFactory();
 		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"), 2000);
 		ConfigurableEmitter rainEmitter;
 		try {
-			rainEmitter = pf.createEmitter("rain");
+			rainEmitter = ParticleFactory.createEmitter("rain");
 			ps.addEmitter(rainEmitter);
 		} catch (IOException e) {
 			e.printStackTrace();

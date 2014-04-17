@@ -3,7 +3,6 @@ package se.chalmers.TDA367.group13.controller;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -13,7 +12,6 @@ import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import se.chalmers.TDA367.group13.factory.ParticleFactory;
@@ -29,7 +27,6 @@ public class SettingsState extends BasicGameState{
 	private Input input;
 	private SettingsView settingsView;
 	private Point mouse;
-	private ParticleFactory pf;
 	private ParticleSystem ps;
 	private Integer key, button;
 	private boolean settable = false;
@@ -42,11 +39,10 @@ public class SettingsState extends BasicGameState{
 		background = new Image("res/Backgrounds/Jungle_Test.gif");
 		initSettings();
 		input = gc.getInput();
-		pf = new ParticleFactory();
 		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"), 2000);
 		ConfigurableEmitter rainEmitter;
 		try {
-			rainEmitter = pf.createEmitter("rain");
+			rainEmitter = ParticleFactory.createEmitter("rain");
 			ps.addEmitter(rainEmitter);
 		} catch (IOException e) {
 			e.printStackTrace();

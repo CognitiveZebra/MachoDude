@@ -3,7 +3,6 @@ package se.chalmers.TDA367.group13.factory;
 import java.io.IOException;
 
 import org.newdawn.slick.particles.ConfigurableEmitter;
-import org.newdawn.slick.particles.ConfigurableEmitterFactory;
 import org.newdawn.slick.particles.ParticleIO;
 
 
