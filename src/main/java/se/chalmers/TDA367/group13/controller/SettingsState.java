@@ -1,5 +1,6 @@
 package se.chalmers.TDA367.group13.controller;
 
+import java.io.IOException;
 import java.util.LinkedList;
 
 import org.lwjgl.input.Keyboard;
@@ -43,8 +44,14 @@ public class SettingsState extends BasicGameState{
 		input = gc.getInput();
 		pf = new ParticleFactory();
 		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"), 2000);
-		ConfigurableEmitter rainEmitter = pf.createEmitter("rain");
-		ps.addEmitter(rainEmitter);
+		ConfigurableEmitter rainEmitter;
+		try {
+			rainEmitter = pf.createEmitter("rain");
+			ps.addEmitter(rainEmitter);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		
 		
 	}

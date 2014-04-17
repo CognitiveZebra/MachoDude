@@ -7,34 +7,20 @@ import org.newdawn.slick.particles.ConfigurableEmitterFactory;
 import org.newdawn.slick.particles.ParticleIO;
 
 
-public class ParticleFactory implements ConfigurableEmitterFactory {
-	ConfigurableEmitter rain, rainSplatter,smoke, blood, fire;	
-		
-	public ParticleFactory(){
-		try {
-			rain = ParticleIO.loadEmitter("res/Particles/rain.xml");
-			rainSplatter = ParticleIO.loadEmitter("res/Particles/rainSplatter.xml");
-			smoke = ParticleIO.loadEmitter("res/Particles/smoke.xml");
-			blood = ParticleIO.loadEmitter("res/Particles/blood.xml");
-			fire = ParticleIO.loadEmitter("res/Particles/fire.xml");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+public class ParticleFactory {
 
-	@Override
-	public ConfigurableEmitter createEmitter(String emitter) {
+	public static ConfigurableEmitter createEmitter(String emitter) throws IOException{
 		switch(emitter){
 		case "rain":
-			return rain;
+			return  ParticleIO.loadEmitter("res/Particles/rain.xml");
 		case "rainSplatter":
-			return rainSplatter;
+			return ParticleIO.loadEmitter("res/Particles/rainSplatter.xml");
 		case "smoke": 
-			return smoke;
+			return ParticleIO.loadEmitter("res/Particles/smoke.xml");
 		case "blood":
-			return blood;
+			return ParticleIO.loadEmitter("res/Particles/blood.xml");
 		case "fire":
-			return fire;
+			return ParticleIO.loadEmitter("res/Particles/fire.xml");
 		default:
 			return null;
 		}
