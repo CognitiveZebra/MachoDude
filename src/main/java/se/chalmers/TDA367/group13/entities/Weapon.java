@@ -4,8 +4,8 @@ import java.util.LinkedList;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-
-import se.chalmers.TDA367.group13.entities.Entity.Direction;
+import org.newdawn.slick.geom.Line;
+import org.newdawn.slick.geom.Vector2f;
 
 
 public abstract class Weapon extends Entity {
@@ -15,8 +15,11 @@ public abstract class Weapon extends Entity {
 	private float damage;
 	private float angle;
 	private Image rightImage, leftImage, projectileImage;
+	private Vector2f shoulder, nuzzle;
+	private Line distanceToNuzzle;
+	private double nuzzleAngle;
 	protected LinkedList<Projectile> projectiles;
-	
+
 	public Weapon(float x, float y, Image rightImage, Image leftImage, Image projectileImage, String name, float damage){
 		super(x, y, rightImage);
 		this.rightImage = rightImage;
@@ -25,8 +28,20 @@ public abstract class Weapon extends Entity {
 		this.name = name;
 		this.damage = damage;
 		projectiles = new LinkedList<Projectile>();
-		
-		
+	}
+	
+	public Weapon(float x, float y, Vector2f shoulder, Vector2f nuzzle, Image rightImage, Image leftImage, Image projectileImage, String name, float damage){
+		super(x, y, rightImage);
+		this.rightImage = rightImage;
+		this.leftImage = leftImage;
+		this.projectileImage = projectileImage;
+		this.name = name;
+		this.damage = damage;
+		projectiles = new LinkedList<Projectile>();
+		this.shoulder = shoulder;
+		this.nuzzle = nuzzle;
+		distanceToNuzzle = new Line(nuzzle, shoulder);
+		nuzzleAngle = Math.atan2(distanceToNuzzle.getX1() - distanceToNuzzle.getX2(), distanceToNuzzle.getY1() - distanceToNuzzle.getY2());
 	}
 
 	public LinkedList<Projectile> getProjectiles() {
@@ -86,7 +101,7 @@ public abstract class Weapon extends Entity {
 		super.render(g);
 		
 		for (Projectile projectile : projectiles)
-			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
+			projectile.render(g);
 	}
 
 	
@@ -123,6 +138,22 @@ public abstract class Weapon extends Entity {
 	
 	public Image getProjectileImage() {
 		return projectileImage;
+	}
+	
+	public float getProjectileX(Direction direction) {
+		if (direction == Direction.RIGHT) {
+			return getCenterX() + (float) ((distanceToNuzzle.length() * 2) * Math.cos(getAngle() - nuzzleAngle));
+		} else {
+			return getCenterX() + (float) ((distanceToNuzzle.length() * 2) * Math.cos(getAngle() + nuzzleAngle));
+		}
+	}
+	
+	public float getProjectileY(Direction direction) {
+		if (direction == Direction.RIGHT) {
+			return getCenterY() - (float) ((distanceToNuzzle.length() * 2) * Math.sin(getAngle() - nuzzleAngle));
+		} else {
+			return getCenterY() - (float) ((distanceToNuzzle.length() * 2) * Math.sin(getAngle() + nuzzleAngle));
+		}
 	}
 
 
