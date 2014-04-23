@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Point;
 
+import se.chalmers.TDA367.group13.util.Constants;
 import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.util.Stats;
 
@@ -14,21 +15,15 @@ import se.chalmers.TDA367.group13.util.Stats;
 public class Player extends Entity {
 
 	private Direction direction;
-	private State state;
 	private Weapon weapon;
 	private XMLPackedSheet playerSheet;
 	private Image [] right, left, standLeft, standRight, jumpingLeft, jumpingRight;
-	private Animation stillLeft, stillRight, walkLeft, walkRight, jumpLeft, jumpRight;
-	private long jumpStart, jumpCharge = 0, lastHurt;
-	private float jumpHeight = -4, xVelocity = 4,gravity = 9.81f, yVelocity = gravity, invinsibility = 1000;
+	private long lastHurt, invinsibility = 1000;
 	private int health = 5;
 	private Point rightShoulder, leftShoulder;
 	private HealthBar healthBar;
+	private AbstractPlayerState state, playerJumping, playerStill, playerWalking; 
 
-
-	public enum State {
-		WALKING, STILL, JUMPING;
-	}
 
 	public Player(float x, float y, String sheet, String xml) throws SlickException {
 		super(x, y, new Image(sheet));
@@ -37,49 +32,45 @@ public class Player extends Entity {
 		rightShoulder = new Point(29, 13);
 		leftShoulder = new Point(15, 13);
 		weapon = new TestWeapon(x, y);
-		initAnimations();
+		
 		direction = Direction.RIGHT;
-		jumpStart = System.currentTimeMillis();
 		lastHurt = System.currentTimeMillis();
-		state = State.JUMPING;
+	
+		
+		playerStill = new PlayerStill();
+		playerWalking = new PlayerWalking();
+		playerJumping = new PlayerJumping();
+		state = playerJumping; 
+		initAnimations();
 		healthBar = new HealthBar(health);
 	}
 	
 	public float nextLeftX(){
-		return x - xVelocity;
+		return x - state.getVelocity().x;
 	}
 	
 	public float nextRightX(){
-		return x + xVelocity;
+		return x + state.getVelocity().x;
 	}
 	
 	public float nextY(){
-		return y + yVelocity;
+		return y + state.getVelocity().y;
 	}
 	
 	public void moveLeft(){
 		direction = Direction.LEFT;
-		setX(getX() - xVelocity);
+		setX(x - state.getVelocity().x);
 	}
 	
 	public void moveRight(){
 		direction = Direction.RIGHT;
-		setX(getX() + xVelocity);
+		setX(x + state.getVelocity().x);
 	}
 	
 	public void moveY(){
-		setY(getY() + yVelocity);
+		setY(getY() + state.getVelocity().y);
 	}
-	
-	public void updateYVelocity(){
-		if(state == State.JUMPING){
-			float jumpTime =  (((System.currentTimeMillis() - jumpStart))*(float)Math.pow(10, -3));
-			yVelocity = jumpHeight + gravity * jumpTime;
-		} else {
-			yVelocity = gravity;
-		}
-	}
-	
+		
 	public void initAnimations() {
 		left = new Image[]
 			{playerSheet.getSprite("walk1.png"),playerSheet.getSprite("walk2.png"),
@@ -100,31 +91,17 @@ public class Player extends Entity {
 		resize(2);	
 		int animationSpeed = 200;
 		
-		stillLeft = new Animation(standLeft,animationSpeed);
-		stillRight = new Animation(standRight,animationSpeed);
-		walkLeft = new Animation(left,animationSpeed);
-		walkRight = new Animation(right,animationSpeed);
-		jumpLeft = new Animation(jumpingLeft,animationSpeed);
-		jumpRight = new Animation(jumpingRight,animationSpeed);	
+		playerStill.setAnimation(new Animation(standLeft,animationSpeed), Direction.LEFT);
+		playerStill.setAnimation(new Animation(standRight,animationSpeed), Direction.RIGHT);
+		playerWalking.setAnimation(new Animation(left,animationSpeed),Direction.LEFT);
+		playerWalking.setAnimation(new Animation(right,animationSpeed),Direction.RIGHT);
+		playerJumping.setAnimation(new Animation(jumpingLeft,animationSpeed),Direction.LEFT);
+		playerJumping.setAnimation(new Animation(jumpingRight,animationSpeed),Direction.RIGHT);	
 	}
 
 	public void render(Graphics g) {
-		Animation animation;
-		switch (state) {
-		case JUMPING:
-			animation = (direction == Direction.LEFT) ? jumpLeft : jumpRight;
-			break;
-		case STILL:
-			animation = (direction == Direction.LEFT) ? stillLeft: stillRight;
-			break;
-		case WALKING:
-			animation = (direction == Direction.LEFT) ? walkLeft : walkRight;
-			break;
-		default:
-			animation = stillLeft;
-			break;
-		}
-		g.drawAnimation(animation, getX(), getY());
+		g.drawAnimation(state.getAnimation(direction), getX(), getY());
+		
 		if (direction == Direction.LEFT){
 			weapon.setCenterX(x + leftShoulder.getX());
 			weapon.setCenterY(y + leftShoulder.getY());
@@ -139,22 +116,41 @@ public class Player extends Entity {
 		
 	}
 
-	public void setState(State s) {
-		state = s;
+	public void setPlayerStill() {
+		playerStill.setStateStartedMillis();
+		state = playerStill;
 	}
 	
-	public State getState(){
+	public void setPlayerWalking() {
+		playerWalking.setStateStartedMillis();
+		state = playerWalking;
+	}
+	
+	public void setPlayerJumping() {
+		playerJumping.setStateStartedMillis();
+		state = playerJumping;
+	}
+	
+	public AbstractPlayerState getPlayerJumping() {
+		return playerJumping;
+	}
+
+	public AbstractPlayerState getPlayerStill() {
+		return playerStill;
+	}
+
+	public AbstractPlayerState getPlayerWalking() {
+		return playerWalking;
+	}
+
+	public AbstractPlayerState getState(){
 		return state;
 	}
 	
 	public Direction getDirection() {
 		return direction;
 	}
-	
-	public void setJumpStart(long l){
-		jumpStart = l; 
-	}
-	
+		
 	public Image[] resizeImages(Image[] images, float scale){
 		for (int i = 0; i<images.length; i++){
 			images[i].setFilter(Image.FILTER_NEAREST);
@@ -176,19 +172,6 @@ public class Player extends Entity {
 		rightShoulder.setLocation(rightShoulder.getX() * scale, rightShoulder.getY() *scale);
 		setImage(standRight[0]);
 		weapon.resize(scale);
-	}
-	
-
-	public long getJumpStart(){
-		return jumpStart; 
-	}
-	
-	public void setJumpCharge(long t){
-		jumpCharge = t; 
-	}
-	
-	public long getJumpCharge(){
-		return jumpCharge; 
 	}
 	
 	public void loseHealth(){

@@ -1,5 +1,6 @@
 package se.chalmers.TDA367.group13.model;
 
+import java.lang.Thread.State;
 import java.util.LinkedList;
 
 import org.newdawn.slick.GameContainer;
@@ -10,7 +11,6 @@ import org.newdawn.slick.geom.Rectangle;
 import se.chalmers.TDA367.group13.entities.Block;
 import se.chalmers.TDA367.group13.entities.Enemy;
 import se.chalmers.TDA367.group13.entities.Player;
-import se.chalmers.TDA367.group13.entities.Player.State;
 import se.chalmers.TDA367.group13.entities.Projectile;
 import se.chalmers.TDA367.group13.exception.GameOverException;
 import se.chalmers.TDA367.group13.util.Controls;
@@ -64,31 +64,22 @@ public class GameModel {
 			}
 		}
 
-		if (input.isKeyDown(Controls.getJumpKey())) {
-			if (player.getState() != State.JUMPING) {
-				player.setState(State.JUMPING);
-				player.setJumpStart(System.currentTimeMillis());
-				player.setJumpCharge(System.currentTimeMillis());
-			} else if (System.currentTimeMillis() - player.getJumpCharge() < 500) {
-				player.setJumpStart(System.currentTimeMillis());
-			}
-		} else {
-			player.setJumpCharge(0);
+		if (input.isKeyDown(Controls.getJumpKey()) && player.getState() != player.getPlayerJumping()) {
+				player.setPlayerJumping();
 		}
 
 		Rectangle nextYPos = new Rectangle(player.getX(), player.getY(),
 				player.getWidth(), player.getHeight());
-		player.updateYVelocity();
 		nextYPos.setY(player.nextY());
 		if (isLegal(level.getBlocks(), nextYPos)) {
 			player.moveY();
 		} else if(collisionY > player.getY()){
- 				player.setState(State.STILL);
+ 				player.setPlayerStill();
 		}
 		
-		if(player.getState() != State.JUMPING){
+		if(player.getState() != player.getPlayerJumping()){
 			if(input.isKeyDown(Controls.getRightKey()) || input.isKeyDown(Controls.getLeftKey())) {
-				player.setState(State.WALKING);
+				player.setPlayerWalking();
 			}
 		}
 		
