@@ -45,12 +45,12 @@ public class GameModel {
 		Rectangle nextXPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
 		if (input.isKeyDown(Controls.getInstance().getLeftKey())) {
-			nextXPos.setX(player.nextLeftX());
+			nextXPos.setX(player.getNextLeftX());
 			if (isLegal(level.getBlocks(), nextXPos)) {
 				player.moveLeft();
 			} 
 		} else if (input.isKeyDown(Controls.getInstance().getRightKey())) {
-			nextXPos.setX(player.nextRightX());
+			nextXPos.setX(player.getNextRightX());
 			if (isLegal(level.getBlocks(), nextXPos)) {
 
 				if (nextXPos.getCenterX() > (container.getWidth() / 2) && !(-level.getCamera().getX() > (level.getWidth() - container.getWidth()))) {
@@ -70,7 +70,7 @@ public class GameModel {
 
 		Rectangle nextYPos = new Rectangle(player.getX(), player.getY(),
 				player.getWidth(), player.getHeight());
-		nextYPos.setY(player.nextY());
+		nextYPos.setY(player.getNextY());
 		if (isLegal(level.getBlocks(), nextYPos)) {
 			player.moveY();
 		} else if(collisionY > player.getY()){

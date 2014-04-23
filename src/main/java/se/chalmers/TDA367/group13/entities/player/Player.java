@@ -8,13 +8,14 @@ import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Point;
 
 import se.chalmers.TDA367.group13.entities.Entity;
+import se.chalmers.TDA367.group13.entities.IMoveable;
 import se.chalmers.TDA367.group13.entities.weapon.TestWeapon;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
 import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.util.Stats;
 
 
-public class Player extends Entity {
+public class Player extends Entity implements IMoveable{
 
 	private Direction direction;
 	private Weapon weapon;
@@ -42,33 +43,34 @@ public class Player extends Entity {
 		playerStill = new PlayerStill();
 		playerWalking = new PlayerWalking();
 		playerJumping = new PlayerJumping();
-		state = playerJumping; 
+		state = playerStill; 
 		initAnimations();
 		healthBar = new HealthBar(health);
 	}
 	
-	public float nextLeftX(){
+	@Override
+	public float getNextLeftX(){
 		return x - state.getVelocity().x;
 	}
-	
-	public float nextRightX(){
+	@Override
+	public float getNextRightX(){
 		return x + state.getVelocity().x;
 	}
-	
-	public float nextY(){
+	@Override
+	public float getNextY(){
 		return y + state.getVelocity().y;
 	}
-	
+	@Override
 	public void moveLeft(){
 		direction = Direction.LEFT;
 		setX(x - state.getVelocity().x);
 	}
-	
+	@Override
 	public void moveRight(){
 		direction = Direction.RIGHT;
 		setX(x + state.getVelocity().x);
 	}
-	
+	@Override
 	public void moveY(){
 		setY(getY() + state.getVelocity().y);
 	}
