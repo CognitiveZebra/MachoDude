@@ -74,11 +74,11 @@ public class SettingsItem extends MenuItem{
 		this.control = control;
 		switch (ID) {
 			case 0: 
-				Controls.setRightKey(control);
+				Controls.getInstance().setRightKey(control);
 				break;
-			case 1: Controls.setLeftKey(control);break;
-			case 2: Controls.setJumpKey(control);break;
-			case 3: Controls.setShootKey(control);break;
+			case 1: Controls.getInstance().setLeftKey(control);break;
+			case 2: Controls.getInstance().setJumpKey(control);break;
+			case 3: Controls.getInstance().setShootKey(control);break;
 		default:
 			break;
 		}
