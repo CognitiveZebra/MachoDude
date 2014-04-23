@@ -16,10 +16,10 @@ import se.chalmers.TDA367.group13.entities.Boss_1;
 import se.chalmers.TDA367.group13.entities.Enemy;
 import se.chalmers.TDA367.group13.entities.Enemy.State;
 import se.chalmers.TDA367.group13.entities.Enemy_1;
-import se.chalmers.TDA367.group13.entities.Entity.Direction;
 import se.chalmers.TDA367.group13.entities.Player;
 import se.chalmers.TDA367.group13.entities.Projectile;
 import se.chalmers.TDA367.group13.util.Camera;
+import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
 

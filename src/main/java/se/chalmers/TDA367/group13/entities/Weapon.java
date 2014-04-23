@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-import se.chalmers.TDA367.group13.entities.Entity.Direction;
+import se.chalmers.TDA367.group13.util.Direction;
 
 
 public abstract class Weapon extends Entity {
