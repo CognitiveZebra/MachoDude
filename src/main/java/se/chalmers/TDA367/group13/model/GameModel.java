@@ -1,6 +1,5 @@
 package se.chalmers.TDA367.group13.model;
 
-import java.lang.Thread.State;
 import java.util.LinkedList;
 
 import org.newdawn.slick.GameContainer;
@@ -45,12 +44,12 @@ public class GameModel {
 		
 		Rectangle nextXPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
-		if (input.isKeyDown(Controls.getLeftKey())) {
+		if (input.isKeyDown(Controls.getInstance().getLeftKey())) {
 			nextXPos.setX(player.nextLeftX());
 			if (isLegal(level.getBlocks(), nextXPos)) {
 				player.moveLeft();
 			} 
-		} else if (input.isKeyDown(Controls.getRightKey())) {
+		} else if (input.isKeyDown(Controls.getInstance().getRightKey())) {
 			nextXPos.setX(player.nextRightX());
 			if (isLegal(level.getBlocks(), nextXPos)) {
 
@@ -64,7 +63,8 @@ public class GameModel {
 			}
 		}
 
-		if (input.isKeyDown(Controls.getJumpKey()) && player.getState() != player.getPlayerJumping()) {
+
+		if (input.isKeyDown(Controls.getInstance().getJumpKey()) && player.getState() != player.getPlayerJumping()) {
 				player.setPlayerJumping();
 		}
 
@@ -77,8 +77,9 @@ public class GameModel {
  				player.setPlayerStill();
 		}
 		
+
 		if(player.getState() != player.getPlayerJumping()){
-			if(input.isKeyDown(Controls.getRightKey()) || input.isKeyDown(Controls.getLeftKey())) {
+			if(input.isKeyDown(Controls.getInstance().getRightKey()) || input.isKeyDown(Controls.getInstance().getLeftKey())) {
 				player.setPlayerWalking();
 			}
 		}
@@ -86,7 +87,7 @@ public class GameModel {
 		level.updateEnemies(player);
 		
 		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY(), player.getDirection());
-		if (input.isMouseButtonDown(Controls.getShootKey()) || input.isKeyDown(Controls.getShootKey())) 
+		if (input.isMouseButtonDown(Controls.getInstance().getShootKey()) || input.isKeyDown(Controls.getInstance().getShootKey())) 
 			player.getWeapon().fireWeapon(player.getDirection());
 			LinkedList<Projectile> removed = new LinkedList<Projectile>();
 		

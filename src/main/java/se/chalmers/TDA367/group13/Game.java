@@ -37,7 +37,6 @@ public class Game extends BasicGame {
     }
     
     public static void main(String[] args) throws SlickException {
-      	Controls.readControls();
         AppGameContainer app = new AppGameContainer(new GameStateController("MachoDude"));
         app.setDisplayMode(WIDTH, HEIGHT, false);
         app.setForceExit(false);
@@ -49,7 +48,7 @@ public class Game extends BasicGame {
             public void run() {
             	System.out.println("Fighting spirit?");
             	Stats.getInstance().saveStats();
-            	Controls.saveControls();
+            	Controls.getInstance().readControls();
             }
         }));
     }

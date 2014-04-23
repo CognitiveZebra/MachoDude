@@ -110,7 +110,7 @@ public class SettingsState extends BasicGameState {
 
 			if (item.contains(mouse) && isMousePressed) {
 				if (item.getID() == -1) {
-					Controls.reset();
+					Controls.getInstance().reset();
 					resetSettingsItems();
 				} else {
 					sbg.enterState(item.getID());
@@ -127,16 +127,16 @@ public class SettingsState extends BasicGameState {
 		for (SettingsItem item : settingsView.getSettingsItems()) {
 			switch (item.getID()) {
 			case RIGHT:
-				item.setControl(Controls.getRightKey());
+				item.setControl(Controls.getInstance().getRightKey());
 				break;
 			case LEFT:
-				item.setControl(Controls.getLeftKey());
+				item.setControl(Controls.getInstance().getLeftKey());
 				break;
 			case JUMP:
-				item.setControl(Controls.getJumpKey());
+				item.setControl(Controls.getInstance().getJumpKey());
 				break;
 			case SHOOT:
-				item.setControl(Controls.getShootKey());
+				item.setControl(Controls.getInstance().getShootKey());
 				break;
 			default:
 				break;
@@ -153,13 +153,13 @@ public class SettingsState extends BasicGameState {
 					/ 2;
 			int menuMiddleX = gc.getWidth() / 2 - menuItemImage.getWidth() / 2;
 			SettingsItem rightButton = new SettingsItem(settingMiddleX, 100,
-					menuItemImage, "RIGHT", RIGHT, Controls.getRightKey());
+					menuItemImage, "RIGHT", RIGHT, Controls.getInstance().getRightKey());
 			SettingsItem leftButton = new SettingsItem(settingMiddleX, 200,
-					menuItemImage, "LEFT", LEFT, Controls.getLeftKey());
+					menuItemImage, "LEFT", LEFT, Controls.getInstance().getLeftKey());
 			SettingsItem jumpButton = new SettingsItem(settingMiddleX, 300,
-					menuItemImage, "JUMP", JUMP, Controls.getJumpKey());
+					menuItemImage, "JUMP", JUMP, Controls.getInstance().getJumpKey());
 			SettingsItem shootButton = new SettingsItem(settingMiddleX, 400,
-					menuItemImage, "SHOOT", SHOOT, Controls.getShootKey());
+					menuItemImage, "SHOOT", SHOOT, Controls.getInstance().getShootKey());
 			MenuItem resetButton = new MenuItem(menuMiddleX, 525,
 					menuItemImage, "RESET CONTROLS");
 			MenuItem mainButton = new MenuItem(menuMiddleX, 625, menuItemImage,

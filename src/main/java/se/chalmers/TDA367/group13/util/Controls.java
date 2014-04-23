@@ -12,16 +12,30 @@ import org.newdawn.slick.Input;
 
 public class Controls {
 	
-	private static int rightKey, leftKey, jumpKey, shootKey;
+	private  int rightKey, leftKey, jumpKey, shootKey;
+	private static Controls instance = null;
 	
-	public static void reset() {
+	private Controls() {
+		readControls();
+	}
+	
+	public static synchronized Controls getInstance(){
+		if(instance == null){
+			instance = new Controls();
+		}
+		return instance; 
+	}
+	
+	
+	
+	public  void reset() {
     	setRightKey(Input.KEY_D);
     	setLeftKey(Input.KEY_A);
     	setJumpKey(Input.KEY_W);
     	setShootKey(Input.MOUSE_LEFT_BUTTON);
 	}
 	
-	public static void readControls() {
+	public  void readControls() {
         Scanner sc = null;
 
         try {
@@ -45,7 +59,7 @@ public class Controls {
         }
 	}
 
-	public static void saveControls() {
+	public  void saveControls() {
 		Writer writer = null;
 		try {
 			File file = new File("res/User/Controls/controls.save");
@@ -75,35 +89,35 @@ public class Controls {
 			e.printStackTrace();
 		}
 	}
-	public static int getRightKey() {
+	public  int getRightKey() {
 		return rightKey;
 	}
 
-	public static void setRightKey(int rightKey) {
-		Controls.rightKey = rightKey;
+	public  void setRightKey(int rightKey) {
+		this.rightKey = rightKey;
 	}
 
-	public static int getLeftKey() {
+	public  int getLeftKey() {
 		return leftKey;
 	}
 
-	public static void setLeftKey(int leftKey) {
-		Controls.leftKey = leftKey;
+	public  void setLeftKey(int leftKey) {
+		this.leftKey = leftKey;
 	}
 
-	public static int getJumpKey() {
+	public  int getJumpKey() {
 		return jumpKey;
 	}
 
-	public static void setJumpKey(int jumpKey) {
-		Controls.jumpKey = jumpKey;
+	public  void setJumpKey(int jumpKey) {
+		this.jumpKey = jumpKey;
 	}
 
-	public static int getShootKey() {
+	public  int getShootKey() {
 		return shootKey;
 	}
 
-	public static void setShootKey(int shootKey) {
-		Controls.shootKey = shootKey;
+	public  void setShootKey(int shootKey) {
+		this.shootKey = shootKey;
 	}
 }
