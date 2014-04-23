@@ -1,5 +1,6 @@
 package se.chalmers.TDA367.group13.entities.weapon;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -40,7 +41,16 @@ public class TestWeapon extends Weapon {
 		for (Projectile projectile : projectiles){
 			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
 		}
-			
+	}
+	
+	@Override
+	public void render(Graphics g, Direction direction, Color c){
+		if ((System.currentTimeMillis()-time) > cooldown) {
+			super.render(g, direction, c);
+		}
+		for (Projectile projectile : projectiles){
+			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
+		}
 	}
 
 }

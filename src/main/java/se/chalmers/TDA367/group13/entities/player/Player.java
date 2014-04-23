@@ -1,6 +1,9 @@
 package se.chalmers.TDA367.group13.entities.player;
 
+import java.util.Random;
+
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -21,7 +24,7 @@ public class Player extends Entity implements IMoveable{
 	private Weapon weapon;
 	private XMLPackedSheet playerSheet;
 	private Image [] right, left, standLeft, standRight, jumpingLeft, jumpingRight;
-	private long lastHurt, invinsibility = 1000;
+	private long lastHurt, invincibility = 1000;
 	private int health = 5;
 	private Point rightShoulder, leftShoulder;
 	private HealthBar healthBar;
@@ -37,8 +40,6 @@ public class Player extends Entity implements IMoveable{
 		weapon = new TestWeapon(x, y);
 		
 		direction = Direction.RIGHT;
-		lastHurt = System.currentTimeMillis();
-	
 		
 		playerStill = new PlayerStill();
 		playerWalking = new PlayerWalking();
@@ -102,10 +103,8 @@ public class Player extends Entity implements IMoveable{
 		playerJumping.setAnimation(new Animation(jumpingLeft,animationSpeed),Direction.LEFT);
 		playerJumping.setAnimation(new Animation(jumpingRight,animationSpeed),Direction.RIGHT);	
 	}
-
-	public void render(Graphics g) {
-		g.drawAnimation(state.getAnimation(direction), getX(), getY());
-		
+	
+	public void moveWeapon(){
 		if (direction == Direction.LEFT){
 			weapon.setCenterX(x + leftShoulder.getX());
 			weapon.setCenterY(y + leftShoulder.getY());
@@ -114,7 +113,18 @@ public class Player extends Entity implements IMoveable{
 			weapon.setCenterX(x + rightShoulder.getX());
 			weapon.setCenterY(y + rightShoulder.getY());
 		}
-		weapon.render(g, direction);
+	}
+
+	public void render(Graphics g) {
+		if(isInvincible()){
+			g.drawAnimation(state.getAnimation(direction), getX(), getY(), getInvincibleColor());
+			weapon.render(g, direction, getInvincibleColor());
+		} else {
+			g.drawAnimation(state.getAnimation(direction), getX(), getY());
+			weapon.render(g, direction);
+		}
+
+
 		
 		healthBar.render(g, health);
 		
@@ -179,7 +189,7 @@ public class Player extends Entity implements IMoveable{
 	}
 	
 	public void loseHealth(){
-		if ((System.currentTimeMillis()-lastHurt) > invinsibility){
+		if ((System.currentTimeMillis()-lastHurt) > invincibility){
 			health = health -1;
 			lastHurt = System.currentTimeMillis();
 			Stats.getInstance().incrementDamageTaken();
@@ -189,6 +199,20 @@ public class Player extends Entity implements IMoveable{
 	public boolean isDead(){
 		return health <= 0;
 	}
+	
+	public boolean isInvincible(){
+		return timeSinceHurt() < invincibility;
+	}
+	
+	public float timeSinceHurt(){
+		return System.currentTimeMillis() - lastHurt;
+	}
+	
+	public Color getInvincibleColor(){
+		int magic = (int) timeSinceHurt() - (int) timeSinceHurt() % 100;
+		return (magic % 200 == 0) ? Color.red : Color.white;
+	}
+	
 	public Weapon getWeapon() {
 		return weapon;
 	}

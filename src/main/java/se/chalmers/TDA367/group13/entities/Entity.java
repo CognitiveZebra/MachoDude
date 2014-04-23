@@ -1,5 +1,6 @@
 package se.chalmers.TDA367.group13.entities;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
@@ -25,6 +26,11 @@ public abstract class Entity extends Rectangle {
 	public void render(Graphics g) {
 		g.drawImage(image, getX(), getY());
 	}
+	
+	public void render(Graphics g, Color c) {
+		g.drawImage(image, getX(), getY(), c);
+	}
+	
 	
 	public void resize(float scale){
 		image.setFilter(Image.FILTER_NEAREST);

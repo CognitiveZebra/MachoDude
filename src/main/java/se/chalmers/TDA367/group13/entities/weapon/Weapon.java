@@ -2,6 +2,7 @@ package se.chalmers.TDA367.group13.entities.weapon;
 
 import java.util.LinkedList;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Line;
@@ -105,6 +106,15 @@ public abstract class Weapon extends Entity {
 		
 		for (Projectile projectile : projectiles)
 			projectile.render(g);
+	}
+	
+	public void render(Graphics g, Direction direction, Color c) {
+		super.render(g,c);
+		
+		for (Projectile projectile : projectiles){
+			projectile.render(g);
+		}
+
 	}
 
 	
