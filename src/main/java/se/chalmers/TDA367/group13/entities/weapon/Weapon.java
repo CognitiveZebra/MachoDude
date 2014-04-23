@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.entities;
+package se.chalmers.TDA367.group13.entities.weapon;
 
 import java.util.LinkedList;
 
@@ -6,6 +6,9 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Vector2f;
+
+import se.chalmers.TDA367.group13.entities.Entity;
+import se.chalmers.TDA367.group13.entities.Projectile;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public abstract class Weapon extends Entity {

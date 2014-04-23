@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.entities;
+package se.chalmers.TDA367.group13.entities.enemies;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
@@ -6,6 +6,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 
+import se.chalmers.TDA367.group13.entities.weapon.Enemy_1_Weapon;
+import se.chalmers.TDA367.group13.entities.weapon.Weapon;
 import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.view.Level;
 

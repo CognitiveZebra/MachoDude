@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.entities;
+package se.chalmers.TDA367.group13.entities.enemies;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;

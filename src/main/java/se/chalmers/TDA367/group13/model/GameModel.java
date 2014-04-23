@@ -8,9 +8,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
 import se.chalmers.TDA367.group13.entities.Block;
-import se.chalmers.TDA367.group13.entities.Enemy;
-import se.chalmers.TDA367.group13.entities.Player;
 import se.chalmers.TDA367.group13.entities.Projectile;
+import se.chalmers.TDA367.group13.entities.enemies.Enemy;
+import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.exception.GameOverException;
 import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.util.Stats;

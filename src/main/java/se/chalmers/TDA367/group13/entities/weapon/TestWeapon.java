@@ -1,16 +1,17 @@
-package se.chalmers.TDA367.group13.entities;
+package se.chalmers.TDA367.group13.entities.weapon;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import se.chalmers.TDA367.group13.entities.Projectile;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public class TestWeapon extends Weapon {
 
 	
 	
-	TestWeapon(float x, float y) throws SlickException {
+	public TestWeapon(float x, float y) throws SlickException {
 		super(x, y, new Image("res/Sprites/testArm.png").getFlippedCopy(true, false),new Image("res/Sprites/testArm.png"), new Image("res/Sprites/testArm.png"), "TestWeapon", 1);
 		time = System.currentTimeMillis();
 		cooldown = 300;
