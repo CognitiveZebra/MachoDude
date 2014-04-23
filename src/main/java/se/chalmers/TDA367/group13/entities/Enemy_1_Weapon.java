@@ -4,6 +4,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.view.Level;
 
 public class Enemy_1_Weapon extends Weapon {

@@ -1,6 +1,5 @@
 package se.chalmers.TDA367.group13.controller;
 
-import java.io.IOException;
 import java.util.LinkedList;
 
 import org.newdawn.slick.GameContainer;
@@ -56,10 +55,10 @@ public class GameOverState extends BasicGameState {
 		ps.render();
 
 		menu.render(g);
-		String scoreString = "Your score: " + Stats.getScore();
+		String scoreString = "Your score: " + Stats.getInstance().getScore();
 		g.drawString(scoreString,
 				gc.getWidth() / 2 - g.getFont().getWidth(scoreString) / 2, 300);
-		String highscoreString = "Your Highscore: " + Stats.getHighscore();
+		String highscoreString = "Your Highscore: " + Stats.getInstance().getHighscore();
 		g.drawString(highscoreString,
 				gc.getWidth() / 2 - g.getFont().getWidth(highscoreString) / 2,
 				350);

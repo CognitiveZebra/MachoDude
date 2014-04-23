@@ -29,7 +29,7 @@ public class GameModel {
 
 	public GameModel(GameContainer gc) {
 		gameStarted = System.currentTimeMillis();
-		Stats.setScore(0);
+		Stats.getInstance().setScore(0);
 		this.container = gc;
 		try {
 			level = new Level_1();
@@ -117,8 +117,8 @@ public class GameModel {
 		
 		if(player.isDead()){
 			gameEnded = System.currentTimeMillis();
-			Stats.addTimePlayed(gameEnded - gameStarted);
-			Stats.incrementDeaths();
+			Stats.getInstance().addTimePlayed(gameEnded - gameStarted);
+			Stats.getInstance().incrementDeaths();
 			throw new GameOverException();
 		}
 	}

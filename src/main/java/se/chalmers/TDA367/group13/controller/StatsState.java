@@ -53,7 +53,7 @@ public class StatsState extends BasicGameState {
 		ps.render();
 		menu.render(g);
 		g.setFont(Util.getFont32());
-		String stats = Stats.getStatsString();
+		String stats = Stats.getInstance().getStatsString();
 		g.drawString(stats,
 				gc.getWidth() / 2 - g.getFont().getWidth(stats) / 2, 200);
 
@@ -75,7 +75,7 @@ public class StatsState extends BasicGameState {
 				if (menu.getSelected().getID() > 0) {
 					game.enterState(item.getID());
 				} else {
-					Stats.reset();
+					Stats.getInstance().reset();
 				}
 			}
 
@@ -92,7 +92,7 @@ public class StatsState extends BasicGameState {
 				if (menu.getSelected().getID() > 0) {
 					game.enterState(menu.getSelected().getID());
 				} else {
-					Stats.reset();
+					Stats.getInstance().reset();
 				}
 
 			}

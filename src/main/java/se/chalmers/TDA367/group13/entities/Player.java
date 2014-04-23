@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Point;
 
+import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.util.Stats;
 
 
@@ -194,7 +195,7 @@ public class Player extends Entity {
 		if ((System.currentTimeMillis()-lastHurt) > invinsibility){
 			health = health -1;
 			lastHurt = System.currentTimeMillis();
-			Stats.incrementDamageTaken();
+			Stats.getInstance().incrementDamageTaken();
 		}
 	}
 	

@@ -6,7 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Vector2f;
-
+import se.chalmers.TDA367.group13.util.Direction;
 
 public abstract class Weapon extends Entity {
 	protected long time;

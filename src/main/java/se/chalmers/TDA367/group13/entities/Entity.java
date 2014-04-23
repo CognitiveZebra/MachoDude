@@ -12,9 +12,6 @@ public abstract class Entity extends Rectangle {
 		this.image = image;
 	}
 	
-	public enum Direction {
-		LEFT, RIGHT;
-	}
 
 	public Image getImage() {
 		return image;

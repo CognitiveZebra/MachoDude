@@ -4,6 +4,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import se.chalmers.TDA367.group13.util.Direction;
+
 public class TestWeapon extends Weapon {
 
 	

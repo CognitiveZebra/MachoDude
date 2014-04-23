@@ -8,13 +8,18 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Stats {
-	private static Scanner scanner;
-	private static BufferedWriter bw;
-	private static FileWriter fw;
-	private static int highscore, enemiesKilled, score, deaths, damageTaken;
-	private static long timePlayed;
+	private  Scanner scanner;
+	private  BufferedWriter bw;
+	private  FileWriter fw;
+	private  int highscore, enemiesKilled, score, deaths, damageTaken;
+	private long timePlayed;
+	private static Stats instance = null;
+	
+	private Stats(){
+		readStats();
+	}
 
-	public static void readStats() {
+	private void readStats() {
 		try {
 			File file = new File("res/User/Stats/Stats.save");
 
@@ -29,18 +34,25 @@ public class Stats {
 				scanner.close();
 				score = 0;
 			} else {
-				Stats.reset();
-				Stats.saveStats();
+				reset();
+				saveStats();
 				readStats();
 			}
 		} catch (FileNotFoundException e) {
-			Stats.reset();
-			Stats.saveStats();
+			reset();
+			saveStats();
 			readStats();
 		}
 	}
+	
+	public static synchronized Stats getInstance(){
+		if(instance == null){
+			instance = new Stats();
+		}
+		return instance; 
+	}
 
-	public static void reset() {
+	public void reset() {
 		highscore = 0;
 		enemiesKilled = 0;
 		timePlayed = 0;
@@ -48,7 +60,7 @@ public class Stats {
 		damageTaken = 0;
 	}
 
-	public static String getStatsString() {
+	public String getStatsString() {
 		long time = timePlayed;
 		long timeSecond = 1000;
 		long timeMinute = timeSecond*60;
@@ -72,7 +84,7 @@ public class Stats {
 				highscore, enemiesKilled, timeString, deaths, damageTaken);
 	}
 
-	public static void saveStats() {
+	public void saveStats() {
 		try {
 			File file = new File("res/User/Stats/Stats.save");
 
@@ -94,79 +106,79 @@ public class Stats {
 		}
 	}
 
-	public static int getHighscore() {
+	public int getHighscore() {
 		return highscore;
 	}
 
-	public static void setHighscore(int highscore) {
-		Stats.highscore = highscore;
+	public void setHighscore(int highscore) {
+		this.highscore = highscore;
 	}
 
-	public static int getEnemiesKilled() {
+	public int getEnemiesKilled() {
 		return enemiesKilled;
 	}
 
-	public static void setEnemiesKilled(int enemiesKilled) {
-		Stats.enemiesKilled = enemiesKilled;
+	public void setEnemiesKilled(int enemiesKilled) {
+		this.enemiesKilled = enemiesKilled;
 	}
 
-	public static long getTimePlayed() {
+	public  long getTimePlayed() {
 		return timePlayed;
 	}
 
-	public static void setTimePlayed(long timePlayed) {
-		Stats.timePlayed = timePlayed;
+	public void setTimePlayed(long timePlayed) {
+		this.timePlayed = timePlayed;
 	}
 
-	public static void incrementEnemiesKilled() {
+	public void incrementEnemiesKilled() {
 		enemiesKilled++;
 	}
 
-	public static void addTimePlayed(long time) {
+	public  void addTimePlayed(long time) {
 		timePlayed += time;
 	}
 	
-	public static int getScore() {
+	public int getScore() {
 		return score;
 	}
 
-	public static void setScore(int score) {
-		Stats.score = score;
+	public void setScore(int score) {
+		this.score = score;
 		
-		if(Stats.score > highscore){
+		if(this.score > highscore){
 			highscore = score;
 		}
 	}
 	
-	public static void addScore(int i){
+	public void addScore(int i){
 		score += i;
 		
-		if(Stats.score > highscore){
+		if(this.score > highscore){
 			highscore = score;
 		}
 	}
 
-	public static int getDeaths() {
+	public int getDeaths() {
 		return deaths;
 	}
 
-	public static void setDeaths(int deaths) {
-		Stats.deaths = deaths;
+	public void setDeaths(int deaths) {
+		this.deaths = deaths;
 	}
 	
-	public static void incrementDeaths(){
+	public void incrementDeaths(){
 		deaths++;
 	}
 
-	public static int getDamageTaken() {
+	public int getDamageTaken() {
 		return damageTaken;
 	}
 
-	public static void setDamageTaken(int damageTaken) {
-		Stats.damageTaken = damageTaken;
+	public void setDamageTaken(int damageTaken) {
+		this.damageTaken = damageTaken;
 	}
 	
-	public static void incrementDamageTaken(){
+	public void incrementDamageTaken(){
 		damageTaken++;
 	}
 	
