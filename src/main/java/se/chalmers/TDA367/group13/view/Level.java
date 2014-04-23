@@ -88,7 +88,7 @@ public class Level {
 		
 		g.setColor(Color.white);
 		g.setFont(Util.getFont32());
-		g.drawString("Score: " + Stats.getScore(), 100, 10);
+		g.drawString("Score: " + Stats.getInstance().getScore(), 100, 10);
 	}
 
 	public Camera getCamera() {
@@ -139,8 +139,8 @@ public class Level {
 				
 				if (e.isDestroyed()) {
 					dead.add(e);
-					Stats.addScore(e.getValue());
-					Stats.incrementEnemiesKilled();
+					Stats.getInstance().addScore(e.getValue());
+					Stats.getInstance().incrementEnemiesKilled();
 				}
 
 				Rectangle nextYPos;

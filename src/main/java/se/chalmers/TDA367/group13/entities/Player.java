@@ -194,7 +194,7 @@ public class Player extends Entity {
 		if ((System.currentTimeMillis()-lastHurt) > invinsibility){
 			health = health -1;
 			lastHurt = System.currentTimeMillis();
-			Stats.incrementDamageTaken();
+			Stats.getInstance().incrementDamageTaken();
 		}
 	}
 	
