@@ -10,8 +10,6 @@ import se.chalmers.TDA367.group13.util.Direction;
 
 public class TestWeapon extends Weapon {
 
-	
-	
 	public TestWeapon(float x, float y) throws SlickException {
 		super(x, y, new Image("res/Sprites/testArm.png").getFlippedCopy(true, false),new Image("res/Sprites/testArm.png"), new Image("res/Sprites/testArm.png"), "TestWeapon", 1);
 		time = System.currentTimeMillis();

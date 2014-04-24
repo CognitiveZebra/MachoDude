@@ -1,6 +1,5 @@
 package se.chalmers.TDA367.group13.controller;
 
-import java.io.IOException;
 import java.util.LinkedList;
 
 import org.newdawn.slick.GameContainer;
@@ -11,6 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 import org.newdawn.slick.particles.ParticleSystem;
+import org.newdawn.slick.particles.effects.FireEmitter;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -26,6 +26,7 @@ public class MenuState extends BasicGameState {
 	private Menu menu;
 	private Point mouse;
 	private ParticleSystem ps;
+	private ConfigurableEmitter rainEmitter;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
@@ -36,10 +37,8 @@ public class MenuState extends BasicGameState {
 		input = gc.getInput();
 		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"),
 				2000);
-		ConfigurableEmitter rainEmitter;
 		rainEmitter = ParticleFactory.createEmitter("rain");
 		ps.addEmitter(rainEmitter);
-
 	}
 
 	@Override
@@ -80,7 +79,8 @@ public class MenuState extends BasicGameState {
 		if (input.isKeyPressed(Input.KEY_ENTER)) {
 			sbg.enterState(menu.getSelected().getID());
 		}
-
+		
+		rainEmitter.windFactor.setValue(-((gc.getWidth() / 2) - input.getMouseX()) / 20);
 		ps.update(delta);
 	}
 
