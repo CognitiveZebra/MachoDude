@@ -3,15 +3,19 @@ package se.chalmers.TDA367.group13.model;
 import java.util.LinkedList;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.particles.ConfigurableEmitter;
+import org.newdawn.slick.particles.ParticleSystem;
 
 import se.chalmers.TDA367.group13.entities.Block;
 import se.chalmers.TDA367.group13.entities.Projectile;
 import se.chalmers.TDA367.group13.entities.enemies.Enemy;
 import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.exception.GameOverException;
+import se.chalmers.TDA367.group13.factory.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.view.Level;
@@ -23,8 +27,8 @@ public class GameModel {
 	private Level level;
 	private Player player;
 	private float collisionY;
-	private int Score = 0;
 	private long gameStarted, gameEnded;
+
 
 	public GameModel(GameContainer gc) {
 		gameStarted = System.currentTimeMillis();
@@ -37,6 +41,8 @@ public class GameModel {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
+		
+
 
 	}
 
@@ -89,9 +95,14 @@ public class GameModel {
 		level.updateEnemies(player);
 		
 		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY(), player.getDirection());
-		if (input.isMouseButtonDown(Controls.getInstance().getShootKey()) || input.isKeyDown(Controls.getInstance().getShootKey())) 
-			player.getWeapon().fireWeapon(player.getDirection());
-			LinkedList<Projectile> removed = new LinkedList<Projectile>();
+		
+		if (input.isMouseButtonDown(Controls.getInstance().getShootKey()) || input.isKeyDown(Controls.getInstance().getShootKey())){
+			player.fireWeapon();
+		}
+
+		
+		
+		LinkedList<Projectile> removed = new LinkedList<Projectile>();
 		
 		for (Projectile projectile : player.getWeapon().getProjectiles()) {
 			Enemy victim = getVictim(level.getEnemies(), projectile);
@@ -99,12 +110,14 @@ public class GameModel {
 				victim.loseHealth();
 				removed.add(projectile);
 			} else if(isLegal(level.getBlocks(), projectile)) {
-				projectile.update();
+				projectile.update(delta);
 			} else {
 				removed.add(projectile);
 			}
 		}
+		
 		player.getWeapon().getProjectiles().removeAll(removed);
+		
 		if(isEnemyCollision(level.getEnemies(), nextXPos)){
 			player.loseHealth();
 		}
@@ -115,10 +128,12 @@ public class GameModel {
 			Stats.getInstance().incrementDeaths();
 			throw new GameOverException();
 		}
+		
+		level.updateWeather(input, delta);
+		
+
 	}
-
-
-
+		
 	public boolean isLegal(LinkedList<Block> blocks, Rectangle hitbox) {
 		for (Block b : blocks) {
 			if (hitbox.intersects(b)) {
@@ -146,6 +161,8 @@ public class GameModel {
 		}
 		return null;
 	}
+	
+
 	
 	public Level getLevel() {
 		return level;

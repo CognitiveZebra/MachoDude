@@ -216,4 +216,8 @@ public class Player extends Entity implements IMoveable{
 		return weapon;
 	}
 	
+	public void fireWeapon(){
+		weapon.fireWeapon(direction);
+	}
+	
 }

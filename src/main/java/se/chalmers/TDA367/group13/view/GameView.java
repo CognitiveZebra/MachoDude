@@ -16,6 +16,7 @@ public class GameView {
 	public void render(Graphics g){
 		renderLevel(g);
 		renderPlayer(g);
+		
 	}
 
 	public void renderLevel(Graphics g){

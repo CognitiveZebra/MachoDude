@@ -5,20 +5,25 @@ import java.util.LinkedList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.particles.ConfigurableEmitter;
+import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.tiled.TiledMap;
 
 import se.chalmers.TDA367.group13.Game;
 import se.chalmers.TDA367.group13.entities.Block;
 import se.chalmers.TDA367.group13.entities.Boss_1;
-import se.chalmers.TDA367.group13.entities.enemies.Enemy;
-import se.chalmers.TDA367.group13.entities.enemies.Enemy_1;
-import se.chalmers.TDA367.group13.entities.enemies.Enemy.State;
-import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.entities.Projectile;
+import se.chalmers.TDA367.group13.entities.enemies.Enemy;
+import se.chalmers.TDA367.group13.entities.enemies.Enemy.State;
+import se.chalmers.TDA367.group13.entities.enemies.Enemy_1;
+import se.chalmers.TDA367.group13.entities.player.Player;
+import se.chalmers.TDA367.group13.factory.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Camera;
+import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
@@ -34,6 +39,8 @@ public class Level {
 	private Camera camera;
 	private Boss_1 boss;
 	private LinkedList<Projectile> projectiles;
+	private ParticleSystem weather; 
+	private ConfigurableEmitter rain;
 
 	public Level(Camera camera, TiledMap map, Image background, Music music)
 			throws SlickException {
@@ -68,12 +75,17 @@ public class Level {
 
 			}
 		}
+		
+		weather = new ParticleSystem(new Image("res/Particles/particle_rain.png"),1500);
+		rain = ParticleFactory.createEmitter("rain");
+		weather.addEmitter(rain);
 
 	}
 
 	public void render(Graphics g) {
 		g.drawImage(smallBackground, 0, 0);
 		boss.render(g);
+		weather.render();
 
 		for (Block b : blocks) {
 			b.render(g);
@@ -216,7 +228,25 @@ public class Level {
 		getProjectiles().removeAll(removed);
 		enemies.removeAll(dead);
 	}
-
+	
+	public void updateWeather(Input input, int delta){
+		updateWind(input, rain);
+		weather.update(delta);
+	}
+	
+	public void updateWind(Input input, ConfigurableEmitter emitter){
+		if(input.isKeyDown(Controls.getInstance().getLeftKey())){
+			emitter.windFactor.setValue(25);
+		} else if(input.isKeyDown(Controls.getInstance().getRightKey())){
+			emitter.windFactor.setValue(-25);
+		} else {
+			emitter.windFactor.setValue(0);
+		}
+	}
+	
+	public ParticleSystem getWeather(){
+		return weather;
+	}
 
 	public boolean isLegal(Rectangle hitbox) {
 		for (Block b : blocks) {
