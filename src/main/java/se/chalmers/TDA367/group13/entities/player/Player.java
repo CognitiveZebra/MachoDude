@@ -209,8 +209,7 @@ public class Player extends Entity implements IMoveable{
 	}
 	
 	public Color getInvincibleColor(){
-		int magic = (int) timeSinceHurt() - (int) timeSinceHurt() % 100;
-		return (magic % 200 == 0) ? Color.red : Color.white;
+		return new Color(((int)(timeSinceHurt() % 255)), 0,0);
 	}
 	
 	public Weapon getWeapon() {
