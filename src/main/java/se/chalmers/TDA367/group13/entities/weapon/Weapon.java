@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -22,6 +23,7 @@ public abstract class Weapon extends Entity {
 	private Vector2f shoulder, nuzzle;
 	private Line distanceToNuzzle;
 	private double nuzzleAngle;
+	protected Sound firingSound;
 	protected LinkedList<Projectile> projectiles;
 
 	public Weapon(float x, float y, Image rightImage, Image leftImage, Image projectileImage, String name, float damage){
