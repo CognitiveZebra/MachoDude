@@ -7,6 +7,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Point;
 
@@ -28,7 +29,8 @@ public class Player extends Entity implements IMoveable{
 	private int health = 5;
 	private Point rightShoulder, leftShoulder;
 	private HealthBar healthBar;
-	private AbstractPlayerState state, playerJumping, playerStill, playerWalking; 
+	private AbstractPlayerState state, playerJumping, playerStill, playerWalking;
+	private Sound jumpSound;
 
 
 	public Player(float x, float y, String sheet, String xml) throws SlickException {
@@ -47,6 +49,8 @@ public class Player extends Entity implements IMoveable{
 		state = playerStill; 
 		initAnimations();
 		healthBar = new HealthBar(health);
+		
+		jumpSound = new Sound("/res/Sound/Jump.wav");
 	}
 	
 	@Override
@@ -143,6 +147,7 @@ public class Player extends Entity implements IMoveable{
 	public void setPlayerJumping() {
 		playerJumping.setStateStartedMillis();
 		state = playerJumping;
+		jumpSound.play();
 	}
 	
 	public AbstractPlayerState getPlayerJumping() {
