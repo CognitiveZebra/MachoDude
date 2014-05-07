@@ -2,6 +2,7 @@ package se.chalmers.TDA367.group13.entities.weapon;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 
 import se.chalmers.TDA367.group13.entities.Projectile;
@@ -23,17 +24,20 @@ public class Enemy_1_Weapon extends Weapon {
 		time = System.currentTimeMillis();
 		cooldown = 750;
 		speed = 2;
+		firingSound = new Sound("/res/Sound/Enemy_1/Shoot.wav");
 
 	}
 
 	public void fireWeapon(Direction direction) {
 		if (direction == Direction.RIGHT) {
 			if ((System.currentTimeMillis() - time) > cooldown) {
+				firingSound.play();
 				level.getProjectiles().add(new Projectile(getProjectileX(direction),getProjectileY(direction),getProjectileImage().copy().getFlippedCopy(true, false), getAngle(), speed, direction));
 				time = System.currentTimeMillis();
 			}
 		} else if (direction == Direction.LEFT) {
 			if ((System.currentTimeMillis() - time) > cooldown) {
+				firingSound.play();
 				level.getProjectiles().add(new Projectile(getProjectileX(direction),getProjectileY(direction),getProjectileImage().copy(), getAngle(), speed, direction));
 				time = System.currentTimeMillis();
 			}

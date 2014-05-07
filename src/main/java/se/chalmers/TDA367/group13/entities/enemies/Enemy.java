@@ -3,6 +3,7 @@ package se.chalmers.TDA367.group13.entities.enemies;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.XMLPackedSheet;
 
 import se.chalmers.TDA367.group13.entities.Entity;
@@ -22,6 +23,7 @@ public abstract class Enemy extends Entity implements IMoveable, IDestructable {
 	protected int health, maxHealth;
 	private HealthBarEnemy healthbar = new HealthBarEnemy();
 	protected int value = 1;
+	protected Sound hurtSound, deathSound;
 	
 	public Enemy(float x, float y, String sheet, String xml, int scale) throws SlickException {
 		super(x, y - new Image(sheet).getWidth()*scale - 1, new Image(sheet));
@@ -86,10 +88,15 @@ public abstract class Enemy extends Entity implements IMoveable, IDestructable {
 
 	public void loseHealth(){	
 		health = health -1;
+		hurtSound.play();
 	}
 	
 	public boolean isDestroyed() {
-		return health <= 0;
+		if(health <= 0){
+		deathSound.play();
+		return true;
+		}
+		return false;
 	}
 	
 	public boolean isHurt(){

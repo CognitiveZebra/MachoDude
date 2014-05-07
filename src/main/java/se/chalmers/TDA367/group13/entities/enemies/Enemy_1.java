@@ -4,6 +4,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Point;
 
 import se.chalmers.TDA367.group13.entities.weapon.Enemy_1_Weapon;
@@ -28,6 +29,8 @@ public class Enemy_1 extends Enemy{
 		maxHealth = 5;
 		health = maxHealth;
 		value = 5;
+		hurtSound = new Sound("res/Sound/Enemy_1/Hurt.wav");
+		deathSound = new Sound("res/Sound/Enemy_1/Dies.wav");
 		initAnimations();
 	}
 	
