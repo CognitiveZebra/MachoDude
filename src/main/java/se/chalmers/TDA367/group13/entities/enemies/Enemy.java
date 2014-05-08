@@ -1,15 +1,18 @@
 package se.chalmers.TDA367.group13.entities.enemies;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.XMLPackedSheet;
+import org.newdawn.slick.geom.Point;
 
 import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.entities.IDestructable;
 import se.chalmers.TDA367.group13.entities.IMoveable;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
+import se.chalmers.TDA367.group13.util.Constants;
 import se.chalmers.TDA367.group13.util.Direction;
 
 
@@ -19,10 +22,11 @@ public abstract class Enemy extends Entity implements IMoveable, IDestructable {
 	protected Direction direction;
 	protected Weapon weapon;
 	protected State state;
-	private float gravity = 9.81f;
 	protected int health, maxHealth;
 	private HealthBarEnemy healthbar = new HealthBarEnemy();
 	protected int value = 1;
+	protected Animation stillLeft, stillRight, walkLeft, walkRight;
+	protected Point rightShoulder, leftShoulder;
 	protected Sound hurtSound, deathSound;
 	
 	public Enemy(float x, float y, String sheet, String xml, int scale) throws SlickException {
@@ -71,7 +75,7 @@ public abstract class Enemy extends Entity implements IMoveable, IDestructable {
 	}
 	
 	public float getNextY() {
-		return y + gravity;
+		return y + Constants.GRAVITY;
 	}
 
 	public void moveRight() {
@@ -83,7 +87,7 @@ public abstract class Enemy extends Entity implements IMoveable, IDestructable {
 	}
 
 	public void moveY() {
-		setY(getY() + gravity);		
+		setY(getY() + Constants.GRAVITY);		
 	}
 
 	public void loseHealth(){	

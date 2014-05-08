@@ -11,7 +11,7 @@ public class PlayerStill extends AbstractPlayerState implements IMoveableState {
 	
 	public PlayerStill(){
 		super();
-		velocity = new Vector2f(0,Constants.gravity);
+		velocity = new Vector2f(0,Constants.GRAVITY);
 	}
 
 }

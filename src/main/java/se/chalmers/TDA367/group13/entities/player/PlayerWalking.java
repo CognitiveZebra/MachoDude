@@ -11,7 +11,7 @@ public class PlayerWalking extends AbstractPlayerState implements IMoveableState
 	
 	public PlayerWalking(){
 		super();
-		velocity = new Vector2f(4,Constants.gravity);
+		velocity = new Vector2f(4,Constants.GRAVITY);
 	}
 
 }

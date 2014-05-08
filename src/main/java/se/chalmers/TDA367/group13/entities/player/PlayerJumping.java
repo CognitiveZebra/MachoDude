@@ -13,7 +13,7 @@ public class PlayerJumping extends AbstractPlayerState implements IMoveableState
 	
 	public PlayerJumping(){
 		super();
-		velocity = new Vector2f(4, Constants.gravity);
+		velocity = new Vector2f(4, Constants.GRAVITY);
 	}
 	
 	@Override
@@ -26,10 +26,10 @@ public class PlayerJumping extends AbstractPlayerState implements IMoveableState
 	public float getYVelocity(){
 		float jumpTime =  (((System.currentTimeMillis() - getStateStartedMillis()))*(float)Math.pow(10, -3));
 		
-		float y = jumpHeight + Constants.gravity * jumpTime;
+		float y = jumpHeight + Constants.GRAVITY * jumpTime;
 		
-		if(y > Constants.gravity){
-			y = Constants.gravity;
+		if(y > Constants.GRAVITY){
+			y = Constants.GRAVITY;
 		}
 		return y;
 	}

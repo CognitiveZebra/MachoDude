@@ -119,7 +119,7 @@ public class Player extends Entity implements IMoveable{
 	}
 
 	public void render(Graphics g) {
-		if(isInvincible()){
+		if(isFlashing()){
 			g.drawAnimation(state.getAnimation(direction), getX(), getY(), getInvincibleColor());
 			weapon.render(g, direction, getInvincibleColor());
 		} else {
@@ -204,7 +204,7 @@ public class Player extends Entity implements IMoveable{
 		return y > Game.HEIGHT || health <= 0;
 	}
 	
-	public boolean isInvincible(){
+	public boolean isFlashing(){
 		return timeSinceHurt() < invincibility;
 	}
 	

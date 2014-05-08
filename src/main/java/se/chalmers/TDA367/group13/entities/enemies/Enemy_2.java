@@ -14,9 +14,7 @@ import se.chalmers.TDA367.group13.view.Level;
 public class Enemy_2 extends Enemy {
 	
 	private float walkingSpeed = 1;
-	private Point rightShoulder, leftShoulder;
 	private Image[] right, left, standLeft, standRight;
-	private Animation stillLeft, stillRight, walkLeft, walkRight;
 	private static final int scale = 2;
 
 	public Enemy_2(float x, float y, Level level)
