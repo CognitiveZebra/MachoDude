@@ -49,7 +49,6 @@ public class Level {
 		this.background = background;
 		this.music = music;
 		smallBackground = background.getSubImage(0, 0, 1216, 768);
-		boss = new Boss_1(300, 300);
 
 		projectiles = new LinkedList<Projectile>();
 		blocks = new LinkedList<Block>();
@@ -67,6 +66,14 @@ public class Level {
 				case "1":
 					enemies.add(new Enemy_1(x * map.getTileWidth(), y
 							* map.getTileWidth(), this));
+					System.out.println("Enemy drawn at " + x * map.getTileWidth() + " " + y
+							* map.getTileWidth());
+					break;
+				case "boss":
+					boss = new Boss_1(x * map.getTileWidth(), 
+							y * map.getTileWidth());
+					System.out.println("Boss drawn at " + x * map.getTileWidth() + " " + y
+							* map.getTileWidth());
 					break;
 				default:
 					break;
@@ -129,6 +136,15 @@ public class Level {
 		for (Enemy e : enemies) {
 			e.setX(e.getX() + f);
 		}
+	}
+	
+	public void moveProjectiles (float f){
+		for (Projectile p : projectiles)
+			p.setX(p.getX() + f);
+	}
+	
+	public void moveBoss(float f){
+		boss.setX(boss.getX()+f);
 	}
 
 	public void setMusic(Music music) {

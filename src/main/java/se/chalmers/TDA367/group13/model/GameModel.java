@@ -62,6 +62,8 @@ public class GameModel {
 				if (nextXPos.getCenterX() > (container.getWidth() / 2) && !(-level.getCamera().getX() > (level.getWidth() - container.getWidth()))) {
 					level.moveBlocks(player.getX() - nextXPos.getX());
 					level.moveEnemies(player.getX() - nextXPos.getX());
+					level.moveBoss(player.getX() - nextXPos.getX());
+					level.moveProjectiles(player.getX() - nextXPos.getX());
 					level.getCamera().move(player.getX() - nextXPos.getX());
 				} else {
 					player.moveRight();
