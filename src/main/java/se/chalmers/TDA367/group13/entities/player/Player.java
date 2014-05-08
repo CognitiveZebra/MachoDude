@@ -11,6 +11,7 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Point;
 
+import se.chalmers.TDA367.group13.Game;
 import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.entities.IMoveable;
 import se.chalmers.TDA367.group13.entities.weapon.TestWeapon;
@@ -202,7 +203,7 @@ public class Player extends Entity implements IMoveable{
 	}
 	
 	public boolean isDead(){
-		return health <= 0;
+		return y > Game.HEIGHT || health <= 0;
 	}
 	
 	public boolean isInvincible(){
