@@ -9,15 +9,9 @@ import se.chalmers.TDA367.group13.util.Direction;
 
 public class PlayerWalking extends AbstractPlayerState implements IState {
 	
-	private Vector2f velocity;
-	
 	public PlayerWalking(){
 		super();
 		velocity = new Vector2f(4,Constants.gravity);
 	}
 
-	@Override
-	public Vector2f getVelocity() {
-		return velocity;
-	}
 }

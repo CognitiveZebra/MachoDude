@@ -10,14 +10,13 @@ import se.chalmers.TDA367.group13.util.Direction;
 public class PlayerJumping extends AbstractPlayerState implements IState {
 	
 	private float jumpHeight = -8;
-	private Vector2f velocity;
 	
 	public PlayerJumping(){
 		super();
 		velocity = new Vector2f(4, Constants.gravity);
 	}
 	
-
+	@Override
 	public Vector2f getVelocity() {
 		velocity.y = getYVelocity();
 		return velocity;
