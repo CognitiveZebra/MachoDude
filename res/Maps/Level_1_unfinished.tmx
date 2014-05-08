@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="181" height="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="realTileset" tilewidth="32" tileheight="32">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+  <image source="../Tiles/tileset_jungle_test.png" width="96" height="96"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="10" name="EnemyTiles" tilewidth="32" tileheight="32">
+  <image source="../Tiles/EnemyTiles.png" width="96" height="96"/>
+  <tile id="0">
+   <properties>
+    <property name="enemy" value="1"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="enemy" value="boss"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="181" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2a2wrDIAxA7W6P+//PXaUIRazV1jhjzoG8ODEmOzhb5hyAbl5rvHcBoB2chtnQ6PQjEWefp+a5xFhqTu340Vzog0anAXLgNPyDZY2n0No4Db3xPnvXPkLrj+x07h48A6V3/pkIPlt1GuZi7zNOg3Zin3EaNJPyWdLpr8Np2JB4F3HkM+f0hrXnqd4EF3xfj9yu6XnOZwtO+/pzvYRr1PR178Id30LOnM8WnA77kKrTKjV9beV07BROQwvisxKn+4PTbYm/V8tO5/7TFsfZHW1x5Wtd3UPL/Y5ATc9K+2nd6Zo429OdtSVCw2+AVM9GdFrq/JLsE07XY83p0QKn24PTYzsyWm04XZ4bp3XUhtPluXFaR204XZ4bp3XUhtPluWdy+gcRYydEtEYAAA==
+  </data>
+ </layer>
+ <layer name="enemies" width="181" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OIQEAAAgDsGv6BybBNYgtwRIAAAAAAAAAAAAAAIBurgMAAAAAALyyfx6t3bRGAAA=
+  </data>
+ </layer>
+</map>
