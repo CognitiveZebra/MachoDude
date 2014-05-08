@@ -54,20 +54,6 @@ public class Enemy_2 extends Enemy {
 	public void render(Graphics g) {
 		super.render(g);
 		
-		Animation animation;
-		switch (state) {
-		case STILL:
-			animation = (direction == Direction.LEFT) ? stillLeft: stillRight;
-			break;
-		case WALKING:
-			animation = (direction == Direction.LEFT) ? walkLeft : walkRight;
-			break;
-		default:
-			animation = stillLeft;
-			break;
-		}
-		g.drawAnimation(animation, getX(), getY());
-		
 		if (direction == Direction.LEFT){
 			weapon.setCenterX(x + leftShoulder.getX());
 			weapon.setCenterY(y + leftShoulder.getY());
@@ -98,11 +84,6 @@ public class Enemy_2 extends Enemy {
 		
 		}
 		return images;
-	}
-
-	@Override
-	public float getWalkingSpeed() {
-		return walkingSpeed;
 	}
 
 	@Override

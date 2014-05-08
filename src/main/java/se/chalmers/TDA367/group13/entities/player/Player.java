@@ -101,7 +101,6 @@ public class Player extends MoveableEntity {
 			g.drawAnimation(state.getAnimation(direction), getX(), getY());
 			weapon.render(g, direction);
 		}
-
 		healthBar.render(g, health);
 		
 	}

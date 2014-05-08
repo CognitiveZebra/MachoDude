@@ -10,6 +10,15 @@ public abstract class AbstractMoveableEntityState implements IMoveableState{
 	private Animation animationLeft, animationRight;
 	protected Vector2f velocity;
 	
+	public AbstractMoveableEntityState(){
+		
+	}
+	
+	public AbstractMoveableEntityState(Animation left, Animation right){
+		animationLeft = left;
+		animationRight = right;
+	}
+	
 	@Override
 	public Animation getAnimation(Direction d){
 		return (d == Direction.LEFT) ? animationLeft : animationRight;

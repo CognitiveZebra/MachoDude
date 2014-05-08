@@ -10,7 +10,6 @@ import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.entities.IDestructable;
 import se.chalmers.TDA367.group13.entities.IMoveable;
 import se.chalmers.TDA367.group13.entities.Projectile;
-import se.chalmers.TDA367.group13.entities.enemies.Enemy.State;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public class Boss_1 extends Entity implements IMoveable, IDestructable {
@@ -22,7 +21,6 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	private Image[] mouthOpen, mouthClose, rightMouthOpen, rightMouthClose;
 	private Animation openMouth, closeMouth, rightOpenMouth, rightCloseMouth,  still, open, rightOpen, rightStill;
 	private float health, walkingspeed;
-	
 	
 	
 	public Boss_1(float x, float y) throws SlickException{

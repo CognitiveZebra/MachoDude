@@ -18,7 +18,6 @@ import se.chalmers.TDA367.group13.entities.Block;
 import se.chalmers.TDA367.group13.entities.Projectile;
 import se.chalmers.TDA367.group13.entities.enemies.Boss_1;
 import se.chalmers.TDA367.group13.entities.enemies.Enemy;
-import se.chalmers.TDA367.group13.entities.enemies.Enemy.State;
 import se.chalmers.TDA367.group13.entities.enemies.Enemy_1;
 import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.factory.ParticleFactory;
@@ -196,12 +195,12 @@ public class Level {
 				}
 				
 				if (Math.abs((e.getCenterX() - player.getCenterX())) < 20 || isLegal(nextYPos)) {
-					e.setState(State.STILL);
+					e.setState(e.getStillState());
 				} else {
-					e.setState(State.WALKING);
+					e.setState(e.getWalkingState());
 				}
 		
-				if (e.getState() == State.WALKING) {
+				if (e.getState() == e.getWalkingState()) {
 					Rectangle nextXPos = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
 					if (e.getDirection() == Direction.LEFT) {
 						nextXPos.setX(e.getNextLeftX());
@@ -220,7 +219,7 @@ public class Level {
 					}
 					nextXPos.setX(e.getNextLeftX());
 					if (!isLegal(nextXPos)) {
-						e.setState(State.STILL);
+						e.setState(e.getStillState());
 					}
 				}
 				if (Math.abs((e.getCenterX() - player.getCenterX())) < 250) {
