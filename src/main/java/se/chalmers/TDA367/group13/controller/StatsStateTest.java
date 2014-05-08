@@ -6,29 +6,31 @@ import org.junit.Test;
 
 public class StatsStateTest {
 
+	StatsState test = new StatsState();
+	
 	@Test
 	public void testGetID() {
-		fail("Not yet implemented");
+		assertTrue(test.getID() == 42);
 	}
 
 	@Test
 	public void testInit() {
-		fail("Not yet implemented");
+		//TODO: Find out a good way to test voidmethods/Slickmethods
 	}
 
 	@Test
 	public void testRender() {
-		fail("Not yet implemented");
+		//TODO: Find out a good way to test voidmethods/Slickmethods
 	}
 
 	@Test
 	public void testUpdate() {
-		fail("Not yet implemented");
+		//TODO: Find out a good way to test voidmethods/Slickmethods
 	}
 
 	@Test
 	public void testInitMenu() {
-		fail("Not yet implemented");
+		//TODO: Find out a good way to test voidmethods/Slickmethods
 	}
 
 }

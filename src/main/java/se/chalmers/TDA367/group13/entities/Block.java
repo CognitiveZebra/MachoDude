@@ -8,6 +8,6 @@ public class Block extends Entity{
 		super(x, y, image);
 	}
 	
-	//TODO 
+	
 
 }
