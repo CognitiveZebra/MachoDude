@@ -13,7 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import se.chalmers.TDA367.group13.factory.ParticleFactory;
 
-public class AbstractMachoDudeState extends BasicGameState {
+public abstract class AbstractMachoDudeState extends BasicGameState {
 	protected Point mouse;
 	protected ParticleSystem ps;
 	protected ConfigurableEmitter weather;
