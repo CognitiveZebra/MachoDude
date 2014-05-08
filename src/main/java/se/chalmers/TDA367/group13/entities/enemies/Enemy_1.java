@@ -29,8 +29,8 @@ public class Enemy_1 extends Enemy{
 		hurtSound = new Sound("res/Sound/Enemy_1/Hurt.wav");
 		deathSound = new Sound("res/Sound/Enemy_1/Dies.wav");
 		initAnimations();
-		still = new Enemy1Still(stillLeft, stillRight);
-		walking = new Enemy1Walking(walkLeft,walkRight);
+		still = new EnemyStill(stillLeft, stillRight);
+		walking = new EnemyWalking(walkLeft,walkRight);
 		state = still;
 	}
 	

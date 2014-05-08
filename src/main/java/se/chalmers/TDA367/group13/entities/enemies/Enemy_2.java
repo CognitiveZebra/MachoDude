@@ -13,7 +13,6 @@ import se.chalmers.TDA367.group13.view.Level;
 
 public class Enemy_2 extends Enemy {
 	
-	private float walkingSpeed = 1;
 	private Image[] right, left, standLeft, standRight;
 	private static final int scale = 2;
 
@@ -27,6 +26,9 @@ public class Enemy_2 extends Enemy {
 		health = maxHealth;
 		value = 5;
 		initAnimations();
+		still = new EnemyStill(stillLeft, stillRight);
+		walking = new EnemyWalking(walkLeft,walkRight);
+		state = still;
 	}
 	
 	public void initAnimations() {
