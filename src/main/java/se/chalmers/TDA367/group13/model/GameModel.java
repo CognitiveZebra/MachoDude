@@ -47,7 +47,6 @@ public class GameModel {
 	}
 
 	public void update(Input input, int delta) throws GameOverException {
-		
 		Rectangle nextXPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
 		if (input.isKeyDown(Controls.getInstance().getLeftKey())) {
@@ -95,6 +94,7 @@ public class GameModel {
 		player.moveWeapon();
 		
 		level.updateEnemies(player);
+		level.updateBoss(player);
 		
 		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY(), player.getDirection());
 		

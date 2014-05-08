@@ -66,14 +66,10 @@ public class Level {
 				case "1":
 					enemies.add(new Enemy_1(x * map.getTileWidth(), y
 							* map.getTileWidth(), this));
-					System.out.println("Enemy drawn at " + x * map.getTileWidth() + " " + y
-							* map.getTileWidth());
 					break;
 				case "boss":
-					boss = new Boss_1(x * map.getTileWidth(), 
+					boss = new Boss_1((x-2) * map.getTileWidth(), 
 							y * map.getTileWidth());
-					System.out.println("Boss drawn at " + x * map.getTileWidth() + " " + y
-							* map.getTileWidth());
 					break;
 				default:
 					break;
@@ -90,7 +86,6 @@ public class Level {
 
 	public void render(Graphics g) {
 		g.drawImage(smallBackground, 0, 0);
-		boss.render(g);
 		weather.render();
 
 		for (Block b : blocks) {
@@ -99,7 +94,8 @@ public class Level {
 		for (Enemy e : enemies) {
 			e.render(g);
 		}
-		
+
+		boss.render(g);
 		for (Projectile projectile : projectiles) {
 			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
 		}
@@ -124,6 +120,10 @@ public class Level {
 
 	public LinkedList<Enemy> getEnemies() {
 		return enemies;
+	}
+	
+	public Boss_1 getBoss(){
+		return boss;
 	}
 
 	public void moveBlocks(float f) {
@@ -157,6 +157,19 @@ public class Level {
 
 	public float getWidth() {
 		return (map.getWidth() * map.getTileWidth());
+	}
+	
+	public void updateBoss(Player player){
+		if (boss.getX() < Game.WIDTH){
+				if(player.getY() > boss.getY()+64)
+					boss.moveY();
+				else 
+					boss.movedownY();
+				if (player.getY() == boss.getY()-32){
+					boss.fireLaser();
+				}
+			
+		}
 	}
 
 	public void updateEnemies(Player player) {
@@ -229,6 +242,7 @@ public class Level {
 
 			}
 		}
+		
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
 		for (Projectile projectile : getProjectiles()) {
 			if (projectile.intersects(player)) {

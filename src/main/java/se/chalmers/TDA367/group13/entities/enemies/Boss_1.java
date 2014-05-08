@@ -17,7 +17,8 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	private XMLPackedSheet bossSheet;
 	private Direction direction;
 	private State state;
-	private Image laserBegin, laserBeam, rightLaserBegin;
+	private long time;
+	private Image laserBegin, laserBeam, rightLaserBegin,stillImg, openImg, rightStillImg, rightOpenImg;
 	private Image[] mouthOpen, mouthClose, rightMouthOpen, rightMouthClose;
 	private Animation openMouth, closeMouth, rightOpenMouth, rightCloseMouth,  still, open, rightOpen, rightStill;
 	private float health, walkingspeed;
@@ -29,7 +30,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		bossSheet = new XMLPackedSheet("/res/Sprites/Bosses/1/boss_1_sheet.png","/res/Sprites/Bosses/1/boss_1_sheet.xml");
 		this.health = 20;
 		this.walkingspeed = 3;
-
+		time = System.currentTimeMillis();
 		direction = Direction.LEFT;
 		state = State.STILL;
 		
@@ -41,12 +42,15 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	}
 	
 	public void initAnimations() throws SlickException{
-		int animationSpeed = 200;
+		int animationSpeed = 50;
+		image = bossSheet.getSprite("still.png");
 		
-		still = new Animation(new Image[] { bossSheet.getSprite("still.png")}, animationSpeed);
-		open = new Animation(new Image[] { bossSheet.getSprite("open5.png")}, animationSpeed);
-		rightOpen = new Animation(new Image[] { bossSheet.getSprite("open5.png").getFlippedCopy(true, false)}, animationSpeed);
-		rightStill = new Animation(new Image[] { bossSheet.getSprite("still.png").getFlippedCopy(true, false)}, animationSpeed);
+		stillImg = bossSheet.getSprite("still.png");
+		openImg =  bossSheet.getSprite("open5.png");
+		rightOpenImg =  openImg.getFlippedCopy(true, false);
+		rightStillImg = stillImg.getFlippedCopy(true, false);
+		
+		
 		
 		mouthOpen = new Image[]{
 				bossSheet.getSprite("open1.png"),
@@ -83,9 +87,19 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		
 		openMouth = new Animation(mouthOpen, animationSpeed);
 		closeMouth = new Animation(mouthClose, animationSpeed);
+		openMouth.setLooping(false);
+		closeMouth.setLooping(false);
+
+		still = new Animation(new Image[] {stillImg}, animationSpeed);
+		open = new Animation(new Image[] {openImg}, animationSpeed);
+		rightOpen = new Animation(new Image[] {rightOpenImg}, animationSpeed);
+		rightStill = new Animation(new Image[] {rightStillImg}, animationSpeed);
 		
 		rightOpenMouth = new Animation(rightMouthOpen, animationSpeed);
 		rightCloseMouth = new Animation(mouthClose, animationSpeed);
+		
+		rightOpenMouth.setLooping(false);
+		rightCloseMouth.setLooping(false);
 		
 
 		laserBegin = new Image("/res/Sprites/Bosses/1/laser_begin.png");
@@ -107,7 +121,6 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	}
 	
 	public void render(Graphics g) {
-		super.render(g);
 		
 		Animation animation;
 		switch (state) {
@@ -133,6 +146,10 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	public void resize(float scale){
 		image.setFilter(Image.FILTER_NEAREST);
 		image = image.getScaledCopy(scale);
+		stillImg = stillImg.getScaledCopy(scale);
+		openImg =  openImg.getScaledCopy(scale);
+		rightOpenImg =  rightOpenImg.getScaledCopy(scale);
+		rightStillImg = rightStillImg.getScaledCopy(scale);
 		resizeImages(mouthClose, scale);
 		resizeImages(mouthOpen, scale);
 
@@ -145,7 +162,16 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	}
 	
 	public void fireLaser(){
-		new Projectile(getX(), getY(), laserBeam, 0, 20, Direction.LEFT );
+		System.out.println("IMMA FIRIN MAH LAZOR");
+		
+		state = state.OPENMOUTH;
+		if ((System.currentTimeMillis() - time) > 500)
+			for (int i = 0; i <=20; i++)
+				new Projectile(getX(), getY(), laserBeam, 0, 20, Direction.LEFT );
+		state = state.CLOSEMOUTH;
+		if ((System.currentTimeMillis() - time) > 1500)
+			state = state.STILL;
+
 	}
 	
 
@@ -213,7 +239,12 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	}
 
 	public void moveY() {
+		if (state == state.STILL)
 		setY(getY() + getWalkingSpeed());		
+	}
+	public void movedownY() {
+		if (state == state.STILL)
+		setY(getY() - getWalkingSpeed());		
 	}
 }
 
