@@ -49,7 +49,6 @@ public class Level {
 		this.background = background;
 		this.music = music;
 		smallBackground = background.getSubImage(0, 0, 1216, 768);
-		boss = new Boss_1(300, 300);
 
 		projectiles = new LinkedList<Projectile>();
 		blocks = new LinkedList<Block>();
@@ -68,6 +67,10 @@ public class Level {
 					enemies.add(new Enemy_1(x * map.getTileWidth(), y
 							* map.getTileWidth(), this));
 					break;
+				case "boss":
+					boss = new Boss_1((x-2) * map.getTileWidth(), 
+							y * map.getTileWidth());
+					break;
 				default:
 					break;
 				}
@@ -83,7 +86,6 @@ public class Level {
 
 	public void render(Graphics g) {
 		g.drawImage(smallBackground, 0, 0);
-		boss.render(g);
 		weather.render();
 
 		for (Block b : blocks) {
@@ -92,7 +94,8 @@ public class Level {
 		for (Enemy e : enemies) {
 			e.render(g);
 		}
-		
+
+		boss.render(g);
 		for (Projectile projectile : projectiles) {
 			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
 		}
@@ -118,6 +121,10 @@ public class Level {
 	public LinkedList<Enemy> getEnemies() {
 		return enemies;
 	}
+	
+	public Boss_1 getBoss(){
+		return boss;
+	}
 
 	public void moveBlocks(float f) {
 		for (Block r : blocks) {
@@ -130,6 +137,15 @@ public class Level {
 			e.setX(e.getX() + f);
 		}
 	}
+	
+	public void moveProjectiles (float f){
+		for (Projectile p : projectiles)
+			p.setX(p.getX() + f);
+	}
+	
+	public void moveBoss(float f){
+		boss.setX(boss.getX()+f);
+	}
 
 	public void setMusic(Music music) {
 		this.music = music;
@@ -141,6 +157,19 @@ public class Level {
 
 	public float getWidth() {
 		return (map.getWidth() * map.getTileWidth());
+	}
+	
+	public void updateBoss(Player player){
+		if (boss.getX() < Game.WIDTH){
+				if(player.getY() > boss.getY()+64)
+					boss.moveY();
+				else 
+					boss.movedownY();
+				if (player.getY() == boss.getY()-32){
+					boss.fireLaser();
+				}
+			
+		}
 	}
 
 	public void updateEnemies(Player player) {
@@ -213,6 +242,7 @@ public class Level {
 
 			}
 		}
+		
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
 		for (Projectile projectile : getProjectiles()) {
 			if (projectile.intersects(player)) {
