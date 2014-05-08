@@ -12,15 +12,15 @@ import org.newdawn.slick.geom.Point;
 import se.chalmers.TDA367.group13.Game;
 import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.entities.IMoveable;
+import se.chalmers.TDA367.group13.entities.MoveableEntity;
 import se.chalmers.TDA367.group13.entities.weapon.TestWeapon;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
 import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.util.Stats;
 
 
-public class Player extends Entity implements IMoveable{
+public class Player extends MoveableEntity {
 
-	private Direction direction;
 	private Weapon weapon;
 	private XMLPackedSheet playerSheet;
 	private Image [] right, left, standLeft, standRight, jumpingLeft, jumpingRight;
@@ -28,7 +28,7 @@ public class Player extends Entity implements IMoveable{
 	private int health = 5;
 	private Point rightShoulder, leftShoulder;
 	private HealthBar healthBar;
-	private AbstractPlayerState state, playerJumping, playerStill, playerWalking;
+	private AbstractPlayerState playerJumping, playerStill, playerWalking;
 	private Sound jumpSound;
 
 
@@ -52,32 +52,7 @@ public class Player extends Entity implements IMoveable{
 		jumpSound = new Sound("/res/Sound/Jump.wav");
 	}
 	
-	@Override
-	public float getNextLeftX(){
-		return x - state.getVelocity().x;
-	}
-	@Override
-	public float getNextRightX(){
-		return x + state.getVelocity().x;
-	}
-	@Override
-	public float getNextY(){
-		return y + state.getVelocity().y;
-	}
-	@Override
-	public void moveLeft(){
-		direction = Direction.LEFT;
-		setX(x - state.getVelocity().x);
-	}
-	@Override
-	public void moveRight(){
-		direction = Direction.RIGHT;
-		setX(x + state.getVelocity().x);
-	}
-	@Override
-	public void moveY(){
-		setY(getY() + state.getVelocity().y);
-	}
+
 		
 	public void initAnimations() {
 		left = new Image[]
@@ -127,8 +102,6 @@ public class Player extends Entity implements IMoveable{
 			weapon.render(g, direction);
 		}
 
-
-		
 		healthBar.render(g, health);
 		
 	}
@@ -162,7 +135,7 @@ public class Player extends Entity implements IMoveable{
 	}
 
 	public AbstractPlayerState getState(){
-		return state;
+		return (AbstractPlayerState) state;
 	}
 	
 	public Direction getDirection() {
