@@ -1,7 +1,5 @@
 package se.chalmers.TDA367.group13.entities.player;
 
-import java.util.Random;
-
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
