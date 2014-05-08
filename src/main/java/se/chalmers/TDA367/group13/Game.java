@@ -10,35 +10,15 @@ import se.chalmers.TDA367.group13.controller.GameStateController;
 import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.util.Stats;
 
-public class Game extends BasicGame {
+public class Game  {
 
     /** Screen width */
     public static final int WIDTH = 1216;
     /** Screen height */
     public static final int HEIGHT = 768;
-    
-    /** A counter... */
-    private int counter;
-
-    public Game() {
-        super("MachoDude");
-    }
-
-    public void render(GameContainer container, Graphics g) throws SlickException {
-
-    }
-
-    @Override
-    public void init(GameContainer container) throws SlickException {
-    }
-
-    @Override
-    public void update(GameContainer container, int delta) throws SlickException {
-    }
-    
+        
     public static void main(String[] args) throws SlickException {
-        AppGameContainer app = new AppGameContainer(new GameStateController("MachoDude"));
-        app.setDisplayMode(WIDTH, HEIGHT, false);
+        AppGameContainer app = new AppGameContainer(new GameStateController("MachoDude"),WIDTH, HEIGHT, false);
         app.setForceExit(false);
         app.setTargetFrameRate(60);
         app.start();
