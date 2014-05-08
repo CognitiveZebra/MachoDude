@@ -10,44 +10,30 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 import org.newdawn.slick.particles.ParticleSystem;
-import org.newdawn.slick.particles.effects.FireEmitter;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.TDA367.group13.factory.ParticleFactory;
 import se.chalmers.TDA367.group13.view.Menu;
 import se.chalmers.TDA367.group13.view.MenuItem;
 
-public class MenuState extends BasicGameState {
+public class MenuState extends AbstractMachoDudeState {
 	public static final int ID = 2;
-	GameContainer gc;
-	private Image background, itemImage, settingsImage;
-	private Input input;
+	private Image itemImage, settingsImage;
 	private Menu menu;
 	private Point mouse;
-	private ParticleSystem ps;
-	private ConfigurableEmitter rainEmitter;
+
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		this.gc = gc;
-		background = new Image("res/Backgrounds/Jungle_Test.gif");
+		super.init(gc,sbg);
 		initMenu();
-		input = gc.getInput();
-		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"),
-				2000);
-		rainEmitter = ParticleFactory.createEmitter("rain");
-		ps.addEmitter(rainEmitter);
+
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		g.drawImage(background, 0, 0);
-
-		ps.render();
-
+		super.render(gc,sbg,g);
 		menu.render(g);
 	}
 
@@ -80,8 +66,8 @@ public class MenuState extends BasicGameState {
 			sbg.enterState(menu.getSelected().getID());
 		}
 		
-		rainEmitter.windFactor.setValue(-((gc.getWidth() / 2) - input.getMouseX()) / 20);
-		ps.update(delta);
+		weather.windFactor.setValue(-((gc.getWidth() / 2) - input.getMouseX()) / 20);
+		super.update(gc,sbg,delta);
 	}
 
 	public void initMenu() {

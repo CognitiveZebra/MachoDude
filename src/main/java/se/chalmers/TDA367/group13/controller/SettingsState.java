@@ -20,47 +20,34 @@ import se.chalmers.TDA367.group13.view.MenuItem;
 import se.chalmers.TDA367.group13.view.SettingsItem;
 import se.chalmers.TDA367.group13.view.SettingsView;
 
-public class SettingsState extends BasicGameState {
+public class SettingsState extends AbstractMachoDudeState {
 	public static final int ID = 15, RIGHT = 0, LEFT = 1, JUMP = 2, SHOOT = 3;
-	GameContainer gc;
-	private Image background, menuItemImage;
-	private Input input;
+	private Image menuItemImage;
 	private SettingsView settingsView;
 	private Point mouse;
-	private ParticleSystem ps;
 	private Integer key, button;
 	private boolean settable = false;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		this.gc = gc;
-		input = gc.getInput();
-		background = new Image("res/Backgrounds/Jungle_Test.gif");
+		super.init(gc,sbg);
 		initSettings();
-		input = gc.getInput();
-		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"),
-				2000);
-		ConfigurableEmitter rainEmitter;
-
-		rainEmitter = ParticleFactory.createEmitter("rain");
-		ps.addEmitter(rainEmitter);
-
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		g.drawImage(background, 0, 0);
-
-		ps.render();
-
+		super.render(gc,sbg,g);
 		settingsView.render(g);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		
+		super.update(gc,sbg,delta);
+		
 		mouse = new Point(input.getMouseX(), input.getMouseY());
 		boolean isMousePressed = input.isMousePressed(Input.MOUSE_LEFT_BUTTON);
 
@@ -119,7 +106,6 @@ public class SettingsState extends BasicGameState {
 			}
 		}
 
-		ps.update(delta);
 
 	}
 

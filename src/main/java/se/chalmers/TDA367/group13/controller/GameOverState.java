@@ -19,42 +19,31 @@ import se.chalmers.TDA367.group13.util.Util;
 import se.chalmers.TDA367.group13.view.Menu;
 import se.chalmers.TDA367.group13.view.MenuItem;
 
-public class GameOverState extends BasicGameState {
+public class GameOverState extends AbstractMachoDudeState {
 
 	public static final int ID = 1337;
-	private Image itemImage, background;
+	private Image itemImage;
 	private Menu menu;
-	private GameContainer gc;
-	private Input input;
-	private ParticleSystem ps;
 	private Point mouse;
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		this.gc = container;
-		background = new Image("res/Backgrounds/Jungle_Test.gif");
+		super.init(container, game);
 		initMenu();
-		input = container.getInput();
-		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"),
-				2000);
-		ConfigurableEmitter rainEmitter;
-		rainEmitter = ParticleFactory.createEmitter("rain");
-		ps.addEmitter(rainEmitter);
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-
-		g.drawImage(background, 0, 0);
+		
+		super.render(container, game, g);
+		menu.render(g);
 
 		String s = "GAME OVER";
 		g.setFont(Util.getFont32());
 		g.drawString(s, gc.getWidth() / 2 - g.getFont().getWidth(s) / 2, 250);
-		ps.render();
 
-		menu.render(g);
 		String scoreString = "Your score: " + Stats.getInstance().getScore();
 		g.drawString(scoreString,
 				gc.getWidth() / 2 - g.getFont().getWidth(scoreString) / 2, 300);
@@ -68,6 +57,8 @@ public class GameOverState extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
+		super.update(container, game, delta);
+		
 		mouse = new Point(input.getMouseX(), input.getMouseY());
 		boolean isMousePressed = input.isMousePressed(Input.MOUSE_LEFT_BUTTON);
 
@@ -94,8 +85,6 @@ public class GameOverState extends BasicGameState {
 				game.enterState(menu.getSelected().getID());
 			}
 		}
-
-		ps.update(delta);
 	}
 
 	@Override
