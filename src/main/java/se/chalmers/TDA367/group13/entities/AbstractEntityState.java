@@ -10,7 +10,8 @@ public abstract class AbstractEntityState implements IState{
 	private Animation animation;
 
 	
-	public AbstractEntityState(){
+	public AbstractEntityState(Animation a){
+		animation = a; 
 	}
 	
 	@Override
