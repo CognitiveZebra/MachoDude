@@ -23,7 +23,7 @@ public abstract class Enemy extends MoveableEntity implements IDestructable {
 	protected Weapon weapon;
 	protected int health, maxHealth;
 	private HealthBarEnemy healthbar = new HealthBarEnemy();
-	protected int value = 1;
+	protected int scoreValue = 1;
 	protected Animation stillLeft, stillRight, walkLeft, walkRight;
 	protected Point rightShoulder, leftShoulder;
 	protected Sound hurtSound, deathSound;
@@ -76,7 +76,10 @@ public abstract class Enemy extends MoveableEntity implements IDestructable {
 	}
 
 	
-	public abstract Weapon getWeapon();
+	public Weapon getWeapon() {
+		return weapon;
+	}
+
 
 
 	public void loseHealth(){	
@@ -97,7 +100,7 @@ public abstract class Enemy extends MoveableEntity implements IDestructable {
 	}
 	
 	public int getValue(){
-		return value;
+		return scoreValue;
 	}
 
 

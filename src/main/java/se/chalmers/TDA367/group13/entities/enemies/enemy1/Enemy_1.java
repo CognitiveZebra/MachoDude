@@ -28,7 +28,7 @@ public class Enemy_1 extends Enemy{
 		weapon = new Enemy_1_Weapon(x, y, level);
 		maxHealth = 5;
 		health = maxHealth;
-		value = 5;
+		scoreValue = 5;
 		hurtSound = new Sound("res/Sound/Enemy_1/Hurt.wav");
 		deathSound = new Sound("res/Sound/Enemy_1/Dies.wav");
 		initAnimations();
@@ -79,9 +79,5 @@ public class Enemy_1 extends Enemy{
 		return images;
 	}
 
-	@Override
-	public Weapon getWeapon() {
-		return weapon;
-	}
 
 }

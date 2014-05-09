@@ -27,7 +27,7 @@ public class Enemy_2 extends Enemy {
 		weapon = new Enemy_1_Weapon(x, y, level);
 		maxHealth = 8;
 		health = maxHealth;
-		value = 5;
+		scoreValue = 5;
 		initAnimations();
 		still = new EnemyStill(stillLeft, stillRight);
 		walking = new EnemyWalking(walkLeft,walkRight);
@@ -77,9 +77,5 @@ public class Enemy_2 extends Enemy {
 		return images;
 	}
 
-	@Override
-	public Weapon getWeapon() {
-		return null;
-	}
 
 }
