@@ -26,9 +26,8 @@ public class Game  {
         
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             public void run() {
-            	System.out.println("Fighting spirit?");
             	Stats.getInstance().saveStats();
-            	Controls.getInstance().readControls();
+            	Controls.getInstance().saveControls();
             }
         }));
     }
