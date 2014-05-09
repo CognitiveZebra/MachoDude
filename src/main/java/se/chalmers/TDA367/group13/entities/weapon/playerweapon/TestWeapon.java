@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.entities.weapon;
+package se.chalmers.TDA367.group13.entities.weapon.playerweapon;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
 import se.chalmers.TDA367.group13.entities.Projectile;
+import se.chalmers.TDA367.group13.entities.weapon.Weapon;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public class TestWeapon extends Weapon {

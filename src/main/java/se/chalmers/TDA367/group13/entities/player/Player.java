@@ -13,8 +13,8 @@ import se.chalmers.TDA367.group13.Game;
 import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.entities.IMoveable;
 import se.chalmers.TDA367.group13.entities.MoveableEntity;
-import se.chalmers.TDA367.group13.entities.weapon.TestWeapon;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
+import se.chalmers.TDA367.group13.entities.weapon.playerweapon.TestWeapon;
 import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.util.Stats;
 
