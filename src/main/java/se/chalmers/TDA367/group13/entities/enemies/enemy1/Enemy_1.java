@@ -57,21 +57,7 @@ public class Enemy_1 extends Enemy{
 		walkLeft = new Animation(left,animationSpeed);
 		walkRight = new Animation(right,animationSpeed);
 	}
-	
-	public void render(Graphics g) {
-		super.render(g);
 		
-		if (direction == Direction.LEFT){
-			weapon.setCenterX(x + leftShoulder.getX());
-			weapon.setCenterY(y + leftShoulder.getY());
-		}
-		else{
-			weapon.setCenterX(x + rightShoulder.getX());
-			weapon.setCenterY(y + rightShoulder.getY());
-		}
-		weapon.render(g, direction);
-	}
-	
 	@Override
 	public void resize(float scale){
 		standLeft =  resizeImages(standLeft, scale);

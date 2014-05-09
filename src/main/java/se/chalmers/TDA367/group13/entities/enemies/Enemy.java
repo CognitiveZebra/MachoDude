@@ -40,6 +40,15 @@ public abstract class Enemy extends MoveableEntity implements IDestructable {
 	public void render(Graphics g){
 		healthbar.render(this,g);
 		g.drawAnimation(state.getAnimation(direction), x, y);
+		if (direction == Direction.LEFT){
+			weapon.setCenterX(x + leftShoulder.getX());
+			weapon.setCenterY(y + leftShoulder.getY());
+		}
+		else{
+			weapon.setCenterX(x + rightShoulder.getX());
+			weapon.setCenterY(y + rightShoulder.getY());
+		}
+		weapon.render(g, direction);
 	}
 		
 	public void setDirection(Direction d) {
