@@ -11,7 +11,6 @@ import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.view.Level;
 
 public class Enemy_1_Weapon extends Weapon {
-	private float speed;
 	private static Vector2f shoulder = new Vector2f(11, 11);
 	private static Vector2f nuzzle = new Vector2f(17, 21);
 
@@ -22,7 +21,8 @@ public class Enemy_1_Weapon extends Weapon {
 		firingSound = new Sound("/res/Sound/Enemy_1/Shoot.wav");
 
 	}
-
+	
+	@Override
 	public Projectile fireWeapon(Direction direction) {
 		if (direction == Direction.RIGHT) {
 				firingSound.play();

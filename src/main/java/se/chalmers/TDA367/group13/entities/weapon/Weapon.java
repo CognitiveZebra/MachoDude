@@ -19,6 +19,7 @@ public abstract class Weapon extends Entity {
 	private String name;
 	private float damage;
 	private float angle;
+	protected float speed;
 	private Image rightImage, leftImage, projectileImage;
 	private Vector2f shoulder, nuzzle;
 	private Line distanceToNuzzle;

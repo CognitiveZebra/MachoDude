@@ -41,7 +41,7 @@ public class Projectile extends Entity {
 	public void update(int delta){
 		setX(getX() + (speed*vector.x));
 		setY(getY() - (speed*vector.y));
-		smoke.setPosition(getX(),getY(), false);
+		smoke.setPosition(getCenterX(),getCenterY(), false);
 		ps.update(delta);
 	}
 	

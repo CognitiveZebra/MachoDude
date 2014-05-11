@@ -11,9 +11,6 @@ import se.chalmers.TDA367.group13.view.Level;
 
 public class Enemy_2_Weapon extends Weapon {
 
-	private long time;
-	private float cooldown;
-	private float speed;
 	private static Vector2f shoulder = new Vector2f(11, 11);
 	private static Vector2f nuzzle = new Vector2f(17, 21);
 
@@ -24,7 +21,8 @@ public class Enemy_2_Weapon extends Weapon {
 		speed = 2;
 
 	}
-
+	
+	@Override
 	public Projectile fireWeapon(Direction direction) {
 		if (direction == Direction.RIGHT) {
 			if ((System.currentTimeMillis() - time) > cooldown) {
