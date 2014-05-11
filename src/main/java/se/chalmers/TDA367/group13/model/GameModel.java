@@ -135,7 +135,6 @@ public class GameModel {
 		
 		level.updateWeather(input, delta);
 		
-		System.out.println("Projectiles: " + player.getProjectiles().size());
 	}
 		
 	public boolean isBlockCollision(LinkedList<Block> blocks, Rectangle hitbox) {
