@@ -19,40 +19,23 @@ public class TestWeapon extends Weapon {
 		firingSound = new Sound("/res/Sound/Shoot.wav");
 	}
 	
-	public void fireWeapon(Direction direction){
+	public Projectile fireWeapon(Direction direction){
 		if (direction == Direction.RIGHT) {
-			if ((System.currentTimeMillis()-time) > cooldown){
 				firingSound.play();
-				getProjectiles().add(new Projectile(x, y, getProjectileImage().copy().getFlippedCopy(true, false), getAngle(), 10, direction));
 				time = System.currentTimeMillis();
-			}
-		} else if (direction == Direction.LEFT) {
-			if ((System.currentTimeMillis()-time) > cooldown){
+				return new Projectile(x, y, getProjectileImage().copy().getFlippedCopy(true, false), getAngle(), 10, direction);
+		} else {
 				firingSound.play();
-				getProjectiles().add(new Projectile(x, y, getProjectileImage().copy(), getAngle(), 10, direction));
 				time = System.currentTimeMillis();
-			}
-		}
-		
-	}
-	
-	@Override
-	public void render(Graphics g, Direction direction){
-		if ((System.currentTimeMillis()-time) > cooldown) {
-			super.render(g, direction);
-		}
-		for (Projectile projectile : projectiles){
-			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
+				return new Projectile(x, y, getProjectileImage().copy(), getAngle(), 10, direction);
 		}
 	}
 	
+	
 	@Override
-	public void render(Graphics g, Direction direction, Color c){
+	public void render(Graphics g, Color c){
 		if ((System.currentTimeMillis()-time) > cooldown) {
-			super.render(g, direction, c);
-		}
-		for (Projectile projectile : projectiles){
-			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
+			super.render(g, c);
 		}
 	}
 

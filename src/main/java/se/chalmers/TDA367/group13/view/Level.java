@@ -64,11 +64,11 @@ public class Level {
 				switch (enemy) {
 				case "1":
 					enemies.add(new Enemy_1(x * map.getTileWidth(), y
-							* map.getTileWidth(), this));
+							* map.getTileWidth()));
 					break;
 				case "boss":
 					boss = new Boss_1((x-2) * map.getTileWidth(), 
-							y * map.getTileWidth(), this);
+							y * map.getTileWidth());
 					break;
 				default:
 					break;
@@ -228,7 +228,9 @@ public class Level {
 						e.setDirection(Direction.LEFT);
 					}
 					e.getWeapon().pointAt(player.getCenterX(), player.getCenterY(), e.getDirection());
-					e.getWeapon().fireWeapon(e.getDirection());
+					if (e.getWeapon().isReady()) {	
+						projectiles.add(e.getWeapon().fireWeapon(e.getDirection()));
+					}
 				} else {
 					if (e.getDirection() == Direction.RIGHT) {
 						e.getWeapon().setImage(e.getWeapon().getRightImage());
@@ -242,14 +244,16 @@ public class Level {
 		}
 		
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
-		for (Projectile projectile : getProjectiles()) {
-			if (projectile.intersects(player)) {
-				player.loseHealth();
-				removed.add(projectile);
-			} else if (isLegal(projectile)) {
-				projectile.update();
-			} else {
-				removed.add(projectile);
+		if (!projectiles.isEmpty()){
+			for (Projectile projectile : projectiles) {
+				if (projectile.intersects(player)) {
+					player.loseHealth();
+					removed.add(projectile);
+				} else if (isLegal(projectile)) {
+					projectile.update();
+				} else {
+					removed.add(projectile);
+				}
 			}
 		}
 		getProjectiles().removeAll(removed);

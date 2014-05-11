@@ -96,7 +96,9 @@ public class GameModel {
 		
 		
 		if (input.isMouseButtonDown(Controls.getInstance().getShootKey()) || input.isKeyDown(Controls.getInstance().getShootKey())){
-			player.fireWeapon();
+			if (player.getWeapon().isReady()) {
+				player.getProjectiles().add(player.fireWeapon());
+			}
 		}
 		
 		level.updateEnemies(player);
@@ -106,7 +108,7 @@ public class GameModel {
 		
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
 		
-		for (Projectile projectile : player.getWeapon().getProjectiles()) {
+		for (Projectile projectile : player.getProjectiles()) {
 			Enemy victim = getVictim(level.getEnemies(), projectile);
 			if (victim != null) {
 				victim.loseHealth();
@@ -118,7 +120,7 @@ public class GameModel {
 			}
 		}
 		
-		player.getWeapon().getProjectiles().removeAll(removed);
+		player.getProjectiles().removeAll(removed);
 		
 		if(isEnemyCollision(level.getEnemies(), nextXPos)){
 			player.loseHealth();

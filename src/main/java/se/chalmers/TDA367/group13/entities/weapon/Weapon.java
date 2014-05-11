@@ -24,7 +24,6 @@ public abstract class Weapon extends Entity {
 	private Line distanceToNuzzle;
 	private double nuzzleAngle;
 	protected Sound firingSound;
-	protected LinkedList<Projectile> projectiles;
 
 	public Weapon(float x, float y, Image rightImage, Image leftImage, Image projectileImage, String name, float damage){
 		super(x, y, rightImage);
@@ -33,7 +32,6 @@ public abstract class Weapon extends Entity {
 		this.projectileImage = projectileImage;
 		this.name = name;
 		this.damage = damage;
-		projectiles = new LinkedList<Projectile>();
 	}
 	
 	public Weapon(float x, float y, Vector2f shoulder, Vector2f nuzzle, Image rightImage, Image leftImage, Image projectileImage, String name, float damage){
@@ -43,20 +41,12 @@ public abstract class Weapon extends Entity {
 		this.projectileImage = projectileImage;
 		this.name = name;
 		this.damage = damage;
-		projectiles = new LinkedList<Projectile>();
 		this.shoulder = shoulder;
 		this.nuzzle = nuzzle;
 		distanceToNuzzle = new Line(nuzzle, shoulder);
 		nuzzleAngle = Math.atan2(distanceToNuzzle.getX1() - distanceToNuzzle.getX2(), distanceToNuzzle.getY1() - distanceToNuzzle.getY2());
 	}
 
-	public LinkedList<Projectile> getProjectiles() {
-		return projectiles;
-	}
-
-	public void setProjectiles(LinkedList<Projectile> projectiles) {
-		this.projectiles = projectiles;
-	}
 
 	public String getName() {
 		return name;
@@ -93,6 +83,14 @@ public abstract class Weapon extends Entity {
 
 
 	}
+	
+	public boolean isReady() {
+		if ((System.currentTimeMillis() - time) > cooldown) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	
 	public float getAngle() {
@@ -105,18 +103,10 @@ public abstract class Weapon extends Entity {
 	
 	public void render(Graphics g, Direction direction) {
 		super.render(g);
-		
-		for (Projectile projectile : projectiles)
-			projectile.render(g);
 	}
 	
-	public void render(Graphics g, Direction direction, Color c) {
+	public void render(Graphics g, Color c) {
 		super.render(g,c);
-		
-		for (Projectile projectile : projectiles){
-			projectile.render(g);
-		}
-
 	}
 
 	
@@ -135,13 +125,7 @@ public abstract class Weapon extends Entity {
 		
 	}
 	
-	public void updateProjectiles(){
-		for (Projectile projectile : projectiles)
-			projectile.update();
-	}
-
-
-	public abstract void fireWeapon(Direction direction);
+	public abstract Projectile fireWeapon(Direction direction);
 
 	public Image getRightImage() {
 		return rightImage;

@@ -1,5 +1,7 @@
 package se.chalmers.TDA367.group13.entities.player;
 
+import java.util.LinkedList;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -10,9 +12,11 @@ import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Point;
 
 import se.chalmers.TDA367.group13.Game;
+import se.chalmers.TDA367.group13.entities.Block;
 import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.entities.IMoveable;
 import se.chalmers.TDA367.group13.entities.MoveableEntity;
+import se.chalmers.TDA367.group13.entities.Projectile;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
 import se.chalmers.TDA367.group13.entities.weapon.playerweapon.TestWeapon;
 import se.chalmers.TDA367.group13.util.Direction;
@@ -30,6 +34,8 @@ public class Player extends MoveableEntity {
 	private HealthBar healthBar;
 	private AbstractPlayerState playerJumping, playerStill, playerWalking;
 	private Sound jumpSound;
+	private LinkedList<Projectile> projectiles;
+
 
 
 	public Player(float x, float y, String sheet, String xml) throws SlickException {
@@ -39,7 +45,7 @@ public class Player extends MoveableEntity {
 		rightShoulder = new Point(29, 13);
 		leftShoulder = new Point(15, 13);
 		weapon = new TestWeapon(x, y);
-		
+		projectiles = new LinkedList<Projectile>();
 		direction = Direction.RIGHT;
 		
 		playerStill = new PlayerStill();
@@ -96,12 +102,16 @@ public class Player extends MoveableEntity {
 	public void render(Graphics g) {
 		if(isFlashing()){
 			g.drawAnimation(state.getAnimation(direction), getX(), getY(), getInvincibleColor());
-			weapon.render(g, direction, getInvincibleColor());
+			weapon.render(g, getInvincibleColor());
 		} else {
 			g.drawAnimation(state.getAnimation(direction), getX(), getY());
 			weapon.render(g, direction);
 		}
 		healthBar.render(g, health);
+		
+		for (Projectile p : projectiles) {
+			p.render(g);
+		}
 		
 	}
 
@@ -192,8 +202,12 @@ public class Player extends MoveableEntity {
 		return weapon;
 	}
 	
-	public void fireWeapon(){
-		weapon.fireWeapon(direction);
+	public Projectile fireWeapon(){
+		return weapon.fireWeapon(direction);
+	}
+
+	public LinkedList<Projectile> getProjectiles() {
+		return projectiles;
 	}
 	
 }

@@ -21,11 +21,11 @@ public class Enemy_1 extends Enemy{
 	private Image[] right, left, standLeft, standRight;
 	private final static int scale = 2;
 
-	public Enemy_1(float x, float y, Level level) throws SlickException {
+	public Enemy_1(float x, float y) throws SlickException {
 		super(x, y, "res/Sprites/Enemies/Enemy_1/Enemy_1.png", "res/Sprites/Enemies/Enemy_1/sheet.xml", scale);
 		rightShoulder = new Point(6, 13);
 		leftShoulder = new Point(11, 13);
-		weapon = new Enemy_1_Weapon(x, y, level);
+		weapon = new Enemy_1_Weapon(x, y);
 		maxHealth = 5;
 		health = maxHealth;
 		scoreValue = 5;
