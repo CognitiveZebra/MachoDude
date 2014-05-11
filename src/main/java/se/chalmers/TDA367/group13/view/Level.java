@@ -69,7 +69,7 @@ public class Level {
 					break;
 				case "boss":
 					boss = new Boss_1((x-2) * map.getTileWidth(), 
-							y * map.getTileWidth());
+							y * map.getTileWidth(), this);
 					break;
 				default:
 					break;
@@ -165,9 +165,8 @@ public class Level {
 					boss.moveY();
 				else 
 					boss.movedownY();
-				if (player.getY() == boss.getY()-32){
-					boss.fireLaser();
-				}
+				
+				boss.fireLaser();
 			
 		}
 	}

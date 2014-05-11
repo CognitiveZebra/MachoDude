@@ -1,5 +1,7 @@
 package se.chalmers.TDA367.group13.entities.enemies;
 
+
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -12,20 +14,22 @@ import se.chalmers.TDA367.group13.entities.IMoveable;
 import se.chalmers.TDA367.group13.entities.Projectile;
 import se.chalmers.TDA367.group13.entities.enemies.Enemy.State;
 import se.chalmers.TDA367.group13.util.Direction;
+import se.chalmers.TDA367.group13.view.Level;
 
 public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	private XMLPackedSheet bossSheet;
 	private Direction direction;
 	private State state;
 	private long time;
+	private Level level;
 	private Image laserBegin, laserBeam, rightLaserBegin,stillImg, openImg, rightStillImg, rightOpenImg;
 	private Image[] mouthOpen, mouthClose, rightMouthOpen, rightMouthClose;
 	private Animation openMouth, closeMouth, rightOpenMouth, rightCloseMouth,  still, open, rightOpen, rightStill;
-	private float health, walkingspeed;
-	
-	
-	
-	public Boss_1(float x, float y) throws SlickException{
+	private float health, walkingspeed, cooldown;
+
+
+
+	public Boss_1(float x, float y, Level level) throws SlickException{
 		super(x, y, new Image("/res/Sprites/Bosses/1/boss_1_head.png"));
 		bossSheet = new XMLPackedSheet("/res/Sprites/Bosses/1/boss_1_sheet.png","/res/Sprites/Bosses/1/boss_1_sheet.xml");
 		this.health = 20;
@@ -33,25 +37,27 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		time = System.currentTimeMillis();
 		direction = Direction.LEFT;
 		state = State.STILL;
-		
+		cooldown = 5000;
+		this.level = level;
+
 		initAnimations();
 	}
-	
+
 	public enum State {
 		STILL, OPENMOUTH, CLOSEMOUTH, OPEN;
 	}
-	
+
 	public void initAnimations() throws SlickException{
-		int animationSpeed = 50;
+		int animationSpeed = 200;
 		image = bossSheet.getSprite("still.png");
-		
+
 		stillImg = bossSheet.getSprite("still.png");
 		openImg =  bossSheet.getSprite("open5.png");
 		rightOpenImg =  openImg.getFlippedCopy(true, false);
 		rightStillImg = stillImg.getFlippedCopy(true, false);
-		
-		
-		
+
+
+
 		mouthOpen = new Image[]{
 				bossSheet.getSprite("open1.png"),
 				bossSheet.getSprite("open2.png"),
@@ -59,7 +65,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 				bossSheet.getSprite("open4.png"),
 				bossSheet.getSprite("open5.png")
 		};
-		
+
 		rightMouthOpen = new Image[]{
 				bossSheet.getSprite("open1.png").getFlippedCopy(true, false),
 				bossSheet.getSprite("open2.png").getFlippedCopy(true, false),
@@ -67,7 +73,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 				bossSheet.getSprite("open4.png").getFlippedCopy(true, false),
 				bossSheet.getSprite("open5.png").getFlippedCopy(true, false)
 		};
-		
+
 		mouthClose = new Image[]{
 				bossSheet.getSprite("open5.png"),
 				bossSheet.getSprite("open4.png"),
@@ -75,7 +81,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 				bossSheet.getSprite("open2.png"),
 				bossSheet.getSprite("open1.png")
 		};
-		
+
 		rightMouthClose = new Image[]{
 				bossSheet.getSprite("open5.png").getFlippedCopy(true, false),
 				bossSheet.getSprite("open4.png").getFlippedCopy(true, false),
@@ -83,8 +89,13 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 				bossSheet.getSprite("open2.png").getFlippedCopy(true, false),
 				bossSheet.getSprite("open1.png").getFlippedCopy(true, false)
 		};
+
+		laserBegin = new Image("/res/Sprites/Bosses/1/laser_begin.png");
+		laserBeam = new Image("/res/Sprites/Bosses/1/laser_beam.png");
+		rightLaserBegin = laserBegin.getFlippedCopy(true, false);
+
 		resize(5);
-		
+
 		openMouth = new Animation(mouthOpen, animationSpeed);
 		closeMouth = new Animation(mouthClose, animationSpeed);
 		openMouth.setLooping(false);
@@ -94,19 +105,16 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		open = new Animation(new Image[] {openImg}, animationSpeed);
 		rightOpen = new Animation(new Image[] {rightOpenImg}, animationSpeed);
 		rightStill = new Animation(new Image[] {rightStillImg}, animationSpeed);
-		
+
 		rightOpenMouth = new Animation(rightMouthOpen, animationSpeed);
 		rightCloseMouth = new Animation(mouthClose, animationSpeed);
-		
+
 		rightOpenMouth.setLooping(false);
 		rightCloseMouth.setLooping(false);
-		
 
-		laserBegin = new Image("/res/Sprites/Bosses/1/laser_begin.png");
-		laserBeam = new Image("/res/Sprites/Bosses/1/laser_beam.png");
-		
-		rightLaserBegin = laserBegin.getFlippedCopy(true, false);
-		
+
+
+
 	}
 
 
@@ -119,9 +127,9 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	public void setHealth(int health) {
 		this.health = health;
 	}
-	
+
 	public void render(Graphics g) {
-		
+
 		Animation animation;
 		switch (state) {
 		case STILL:
@@ -142,7 +150,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		}
 		g.drawAnimation(animation, getX(), getY());
 	}
-	
+
 	public void resize(float scale){
 		image.setFilter(Image.FILTER_NEAREST);
 		image = image.getScaledCopy(scale);
@@ -150,30 +158,57 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		openImg =  openImg.getScaledCopy(scale);
 		rightOpenImg =  rightOpenImg.getScaledCopy(scale);
 		rightStillImg = rightStillImg.getScaledCopy(scale);
+		laserBeam = laserBeam.getScaledCopy(scale);
 		resizeImages(mouthClose, scale);
 		resizeImages(mouthOpen, scale);
 
 	}
-	
+
 	public void resizeBeam(float scale){
 		laserBegin.setFilter(Image.FILTER_NEAREST);
 		laserBegin = laserBegin.getScaledCopy(scale);
 		laserBeam.setFilter(Image.FILTER_NEAREST);
 	}
-	
+
 	public void fireLaser(){
-		System.out.println("IMMA FIRIN MAH LAZOR");
-		
-		state = state.OPENMOUTH;
-		if ((System.currentTimeMillis() - time) > 500)
-			for (int i = 0; i <=20; i++)
-				new Projectile(getX(), getY(), laserBeam, 0, 20, Direction.LEFT );
-		state = state.CLOSEMOUTH;
-		if ((System.currentTimeMillis() - time) > 1500)
-			state = state.STILL;
+		if ((System.currentTimeMillis() - time) > cooldown) {
+			
+			
+			if (!openMouth.isStopped()){
+				System.out.println("opening mouth");
+				state = state.OPENMOUTH;
+			}
+			
+			
+			if (openMouth.isStopped()){
+				System.out.println("Mouth has been opened");
+				state = state.OPEN;
+				while(true){
+					
+					level.getProjectiles().add(new Projectile(x-64, y-64, laserBeam, 0, 5, direction));
+					if (System.currentTimeMillis() - time > 3000)
+						break;
+				}
+				System.out.println("Lasers ha been fired");
+			}
+			time = System.currentTimeMillis();
+			System.out.println("closing mouth");
+			if (!closeMouth.isStopped()){
+				System.out.println("closing moduth");
+				state=state.CLOSEMOUTH;
+			}
+
+		}
+		if (closeMouth.isStopped() && openMouth.isStopped()){
+			System.out.println("resetting animations");
+			closeMouth.restart();
+			openMouth.restart();
+			state=state.STILL;
+		}
+
 
 	}
-	
+
 
 	public void setHealth(float health) {
 		this.health = health;
@@ -183,12 +218,12 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	public void setY(float y){
 		this.y = y;
 	}
-	
+
 	public Image[] resizeImages(Image[] images, float scale){
 		for (int i = 0; i<images.length; i++){
 			images[i].setFilter(Image.FILTER_NEAREST);
 			images[i] = images[i].getScaledCopy(scale);
-		
+
 		}
 		return images;
 	}
@@ -196,7 +231,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	@Override
 	public void loseHealth() {
 		health--;
-		
+
 	}
 
 	@Override
@@ -210,22 +245,22 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	public boolean isHurt() {
 		// start flashing
 		// play "is hurt sound"
-		
+
 		return false;
 	}
 
 	public float getWalkingSpeed(){
 		return walkingspeed;
 	}
-	
+
 	public float getNextRightX() {
 		return x + getWalkingSpeed();
 	}
-	
+
 	public float getNextLeftX() {
 		return x - getWalkingSpeed(); 
 	}
-	
+
 	public float getNextY() {
 		return y + getWalkingSpeed();
 	}
@@ -233,18 +268,18 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	public void moveRight() {
 		setX(getX() + getWalkingSpeed());
 	}
-	
+
 	public void moveLeft() {
 		setX(getX() - getWalkingSpeed());
 	}
 
 	public void moveY() {
 		if (state == state.STILL)
-		setY(getY() + getWalkingSpeed());		
+			setY(getY() + getWalkingSpeed());		
 	}
 	public void movedownY() {
 		if (state == state.STILL)
-		setY(getY() - getWalkingSpeed());		
+			setY(getY() - getWalkingSpeed());		
 	}
 }
 
