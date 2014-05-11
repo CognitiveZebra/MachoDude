@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.entities.enemies;
+package se.chalmers.TDA367.group13.entities.enemies.boss1;
 
 
 
@@ -12,7 +12,6 @@ import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.entities.IDestructable;
 import se.chalmers.TDA367.group13.entities.IMoveable;
 import se.chalmers.TDA367.group13.entities.Projectile;
-import se.chalmers.TDA367.group13.entities.enemies.Enemy.State;
 import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.view.Level;
 
@@ -28,8 +27,9 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	private float health, walkingspeed, cooldown;
 
 
-
-	public Boss_1(float x, float y, Level level) throws SlickException{
+	
+	
+	public Boss_1(float x, float y) throws SlickException{
 		super(x, y, new Image("/res/Sprites/Bosses/1/boss_1_head.png"));
 		bossSheet = new XMLPackedSheet("/res/Sprites/Bosses/1/boss_1_sheet.png","/res/Sprites/Bosses/1/boss_1_sheet.xml");
 		this.health = 20;

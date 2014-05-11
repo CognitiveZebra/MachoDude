@@ -51,12 +51,12 @@ public class GameModel {
 
 		if (input.isKeyDown(Controls.getInstance().getLeftKey())) {
 			nextXPos.setX(player.getNextLeftX());
-			if (isLegal(level.getBlocks(), nextXPos)) {
+			if (isBlockCollision(level.getBlocks(), nextXPos)) {
 				player.moveLeft();
 			} 
 		} else if (input.isKeyDown(Controls.getInstance().getRightKey())) {
 			nextXPos.setX(player.getNextRightX());
-			if (isLegal(level.getBlocks(), nextXPos)) {
+			if (isBlockCollision(level.getBlocks(), nextXPos)) {
 
 				if (nextXPos.getCenterX() > (container.getWidth() / 2) && !(-level.getCamera().getX() > (level.getWidth() - container.getWidth()))) {
 					level.moveBlocks(player.getX() - nextXPos.getX());
@@ -78,7 +78,7 @@ public class GameModel {
 		Rectangle nextYPos = new Rectangle(player.getX(), player.getY(),
 				player.getWidth(), player.getHeight());
 		nextYPos.setY(player.getNextY());
-		if (isLegal(level.getBlocks(), nextYPos)) {
+		if (isBlockCollision(level.getBlocks(), nextYPos)) {
 			player.moveY();
 		} else if(collisionY > player.getY()){
  				player.setPlayerStill();
@@ -92,17 +92,17 @@ public class GameModel {
 		}
 		
 		player.moveWeapon();
-		
-		level.updateEnemies(player);
-		level.updateBoss(player);
-		
 		player.getWeapon().pointAt(input.getMouseX(),input.getMouseY(), player.getDirection());
+		
 		
 		if (input.isMouseButtonDown(Controls.getInstance().getShootKey()) || input.isKeyDown(Controls.getInstance().getShootKey())){
 			player.fireWeapon();
 		}
-
 		
+		level.updateEnemies(player);
+		level.updateBoss(player);
+		
+
 		
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
 		
@@ -111,7 +111,7 @@ public class GameModel {
 			if (victim != null) {
 				victim.loseHealth();
 				removed.add(projectile);
-			} else if(isLegal(level.getBlocks(), projectile)) {
+			} else if(isBlockCollision(level.getBlocks(), projectile)) {
 				projectile.update(delta);
 			} else {
 				removed.add(projectile);
@@ -136,7 +136,7 @@ public class GameModel {
 
 	}
 		
-	public boolean isLegal(LinkedList<Block> blocks, Rectangle hitbox) {
+	public boolean isBlockCollision(LinkedList<Block> blocks, Rectangle hitbox) {
 		for (Block b : blocks) {
 			if (hitbox.intersects(b)) {
 				collisionY = b.getY();

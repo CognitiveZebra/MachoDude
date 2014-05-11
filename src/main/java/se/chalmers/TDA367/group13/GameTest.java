@@ -6,13 +6,7 @@ import org.junit.Test;
 import org.newdawn.slick.SlickException;
 
 public class GameTest {
-
-	@Test
-	public void testGame() {
-		Game test = new Game();
-		assertTrue(test.getTitle() == "MachoDude");
-	}
-
+	
 	@Test
 	public void testRender() {
 		//No Rendering is done in Game
