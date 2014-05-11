@@ -31,10 +31,16 @@ public class TestWeapon extends Weapon {
 		}
 	}
 	
+	@Override 
+	public void render(Graphics g, Direction d){
+		if (isReady()) {
+			super.render(g, d);
+		}
+	}
 	
 	@Override
 	public void render(Graphics g, Color c){
-		if ((System.currentTimeMillis()-time) > cooldown) {
+		if (isReady()) {
 			super.render(g, c);
 		}
 	}
