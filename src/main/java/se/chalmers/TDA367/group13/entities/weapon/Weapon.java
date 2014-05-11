@@ -21,9 +21,9 @@ public abstract class Weapon extends Entity {
 	private float angle;
 	protected float speed;
 	private Image rightImage, leftImage, projectileImage;
-	private Vector2f shoulder, nuzzle;
-	private Line distanceToNuzzle;
-	private double nuzzleAngle;
+	protected Vector2f shoulder, nuzzle;
+	protected Line distanceToNuzzle;
+	protected double nuzzleAngle;
 	protected Sound firingSound;
 
 	public Weapon(float x, float y, Image rightImage, Image leftImage, Image projectileImage, String name, float damage){
@@ -35,19 +35,6 @@ public abstract class Weapon extends Entity {
 		this.damage = damage;
 	}
 	
-	public Weapon(float x, float y, Vector2f shoulder, Vector2f nuzzle, Image rightImage, Image leftImage, Image projectileImage, String name, float damage){
-		super(x, y, rightImage);
-		this.rightImage = rightImage;
-		this.leftImage = leftImage;
-		this.projectileImage = projectileImage;
-		this.name = name;
-		this.damage = damage;
-		this.shoulder = shoulder;
-		this.nuzzle = nuzzle;
-		distanceToNuzzle = new Line(nuzzle, shoulder);
-		nuzzleAngle = Math.atan2(distanceToNuzzle.getX1() - distanceToNuzzle.getX2(), distanceToNuzzle.getY1() - distanceToNuzzle.getY2());
-	}
-
 
 	public String getName() {
 		return name;
