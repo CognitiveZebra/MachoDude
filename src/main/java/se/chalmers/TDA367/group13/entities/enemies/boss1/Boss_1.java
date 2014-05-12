@@ -25,7 +25,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	private Image laserBegin, laserBeam, rightLaserBegin,stillImg, openImg, rightStillImg, rightOpenImg;
 	private Image[] mouthOpen, mouthClose, rightMouthOpen, rightMouthClose;
 	private Animation openMouth, closeMouth, rightOpenMouth, rightCloseMouth,  still, open, rightOpen, rightStill;
-	private float health, walkingspeed, cooldown;
+	private float health, walkingspeed, cooldown, maxHealth;
 
 
 	
@@ -34,6 +34,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		super(x, y, new Image("/res/Sprites/Bosses/1/boss_1_head.png"));
 		bossSheet = new XMLPackedSheet("/res/Sprites/Bosses/1/boss_1_sheet.png","/res/Sprites/Bosses/1/boss_1_sheet.xml");
 		this.health = 20;
+		maxHealth = 20;
 		this.walkingspeed = 3;
 		time = System.currentTimeMillis();
 		direction = Direction.LEFT;
@@ -236,9 +237,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 
 	@Override
 	public boolean isDestroyed() {
-		// explode
-		// play death sound
-		return false;
+		return health <= 0;
 	}
 
 	@Override
@@ -246,7 +245,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		// start flashing
 		// play "is hurt sound"
 
-		return false;
+		return health < maxHealth;
 	}
 
 	public float getWalkingSpeed(){
