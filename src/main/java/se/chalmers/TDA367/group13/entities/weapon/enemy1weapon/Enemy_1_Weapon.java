@@ -31,11 +31,11 @@ public class Enemy_1_Weapon extends Weapon {
 				firingSound.play();
 				time = System.currentTimeMillis();
 
-				return new Enemy1Projectile(getProjectileX(direction),getProjectileY(direction),getProjectileImage().copy().getFlippedCopy(true, false), getAngle(), speed, direction);
+				return new Enemy1Projectile(getProjectileX(direction),getProjectileY(direction), getAngle(), direction);
 		} else {
 				firingSound.play();
 				time = System.currentTimeMillis();
-				return new Enemy1Projectile(getProjectileX(direction),getProjectileY(direction),getProjectileImage().copy(), getAngle(), speed, direction);
+				return new Enemy1Projectile(getProjectileX(direction),getProjectileY(direction), getAngle(), direction);
 		}
 	}
 	

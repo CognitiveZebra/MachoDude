@@ -29,12 +29,12 @@ public class Enemy_2_Weapon extends Weapon {
 		if (direction == Direction.RIGHT) {
 			if ((System.currentTimeMillis() - time) > cooldown) {
 				time = System.currentTimeMillis();
-				return new FireProjectile(getProjectileX(direction),getProjectileY(direction),getProjectileImage().copy().getFlippedCopy(true, false), getAngle(), speed, direction);
+				return new FireProjectile(getProjectileX(direction),getProjectileY(direction), getAngle(), direction);
 			}
 		} else if (direction == Direction.LEFT) {
 			if ((System.currentTimeMillis() - time) > cooldown) {
 				time = System.currentTimeMillis();
-				return new FireProjectile(getProjectileX(direction),getProjectileY(direction),getProjectileImage().copy(), getAngle(), speed, direction);
+				return new FireProjectile(getProjectileX(direction),getProjectileY(direction), getAngle(), direction);
 			}
 		}
 		

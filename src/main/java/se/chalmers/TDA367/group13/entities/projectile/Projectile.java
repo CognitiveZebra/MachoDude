@@ -44,4 +44,5 @@ public abstract class Projectile extends Entity {
 	public float getDamage(){
 		return damage;
 	}
+	
 }
