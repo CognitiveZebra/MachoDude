@@ -59,6 +59,9 @@ public class SettingsItem extends MenuItem{
 		g.setColor(Color.white);
 		g.setFont(Util.getFont32());
 		g.drawString(title, getX() - 200, getY() + getHeight() / 2 - g.getFont().getHeight(title)/2);
+		if (Controls.getInstance().isDuplicate(title, control)) {
+			g.setColor(Color.red);
+		}
 		g.drawString(controlText, getX() + getWidth() / 2 - g.getFont().getWidth(controlText)/2, getY() + getHeight() / 2 - g.getFont().getHeight(controlText)/2);
 	}
 	

@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import org.newdawn.slick.Input;
@@ -119,5 +120,34 @@ public class Controls {
 
 	public  void setShootKey(int shootKey) {
 		this.shootKey = shootKey;
+	}
+
+	public boolean isDuplicate(String title, int control) {
+		LinkedList<Integer> controls = new LinkedList<Integer>();
+		switch (title) {
+			case "RIGHT":
+				controls.add(leftKey);
+				controls.add(jumpKey);
+				controls.add(shootKey);
+				break;
+			case "LEFT":
+				controls.add(rightKey);
+				controls.add(jumpKey);
+				controls.add(shootKey);
+				break;
+			case "JUMP":
+				controls.add(leftKey);
+				controls.add(rightKey);
+				controls.add(shootKey);
+				break;
+			case "SHOOT":
+				controls.add(leftKey);
+				controls.add(jumpKey);
+				controls.add(rightKey);
+				break;
+		default:
+			break;
+		}
+		return controls.contains(control);
 	}
 }
