@@ -11,6 +11,7 @@ import org.newdawn.slick.XMLPackedSheet;
 import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.entities.IDestructable;
 import se.chalmers.TDA367.group13.entities.IMoveable;
+import se.chalmers.TDA367.group13.entities.projectile.Boss1Projectile;
 import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.level.Level;
 import se.chalmers.TDA367.group13.util.Direction;
@@ -184,7 +185,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 				state = state.OPEN;
 				while(true){
 					
-					level.getProjectiles().add(new Projectile(x-64, y-64, laserBeam, 0, 5, direction));
+					level.getProjectiles().add(new Boss1Projectile(x-64, y-64, laserBeam, 0, 5, direction));
 					if (System.currentTimeMillis() - time > 3000)
 						break;
 				}
