@@ -24,11 +24,11 @@ public class PlayerWeapon extends Weapon {
 		if (direction == Direction.RIGHT) {
 				firingSound.play();
 				time = System.currentTimeMillis();
-				return new PlayerProjectile(x, y, getProjectileImage().copy().getFlippedCopy(true, false), getAngle(), 10, direction);
+				return new PlayerProjectile(x, y, getAngle(), direction);
 		} else {
 				firingSound.play();
 				time = System.currentTimeMillis();
-				return new PlayerProjectile(x, y, getProjectileImage().copy(), getAngle(), 10, direction);
+				return new PlayerProjectile(x, y, getAngle(), direction);
 		}
 	}
 	
