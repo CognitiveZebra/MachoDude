@@ -17,14 +17,14 @@ import se.chalmers.TDA367.group13.factory.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
 import se.chalmers.TDA367.group13.view.GameOverView;
-import se.chalmers.TDA367.group13.view.Menu;
+import se.chalmers.TDA367.group13.view.MenuView;
 import se.chalmers.TDA367.group13.view.MenuItem;
 
 public class GameOverState extends AbstractMachoDudeState {
 
 	public static final int ID = 1337;
 	private Image itemImage;
-	private Menu menu;
+	private MenuView menu;
 	private GameOverView view;
 	private Point mouse;
 
@@ -98,7 +98,7 @@ public class GameOverState extends AbstractMachoDudeState {
 			LinkedList<MenuItem> items = new LinkedList<MenuItem>();
 			items.add(mainButton);
 			items.add(quitButton);
-			menu = new Menu(items);
+			menu = new MenuView(items);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}

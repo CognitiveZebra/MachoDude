@@ -12,13 +12,13 @@ import org.newdawn.slick.particles.ConfigurableEmitter;
 import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.TDA367.group13.view.Menu;
+import se.chalmers.TDA367.group13.view.MenuView;
 import se.chalmers.TDA367.group13.view.MenuItem;
 
 public class MenuState extends AbstractMachoDudeState {
 	public static final int ID = 2;
 	private Image itemImage, settingsImage;
-	private Menu menu;
+	private MenuView menu;
 	private Point mouse;
 
 
@@ -96,7 +96,7 @@ public class MenuState extends AbstractMachoDudeState {
 			items.add(quitButton);
 			items.add(settingsButton);
 
-			menu = new Menu(items);
+			menu = new MenuView(items);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}

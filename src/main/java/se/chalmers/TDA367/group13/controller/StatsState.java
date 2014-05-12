@@ -12,7 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
-import se.chalmers.TDA367.group13.view.Menu;
+import se.chalmers.TDA367.group13.view.MenuView;
 import se.chalmers.TDA367.group13.view.MenuItem;
 import se.chalmers.TDA367.group13.view.StatsView;
 
@@ -20,7 +20,7 @@ public class StatsState extends AbstractMachoDudeState {
 
 	public static final int ID = 42;
 	private Image itemImage;
-	private Menu menu;
+	private MenuView menu;
 	private Point mouse;
 	private StatsView view;
 
@@ -101,7 +101,7 @@ public class StatsState extends AbstractMachoDudeState {
 			LinkedList<MenuItem> items = new LinkedList<MenuItem>();
 			items.add(mainButton);
 			items.add(resetButton);
-			menu = new Menu(items);
+			menu = new MenuView(items);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}

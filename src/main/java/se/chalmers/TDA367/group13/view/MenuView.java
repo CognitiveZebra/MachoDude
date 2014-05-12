@@ -8,11 +8,11 @@ import java.util.ListIterator;
 import org.newdawn.slick.Graphics;
 
 
-public class Menu {
+public class MenuView {
 	private LinkedList<MenuItem> menuItems;
 	private MenuItem selected;
 	
-	public Menu(LinkedList<MenuItem> menuItems){
+	public MenuView(LinkedList<MenuItem> menuItems){
 			this.menuItems = menuItems;
 			selected = menuItems.getFirst();
 
