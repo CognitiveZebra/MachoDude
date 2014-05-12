@@ -178,6 +178,17 @@ public class Stats {
 	public void incrementDamageTaken(){
 		damageTaken++;
 	}
-
+	
+	public String[] getStatsAsStrings(){
+		String[] arr  = new String[6];
+		arr[0] = "Stats";
+		arr[1] = "Highscore: " + highscore;
+		arr[2] = "Deaths: " + deaths;
+		arr[3] = "Enemies killed: " + enemiesKilled; 
+		arr[4] = "Damage taken: " + damageTaken;
+		arr[5] = "Time played:\n" + getTimePlayedAsString();
+		return arr;
+	}
+	
 	
 }
