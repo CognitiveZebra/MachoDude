@@ -1,6 +1,5 @@
 package se.chalmers.TDA367.group13.controller;
 
-import java.io.IOException;
 import java.util.LinkedList;
 
 import org.newdawn.slick.GameContainer;
@@ -9,59 +8,43 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
-import org.newdawn.slick.particles.ConfigurableEmitter;
-import org.newdawn.slick.particles.ParticleSystem;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.TDA367.group13.factory.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
 import se.chalmers.TDA367.group13.view.Menu;
 import se.chalmers.TDA367.group13.view.MenuItem;
+import se.chalmers.TDA367.group13.view.StatsView;
 
-public class StatsState extends BasicGameState {
+public class StatsState extends AbstractMachoDudeState {
 
 	public static final int ID = 42;
-	private Image itemImage, background;
+	private Image itemImage;
 	private Menu menu;
-	private GameContainer gc;
-	private Input input;
-	private ParticleSystem ps;
 	private Point mouse;
+	private StatsView view;
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		this.gc = container;
-		background = new Image("res/Backgrounds/Jungle_Test.gif");
+		super.init(container, game);
 		initMenu();
-		input = container.getInput();
-		ps = new ParticleSystem(new Image("res/Particles/particle_rain.png"),
-				2000);
-		ConfigurableEmitter rainEmitter;
-		rainEmitter = ParticleFactory.createEmitter("rain");
-		ps.addEmitter(rainEmitter);
-
+		view = new StatsView();
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-
-		g.drawImage(background, 0, 0);
-		ps.render();
+		super.render(container, game, g);
 		menu.render(g);
-		g.setFont(Util.getFont32());
-		String stats = Stats.getInstance().getStatsString();
-		g.drawString(stats,
-				gc.getWidth() / 2 - g.getFont().getWidth(stats) / 2, 200);
+		view.render(g);
 
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
+		super.update(container, game, delta);
 		mouse = new Point(input.getMouseX(), input.getMouseY());
 		boolean isMousePressed = input.isMousePressed(Input.MOUSE_LEFT_BUTTON);
 
@@ -97,8 +80,6 @@ public class StatsState extends BasicGameState {
 
 			}
 		}
-
-		ps.update(delta);
 	}
 
 	@Override

@@ -60,7 +60,7 @@ public class Stats {
 		damageTaken = 0;
 	}
 
-	public String getStatsString() {
+	public String getTimePlayedAsString() {
 		long time = timePlayed;
 		long timeSecond = 1000;
 		long timeMinute = timeSecond*60;
@@ -78,10 +78,7 @@ public class Stats {
 		
 		long seconds = time / timeSecond;
 
-		String timeString = String.format("Days %d, Hours %d, Minutes %d, Seconds %d", days, hours, minutes, seconds);
-		return String.format(
-				"Highscore: %d\nEnemies killed: %d\nTime Played: %s\nDeath count: %d\nDamage Taken: %d",
-				highscore, enemiesKilled, timeString, deaths, damageTaken);
+		return String.format("%d Days\n%d Hours\n%d Minutes\n%d Seconds", days, hours, minutes, seconds);
 	}
 
 	public void saveStats() {
@@ -181,6 +178,6 @@ public class Stats {
 	public void incrementDamageTaken(){
 		damageTaken++;
 	}
-	
+
 	
 }

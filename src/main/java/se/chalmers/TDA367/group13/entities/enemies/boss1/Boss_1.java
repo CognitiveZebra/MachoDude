@@ -18,7 +18,7 @@ import se.chalmers.TDA367.group13.view.Level;
 public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	private XMLPackedSheet bossSheet;
 	private Direction direction;
-	private State state;
+	private State state;	
 	private long time;
 	private Level level;
 	private Image laserBegin, laserBeam, rightLaserBegin,stillImg, openImg, rightStillImg, rightOpenImg;
@@ -39,7 +39,6 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		state = State.STILL;
 		cooldown = 5000;
 		this.level = level;
-
 		initAnimations();
 	}
 
