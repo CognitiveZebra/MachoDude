@@ -7,8 +7,8 @@ import org.newdawn.slick.geom.Vector2f;
 
 import se.chalmers.TDA367.group13.entities.Projectile;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
+import se.chalmers.TDA367.group13.level.Level;
 import se.chalmers.TDA367.group13.util.Direction;
-import se.chalmers.TDA367.group13.view.Level;
 
 public class Enemy_2_Weapon extends Weapon {
 

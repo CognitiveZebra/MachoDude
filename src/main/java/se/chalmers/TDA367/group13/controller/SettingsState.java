@@ -14,7 +14,7 @@ import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.TDA367.group13.factory.ParticleFactory;
+import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.view.MenuItem;
 import se.chalmers.TDA367.group13.view.SettingsItem;

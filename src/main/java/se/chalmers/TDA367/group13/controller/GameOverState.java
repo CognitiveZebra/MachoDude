@@ -13,7 +13,7 @@ import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.TDA367.group13.factory.ParticleFactory;
+import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
 import se.chalmers.TDA367.group13.view.GameOverView;

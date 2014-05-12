@@ -12,8 +12,8 @@ import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.entities.IDestructable;
 import se.chalmers.TDA367.group13.entities.IMoveable;
 import se.chalmers.TDA367.group13.entities.Projectile;
+import se.chalmers.TDA367.group13.level.Level;
 import se.chalmers.TDA367.group13.util.Direction;
-import se.chalmers.TDA367.group13.view.Level;
 
 public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	private XMLPackedSheet bossSheet;

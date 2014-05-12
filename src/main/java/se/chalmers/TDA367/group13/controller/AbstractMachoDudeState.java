@@ -11,7 +11,7 @@ import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.TDA367.group13.factory.ParticleFactory;
+import se.chalmers.TDA367.group13.particles.ParticleFactory;
 
 public abstract class AbstractMachoDudeState extends BasicGameState {
 	protected Point mouse;

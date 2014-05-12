@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.view;
+package se.chalmers.TDA367.group13.level;
 
 import java.util.LinkedList;
 
@@ -20,7 +20,7 @@ import se.chalmers.TDA367.group13.entities.enemies.Enemy;
 import se.chalmers.TDA367.group13.entities.enemies.boss1.Boss_1;
 import se.chalmers.TDA367.group13.entities.enemies.enemy1.Enemy_1;
 import se.chalmers.TDA367.group13.entities.player.Player;
-import se.chalmers.TDA367.group13.factory.ParticleFactory;
+import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Camera;
 import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.util.Direction;

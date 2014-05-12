@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.newdawn.slick.Input;
 
 import se.chalmers.TDA367.group13.entities.player.Player;
-import se.chalmers.TDA367.group13.view.Level_1;
+import se.chalmers.TDA367.group13.level.Level_1;
 
 public class GameModelTest {
 

@@ -11,8 +11,8 @@ import se.chalmers.TDA367.group13.entities.enemies.EnemyStill;
 import se.chalmers.TDA367.group13.entities.enemies.EnemyWalking;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
 import se.chalmers.TDA367.group13.entities.weapon.enemy1weapon.Enemy_1_Weapon;
+import se.chalmers.TDA367.group13.level.Level;
 import se.chalmers.TDA367.group13.util.Direction;
-import se.chalmers.TDA367.group13.view.Level;
 
 public class Enemy_2 extends Enemy {
 	

@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.view;
+package se.chalmers.TDA367.group13.level;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Music;

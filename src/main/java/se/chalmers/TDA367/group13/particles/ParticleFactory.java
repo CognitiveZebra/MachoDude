@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.factory;
+package se.chalmers.TDA367.group13.particles;
 
 import java.io.IOException;
 

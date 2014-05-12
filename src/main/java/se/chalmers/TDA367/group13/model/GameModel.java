@@ -15,11 +15,11 @@ import se.chalmers.TDA367.group13.entities.Projectile;
 import se.chalmers.TDA367.group13.entities.enemies.Enemy;
 import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.exception.GameOverException;
-import se.chalmers.TDA367.group13.factory.ParticleFactory;
+import se.chalmers.TDA367.group13.level.Level;
+import se.chalmers.TDA367.group13.level.Level_1;
+import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.util.Stats;
-import se.chalmers.TDA367.group13.view.Level;
-import se.chalmers.TDA367.group13.view.Level_1;
 
 public class GameModel {
 
