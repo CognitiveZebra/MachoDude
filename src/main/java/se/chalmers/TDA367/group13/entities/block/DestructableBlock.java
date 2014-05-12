@@ -1,6 +1,8 @@
-package se.chalmers.TDA367.group13.entities;
+package se.chalmers.TDA367.group13.entities.block;
 
 import org.newdawn.slick.Image;
+
+import se.chalmers.TDA367.group13.entities.IDestructable;
 
 public class DestructableBlock extends Block implements IDestructable {
 	private float health;

@@ -19,14 +19,14 @@ public class StatsView {
 		initItems(Stats.getInstance().getStatsAsStrings());
 	}
 	
-	private void initItems(String[] arr) {
+	private void initItems(LinkedList<String> list) {
 		
 		float width = 350;
 		float middleX = Game.WIDTH/2 - width/2;
 		
 		float heightY = 30;
 		
-		for(String stat : arr){
+		for(String stat : list){
 			items.add(new TextItem(stat, middleX, heightY, width, font32.getHeight(stat) + 20));
 			heightY += font32.getHeight(stat) + 30;
 		}

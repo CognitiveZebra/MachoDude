@@ -16,14 +16,14 @@ public class GameOverView {
 	private LinkedList<TextItem> items = new LinkedList<>();
 	
 	public GameOverView(){
-		String[] arr = new String[3];
-		arr[0] = "GAME OVER";
-		arr[1] = "Your score: " + Stats.getInstance().getScore();
-		arr[2] = "Your Highscore: " + Stats.getInstance().getHighscore();
-		initItems(arr);
+		LinkedList<String> list = new LinkedList<String>();
+		list.add("GAME OVER");
+		list.add("Your score: " + Stats.getInstance().getScore());
+		list.add("Your Highscore: " + Stats.getInstance().getHighscore());
+		initItems(list);
 	}
 	
-	private void initItems(String[] arr) {
+	private void initItems(LinkedList<String> list) {
 		Stats stats = Stats.getInstance();
 
 		float width = 350;
@@ -31,7 +31,7 @@ public class GameOverView {
 		
 		float heightY = 200;
 		
-		for(String stat : arr){
+		for(String stat : list){
 			items.add(new TextItem(stat, middleX, heightY, width, font32.getHeight(stat) + 20));
 			heightY += font32.getHeight(stat) + 30;
 		}

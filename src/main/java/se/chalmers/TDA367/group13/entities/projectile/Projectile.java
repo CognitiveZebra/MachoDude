@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.entities;
+package se.chalmers.TDA367.group13.entities.projectile;
 
 
 import org.newdawn.slick.Graphics;
@@ -7,6 +7,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 import org.newdawn.slick.particles.ParticleSystem;
 
+import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Direction;
 

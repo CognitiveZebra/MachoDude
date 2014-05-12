@@ -14,12 +14,12 @@ import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.tiled.TiledMap;
 
 import se.chalmers.TDA367.group13.Game;
-import se.chalmers.TDA367.group13.entities.Block;
-import se.chalmers.TDA367.group13.entities.Projectile;
+import se.chalmers.TDA367.group13.entities.block.Block;
 import se.chalmers.TDA367.group13.entities.enemies.Enemy;
 import se.chalmers.TDA367.group13.entities.enemies.boss1.Boss_1;
 import se.chalmers.TDA367.group13.entities.enemies.enemy1.Enemy_1;
 import se.chalmers.TDA367.group13.entities.player.Player;
+import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Camera;
 import se.chalmers.TDA367.group13.util.Controls;

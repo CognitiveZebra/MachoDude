@@ -12,11 +12,11 @@ import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Point;
 
 import se.chalmers.TDA367.group13.Game;
-import se.chalmers.TDA367.group13.entities.Block;
 import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.entities.IMoveable;
 import se.chalmers.TDA367.group13.entities.MoveableEntity;
-import se.chalmers.TDA367.group13.entities.Projectile;
+import se.chalmers.TDA367.group13.entities.block.Block;
+import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
 import se.chalmers.TDA367.group13.entities.weapon.playerweapon.TestWeapon;
 import se.chalmers.TDA367.group13.util.Direction;

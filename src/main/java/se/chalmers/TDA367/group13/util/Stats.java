@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Stats {
@@ -179,15 +180,15 @@ public class Stats {
 		damageTaken++;
 	}
 	
-	public String[] getStatsAsStrings(){
-		String[] arr  = new String[6];
-		arr[0] = "Stats";
-		arr[1] = "Highscore: " + highscore;
-		arr[2] = "Deaths: " + deaths;
-		arr[3] = "Enemies killed: " + enemiesKilled; 
-		arr[4] = "Damage taken: " + damageTaken;
-		arr[5] = "Time played:\n" + getTimePlayedAsString();
-		return arr;
+	public LinkedList<String> getStatsAsStrings(){
+		LinkedList<String> list = new LinkedList<>();
+		list.add("Stats");
+		list.add("Highscore: " + highscore);
+		list.add("Deaths: " + deaths);
+		list.add("Enemies killed: " + enemiesKilled); 
+		list.add("Damage taken: " + damageTaken);
+		list.add("Time played:\n" + getTimePlayedAsString());
+		return list;
 	}
 	
 	

@@ -10,10 +10,10 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 import org.newdawn.slick.particles.ParticleSystem;
 
-import se.chalmers.TDA367.group13.entities.Block;
-import se.chalmers.TDA367.group13.entities.Projectile;
+import se.chalmers.TDA367.group13.entities.block.Block;
 import se.chalmers.TDA367.group13.entities.enemies.Enemy;
 import se.chalmers.TDA367.group13.entities.player.Player;
+import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.exception.GameOverException;
 import se.chalmers.TDA367.group13.level.Level;
 import se.chalmers.TDA367.group13.level.Level_1;

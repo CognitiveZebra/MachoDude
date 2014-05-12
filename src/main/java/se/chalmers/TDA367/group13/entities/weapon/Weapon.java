@@ -10,7 +10,7 @@ import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Vector2f;
 
 import se.chalmers.TDA367.group13.entities.Entity;
-import se.chalmers.TDA367.group13.entities.Projectile;
+import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public abstract class Weapon extends Entity {
