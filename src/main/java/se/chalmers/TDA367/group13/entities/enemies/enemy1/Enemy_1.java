@@ -5,6 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
+import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Point;
 
 import se.chalmers.TDA367.group13.entities.enemies.Enemy;
@@ -26,6 +27,7 @@ public class Enemy_1 extends Enemy{
 		rightShoulder = new Point(6, 13);
 		leftShoulder = new Point(11, 13);
 		weapon = new Enemy_1_Weapon(x, y);
+		aggroRange = new Circle(getCenterX(), getCenterY(), 250);
 		maxHealth = 5;
 		health = maxHealth;
 		scoreValue = 5;

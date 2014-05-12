@@ -228,7 +228,8 @@ public class Level {
 						e.setState(e.getStillState());
 					}
 				}
-				if (Math.abs((e.getCenterX() - player.getCenterX())) < 250) {
+				e.updateAggroRange();
+				if (e.getAggroRange().intersects(player)) {
 					if (e.getCenterX() < player.getCenterX()) {
 						e.setDirection(Direction.RIGHT);
 					} else {

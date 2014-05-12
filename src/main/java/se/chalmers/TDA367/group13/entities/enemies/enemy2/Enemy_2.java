@@ -1,20 +1,16 @@
 package se.chalmers.TDA367.group13.entities.enemies.enemy2;
 
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
+import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Point;
 
 import se.chalmers.TDA367.group13.entities.enemies.Enemy;
 import se.chalmers.TDA367.group13.entities.enemies.EnemyStill;
 import se.chalmers.TDA367.group13.entities.enemies.EnemyWalking;
-import se.chalmers.TDA367.group13.entities.weapon.Weapon;
-import se.chalmers.TDA367.group13.entities.weapon.enemy1weapon.Enemy_1_Weapon;
 import se.chalmers.TDA367.group13.entities.weapon.enemy2weapon.Enemy_2_Weapon;
-import se.chalmers.TDA367.group13.level.Level;
-import se.chalmers.TDA367.group13.util.Direction;
 
 public class Enemy_2 extends Enemy {
 	
@@ -27,6 +23,7 @@ public class Enemy_2 extends Enemy {
 		rightShoulder = new Point(6, 13);
 		leftShoulder = new Point(11, 13);
 		weapon = new Enemy_2_Weapon(x, y);
+		aggroRange = new Circle(getCenterX(), getCenterY(), 300);
 		maxHealth = 8;
 		health = maxHealth;
 		scoreValue = 5;

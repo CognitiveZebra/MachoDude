@@ -6,14 +6,13 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.XMLPackedSheet;
+import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Point;
 
 import se.chalmers.TDA367.group13.entities.AbstractMoveableEntityState;
 import se.chalmers.TDA367.group13.entities.IDestructable;
-import se.chalmers.TDA367.group13.entities.IMoveable;
 import se.chalmers.TDA367.group13.entities.MoveableEntity;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
-import se.chalmers.TDA367.group13.util.Constants;
 import se.chalmers.TDA367.group13.util.Direction;
 
 
@@ -22,6 +21,7 @@ public abstract class Enemy extends MoveableEntity implements IDestructable {
 	protected XMLPackedSheet enemySheet;
 	protected Weapon weapon;
 	protected int health, maxHealth;
+	protected Circle aggroRange;
 	private HealthBarEnemy healthbar = new HealthBarEnemy();
 	protected int scoreValue = 1;
 	protected Animation stillLeft, stillRight, walkLeft, walkRight;
@@ -101,6 +101,15 @@ public abstract class Enemy extends MoveableEntity implements IDestructable {
 	
 	public int getValue(){
 		return scoreValue;
+	}
+	
+	public Circle getAggroRange() {
+		return aggroRange;
+	}
+
+	public void updateAggroRange() {
+		aggroRange.setCenterX(getCenterX());
+		aggroRange.setCenterY(getCenterY());
 	}
 
 
