@@ -35,6 +35,7 @@ public class Player extends MoveableEntity {
 	private AbstractPlayerState playerJumping, playerStill, playerWalking;
 	private Sound jumpSound;
 	private LinkedList<Projectile> projectiles;
+	public final static int scale = 2;
 
 
 
@@ -77,7 +78,7 @@ public class Player extends MoveableEntity {
 		jumpingLeft = new Image[]{playerSheet.getSprite("jump.png")};
 		jumpingRight =new Image[]{playerSheet.getSprite("jump.png").getFlippedCopy(true, false)};
 	
-		resize(2);	
+		resize(scale);	
 		int animationSpeed = 200;
 		
 		playerStill.setAnimation(new Animation(standLeft,animationSpeed), Direction.LEFT);

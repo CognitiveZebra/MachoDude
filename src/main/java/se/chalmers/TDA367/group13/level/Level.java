@@ -41,6 +41,7 @@ public class Level {
 	private LinkedList<Projectile> projectiles;
 	private ParticleSystem weather; 
 	private ConfigurableEmitter rain;
+	private int delta;
 
 	public Level(Camera camera, TiledMap map, Image background, Music music)
 			throws SlickException {
@@ -101,7 +102,7 @@ public class Level {
 
 		boss.render(g);
 		for (Projectile projectile : projectiles) {
-			g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY());
+			projectile.render(g);
 		}
 		
 		g.setColor(Color.white);
@@ -175,7 +176,8 @@ public class Level {
 		}
 	}
 
-	public void updateEnemies(Player player) {
+	public void updateEnemies(Player player, int delta) {
+		this.delta = delta;
 		LinkedList<Enemy> dead = new LinkedList<Enemy>();
 		for (Enemy e : enemies) {
 			if(e.getX() < Game.WIDTH) {
@@ -255,7 +257,7 @@ public class Level {
 					player.loseHealth(projectile.getDamage());
 					removed.add(projectile);
 				} else if (isLegal(projectile)) {
-					projectile.update();
+					projectile.update(delta);
 				} else {
 					removed.add(projectile);
 				}

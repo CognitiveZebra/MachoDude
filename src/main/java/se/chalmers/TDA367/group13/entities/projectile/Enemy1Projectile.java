@@ -2,6 +2,7 @@ package se.chalmers.TDA367.group13.entities.projectile;
 
 import org.newdawn.slick.Image;
 
+import se.chalmers.TDA367.group13.entities.enemies.enemy1.Enemy_1;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public class Enemy1Projectile extends Projectile {

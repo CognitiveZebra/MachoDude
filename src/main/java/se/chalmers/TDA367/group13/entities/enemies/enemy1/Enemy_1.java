@@ -19,7 +19,7 @@ import se.chalmers.TDA367.group13.util.Direction;
 public class Enemy_1 extends Enemy{
 
 	private Image[] right, left, standLeft, standRight;
-	private final static int scale = 2;
+	public final static int scale = 2;
 
 	public Enemy_1(float x, float y) throws SlickException {
 		super(x, y, "res/Sprites/Enemies/Enemy_1/Enemy_1.png", "res/Sprites/Enemies/Enemy_1/sheet.xml", scale);

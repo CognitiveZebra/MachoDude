@@ -5,6 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 import org.newdawn.slick.particles.ParticleSystem;
 
+import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Direction;
 
