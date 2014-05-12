@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.entities.block;
+package se.chalmers.TDA367.Group13.blocktests;
 
 import static org.junit.Assert.*;
 

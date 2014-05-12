@@ -1,16 +1,28 @@
-package se.chalmers.TDA367.group13.controller;
+package se.chalmers.TDA367.Group13.stateTests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class StatsStateTest {
+import se.chalmers.TDA367.group13.controller.SettingsState;
 
-	StatsState test = new StatsState();
+public class SettingsStateTest {
+
+	SettingsState test = new SettingsState();
 	
 	@Test
 	public void testGetID() {
 		assertTrue(test.getID() == 42);
+	}
+
+	@Test
+	public void testKeyPressed() {
+		//TODO: Find out a good way to test voidmethods/Slickmethods
+	}
+
+	@Test
+	public void testMousePressed() {
+		//TODO: Find out a good way to test voidmethods/Slickmethods
 	}
 
 	@Test
@@ -29,7 +41,7 @@ public class StatsStateTest {
 	}
 
 	@Test
-	public void testInitMenu() {
+	public void testInitSettings() {
 		//TODO: Find out a good way to test voidmethods/Slickmethods
 	}
 
