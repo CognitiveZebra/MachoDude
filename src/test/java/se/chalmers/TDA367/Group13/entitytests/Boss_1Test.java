@@ -100,27 +100,27 @@ public class Boss_1Test {
 
 	@Test
 	public void testGetNextLeftX() {
-		fail("Not yet implemented");
+		assertTrue(test.getNextLeftX() == test.getX()-3);
 	}
 
-	@Test
-	public void testGetNextY() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMoveRight() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMoveLeft() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMoveY() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testGetNextY() {
+//		
+//	}
+//
+//	@Test
+//	public void testMoveRight() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	public void testMoveLeft() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	public void testMoveY() {
+//		fail("Not yet implemented");
+//	}
 
 }
