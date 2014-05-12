@@ -58,6 +58,11 @@
     <property name="enemy" value="1"/>
    </properties>
   </tile>
+  <tile id="1">
+   <properties>
+    <property name="enemy" value="2"/>
+   </properties>
+  </tile>
   <tile id="4">
    <properties>
     <property name="enemy" value="boss"/>
@@ -71,7 +76,7 @@
  </layer>
  <layer name="enemies" width="181" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3ZIQ4AMAgDQPTE/v9cfjBFMgh3uoJUNSECAAAAAAB4OUUZAABgLpsfgC3u7wMAAAAAgPb8zurpFICJEtQr2Gi0RgAA
+   H4sIAAAAAAAAC+3ZMQoAIAgFUOeC7n/cbhANUaTvzQ4fcVCMAAAAAAAAVtqhGgAAyKq/DnCBnR+AKsbrAACkVOFuJAezCgAAe/zOztNTAH40AfEx7hW0RgAA
   </data>
  </layer>
 </map>
