@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.entities.enemies.enemy2;
+package se.chalmers.TDA367.Group13.entitytests;
 
 import static org.junit.Assert.*;
 

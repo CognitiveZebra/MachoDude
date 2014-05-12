@@ -1,9 +1,11 @@
-package se.chalmers.TDA367.group13.entities.enemies.boss1;
+package se.chalmers.TDA367.Group13.entitytests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.newdawn.slick.SlickException;
+
+import se.chalmers.TDA367.group13.entities.enemies.boss1.Boss_1;
 
 public class Boss_1Test {
 

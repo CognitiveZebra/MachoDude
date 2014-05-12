@@ -1,9 +1,11 @@
-package se.chalmers.TDA367.group13.entities.enemies;
+package se.chalmers.TDA367.Group13.entitytests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.newdawn.slick.Color;
+
+import se.chalmers.TDA367.group13.entities.enemies.HealthBarEnemy;
 
 public class HealthBarEnemyTest {
 

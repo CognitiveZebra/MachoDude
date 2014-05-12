@@ -1,8 +1,10 @@
-package se.chalmers.TDA367.group13.controller;
+package se.chalmers.TDA367.Group13.stateTests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import se.chalmers.TDA367.group13.controller.QuitState;
 
 public class QuitStateTest {
 

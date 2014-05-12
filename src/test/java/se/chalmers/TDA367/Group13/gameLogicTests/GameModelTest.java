@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.model;
+package se.chalmers.TDA367.Group13.gameLogicTests;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,7 @@ import org.newdawn.slick.Input;
 
 import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.level.Level_1;
+import se.chalmers.TDA367.group13.model.GameModel;
 
 public class GameModelTest {
 

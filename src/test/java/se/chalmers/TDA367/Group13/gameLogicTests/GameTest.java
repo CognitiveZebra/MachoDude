@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13;
+package se.chalmers.TDA367.Group13.gameLogicTests;
 
 import static org.junit.Assert.*;
 
