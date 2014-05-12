@@ -18,7 +18,7 @@ import se.chalmers.TDA367.group13.entities.MoveableEntity;
 import se.chalmers.TDA367.group13.entities.block.Block;
 import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
-import se.chalmers.TDA367.group13.entities.weapon.playerweapon.TestWeapon;
+import se.chalmers.TDA367.group13.entities.weapon.playerweapon.PlayerWeapon;
 import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.util.Stats;
 
@@ -44,7 +44,7 @@ public class Player extends MoveableEntity {
 		setImage(playerSheet.getSprite("Still.png"));
 		rightShoulder = new Point(29, 13);
 		leftShoulder = new Point(15, 13);
-		weapon = new TestWeapon(x, y);
+		weapon = new PlayerWeapon(x, y);
 		projectiles = new LinkedList<Projectile>();
 		direction = Direction.RIGHT;
 		
@@ -174,12 +174,16 @@ public class Player extends MoveableEntity {
 		weapon.resize(scale);
 	}
 	
-	public void loseHealth(){
+	public void loseHealth(float damage){
 		if ((System.currentTimeMillis()-lastHurt) > invincibility){
-			health = health -1;
+			health = (int) (health - damage);
 			lastHurt = System.currentTimeMillis();
 			Stats.getInstance().incrementDamageTaken();
 		}
+	}
+	
+	public void loseHealth(){
+		loseHealth(1);
 	}
 	
 	public boolean isDead(){

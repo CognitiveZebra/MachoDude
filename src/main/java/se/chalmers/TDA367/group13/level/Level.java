@@ -252,7 +252,7 @@ public class Level {
 		if (!projectiles.isEmpty()){
 			for (Projectile projectile : projectiles) {
 				if (projectile.intersects(player)) {
-					player.loseHealth();
+					player.loseHealth(projectile.getDamage());
 					removed.add(projectile);
 				} else if (isLegal(projectile)) {
 					projectile.update();

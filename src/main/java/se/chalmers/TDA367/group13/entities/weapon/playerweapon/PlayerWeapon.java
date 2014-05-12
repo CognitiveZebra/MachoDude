@@ -6,13 +6,14 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
+import se.chalmers.TDA367.group13.entities.projectile.PlayerProjectile;
 import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
 import se.chalmers.TDA367.group13.util.Direction;
 
-public class TestWeapon extends Weapon {
+public class PlayerWeapon extends Weapon {
 
-	public TestWeapon(float x, float y) throws SlickException {
+	public PlayerWeapon(float x, float y) throws SlickException {
 		super(x, y, new Image("res/Sprites/testArm.png").getFlippedCopy(true, false),new Image("res/Sprites/testArm.png"), new Image("res/Sprites/testArm.png"), "TestWeapon", 1);
 		time = System.currentTimeMillis();
 		cooldown = 300;
@@ -23,11 +24,11 @@ public class TestWeapon extends Weapon {
 		if (direction == Direction.RIGHT) {
 				firingSound.play();
 				time = System.currentTimeMillis();
-				return new Projectile(x, y, getProjectileImage().copy().getFlippedCopy(true, false), getAngle(), 10, direction);
+				return new PlayerProjectile(x, y, getProjectileImage().copy().getFlippedCopy(true, false), getAngle(), 10, direction);
 		} else {
 				firingSound.play();
 				time = System.currentTimeMillis();
-				return new Projectile(x, y, getProjectileImage().copy(), getAngle(), 10, direction);
+				return new PlayerProjectile(x, y, getProjectileImage().copy(), getAngle(), 10, direction);
 		}
 	}
 	
