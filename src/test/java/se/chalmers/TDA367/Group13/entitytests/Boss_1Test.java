@@ -1,10 +1,11 @@
 package se.chalmers.TDA367.Group13.entitytests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.SlickException;
 
@@ -25,11 +26,6 @@ public class Boss_1Test {
 	public void testSetY() {
 		test.setY(5);
 		assertTrue(test.getY() == 5);
-	}
-
-	@Test
-	public void testRenderGraphics() {
-		//TODO: Eventually test Slick-methods
 	}
 
 //	@Test
@@ -123,4 +119,8 @@ public class Boss_1Test {
 //		fail("Not yet implemented");
 //	}
 
+	@AfterClass
+	public void close(){
+		Display.destroy();
+	}
 }
