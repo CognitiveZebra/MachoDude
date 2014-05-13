@@ -12,7 +12,7 @@ public class SettingsStateTest {
 	
 	@Test
 	public void testGetID() {
-		assertTrue(test.getID() == 42);
+		assertTrue(test.getID() == 15);
 	}
 
 	@Test

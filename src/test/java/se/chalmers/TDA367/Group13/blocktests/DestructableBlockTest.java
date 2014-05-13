@@ -1,14 +1,13 @@
 package se.chalmers.TDA367.Group13.blocktests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.entities.block.Block;
@@ -43,6 +42,11 @@ public class DestructableBlockTest {
 	@Test
 	public void testIsHurt() {
 		assertTrue(test.isHurt());
+	}
+	
+	@AfterClass
+	public static void close(){
+		Display.destroy();
 	}
 
 }

@@ -120,7 +120,7 @@ public class Boss_1Test {
 //	}
 
 	@AfterClass
-	public void close(){
+	public static void close(){
 		Display.destroy();
 	}
 }
