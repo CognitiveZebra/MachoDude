@@ -28,7 +28,8 @@ public abstract class ParticleProjectile extends Projectile {
 	
 	@Override 
 	public void render(Graphics g){
-		super.render(g);
 		ps.render();
+		super.render(g);
+
 	}
 }
