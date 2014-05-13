@@ -19,6 +19,7 @@ public class GameStateControllerTest {
 	@Test
 	public void testInitStatesListGameContainer() {
 		//TODO: Figure out a way to test Slick-methods
+		fail("Not yet implemented");
 	}
 
 	@Test
