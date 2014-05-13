@@ -18,21 +18,25 @@ public class StatsStateTest {
 	@Test
 	public void testInit() {
 		//TODO: Find out a good way to test voidmethods/Slickmethods
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testRender() {
 		//TODO: Find out a good way to test voidmethods/Slickmethods
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testUpdate() {
 		//TODO: Find out a good way to test voidmethods/Slickmethods
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testInitMenu() {
 		//TODO: Find out a good way to test voidmethods/Slickmethods
+		fail("Not yet implemented");
 	}
 
 }
