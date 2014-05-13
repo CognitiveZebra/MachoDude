@@ -1,12 +1,12 @@
 package se.chalmers.TDA367.Group13.entitytests;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
+import org.newdawn.slick.Image;
 
 import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.entities.enemies.Enemy;
@@ -65,7 +65,6 @@ public class Enemy_1Test {
 	
 	@Test
 	public void testGetState() {
-		System.out.println(test.getState());
 		assertTrue(test.getState().getClass().equals(EnemyStill.class)); 
 	}
 	
@@ -79,11 +78,22 @@ public class Enemy_1Test {
 		assertTrue(test.getWalkingState().getClass().equals(EnemyWalking.class));
 	}
 	
+	//From this point, the methods in abstract class Entity is tested
 	
+	@Test
+	public void testGetImage(){
+		assertTrue(test.getImage().getClass().equals(Image.class));
+	}
+	
+	@Test
+	public void testSetImage() throws Exception{
+		test.setImage(new Image("/res/Sprites/testArm.png"));
+		assertTrue(test.getImage().getResourceReference().equals("/res/Sprites/testArm.png"));
+	}
 	
 	
 	@AfterClass
-	public void close() {
+	public static void close() {
 		Display.destroy();
 	}
 
