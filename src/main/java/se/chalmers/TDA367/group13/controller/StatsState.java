@@ -24,12 +24,17 @@ public class StatsState extends AbstractMachoDudeState {
 	private Point mouse;
 	private StatsView view;
 
+	@Override 
+	public void enter(GameContainer container, StateBasedGame game){
+		view = new StatsView();
+	}
+	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.init(container, game);
 		initMenu();
-		view = new StatsView();
+
 	}
 
 	@Override
