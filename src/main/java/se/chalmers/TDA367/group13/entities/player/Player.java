@@ -12,10 +12,7 @@ import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Point;
 
 import se.chalmers.TDA367.group13.Game;
-import se.chalmers.TDA367.group13.entities.Entity;
-import se.chalmers.TDA367.group13.entities.IMoveable;
 import se.chalmers.TDA367.group13.entities.MoveableEntity;
-import se.chalmers.TDA367.group13.entities.block.Block;
 import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
 import se.chalmers.TDA367.group13.entities.weapon.playerweapon.PlayerWeapon;
@@ -29,7 +26,7 @@ public class Player extends MoveableEntity {
 	private XMLPackedSheet playerSheet;
 	private Image [] right, left, standLeft, standRight, jumpingLeft, jumpingRight;
 	private long lastHurt, invincibility = 1000;
-	private int health = 5;
+	private int health = 10;
 	private Point rightShoulder, leftShoulder;
 	private HealthBar healthBar;
 	private AbstractPlayerState playerJumping, playerStill, playerWalking;
@@ -109,7 +106,6 @@ public class Player extends MoveableEntity {
 			weapon.render(g, direction);
 		}
 		healthBar.render(g, health);
-		
 		for (Projectile p : projectiles) {
 			p.render(g);
 		}
@@ -177,7 +173,7 @@ public class Player extends MoveableEntity {
 	
 	public void loseHealth(float damage){
 		if ((System.currentTimeMillis()-lastHurt) > invincibility){
-			health = (int) (health - damage);
+			health -= damage;
 			lastHurt = System.currentTimeMillis();
 			Stats.getInstance().incrementDamageTaken();
 		}
