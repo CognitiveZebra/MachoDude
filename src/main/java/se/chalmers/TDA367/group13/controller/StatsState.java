@@ -64,6 +64,7 @@ public class StatsState extends AbstractMachoDudeState {
 					game.enterState(item.getID());
 				} else {
 					Stats.getInstance().reset();
+					view.update();
 				}
 			}
 
@@ -81,6 +82,7 @@ public class StatsState extends AbstractMachoDudeState {
 					game.enterState(menu.getSelected().getID());
 				} else {
 					Stats.getInstance().reset();
+					view.update();
 				}
 
 			}
