@@ -27,11 +27,13 @@ import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
+import se.chalmers.TDA367.group13.view.TextItem;
 
 public class Level {
 
 	private Music music;
 	private TiledMap map;
+	private TextItem score;
 	private LinkedList<Block> blocks;
 	private LinkedList<Enemy> enemies;
 	private Image smallBackground;
@@ -50,10 +52,12 @@ public class Level {
 		this.background = background;
 		this.music = music;
 		smallBackground = background.getSubImage(0, 0, 1216, 768);
-
+		score = new TextItem("Score: " + Stats.getInstance().getScore(), Game.WIDTH - 200, 10);
+		
 		projectiles = new LinkedList<Projectile>();
 		blocks = new LinkedList<Block>();
 		enemies = new LinkedList<Enemy>();
+		
 
 		for (int x = 0; x < map.getWidth(); x++) {
 			for (int y = 0; y < map.getHeight(); y++) {
@@ -107,7 +111,7 @@ public class Level {
 		
 		g.setColor(Color.white);
 		g.setFont(Util.getFont32());
-		g.drawString("Score: " + Stats.getInstance().getScore(), 100, 10);
+		score.render(g);
 	}
 
 	public Camera getCamera() {
@@ -175,7 +179,7 @@ public class Level {
 			
 		}
 	}
-
+	
 	public void updateEnemies(Player player, int delta) {
 		this.delta = delta;
 		LinkedList<Enemy> dead = new LinkedList<Enemy>();
@@ -281,6 +285,10 @@ public class Level {
 		} else {
 			emitter.windFactor.setValue(0);
 		}
+	}
+	
+	public void updateScore() {
+		score.updateText("Score: " + Stats.getInstance().getScore());
 	}
 	
 	public ParticleSystem getWeather(){

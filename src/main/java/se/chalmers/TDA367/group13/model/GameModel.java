@@ -104,6 +104,7 @@ public class GameModel {
 		
 		level.updateEnemies(player,delta);
 		level.updateBoss(player);
+		level.updateScore();
 		
 
 		
