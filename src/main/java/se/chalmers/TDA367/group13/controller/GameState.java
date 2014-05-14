@@ -5,10 +5,11 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.EmptyTransition;
+import org.newdawn.slick.state.transition.VerticalSplitTransition;
 
 import se.chalmers.TDA367.group13.exception.GameOverException;
 import se.chalmers.TDA367.group13.model.GameModel;
-import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.view.GameView;
 
 
@@ -37,7 +38,7 @@ public class GameState extends BasicGameState{
 			try {
 				model.update(input,delta);
 			} catch (GameOverException e) {
-				sbg.enterState(GameStateController.getGameOverState().getID());
+				sbg.enterState(GameStateController.getGameOverState().getID(), new EmptyTransition(), new VerticalSplitTransition());
 			}
 	}
 
