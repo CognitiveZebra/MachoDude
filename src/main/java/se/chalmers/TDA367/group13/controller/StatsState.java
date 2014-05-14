@@ -13,6 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.view.MenuItem;
 import se.chalmers.TDA367.group13.view.MenuView;
+import se.chalmers.TDA367.group13.view.ResetControlsMenuItem;
 import se.chalmers.TDA367.group13.view.ResetStatsMenuItem;
 import se.chalmers.TDA367.group13.view.StatsView;
 
@@ -52,7 +53,6 @@ public class StatsState extends AbstractMachoDudeState {
 		super.update(container, game, delta);
 		mouse = new Point(input.getMouseX(), input.getMouseY());
 		boolean isMousePressed = input.isMousePressed(Input.MOUSE_LEFT_BUTTON);
-		view.update();
 		
 		for (MenuItem item : menu.getItems()) {
 
@@ -61,7 +61,11 @@ public class StatsState extends AbstractMachoDudeState {
 			}
 
 			if (item.contains(mouse) && isMousePressed) {
-					item.clicked(game);
+					item.clicked(game);		
+					
+					if (item instanceof ResetStatsMenuItem) {
+						view.update();
+					}
 			}
 		}
 		
@@ -75,6 +79,10 @@ public class StatsState extends AbstractMachoDudeState {
 
 		if (input.isKeyPressed(Input.KEY_ENTER)){
 			menu.getSelected().clicked(game);
+			
+			if (menu.getSelected() instanceof ResetStatsMenuItem) {
+				view.update();
+			}
 		}	
 		
 	}
