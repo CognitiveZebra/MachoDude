@@ -50,7 +50,7 @@ public class MenuState extends AbstractMachoDudeState {
 			}
 
 			if (item.contains(mouse) && isMousePressed) {
-				sbg.enterState(item.getID());
+				item.clicked(sbg);
 			}
 		}
 
@@ -63,7 +63,7 @@ public class MenuState extends AbstractMachoDudeState {
 		}
 
 		if (input.isKeyPressed(Input.KEY_ENTER)) {
-			sbg.enterState(menu.getSelected().getID());
+			menu.getSelected().clicked(sbg);
 		}
 		
 		weather.windFactor.setValue(-((gc.getWidth() / 2) - input.getMouseX()) / 20);

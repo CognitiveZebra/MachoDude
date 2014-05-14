@@ -4,6 +4,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.state.GameState;
+import org.newdawn.slick.state.StateBasedGame;
 
 import se.chalmers.TDA367.group13.entities.Entity;
 import se.chalmers.TDA367.group13.util.Util;
@@ -56,6 +58,10 @@ public class MenuItem extends Entity{
 	
 	public String getName(){
 		return name;
+	}
+	
+	public void clicked(StateBasedGame game){
+		game.enterState(ID);
 	}
 	
 }
