@@ -21,7 +21,7 @@ public class GameState extends BasicGameState{
 	
 	@Override
 	public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		model = new GameModel(gc);
+		model = new GameModel(gc,1);
 		view = new GameView(model);
 		input = gc.getInput();
 		model.startMusic();

@@ -30,6 +30,5 @@ public abstract class ParticleProjectile extends Projectile {
 	public void render(Graphics g){
 		ps.render();
 		super.render(g);
-
 	}
 }
