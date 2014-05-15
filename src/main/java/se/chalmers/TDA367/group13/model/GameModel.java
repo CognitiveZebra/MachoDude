@@ -15,6 +15,7 @@ import se.chalmers.TDA367.group13.entities.enemies.Enemy;
 import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.exception.GameOverException;
+import se.chalmers.TDA367.group13.exception.WinException;
 import se.chalmers.TDA367.group13.level.Level;
 import se.chalmers.TDA367.group13.level.LevelFactory;
 import se.chalmers.TDA367.group13.level.Level_1;
@@ -47,7 +48,7 @@ public class GameModel {
 
 	}
 
-	public void update(Input input, int delta) throws GameOverException {
+	public void update(Input input, int delta) throws GameOverException, WinException {
 		Rectangle nextXPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
 		if (input.isKeyDown(Controls.getInstance().getLeftKey())) {
@@ -138,6 +139,7 @@ public class GameModel {
 			Stats.getInstance().incrementDeaths();
 			throw new GameOverException();
 		}
+		
 		
 		level.updateWeather(input, delta);
 		
