@@ -46,7 +46,7 @@ public class Enemy_2Test {
 	}
 
 	@AfterClass
-	public void close() {
+	public static void close() {
 		Display.destroy();
 	}
 }
