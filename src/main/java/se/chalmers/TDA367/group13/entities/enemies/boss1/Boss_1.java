@@ -147,8 +147,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	}
 
 	public void resize(float scale){
-		image.setFilter(Image.FILTER_NEAREST);
-		image = image.getScaledCopy(scale);
+		super.resize(scale);
 		stillImg = stillImg.getScaledCopy(scale);
 		openImg =  openImg.getScaledCopy(scale);
 		rightOpenImg =  rightOpenImg.getScaledCopy(scale);
