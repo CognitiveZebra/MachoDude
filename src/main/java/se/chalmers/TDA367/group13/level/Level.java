@@ -187,7 +187,6 @@ public class Level {
 		this.delta = delta;
 		LinkedList<Enemy> dead = new LinkedList<Enemy>();
 		for (Enemy e : enemies) {
-			if(e.getX() < Game.WIDTH) {
 
 				if (e.isDestroyed()) {
 					dead.add(e);
@@ -255,7 +254,6 @@ public class Level {
 					e.getWeapon().getImage().setRotation(0);
 				}
 
-			}
 		}
 
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
