@@ -82,7 +82,7 @@ public class Level {
 
 			}
 		}
-		
+
 		weather = new ParticleSystem(new Image("res/Particles/particle_rain.png"),1500);
 		rain = ParticleFactory.createEmitter("rain");
 		weather.addEmitter(rain);
@@ -104,7 +104,7 @@ public class Level {
 		for (Projectile projectile : projectiles) {
 			projectile.render(g);
 		}
-		
+
 		g.setColor(Color.white);
 		g.setFont(Util.getFont32());
 		g.drawString("Score: " + Stats.getInstance().getScore(), 100, 10);
@@ -126,7 +126,7 @@ public class Level {
 	public LinkedList<Enemy> getEnemies() {
 		return enemies;
 	}
-	
+
 	public Boss_1 getBoss(){
 		return boss;
 	}
@@ -142,12 +142,12 @@ public class Level {
 			e.setX(e.getX() + f);
 		}
 	}
-	
+
 	public void moveProjectiles (float f){
 		for (Projectile p : projectiles)
 			p.setX(p.getX() + f);
 	}
-	
+
 	public void moveBoss(float f){
 		boss.setX(boss.getX()+f);
 	}
@@ -163,16 +163,16 @@ public class Level {
 	public float getWidth() {
 		return (map.getWidth() * map.getTileWidth());
 	}
-	
+
 	public void updateBoss(Player player){
 		if (boss.getX() < Game.WIDTH){
-				if(player.getY() > boss.getY()+64)
-					boss.moveY();
-				else 
-					boss.movedownY();
-				
-				boss.fireLaser();
-			
+			if(player.getY() > boss.getY()+64)
+				boss.moveY();
+			else 
+				boss.movedownY();
+			if (boss.isReady())
+				projectiles.add(boss.fireLaser());
+
 		}
 	}
 
@@ -181,7 +181,7 @@ public class Level {
 		LinkedList<Enemy> dead = new LinkedList<Enemy>();
 		for (Enemy e : enemies) {
 			if(e.getX() < Game.WIDTH) {
-				
+
 				if (e.isDestroyed()) {
 					dead.add(e);
 					Stats.getInstance().addScore(e.getValue());
@@ -194,18 +194,18 @@ public class Level {
 				} else {
 					nextYPos = new Rectangle(e.getMaxX(), e.getY(), e.getWidth(), e.getHeight());
 				}
-				
+
 				nextYPos.setY(e.getNextY());
 				if (isLegal(nextYPos)) {
 					e.setDirection(((e.getDirection() == Direction.LEFT) ?  Direction.RIGHT: Direction.LEFT));
 				}
-				
+
 				if (Math.abs((e.getCenterX() - player.getCenterX())) < 20 || isLegal(nextYPos)) {
 					e.setState(e.getStillState());
 				} else {
 					e.setState(e.getWalkingState());
 				}
-		
+
 				if (e.getState() == e.getWalkingState()) {
 					Rectangle nextXPos = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
 					if (e.getDirection() == Direction.LEFT) {
@@ -250,7 +250,7 @@ public class Level {
 
 			}
 		}
-		
+
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
 		if (!projectiles.isEmpty()){
 			for (Projectile projectile : projectiles) {
@@ -267,12 +267,12 @@ public class Level {
 		getProjectiles().removeAll(removed);
 		enemies.removeAll(dead);
 	}
-	
+
 	public void updateWeather(Input input, int delta){
 		updateWind(input, rain);
 		weather.update(delta);
 	}
-	
+
 	public void updateWind(Input input, ConfigurableEmitter emitter){
 		if(input.isKeyDown(Controls.getInstance().getLeftKey())){
 			emitter.windFactor.setValue(25);
@@ -282,7 +282,7 @@ public class Level {
 			emitter.windFactor.setValue(0);
 		}
 	}
-	
+
 	public ParticleSystem getWeather(){
 		return weather;
 	}

@@ -18,18 +18,18 @@ import se.chalmers.TDA367.group13.util.Direction;
 
 public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	private XMLPackedSheet bossSheet;
-	private Direction direction;
-	private State state;	
+	private Direction direction;	
 	private long time;
-	private Level level;
+	private AbstractBoss_1State bossState, idle, opening, closing, fireState;
 	private Image laserBegin, laserBeam, rightLaserBegin,stillImg, openImg, rightStillImg, rightOpenImg;
 	private Image[] mouthOpen, mouthClose, rightMouthOpen, rightMouthClose;
 	private Animation openMouth, closeMouth, rightOpenMouth, rightCloseMouth,  still, open, rightOpen, rightStill;
 	private float health, walkingspeed, cooldown, maxHealth;
+	private int score;
 
 
-	
-	
+
+
 	public Boss_1(float x, float y) throws SlickException{
 		super(x, y, new Image("/res/Sprites/Bosses/1/boss_1_head.png"));
 		bossSheet = new XMLPackedSheet("/res/Sprites/Bosses/1/boss_1_sheet.png","/res/Sprites/Bosses/1/boss_1_sheet.xml");
@@ -38,16 +38,16 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		this.walkingspeed = 3;
 		time = System.currentTimeMillis();
 		direction = Direction.LEFT;
-		state = State.STILL;
 		cooldown = 5000;
-		this.level = level;
 		initAnimations();
-	}
+		fireState = new Boss_1FireState(open, rightOpen);
+		closing = new Boss_1LoadState(closeMouth, rightCloseMouth);
+		opening = new Boss_1LoadState (openMouth, rightOpenMouth);
+		idle = new Boss_1IdleState(still, rightStill);
+		bossState = idle;
 
-	public enum State {
-		STILL, OPENMOUTH, CLOSEMOUTH, OPEN;
-	}
 
+	}
 	public void initAnimations() throws SlickException{
 		int animationSpeed = 200;
 		image = bossSheet.getSprite("still.png");
@@ -113,9 +113,6 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		rightOpenMouth.setLooping(false);
 		rightCloseMouth.setLooping(false);
 
-
-
-
 	}
 
 
@@ -130,26 +127,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	}
 
 	public void render(Graphics g) {
-
-		Animation animation;
-		switch (state) {
-		case STILL:
-			animation = (direction == Direction.LEFT) ? still: rightStill;
-			break;
-		case OPENMOUTH:
-			animation = (direction == Direction.LEFT) ? openMouth : rightOpenMouth;
-			break;
-		case CLOSEMOUTH:
-			animation = (direction == Direction.LEFT) ? closeMouth : rightCloseMouth;
-			break;
-		case OPEN:
-			animation = (direction == Direction.LEFT) ? open : rightOpen;
-			break;
-		default:
-			animation = still;
-			break;
-		}
-		g.drawAnimation(animation, getX(), getY());
+		g.drawAnimation(bossState.getAnimation(direction), x, y);
 	}
 
 	public void resize(float scale){
@@ -171,42 +149,10 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		laserBeam.setFilter(Image.FILTER_NEAREST);
 	}
 
-	public void fireLaser(){
-		if ((System.currentTimeMillis() - time) > cooldown) {
-			
-			
-			if (!openMouth.isStopped()){
-				System.out.println("opening mouth");
-				state = state.OPENMOUTH;
-			}
-			
-			
-			if (openMouth.isStopped()){
-				System.out.println("Mouth has been opened");
-				state = state.OPEN;
-				while(true){
-					
-					level.getProjectiles().add(new Boss1Projectile(x-64, y-64, laserBeam, 0, 5, direction));
-					if (System.currentTimeMillis() - time > 3000)
-						break;
-				}
-				System.out.println("Lasers ha been fired");
-			}
-			time = System.currentTimeMillis();
-			System.out.println("closing mouth");
-			if (!closeMouth.isStopped()){
-				System.out.println("closing moduth");
-				state=state.CLOSEMOUTH;
-			}
-
-		}
-		if (closeMouth.isStopped() && openMouth.isStopped()){
-			System.out.println("resetting animations");
-			closeMouth.restart();
-			openMouth.restart();
-			state=state.STILL;
-		}
-
+	public Projectile fireLaser(){
+		time = System.currentTimeMillis();
+		bossState = opening;
+		return new Boss1Projectile(x-64, y-64, laserBeam, (float)Math.PI, 3, direction);
 
 	}
 
@@ -273,12 +219,20 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	}
 
 	public void moveY() {
-		if (state == state.STILL)
+		if (!bossState.getCanMove())
 			setY(getY() + getWalkingSpeed());		
 	}
 	public void movedownY() {
-		if (state == state.STILL)
+		if (!bossState.getCanMove())
 			setY(getY() - getWalkingSpeed());		
+	}
+
+	public boolean isReady() {
+		if ((System.currentTimeMillis() - time) > cooldown) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 
