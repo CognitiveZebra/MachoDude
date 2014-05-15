@@ -93,15 +93,19 @@ public class WinState extends AbstractMachoDudeState {
 			itemImage = new Image("res/GUI/menuItem.png");
 			int middleX = gc.getWidth() / 2 - itemImage.getWidth() / 2;
 
-			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 300,
+			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 350,
 					itemImage, "MAIN MENU", GameStateController.getMenuState()
 							.getID());
-			MenuItem quitButton = new MenuItem(middleX, gc.getHeight() - 200,
+			MenuItem levelsButton = new MenuItem(middleX, gc.getHeight() - 250,
+					itemImage, "LEVELS", GameStateController.getLevelState()
+							.getID());
+			MenuItem quitButton = new MenuItem(middleX, gc.getHeight() - 150,
 					itemImage, "QUIT", GameStateController.getQuitState()
 							.getID());
 
 			LinkedList<MenuItem> items = new LinkedList<MenuItem>();
 			items.add(mainButton);
+			items.add(levelsButton);
 			items.add(quitButton);
 			menu = new MenuView(items);
 		} catch (SlickException e) {
