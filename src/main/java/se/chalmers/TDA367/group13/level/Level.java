@@ -21,6 +21,7 @@ import se.chalmers.TDA367.group13.entities.enemies.enemy1.Enemy_1;
 import se.chalmers.TDA367.group13.entities.enemies.enemy2.Enemy_2;
 import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.entities.projectile.Projectile;
+import se.chalmers.TDA367.group13.exception.WinException;
 import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Camera;
 import se.chalmers.TDA367.group13.util.Controls;
@@ -168,8 +169,10 @@ public class Level {
 		return (map.getWidth() * map.getTileWidth());
 	}
 
-	public void updateBoss(Player player){
-		if (boss.getX() < Game.WIDTH && !boss.isDestroyed()){
+	public void updateBoss(Player player) throws WinException{
+		if (boss.isDestroyed()){
+			throw new WinException();
+		} else if (boss.getX() < Game.WIDTH){
 			boss.showHealthBar();
 			if(player.getY() > boss.getY()+64)
 				boss.moveY();
@@ -178,9 +181,8 @@ public class Level {
 			if (boss.isReady())
 				projectiles.add(boss.fireLaser());
 
-		}
-		
-		boss.update();
+		} else 
+			boss.update();
 	}
 	
 	public void updateEnemies(Player player, int delta) {
