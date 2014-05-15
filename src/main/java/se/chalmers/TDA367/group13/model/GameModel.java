@@ -115,7 +115,9 @@ public class GameModel {
 			if (victim != null) {
 				victim.loseHealth();
 				removed.add(projectile);
-			} else if(isBlockCollision(level.getBlocks(), projectile)) {
+			} else if(projectile.intersects(level.getBoss()) && !level.getBoss().isDestroyed())
+				level.getBoss().loseHealth();
+				else if(isBlockCollision(level.getBlocks(), projectile)) {
 				projectile.update(delta);
 			} else {
 				removed.add(projectile);

@@ -169,7 +169,7 @@ public class Level {
 	}
 
 	public void updateBoss(Player player){
-		if (boss.getX() < Game.WIDTH){
+		if (boss.getX() < Game.WIDTH && !boss.isDestroyed()){
 			boss.showHealthBar();
 			if(player.getY() > boss.getY()+64)
 				boss.moveY();
@@ -306,5 +306,5 @@ public class Level {
 
 	public LinkedList<Projectile> getProjectiles() {
 		return projectiles;
-	}	
+	}
 }

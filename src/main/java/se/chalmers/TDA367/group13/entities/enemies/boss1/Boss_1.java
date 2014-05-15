@@ -6,6 +6,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.XMLPackedSheet;
 
 import se.chalmers.TDA367.group13.entities.Entity;
@@ -22,6 +23,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	private long time;
 	private Boss_1HealthBar healthBar;
 	private Boolean showHealthBar;
+	private Sound hurt;
 	private AbstractBoss_1State bossState, idle, opening, closing, fireState;
 	private Image laserBegin, laserBeam, rightLaserBegin,stillImg, openImg, rightStillImg, rightOpenImg;
 	private Image[] mouthOpen, mouthClose, rightMouthOpen, rightMouthClose;
@@ -49,6 +51,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		bossState = idle;
 		healthBar = new Boss_1HealthBar();
 		showHealthBar = false;
+		hurt = new Sound("res/Sound/Boss_1/hurt.wav");
 
 
 	}
@@ -135,9 +138,12 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	}
 
 	public void render(Graphics g) {
-		g.drawAnimation(bossState.getAnimation(direction), x, y);
-		if(showHealthBar)
-			healthBar.render(this, g);
+		if(!isDestroyed()){
+			g.drawAnimation(bossState.getAnimation(direction), x, y);
+			if(showHealthBar)
+				healthBar.render(this, g);
+		}
+			
 	}
 
 	public void resize(float scale){
@@ -197,6 +203,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 
 	@Override
 	public void loseHealth() {
+		hurt.play();
 		health--;
 
 	}
