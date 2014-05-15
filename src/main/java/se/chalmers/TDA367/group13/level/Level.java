@@ -172,6 +172,7 @@ public class Level {
 
 	public void updateBoss(Player player) throws WinException{
 		if (boss.isDestroyed()){
+			Stats.getInstance().updateHighestLevel(level_number);
 			throw new WinException();
 		} else if (boss.getX() < Game.WIDTH){
 			boss.showHealthBar();
