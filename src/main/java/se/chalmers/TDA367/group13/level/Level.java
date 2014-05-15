@@ -44,6 +44,7 @@ public class Level {
 	private ParticleSystem weather; 
 	private ConfigurableEmitter rain;
 	private int delta;
+	protected int level_number;
 
 	public Level(Camera camera, TiledMap map, Image background, Music music)
 			throws SlickException {
@@ -177,7 +178,6 @@ public class Level {
 				boss.movedownY();
 			if (boss.isReady())
 				projectiles.add(boss.fireLaser());
-
 		}
 		
 		boss.update();

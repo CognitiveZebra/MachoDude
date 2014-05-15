@@ -9,6 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import se.chalmers.TDA367.group13.controller.GameStateController;
 import se.chalmers.TDA367.group13.entities.Entity;
+import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
 
 
@@ -22,8 +23,10 @@ public class LevelMenuItem extends MenuItem {
 	
 	@Override
 	public void clicked(StateBasedGame sbg){
-		GameStateController.getGameState().setLevel(level);
-		sbg.enterState(ID);
+		if(Stats.getInstance().getHighestLevel() >= level){
+			GameStateController.getGameState().setLevel(level);
+			sbg.enterState(ID);
+		}
 	}
 
 }
