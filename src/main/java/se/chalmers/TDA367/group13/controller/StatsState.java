@@ -11,9 +11,10 @@ import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.state.StateBasedGame;
 
 import se.chalmers.TDA367.group13.util.Stats;
-import se.chalmers.TDA367.group13.util.Util;
-import se.chalmers.TDA367.group13.view.MenuView;
 import se.chalmers.TDA367.group13.view.MenuItem;
+import se.chalmers.TDA367.group13.view.MenuView;
+import se.chalmers.TDA367.group13.view.ResetControlsMenuItem;
+import se.chalmers.TDA367.group13.view.ResetStatsMenuItem;
 import se.chalmers.TDA367.group13.view.StatsView;
 
 public class StatsState extends AbstractMachoDudeState {
@@ -24,12 +25,17 @@ public class StatsState extends AbstractMachoDudeState {
 	private Point mouse;
 	private StatsView view;
 
+	@Override 
+	public void enter(GameContainer container, StateBasedGame game){
+		view = new StatsView();
+	}
+	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.init(container, game);
 		initMenu();
-		view = new StatsView();
+
 	}
 
 	@Override
@@ -47,7 +53,7 @@ public class StatsState extends AbstractMachoDudeState {
 		super.update(container, game, delta);
 		mouse = new Point(input.getMouseX(), input.getMouseY());
 		boolean isMousePressed = input.isMousePressed(Input.MOUSE_LEFT_BUTTON);
-
+		
 		for (MenuItem item : menu.getItems()) {
 
 			if (item.contains(mouse)) {
@@ -55,31 +61,30 @@ public class StatsState extends AbstractMachoDudeState {
 			}
 
 			if (item.contains(mouse) && isMousePressed) {
-				if (menu.getSelected().getID() > 0) {
-					game.enterState(item.getID());
-				} else {
-					Stats.getInstance().reset();
-				}
-			}
-
-			if (input.isKeyPressed(Input.KEY_DOWN)) {
-				menu.down();
-			}
-
-			if (input.isKeyPressed(Input.KEY_UP)) {
-				menu.up();
-			}
-
-			if (input.isKeyPressed(Input.KEY_ENTER)
-					&& item.equals(menu.getSelected())) {
-				if (menu.getSelected().getID() > 0) {
-					game.enterState(menu.getSelected().getID());
-				} else {
-					Stats.getInstance().reset();
-				}
-
+					item.clicked(game);		
+					
+					if (item instanceof ResetStatsMenuItem) {
+						view.update();
+					}
 			}
 		}
+		
+		if (input.isKeyPressed(Input.KEY_DOWN)) {
+			menu.down();
+		}
+
+		if (input.isKeyPressed(Input.KEY_UP)) {
+			menu.up();
+		}
+
+		if (input.isKeyPressed(Input.KEY_ENTER)){
+			menu.getSelected().clicked(game);
+			
+			if (menu.getSelected() instanceof ResetStatsMenuItem) {
+				view.update();
+			}
+		}	
+		
 	}
 
 	@Override
@@ -95,7 +100,7 @@ public class StatsState extends AbstractMachoDudeState {
 			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 300,
 					itemImage, "MAIN MENU", GameStateController.getMenuState()
 							.getID());
-			MenuItem resetButton = new MenuItem(middleX, gc.getHeight() - 200,
+			MenuItem resetButton = new ResetStatsMenuItem(middleX, gc.getHeight() - 200,
 					itemImage, "RESET STATS");
 
 			LinkedList<MenuItem> items = new LinkedList<MenuItem>();

@@ -16,6 +16,7 @@ import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.exception.GameOverException;
 import se.chalmers.TDA367.group13.level.Level;
+import se.chalmers.TDA367.group13.level.LevelFactory;
 import se.chalmers.TDA367.group13.level.Level_1;
 import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Controls;
@@ -30,12 +31,12 @@ public class GameModel {
 	private long gameStarted, gameEnded;
 
 
-	public GameModel(GameContainer gc) {
+	public GameModel(GameContainer gc, int level) {
 		gameStarted = System.currentTimeMillis();
 		Stats.getInstance().setScore(0);
 		this.container = gc;
 		try {
-			level = new Level_1();
+			this.level = LevelFactory.createLevel(level);
 			player = new Player(300, 300, "res/Sprites/MachoDude/sheet.png",
 					"res/Sprites/MachoDude/sheet.xml");
 		} catch (SlickException e) {
@@ -103,6 +104,7 @@ public class GameModel {
 		
 		level.updateEnemies(player,delta);
 		level.updateBoss(player);
+		level.updateScore();
 		
 
 		

@@ -17,6 +17,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.view.MenuItem;
+import se.chalmers.TDA367.group13.view.ResetControlsMenuItem;
 import se.chalmers.TDA367.group13.view.SettingsItem;
 import se.chalmers.TDA367.group13.view.SettingsView;
 
@@ -96,11 +97,10 @@ public class SettingsState extends AbstractMachoDudeState {
 			}
 
 			if (item.contains(mouse) && isMousePressed) {
-				if (item.getID() == -1) {
-					Controls.getInstance().reset();
+				item.clicked(sbg);
+				
+				if (item instanceof ResetControlsMenuItem) {
 					resetSettingsItems();
-				} else {
-					sbg.enterState(item.getID());
 				}
 
 			}
@@ -146,7 +146,7 @@ public class SettingsState extends AbstractMachoDudeState {
 					menuItemImage, "JUMP", JUMP, Controls.getInstance().getJumpKey());
 			SettingsItem shootButton = new SettingsItem(settingMiddleX, 400,
 					menuItemImage, "SHOOT", SHOOT, Controls.getInstance().getShootKey());
-			MenuItem resetButton = new MenuItem(menuMiddleX, 525,
+			MenuItem resetButton = new ResetControlsMenuItem(menuMiddleX, 525,
 					menuItemImage, "RESET CONTROLS");
 			MenuItem mainButton = new MenuItem(menuMiddleX, 625, menuItemImage,
 					"MAIN MENU", GameStateController.getMenuState().getID());

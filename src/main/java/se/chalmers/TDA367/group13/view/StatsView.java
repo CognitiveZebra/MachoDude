@@ -13,13 +13,14 @@ import se.chalmers.TDA367.group13.util.Util;
 public class StatsView {
 	Font font32 = Util.getFont32();
 
-	private LinkedList<TextItem> items = new LinkedList<>();
+	private LinkedList<TextItem> items;
 	
 	public StatsView(){
 		initItems(Stats.getInstance().getStatsAsStrings());
 	}
 	
 	private void initItems(LinkedList<String> list) {
+		items = new LinkedList<TextItem>();
 		
 		float width = 350;
 		float middleX = Game.WIDTH/2 - width/2;
@@ -38,6 +39,10 @@ public class StatsView {
 			item.render(g);
 		}
 		
+	}
+	
+	public void update(){
+		initItems(Stats.getInstance().getStatsAsStrings());
 	}
 
 }

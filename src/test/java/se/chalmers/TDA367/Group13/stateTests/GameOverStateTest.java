@@ -17,21 +17,25 @@ public class GameOverStateTest {
 	@Test
 	public void testInit() {
 		//TODO: Figure out a way to test Slick-methods
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testRender() {
 		//TODO: Figure out a way to test Slick-methods
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testUpdate() {
 		//TODO: Figure out a way to test Slick-methods
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testInitMenu() {
 		//TODO: Figure out a way to test Slick-methods
+		fail("Not yet implemented");
 	}
 
 }

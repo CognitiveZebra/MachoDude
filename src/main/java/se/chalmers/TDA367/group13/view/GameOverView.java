@@ -18,8 +18,8 @@ public class GameOverView {
 	public GameOverView(){
 		LinkedList<String> list = new LinkedList<String>();
 		list.add("GAME OVER");
-		list.add("Your score: " + Stats.getInstance().getScore());
-		list.add("Your Highscore: " + Stats.getInstance().getHighscore());
+		list.add("Score: " + Stats.getInstance().getScore());
+		list.add("Highscore: " + Stats.getInstance().getHighscore());
 		initItems(list);
 	}
 	
