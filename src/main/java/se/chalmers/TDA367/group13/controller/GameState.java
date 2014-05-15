@@ -18,11 +18,12 @@ public class GameState extends BasicGameState{
 	private GameView view;
 	private GameModel model;
 	private Input input;
+	private int level;
 
 	
 	@Override
 	public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		model = new GameModel(gc,1);
+		model = new GameModel(gc,level);
 		view = new GameView(model);
 		input = gc.getInput();
 		model.startMusic();
@@ -51,5 +52,13 @@ public class GameState extends BasicGameState{
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		
+	}
+	
+	public void setLevel(int level){
+		this.level = level;
+	}
+	
+	public int getLevel(){
+		return level;
 	}
 }

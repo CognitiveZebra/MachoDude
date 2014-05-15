@@ -35,6 +35,7 @@ public class MoveableEntity extends Entity implements IMoveable{
 		direction = Direction.RIGHT;
 		setX(x + state.getVelocity().x);
 	}
+	
 	@Override
 	public void moveY(){
 		setY(getY() + state.getVelocity().y);
