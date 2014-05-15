@@ -30,13 +30,10 @@ public class HealthBar {
 		for (int i = 0; i < orgHealth/2; i++) {
 			if (i < health/2) {
 				hearts.add(fullImage.copy());
-				System.out.println(i + "full");
 			} else if (health%2 != 0 && i == health/2) {
 				hearts.add(halfImage.copy());
-				System.out.println(i + "half");
 			} else {
 				hearts.add(emptyImage.copy());
-				System.out.println(i + "empty");
 			}
 		}
 		
