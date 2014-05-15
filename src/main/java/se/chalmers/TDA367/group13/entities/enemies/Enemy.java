@@ -22,7 +22,7 @@ public abstract class Enemy extends MoveableEntity implements IDestructable {
 	protected Weapon weapon;
 	protected int health, maxHealth;
 	protected Circle aggroRange;
-	private HealthBarEnemy healthbar = new HealthBarEnemy();
+	private HealthBarEnemy healthbar;
 	protected int scoreValue = 1;
 	protected Animation stillLeft, stillRight, walkLeft, walkRight;
 	protected Point rightShoulder, leftShoulder;
@@ -34,6 +34,7 @@ public abstract class Enemy extends MoveableEntity implements IDestructable {
 		enemySheet = new XMLPackedSheet(sheet, xml);
 		setImage(enemySheet.getSprite("walk1"));
 		direction = Direction.LEFT;
+		healthbar = new HealthBarEnemy();
 	}
 	
 	@Override 
