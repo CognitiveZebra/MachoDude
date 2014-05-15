@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="76" height="24" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="200" height="24" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="tileset_jungle_test" tilewidth="32" tileheight="32">
   <image source="../Tiles/tileset_jungle_test.png" width="96" height="96"/>
   <tile id="0">
@@ -72,7 +72,7 @@
   </tile>
   <tile id="4">
    <properties>
-    <property name="enemy" value="5"/>
+    <property name="enemy" value="boss"/>
    </properties>
   </tile>
   <tile id="5">
@@ -96,14 +96,14 @@
    </properties>
   </tile>
  </tileset>
- <layer name="blockLayer" width="76" height="24">
+ <layer name="blockLayer" width="200" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3VyQ6AIAxFUZz1/3/YsjDGBW3AkArek7ytaTpICAAAAAAAtGGQjEomv9I+aZYsSla/0qoq3ZNNsis5qlbtx2NPUjNq4YY99iQ1o15v+K3UjDxvmPcrz1/fr1L062bdWozWqyvWN3pI/O9Yu0Oed0S/8vp1AhppgBiAHAAA
+   H4sIAAAAAAAAC+3YSw6DMAwFQPpv73/h0kV3dZAQ4DqZkd4WooBtwjQBAAAAMIrTnHOQS+K64B9c59yC3BPXRd+q9GX1QYYq791jzjPIK3Fd9G3v+qgyn+CXvftylfkEGdRHrtb8NsPzOTfkavUnPYpezj9r50CrP+lR9PJ9lzEHopqs0FeO6IuZvXere/dSHxlzINq7Cvt2xHPPfLe2urfzz3rR3lXYN/XRB/+X9nFEX8zsvaP0ff+XIKY+GNXSt9Mnrdr4ZukaIhWzNBtERo76EInzBuTb79sASwAA
   </data>
  </layer>
- <layer name="enemyLayer" width="76" height="24">
+ <layer name="enemyLayer" width="200" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3SIQ4AMAgEMDT/f/A8AsUylrTmCIrkiAAAAIC/5esDWM1/7KUbAJiRJevc7eCGA13CiZiAHAAA
+   H4sIAAAAAAAAC+3Xqw7AIBAEQDRN+v+fW08TXO9BZwzk1CJYwhgAAAAA/NGVHQCAF90MQDXeJgDobWYHAGjkpP+P/qeqOztAsO53MaoXM/v3pO4HAAAAiDCXdd3vZtm+zlTxzADQxQPP8cQUAEsAAA==
   </data>
  </layer>
 </map>

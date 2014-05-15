@@ -74,9 +74,13 @@ public class LevelState extends AbstractMachoDudeState {
 			itemImage = new Image("res/GUI/menuItem.png");
 			int middleX = gc.getWidth() / 2 - itemImage.getWidth() / 2;
 
-			MenuItem level1 = new LevelMenuItem(middleX, 200,
+			MenuItem level1 = new LevelMenuItem(middleX, 100,
 					itemImage, "Level 1", GameStateController.getGameState()
 							.getID(),1);
+			
+			MenuItem level2 = new LevelMenuItem(middleX, 250,
+					itemImage, "Level 2", GameStateController.getGameState()
+							.getID(),2);
 			
 			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 300,
 					itemImage, "MAIN MENU", GameStateController.getMenuState()
@@ -86,6 +90,7 @@ public class LevelState extends AbstractMachoDudeState {
 			LinkedList<MenuItem> items = new LinkedList<MenuItem>();
 
 			items.add(level1);
+			items.add(level2);
 			items.add(mainButton);
 
 

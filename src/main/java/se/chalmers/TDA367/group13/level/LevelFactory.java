@@ -10,6 +10,8 @@ public class LevelFactory {
 		case 1:
 			level = new Level_1();
 			break;
+		case 2: 
+			level = new Level_2();
 		default:
 			;
 			break;
