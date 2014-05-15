@@ -29,7 +29,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	private Image[] mouthOpen, mouthClose, rightMouthOpen, rightMouthClose;
 	private Animation openMouth, closeMouth, rightOpenMouth, rightCloseMouth,  still, open, rightOpen, rightStill;
 	private float health, walkingspeed, cooldown, maxHealth;
-	private int score;
+	private int score, counter;
 
 
 
@@ -52,6 +52,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		healthBar = new Boss_1HealthBar();
 		showHealthBar = false;
 		hurt = new Sound("res/Sound/Boss_1/hurt.wav");
+		counter = 0;
 
 
 	}
@@ -106,8 +107,8 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 
 		openMouth = new Animation(mouthOpen, animationSpeed);
 		closeMouth = new Animation(mouthClose, animationSpeed);
-		openMouth.setLooping(false);
-		closeMouth.setLooping(false);
+		openMouth.stopAt(4);
+		closeMouth.stopAt(4);
 
 		still = new Animation(new Image[] {stillImg}, animationSpeed);
 		open = new Animation(new Image[] {openImg}, animationSpeed);
@@ -173,10 +174,7 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	}
 
 	public Projectile fireLaser(){
-		time = System.currentTimeMillis();
-		bossState = opening;
-		if(openMouth.isStopped())
-			bossState = closing;
+		bossState = fireState;
 		return new Boss1Projectile(x-64, y-64, laserBeam, (float)Math.PI, 3, direction);
 
 	}
@@ -260,6 +258,26 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 
 	public void showHealthBar(){
 		showHealthBar = true;
+	}
+	public void openMouth(){
+		
+
+		if(!open.isStopped())
+			System.out.println("Opening mouth");
+			bossState = opening;
+	}
+	
+	public void closeMouth(){
+		if(!closeMouth.isStopped())
+			bossState = closing;
+	}
+	
+	public boolean isMouthOpen(){
+		return open.isStopped();
+	}
+	
+	public boolean isMoutClosed(){
+		return closeMouth.isStopped();
 	}
 }
 

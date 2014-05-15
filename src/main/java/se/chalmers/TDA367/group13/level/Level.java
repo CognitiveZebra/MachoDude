@@ -53,11 +53,11 @@ public class Level {
 		this.music = music;
 		smallBackground = background.getSubImage(0, 0, 1216, 768);
 		score = new TextItem("Score: " + Stats.getInstance().getScore(), Game.WIDTH - 200, 10);
-		
+
 		projectiles = new LinkedList<Projectile>();
 		blocks = new LinkedList<Block>();
 		enemies = new LinkedList<Enemy>();
-		
+
 
 		for (int x = 0; x < map.getWidth(); x++) {
 			for (int y = 0; y < map.getHeight(); y++) {
@@ -176,83 +176,93 @@ public class Level {
 			else 
 				boss.movedownY();
 			if (boss.isReady())
+				System.out.println(boss.isMouthOpen());
+				boss.openMouth();
+			if (boss.isMouthOpen()){
+				System.out.println("Mouth is open");
 				projectiles.add(boss.fireLaser());
+				if (boss.isReady()){
+					boss.closeMouth();
+					if(boss.isMoutClosed())
+						boss.update();
+				}
+			}
 
 		}
-		
-		boss.update();
+
+
 	}
-	
+
 	public void updateEnemies(Player player, int delta) {
 		this.delta = delta;
 		LinkedList<Enemy> dead = new LinkedList<Enemy>();
 		for (Enemy e : enemies) {
 
-				if (e.isDestroyed()) {
-					dead.add(e);
-					Stats.getInstance().addScore(e.getValue());
-					Stats.getInstance().incrementEnemiesKilled();
-				}
+			if (e.isDestroyed()) {
+				dead.add(e);
+				Stats.getInstance().addScore(e.getValue());
+				Stats.getInstance().incrementEnemiesKilled();
+			}
 
-				Rectangle nextYPos;
+			Rectangle nextYPos;
+			if (e.getDirection() == Direction.LEFT) {
+				nextYPos = new Rectangle(e.getX()-e.getWidth(), e.getY(), e.getWidth(), e.getHeight());
+			} else {
+				nextYPos = new Rectangle(e.getMaxX(), e.getY(), e.getWidth(), e.getHeight());
+			}
+
+			nextYPos.setY(e.getNextY());
+			if (isLegal(nextYPos)) {
+				e.setDirection(((e.getDirection() == Direction.LEFT) ?  Direction.RIGHT: Direction.LEFT));
+			}
+
+			if (Math.abs((e.getCenterX() - player.getCenterX())) < 20 || isLegal(nextYPos)) {
+				e.setState(e.getStillState());
+			} else {
+				e.setState(e.getWalkingState());
+			}
+
+			if (e.getState() == e.getWalkingState()) {
+				Rectangle nextXPos = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
 				if (e.getDirection() == Direction.LEFT) {
-					nextYPos = new Rectangle(e.getX()-e.getWidth(), e.getY(), e.getWidth(), e.getHeight());
-				} else {
-					nextYPos = new Rectangle(e.getMaxX(), e.getY(), e.getWidth(), e.getHeight());
-				}
-
-				nextYPos.setY(e.getNextY());
-				if (isLegal(nextYPos)) {
-					e.setDirection(((e.getDirection() == Direction.LEFT) ?  Direction.RIGHT: Direction.LEFT));
-				}
-
-				if (Math.abs((e.getCenterX() - player.getCenterX())) < 20 || isLegal(nextYPos)) {
-					e.setState(e.getStillState());
-				} else {
-					e.setState(e.getWalkingState());
-				}
-
-				if (e.getState() == e.getWalkingState()) {
-					Rectangle nextXPos = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
-					if (e.getDirection() == Direction.LEFT) {
-						nextXPos.setX(e.getNextLeftX());
-						if (isLegal(nextXPos)) {
-							e.moveLeft();
-						} else {
-							e.setDirection(Direction.RIGHT);
-						}
-					} else if (e.getDirection() == Direction.RIGHT) {
-						nextXPos.setX(e.getNextRightX());
-						if (isLegal(nextXPos)) {
-							e.moveRight();
-						} else {
-							e.setDirection(Direction.LEFT);
-						} 
-					}
 					nextXPos.setX(e.getNextLeftX());
-					if (!isLegal(nextXPos)) {
-						e.setState(e.getStillState());
-					}
-				}
-				e.updateAggroRange();
-				if (e.getAggroRange().intersects(player)) {
-					if (e.getCenterX() < player.getCenterX()) {
+					if (isLegal(nextXPos)) {
+						e.moveLeft();
+					} else {
 						e.setDirection(Direction.RIGHT);
+					}
+				} else if (e.getDirection() == Direction.RIGHT) {
+					nextXPos.setX(e.getNextRightX());
+					if (isLegal(nextXPos)) {
+						e.moveRight();
 					} else {
 						e.setDirection(Direction.LEFT);
-					}
-					e.getWeapon().pointAt(player.getCenterX(), player.getCenterY(), e.getDirection());
-					if (e.getWeapon().isReady()) {	
-						projectiles.add(e.getWeapon().fireWeapon(e.getDirection()));
-					}
-				} else {
-					if (e.getDirection() == Direction.RIGHT) {
-						e.getWeapon().setImage(e.getWeapon().getRightImage());
-					} else if (e.getDirection() == Direction.LEFT) {
-						e.getWeapon().setImage(e.getWeapon().getLeftImage());
-					}
-					e.getWeapon().getImage().setRotation(0);
+					} 
 				}
+				nextXPos.setX(e.getNextLeftX());
+				if (!isLegal(nextXPos)) {
+					e.setState(e.getStillState());
+				}
+			}
+			e.updateAggroRange();
+			if (e.getAggroRange().intersects(player)) {
+				if (e.getCenterX() < player.getCenterX()) {
+					e.setDirection(Direction.RIGHT);
+				} else {
+					e.setDirection(Direction.LEFT);
+				}
+				e.getWeapon().pointAt(player.getCenterX(), player.getCenterY(), e.getDirection());
+				if (e.getWeapon().isReady()) {	
+					projectiles.add(e.getWeapon().fireWeapon(e.getDirection()));
+				}
+			} else {
+				if (e.getDirection() == Direction.RIGHT) {
+					e.getWeapon().setImage(e.getWeapon().getRightImage());
+				} else if (e.getDirection() == Direction.LEFT) {
+					e.getWeapon().setImage(e.getWeapon().getLeftImage());
+				}
+				e.getWeapon().getImage().setRotation(0);
+			}
 
 		}
 
@@ -287,7 +297,7 @@ public class Level {
 			emitter.windFactor.setValue(0);
 		}
 	}
-	
+
 	public void updateScore() {
 		score.updateText("Score: " + Stats.getInstance().getScore());
 	}
