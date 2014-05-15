@@ -20,6 +20,8 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	private XMLPackedSheet bossSheet;
 	private Direction direction;	
 	private long time;
+	private Boss_1HealthBar healthBar;
+	private Boolean showHealthBar;
 	private AbstractBoss_1State bossState, idle, opening, closing, fireState;
 	private Image laserBegin, laserBeam, rightLaserBegin,stillImg, openImg, rightStillImg, rightOpenImg;
 	private Image[] mouthOpen, mouthClose, rightMouthOpen, rightMouthClose;
@@ -45,6 +47,8 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		opening = new Boss_1LoadState (openMouth, rightOpenMouth);
 		idle = new Boss_1IdleState(still, rightStill);
 		bossState = idle;
+		healthBar = new Boss_1HealthBar();
+		showHealthBar = false;
 
 
 	}
@@ -121,6 +125,10 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		return health;
 	}
 
+	public float getMaxHealth(){
+		return maxHealth;
+	}
+
 
 	public void setHealth(int health) {
 		this.health = health;
@@ -128,6 +136,8 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 
 	public void render(Graphics g) {
 		g.drawAnimation(bossState.getAnimation(direction), x, y);
+		if(showHealthBar)
+			healthBar.render(this, g);
 	}
 
 	public void resize(float scale){
@@ -149,9 +159,19 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		laserBeam.setFilter(Image.FILTER_NEAREST);
 	}
 
+	public void update(){
+		if (openMouth.isStopped() && closeMouth.isStopped()){
+			bossState = idle;
+			openMouth.restart();
+			closeMouth.restart();
+		}
+	}
+
 	public Projectile fireLaser(){
 		time = System.currentTimeMillis();
 		bossState = opening;
+		if(openMouth.isStopped())
+			bossState = closing;
 		return new Boss1Projectile(x-64, y-64, laserBeam, (float)Math.PI, 3, direction);
 
 	}
@@ -188,9 +208,6 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 
 	@Override
 	public boolean isHurt() {
-		// start flashing
-		// play "is hurt sound"
-
 		return health < maxHealth;
 	}
 
@@ -219,11 +236,11 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 	}
 
 	public void moveY() {
-		if (!bossState.getCanMove())
+		if (bossState.getCanMove())
 			setY(getY() + getWalkingSpeed());		
 	}
 	public void movedownY() {
-		if (!bossState.getCanMove())
+		if (bossState.getCanMove())
 			setY(getY() - getWalkingSpeed());		
 	}
 
@@ -233,6 +250,10 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		} else {
 			return false;
 		}
+	}
+
+	public void showHealthBar(){
+		showHealthBar = true;
 	}
 }
 

@@ -170,6 +170,7 @@ public class Level {
 
 	public void updateBoss(Player player){
 		if (boss.getX() < Game.WIDTH){
+			boss.showHealthBar();
 			if(player.getY() > boss.getY()+64)
 				boss.moveY();
 			else 
@@ -178,6 +179,8 @@ public class Level {
 				projectiles.add(boss.fireLaser());
 
 		}
+		
+		boss.update();
 	}
 	
 	public void updateEnemies(Player player, int delta) {
