@@ -12,7 +12,7 @@ public class Stats {
 	private  Scanner scanner;
 	private  BufferedWriter bw;
 	private  FileWriter fw;
-	private  int highscore, enemiesKilled, score, deaths, damageTaken;
+	private  int highscore, enemiesKilled, score, deaths, damageTaken,highestLevel;
 	private long timePlayed;
 	private static Stats instance = null;
 	
@@ -32,6 +32,7 @@ public class Stats {
 				timePlayed = scanner.nextLong();
 				deaths = scanner.nextInt();
 				damageTaken = scanner.nextInt();
+				highestLevel = scanner.nextInt();
 				scanner.close();
 				score = 0;
 			} else {
@@ -59,6 +60,7 @@ public class Stats {
 		timePlayed = 0;
 		deaths = 0;
 		damageTaken = 0;
+		highestLevel = 1;
 	}
 
 	public String getTimePlayedAsString() {
@@ -93,7 +95,7 @@ public class Stats {
 			fw = new FileWriter(file);
 			bw = new BufferedWriter(fw);
 
-			String save = highscore + ";" + enemiesKilled + ";" + timePlayed + ";" + deaths + ";" + damageTaken;
+			String save = highscore + ";" + enemiesKilled + ";" + timePlayed + ";" + deaths + ";" + damageTaken + ";" + highestLevel;
 			bw.write(save);
 
 			bw.close();
@@ -178,6 +180,16 @@ public class Stats {
 	
 	public void incrementDamageTaken(){
 		damageTaken++;
+	}
+	
+	public void updateHighestLevel(int i){
+		if(i == highestLevel){
+			highestLevel++;
+		}
+	}
+	
+	public int getHighestLevel(){
+		return highestLevel;
 	}
 	
 	public LinkedList<String> getStatsAsStrings(){

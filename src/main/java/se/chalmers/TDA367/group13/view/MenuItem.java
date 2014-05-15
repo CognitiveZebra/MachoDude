@@ -12,7 +12,7 @@ import se.chalmers.TDA367.group13.util.Util;
 
 
 public class MenuItem extends Entity{
-	private int ID;
+	protected int ID;
 	private String name; 
 	private Color selectedColor = new Color(0,0,0,0.4f);
 	public Rectangle selectedRec;

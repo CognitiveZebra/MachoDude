@@ -9,6 +9,7 @@ import org.newdawn.slick.state.transition.EmptyTransition;
 import org.newdawn.slick.state.transition.VerticalSplitTransition;
 
 import se.chalmers.TDA367.group13.exception.GameOverException;
+import se.chalmers.TDA367.group13.exception.WinException;
 import se.chalmers.TDA367.group13.model.GameModel;
 import se.chalmers.TDA367.group13.view.GameView;
 
@@ -18,11 +19,12 @@ public class GameState extends BasicGameState{
 	private GameView view;
 	private GameModel model;
 	private Input input;
+	private int level;
 
 	
 	@Override
 	public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		model = new GameModel(gc,1);
+		model = new GameModel(gc,level);
 		view = new GameView(model);
 		input = gc.getInput();
 		model.startMusic();
@@ -39,6 +41,8 @@ public class GameState extends BasicGameState{
 				model.update(input,delta);
 			} catch (GameOverException e) {
 				sbg.enterState(GameStateController.getGameOverState().getID(), new EmptyTransition(), new VerticalSplitTransition());
+			} catch (WinException e) {
+				sbg.enterState(GameStateController.getWinState().getID(), new EmptyTransition(), new VerticalSplitTransition());
 			}
 	}
 
@@ -51,5 +55,13 @@ public class GameState extends BasicGameState{
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		
+	}
+	
+	public void setLevel(int level){
+		this.level = level;
+	}
+	
+	public int getLevel(){
+		return level;
 	}
 }

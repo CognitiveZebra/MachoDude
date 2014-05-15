@@ -21,6 +21,7 @@ import se.chalmers.TDA367.group13.entities.enemies.enemy1.Enemy_1;
 import se.chalmers.TDA367.group13.entities.enemies.enemy2.Enemy_2;
 import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.entities.projectile.Projectile;
+import se.chalmers.TDA367.group13.exception.WinException;
 import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Camera;
 import se.chalmers.TDA367.group13.util.Controls;
@@ -44,6 +45,7 @@ public class Level {
 	private ParticleSystem weather; 
 	private ConfigurableEmitter rain;
 	private int delta;
+	protected int level_number;
 
 	public Level(Camera camera, TiledMap map, Image background, Music music)
 			throws SlickException {
@@ -168,8 +170,11 @@ public class Level {
 		return (map.getWidth() * map.getTileWidth());
 	}
 
-	public void updateBoss(Player player){
-		if (boss.getX() < Game.WIDTH && !boss.isDestroyed()){
+	public void updateBoss(Player player) throws WinException{
+		if (boss.isDestroyed()){
+			Stats.getInstance().updateHighestLevel(level_number);
+			throw new WinException();
+		} else if (boss.getX() < Game.WIDTH){
 			boss.showHealthBar();
 			if(player.getY() > boss.getY()+64)
 				boss.moveY();
@@ -177,7 +182,7 @@ public class Level {
 				boss.movedownY();
 			if (boss.isReady())
 				System.out.println(boss.isMouthOpen());
-				boss.openMouth();
+			boss.openMouth();
 			if (boss.isMouthOpen()){
 				System.out.println("Mouth is open");
 				projectiles.add(boss.fireLaser());
@@ -187,10 +192,7 @@ public class Level {
 						boss.update();
 				}
 			}
-
 		}
-
-
 	}
 
 	public void updateEnemies(Player player, int delta) {
