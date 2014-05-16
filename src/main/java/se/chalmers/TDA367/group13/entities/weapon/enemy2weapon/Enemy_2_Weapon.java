@@ -16,7 +16,7 @@ public class Enemy_2_Weapon extends Weapon {
 
 	public Enemy_2_Weapon(float x, float y) throws SlickException {
 		super(x, y, new Image("res/Sprites/Enemies/Enemy_1/Enemy_1-Arm.png"), new Image("res/Sprites/Enemies/Enemy_1/Enemy_1-Arm.png").getFlippedCopy(true, false), new Image("res/Sprites/Enemies/Enemy_1/Enemy_1-Projectile.png"),"Enemy_1_Weapon", 1);
-		shoulder = new Vector2f(5, 20);
+		shoulder = new Vector2f(4, 4);
 		nuzzle = new Vector2f(3, 4);
 		distanceToNuzzle = new Line(nuzzle, shoulder);
 		nuzzleAngle = Math.atan2(distanceToNuzzle.getX1() - distanceToNuzzle.getX2(), distanceToNuzzle.getY1() - distanceToNuzzle.getY2());
