@@ -27,13 +27,13 @@ public class Boss_1Test {
 		test.setY(5);
 		assertTrue(test.getY() == 5);
 	}
-
-//	@Test
-//	public void testResize() {
-//		float height = test.getHeight();
-//		test.resize(2f);
-//		assertTrue(test.getHeight() > height);
-//	}
+	
+	@Test
+	public void testResize() {
+		float height = test.getHeight();
+		test.resize(2f);
+		assertTrue(test.getHeight() > height);
+	}
 
 	@Test
 	public void testBoss_1() throws SlickException {
@@ -65,8 +65,9 @@ public class Boss_1Test {
 
 	@Test
 	public void testLoseHealth() {
+		float health = test.getHealth();
 		test.loseHealth();
-		assertTrue(test.getHealth() == 19);
+		assertTrue(test.getHealth() == health -1);
 	}
 
 	@Test
@@ -79,45 +80,13 @@ public class Boss_1Test {
 
 	@Test
 	public void testIsHurt() {
+		test.setHealth(50);
 		assertFalse(test.isHurt());
-		test.setHealth(18);
+		test.loseHealth();
 		assertTrue(test.isHurt());
 	}
 
-	@Test
-	public void testGetWalkingSpeed() {
-		assertTrue(test.getWalkingSpeed() == 3);
-	}
 
-	@Test
-	public void testGetNextRightX() {
-		assertTrue(test.getNextRightX() == test.getX()+3);
-	}
-
-	@Test
-	public void testGetNextLeftX() {
-		assertTrue(test.getNextLeftX() == test.getX()-3);
-	}
-
-//	@Test
-//	public void testGetNextY() {
-//		
-//	}
-//
-//	@Test
-//	public void testMoveRight() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testMoveLeft() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testMoveY() {
-//		fail("Not yet implemented");
-//	}
 
 	@AfterClass
 	public static void close(){
