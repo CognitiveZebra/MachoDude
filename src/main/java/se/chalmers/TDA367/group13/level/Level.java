@@ -171,28 +171,27 @@ public class Level {
 	}
 
 	public void updateBoss(Player player) throws WinException{
-		if (boss.isDestroyed()){
+		if (boss.getHealth() <= 0){
 			Stats.getInstance().updateHighestLevel(level_number);
 			throw new WinException();
 		} else if (boss.getX() < Game.WIDTH){
+			
 			boss.showHealthBar();
-			if(player.getY() > boss.getY()+64)
-				boss.moveY();
-			else 
-				boss.movedownY();
-			if (boss.isReady())
-				System.out.println(boss.isMouthOpen());
-			boss.openMouth();
-			if (boss.isMouthOpen()){
-				System.out.println("Mouth is open");
+			if(boss.getState() == boss.getShootingState()){
 				projectiles.add(boss.fireLaser());
-				if (boss.isReady()){
-					boss.closeMouth();
-					if(boss.isMoutClosed())
-						boss.update();
-				}
+			} 
+			
+			boss.update(player);
+			
+			Rectangle hitbox = new Rectangle(boss.getX(), boss.getNextY(), boss.getWidth(), boss.getHeight());
+			
+			if(isLegal(hitbox)){
+				boss.moveY();
 			}
-		}
+			
+
+
+		} 
 	}
 
 	public void updateEnemies(Player player, int delta) {

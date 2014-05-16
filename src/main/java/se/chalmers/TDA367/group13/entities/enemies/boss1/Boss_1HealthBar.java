@@ -17,19 +17,6 @@ public class Boss_1HealthBar {
 		textColor = new Color(255, 255, 255);
 	}
 
-
-	public void render(Boss_1 b, Graphics g){
-		updateHealthBar(b);
-		g.setColor(bgColor);
-		g.fill(bg);
-		g.setColor(barColor);
-		g.fill(bar);
-		g.setColor(textColor);
-		g.drawString("KIM TRON IL", (Game.WIDTH/2)-(width/5), 70);
-
-
-	}
-
 	public Color getColor(int health, int max){
 		double ratio = getRatio(health,max);
 		double ratiotInverse = 1 - ratio; 
@@ -43,11 +30,23 @@ public class Boss_1HealthBar {
 		return (double)health/(double)max;
 	}
 
+	
 	public void updateHealthBar(Boss_1 b){
 		bg = new RoundedRectangle((Game.WIDTH/2)-(width/2),100,width, height, 2f);
 		bar = new RoundedRectangle((Game.WIDTH/2)-(width/2),100,(float) (width*getRatio((int)b.getHealth(),(int)b.getMaxHealth())),height, 2f);
 		barColor = getColor((int)b.getHealth(), (int)b.getMaxHealth());
 		bgColor = getColor((int)b.getHealth(), (int)b.getMaxHealth()).darker().darker();
+	}
+
+
+	public void render(Boss_1 b, Graphics g) {
+		updateHealthBar(b);
+		g.setColor(bgColor);
+		g.fill(bg);
+		g.setColor(barColor);
+		g.fill(bar);
+		g.setColor(textColor);
+		g.drawString("KIM TRON IL", (Game.WIDTH/2)-(width/5), 70);
 	}
 
 }

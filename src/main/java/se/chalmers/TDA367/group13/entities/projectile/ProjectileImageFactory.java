@@ -10,7 +10,8 @@ public class ProjectileImageFactory {
 		switch(s){
 		case "player": path = "res/Sprites/testArm.png"; break;
 		case "enemy1": path ="res/Sprites/Enemies/Enemy_1/Enemy_1-Projectile.png"; break;
-		case "fire": path = "res/Sprites/Enemies/Enemy_1/Enemy_1-Projectile.png"; break; 
+		case "fire": path = "res/Sprites/Enemies/Enemy_1/Enemy_1-Projectile.png"; break;
+		case "boss": path = "res/Sprites/Bosses/1/laser_beam.png"; break;
 		default: path = null; break; 
 		}
 		

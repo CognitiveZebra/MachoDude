@@ -7,7 +7,8 @@ import se.chalmers.TDA367.group13.entities.IMoveableState;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public abstract class AbstractMoveableEntityState implements IMoveableState{
-	private Animation animationLeft, animationRight;
+	protected Animation animationLeft;
+	private Animation animationRight;
 	protected Vector2f velocity;
 	
 	public AbstractMoveableEntityState(){

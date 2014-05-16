@@ -1,71 +1,68 @@
 package se.chalmers.TDA367.group13.entities.enemies.boss1;
 
-
-
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.XMLPackedSheet;
+import org.newdawn.slick.geom.Vector2f;
 
-import se.chalmers.TDA367.group13.entities.Entity;
-import se.chalmers.TDA367.group13.entities.IDestructable;
-import se.chalmers.TDA367.group13.entities.IMoveable;
+import se.chalmers.TDA367.group13.entities.AbstractMoveableEntityState;
+import se.chalmers.TDA367.group13.entities.MoveableEntity;
+import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.entities.projectile.Boss1Projectile;
 import se.chalmers.TDA367.group13.entities.projectile.Projectile;
-import se.chalmers.TDA367.group13.level.Level;
 import se.chalmers.TDA367.group13.util.Direction;
 
-public class Boss_1 extends Entity implements IMoveable, IDestructable {
-	private XMLPackedSheet bossSheet;
-	private Direction direction;	
-	private long time;
+public class Boss_1 extends MoveableEntity {
+	private XMLPackedSheet bossSheet;	
 	private Boss_1HealthBar healthBar;
 	private Boolean showHealthBar;
 	private Sound hurt;
-	private AbstractBoss_1State bossState, idle, opening, closing, fireState;
-	private Image laserBegin, laserBeam, rightLaserBegin,stillImg, openImg, rightStillImg, rightOpenImg;
-	private Image[] mouthOpen, mouthClose, rightMouthOpen, rightMouthClose;
-	private Animation openMouth, closeMouth, rightOpenMouth, rightCloseMouth,  still, open, rightOpen, rightStill;
-	private float health, walkingspeed, cooldown, maxHealth;
-	private int score, counter;
-
-
-
-
-	public Boss_1(float x, float y) throws SlickException{
+	private Image laserBegin, laserBeam;
+	private Image[] mouthOpen, mouthClose;
+	private Animation openMouth, closeMouth;
+	private float health, maxHealth;
+	private int score, yOffset = 80;
+	private AbstractBoss_1State up, down, shooting;
+	private float scale;
+	
+	public Boss_1(float x, float y) throws SlickException {
 		super(x, y, new Image("/res/Sprites/Bosses/1/boss_1_head.png"));
 		bossSheet = new XMLPackedSheet("/res/Sprites/Bosses/1/boss_1_sheet.png","/res/Sprites/Bosses/1/boss_1_sheet.xml");
-		this.health = 20;
-		maxHealth = 20;
-		this.walkingspeed = 3;
-		time = System.currentTimeMillis();
+		this.health = 50;
+		maxHealth = health;
 		direction = Direction.LEFT;
-		cooldown = 5000;
 		initAnimations();
-		fireState = new Boss_1FireState(open, rightOpen);
-		closing = new Boss_1LoadState(closeMouth, rightCloseMouth);
-		opening = new Boss_1LoadState (openMouth, rightOpenMouth);
-		idle = new Boss_1IdleState(still, rightStill);
-		bossState = idle;
+		up = new Boss_1Moving(closeMouth);
+		up.setVelocity(new Vector2f(0,-2));
+		down = new Boss_1Moving(closeMouth);
+		down.setVelocity(new Vector2f(0,2));
+		shooting = new Boss_1Shooting(openMouth);
+		state = shooting;
 		healthBar = new Boss_1HealthBar();
 		showHealthBar = false;
 		hurt = new Sound("res/Sound/Boss_1/hurt.wav");
-		counter = 0;
-
-
+		score = 100;
 	}
+	
+	@Override
+	public void render(Graphics g){
+		g.drawAnimation(state.getAnimation(Direction.LEFT), getX(), getY());
+		if(showHealthBar){
+			healthBar.render(this, g);
+		}
+		if(state == getShootingState()){
+			g.drawImage(laserBegin,x-laserBegin.getWidth(), y+yOffset);
+		}
+	}
+	
+
+
 	public void initAnimations() throws SlickException{
-		int animationSpeed = 200;
+		int animationSpeed = 20;
 		image = bossSheet.getSprite("still.png");
-
-		stillImg = bossSheet.getSprite("still.png");
-		openImg =  bossSheet.getSprite("open5.png");
-		rightOpenImg =  openImg.getFlippedCopy(true, false);
-		rightStillImg = stillImg.getFlippedCopy(true, false);
-
-
 
 		mouthOpen = new Image[]{
 				bossSheet.getSprite("open1.png"),
@@ -73,14 +70,6 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 				bossSheet.getSprite("open3.png"),
 				bossSheet.getSprite("open4.png"),
 				bossSheet.getSprite("open5.png")
-		};
-
-		rightMouthOpen = new Image[]{
-				bossSheet.getSprite("open1.png").getFlippedCopy(true, false),
-				bossSheet.getSprite("open2.png").getFlippedCopy(true, false),
-				bossSheet.getSprite("open3.png").getFlippedCopy(true, false),
-				bossSheet.getSprite("open4.png").getFlippedCopy(true, false),
-				bossSheet.getSprite("open5.png").getFlippedCopy(true, false)
 		};
 
 		mouthClose = new Image[]{
@@ -91,35 +80,15 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 				bossSheet.getSprite("open1.png")
 		};
 
-		rightMouthClose = new Image[]{
-				bossSheet.getSprite("open5.png").getFlippedCopy(true, false),
-				bossSheet.getSprite("open4.png").getFlippedCopy(true, false),
-				bossSheet.getSprite("open3.png").getFlippedCopy(true, false),
-				bossSheet.getSprite("open2.png").getFlippedCopy(true, false),
-				bossSheet.getSprite("open1.png").getFlippedCopy(true, false)
-		};
-
 		laserBegin = new Image("/res/Sprites/Bosses/1/laser_begin.png");
 		laserBeam = new Image("/res/Sprites/Bosses/1/laser_beam.png");
-		rightLaserBegin = laserBegin.getFlippedCopy(true, false);
 
 		resize(5);
 
 		openMouth = new Animation(mouthOpen, animationSpeed);
 		closeMouth = new Animation(mouthClose, animationSpeed);
-		openMouth.stopAt(4);
-		closeMouth.stopAt(4);
-
-		still = new Animation(new Image[] {stillImg}, animationSpeed);
-		open = new Animation(new Image[] {openImg}, animationSpeed);
-		rightOpen = new Animation(new Image[] {rightOpenImg}, animationSpeed);
-		rightStill = new Animation(new Image[] {rightStillImg}, animationSpeed);
-
-		rightOpenMouth = new Animation(rightMouthOpen, animationSpeed);
-		rightCloseMouth = new Animation(mouthClose, animationSpeed);
-
-		rightOpenMouth.setLooping(false);
-		rightCloseMouth.setLooping(false);
+		openMouth.setLooping(false);
+		closeMouth.setLooping(false);
 
 	}
 
@@ -138,55 +107,27 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		this.health = health;
 	}
 
-	public void render(Graphics g) {
-		if(!isDestroyed()){
-			g.drawAnimation(bossState.getAnimation(direction), x, y);
-			if(showHealthBar)
-				healthBar.render(this, g);
-		}
-			
-	}
-
 	public void resize(float scale){
 		super.resize(scale);
-		stillImg = stillImg.getScaledCopy(scale);
-		openImg =  openImg.getScaledCopy(scale);
-		rightOpenImg =  rightOpenImg.getScaledCopy(scale);
-		rightStillImg = rightStillImg.getScaledCopy(scale);
-		laserBeam = laserBeam.getScaledCopy(scale);
+		resizeBeam();
 		resizeImages(mouthClose, scale);
 		resizeImages(mouthOpen, scale);
-
 	}
 
-	public void resizeBeam(float scale){
+	public void resizeBeam(){
 		laserBegin.setFilter(Image.FILTER_NEAREST);
-		laserBegin = laserBegin.getScaledCopy(scale);
+		laserBegin = laserBegin.getScaledCopy(Player.scale);
 		laserBeam.setFilter(Image.FILTER_NEAREST);
-	}
-
-	public void update(){
-		if (openMouth.isStopped() && closeMouth.isStopped()){
-			bossState = idle;
-			openMouth.restart();
-			closeMouth.restart();
-		}
+		laserBeam = laserBeam.getScaledCopy(Player.scale);
 	}
 
 	public Projectile fireLaser(){
-		bossState = fireState;
-		return new Boss1Projectile(x-64, y-64, laserBeam, (float)Math.PI, 3, direction);
-
+		return new Boss1Projectile(x-laserBeam.getWidth()-laserBegin.getWidth(), y+yOffset, (float)Math.PI, direction);
 	}
 
 
 	public void setHealth(float health) {
 		this.health = health;
-	}
-
-	@Override
-	public void setY(float y){
-		this.y = y;
 	}
 
 	public Image[] resizeImages(Image[] images, float scale){
@@ -198,86 +139,68 @@ public class Boss_1 extends Entity implements IMoveable, IDestructable {
 		return images;
 	}
 
-	@Override
+
 	public void loseHealth() {
 		hurt.play();
 		health--;
 
 	}
 
-	@Override
+
 	public boolean isDestroyed() {
 		return health <= 0;
 	}
 
-	@Override
+
 	public boolean isHurt() {
 		return health < maxHealth;
 	}
 
-	public float getWalkingSpeed(){
-		return walkingspeed;
-	}
-
-	public float getNextRightX() {
-		return x + getWalkingSpeed();
-	}
-
-	public float getNextLeftX() {
-		return x - getWalkingSpeed(); 
-	}
-
-	public float getNextY() {
-		return y + getWalkingSpeed();
-	}
-
-	public void moveRight() {
-		setX(getX() + getWalkingSpeed());
-	}
-
-	public void moveLeft() {
-		setX(getX() - getWalkingSpeed());
-	}
-
-	public void moveY() {
-		if (bossState.getCanMove())
-			setY(getY() + getWalkingSpeed());		
-	}
-	public void movedownY() {
-		if (bossState.getCanMove())
-			setY(getY() - getWalkingSpeed());		
-	}
-
-	public boolean isReady() {
-		if ((System.currentTimeMillis() - time) > cooldown) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 
 	public void showHealthBar(){
 		showHealthBar = true;
 	}
-	public void openMouth(){
+
+	
+	public void update(Player p){
+		if(((AbstractBoss_1State)state).isNextState()){
+			if(state == shooting){
+				setState(getMovingState(p));
+			} else {
+				setState(shooting);
+			}
+		}
+	}
+	
+	public void setState(AbstractMoveableEntityState state){
+		this.state = state;
+		((AbstractBoss_1State)state).setStateStartedMillis();
+		state.getAnimation(direction).restart();
+	}
+	public AbstractBoss_1State getUpState(){
+		return (AbstractBoss_1State) up;
+	}
+	
+	public AbstractBoss_1State getDownState(){
+		return (AbstractBoss_1State) down;
+	}
+	
+	
+	public AbstractBoss_1State getShootingState(){
+		return (AbstractBoss_1State) shooting;
+	}
+	
+	public AbstractBoss_1State getState(){
+		return (AbstractBoss_1State) state;
+	}
+
+	public AbstractBoss_1State getMovingState(Player p) {	
+		if(p.getY() < this.getCenterY()){
+			return up;
+		} else {
+			return down;
+		}
 		
+	}
 
-		if(!open.isStopped())
-			System.out.println("Opening mouth");
-			bossState = opening;
-	}
-	
-	public void closeMouth(){
-		if(!closeMouth.isStopped())
-			bossState = closing;
-	}
-	
-	public boolean isMouthOpen(){
-		return open.isStopped();
-	}
-	
-	public boolean isMoutClosed(){
-		return closeMouth.isStopped();
-	}
 }
-

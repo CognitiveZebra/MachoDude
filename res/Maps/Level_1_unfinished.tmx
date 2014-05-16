@@ -76,7 +76,7 @@
  </layer>
  <layer name="enemies" width="181" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3ZMQoAIAgFUOeC7n/cbhANUaTvzQ4fcVCMAAAAAAAAVtqhGgAAyKq/DnCBnR+AKsbrAACkVOFuJAezCgAAe/zOztNTAH40AfEx7hW0RgAA
+   H4sIAAAAAAAAC+3ZMQoAIAgF0OaC7n/cbhBBklTvzQ4fcVAsBQAAAAAAmKlBNQAA8KqWHeAAOz8AAJCtZwfY8MPdyBvMKgAArPE7i6enANxoALPGa2i0RgAA
   </data>
  </layer>
 </map>
