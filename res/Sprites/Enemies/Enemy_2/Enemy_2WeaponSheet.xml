@@ -1,0 +1,4 @@
+<sheet>
+	<sprite name="Enemy_2WeaponFire.png" x="0" y="0" width="9" height="10" />
+	<sprite name="Enemy_2Weapon.png" x="9" y="0" width="9" height="9" />
+</sheet>
