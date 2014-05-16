@@ -30,14 +30,10 @@ public abstract class Projectile extends Entity {
 		vector.normalise();
 	}
 	
-	public void update(){
-		setX(getX() + (speed*vector.x));
-		setY(getY() - (speed*vector.y));
-	}
 	
 	public void update(int delta){
-		setX(getX() + (speed*vector.x));
-		setY(getY() - (speed*vector.y));
+		setX(getX() + (speed*vector.x)*delta);
+		setY(getY() - (speed*vector.y)*delta);
 	}
 	
 	

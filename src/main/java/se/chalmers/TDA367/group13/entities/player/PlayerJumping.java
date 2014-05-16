@@ -9,11 +9,11 @@ import se.chalmers.TDA367.group13.util.Direction;
 
 public class PlayerJumping extends AbstractPlayerState implements IMoveableState {
 	
-	private float jumpHeight = -8;
+	private float jumpHeight = -0.7f;
 	
 	public PlayerJumping(){
 		super();
-		velocity = new Vector2f(4, Constants.GRAVITY);
+		velocity = new Vector2f(0.4f, Constants.GRAVITY);
 	}
 	
 	@Override

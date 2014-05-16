@@ -7,7 +7,7 @@ import se.chalmers.TDA367.group13.util.Direction;
 public class Boss1Projectile extends Projectile {
 
 	public Boss1Projectile(float x, float y, float angle, Direction direction) {
-		super(x, y, ProjectileImageFactory.getImage("boss").getScaledCopy(Boss_1.projectileScale), angle, 10, direction);
+		super(x, y, ProjectileImageFactory.getImage("boss").getScaledCopy(Boss_1.projectileScale), angle, 1, direction);
 		damage = 3;
 	}
 

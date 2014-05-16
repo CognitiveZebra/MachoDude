@@ -16,11 +16,13 @@ public class Game  {
     public static final int WIDTH = 1216;
     /** Screen height */
     public static final int HEIGHT = 768;
+    
+    public static final int FRAME_TARGET = 60;
         
     public static void main(String[] args) throws SlickException {
         AppGameContainer app = new AppGameContainer(new GameStateController("MachoDude"),WIDTH, HEIGHT, false);
         app.setForceExit(false);
-        app.setTargetFrameRate(60);
+        app.setTargetFrameRate(FRAME_TARGET);
         app.start();
         
         

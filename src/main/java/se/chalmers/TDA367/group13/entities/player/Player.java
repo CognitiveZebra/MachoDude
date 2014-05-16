@@ -16,6 +16,7 @@ import se.chalmers.TDA367.group13.entities.MoveableEntity;
 import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.entities.weapon.Weapon;
 import se.chalmers.TDA367.group13.entities.weapon.playerweapon.PlayerWeapon;
+import se.chalmers.TDA367.group13.util.Constants;
 import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.util.Stats;
 
@@ -209,6 +210,22 @@ public class Player extends MoveableEntity {
 
 	public LinkedList<Projectile> getProjectiles() {
 		return projectiles;
+	}
+	@Override 
+	public void moveY(int delta){
+		((PlayerJumping)playerJumping).getYVelocity();
+		super.moveY(delta);	
+	}
+	@Override
+	public float getNextY(int delta){
+		((PlayerJumping)playerJumping).getYVelocity();
+		return super.getNextY(delta);	
+	}
+
+
+
+	public int getHealth() {
+		return health;
 	}
 	
 }
