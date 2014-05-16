@@ -19,9 +19,9 @@ public class Enemy_2 extends Enemy {
 
 	public Enemy_2(float x, float y)
 			throws SlickException {
-		super(x, y, "res/Sprites/Enemies/Enemy_1/Enemy_1.png", "res/Sprites/Enemies/Enemy_1/sheet.xml", scale);
-		rightShoulder = new Point(6, 13);
-		leftShoulder = new Point(11, 13);
+		super(x, y+64, "res/Sprites/Enemies/Enemy_2/Enemy_2Sheet.png", "res/Sprites/Enemies/Enemy_2/Enemy_2Sheet.xml", scale);
+		rightShoulder = new Point(10, 20);
+		leftShoulder = new Point(5, 20);
 		weapon = new Enemy_2_Weapon(x, y);
 		aggroRange = new Circle(getCenterX(), getCenterY(), 300);
 		maxHealth = 8;
@@ -38,14 +38,15 @@ public class Enemy_2 extends Enemy {
 	public void initAnimations() {
 		
 		right = new Image[]
-				{enemySheet.getSprite("walk1"),enemySheet.getSprite("walk2")};
+				{enemySheet.getSprite("Enemy_2Still.png").getFlippedCopy(true, false),
+				enemySheet.getSprite("Enemy_2Walk.png").getFlippedCopy(true, false)};
 			
 		left = new Image[]
-				{enemySheet.getSprite("walk1").getFlippedCopy(true, false),
-				enemySheet.getSprite("walk2").getFlippedCopy(true, false)};
+				{enemySheet.getSprite("Enemy_2Still.png"),
+				enemySheet.getSprite("Enemy_2Walk.png")};
 					
-		standRight = new Image[]{enemySheet.getSprite("walk1")};
-		standLeft = new Image[]{enemySheet.getSprite("walk1").getFlippedCopy(true, false)};
+		standRight = new Image[]{enemySheet.getSprite("Enemy_2Still.png").getFlippedCopy(true, false)};
+		standLeft = new Image[]{enemySheet.getSprite("Enemy_2Still.png")};
 		
 		int animationSpeed = 200;
 		

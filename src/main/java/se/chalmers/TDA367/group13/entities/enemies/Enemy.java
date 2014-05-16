@@ -32,7 +32,6 @@ public abstract class Enemy extends MoveableEntity implements IDestructable {
 	public Enemy(float x, float y, String sheet, String xml, int scale) throws SlickException {
 		super(x, y - new Image(sheet).getWidth()*scale - 1, new Image(sheet));
 		enemySheet = new XMLPackedSheet(sheet, xml);
-		setImage(enemySheet.getSprite("walk1"));
 		direction = Direction.LEFT;
 		healthbar = new HealthBarEnemy();
 	}

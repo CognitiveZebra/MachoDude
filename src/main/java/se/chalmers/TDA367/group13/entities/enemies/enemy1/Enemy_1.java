@@ -31,6 +31,7 @@ public class Enemy_1 extends Enemy{
 		maxHealth = 5;
 		health = maxHealth;
 		scoreValue = 5;
+		setImage(enemySheet.getSprite("walk1"));
 		hurtSound = new Sound("res/Sound/Enemy_1/Hurt.wav");
 		deathSound = new Sound("res/Sound/Enemy_1/Dies.wav");
 		initAnimations();

@@ -127,6 +127,13 @@ public abstract class Weapon extends Entity {
 		return projectileImage;
 	}
 	
+	public void setRightImage(Image rightImage){
+		this.rightImage = rightImage;
+	}
+	public void setLeftImage(Image leftImage){
+		this.leftImage = leftImage;
+	}
+	
 	public float getProjectileX(Direction direction) {
 		if (direction == Direction.RIGHT) {
 			return getCenterX() + (float) ((distanceToNuzzle.length() * 2) * Math.cos(getAngle() - nuzzleAngle));
