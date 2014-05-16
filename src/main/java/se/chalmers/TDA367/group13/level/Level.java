@@ -173,6 +173,7 @@ public class Level {
 	public void updateBoss(Player player) throws WinException{
 		if (boss.getHealth() <= 0){
 			Stats.getInstance().updateHighestLevel(level_number);
+			Stats.getInstance().addScore(boss.getScoreValue());
 			throw new WinException();
 		} else if (boss.getX() < Game.WIDTH){
 			

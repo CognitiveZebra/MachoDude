@@ -202,5 +202,9 @@ public class Boss_1 extends MoveableEntity {
 		}
 		
 	}
+	
+	public int getScoreValue(){
+		return score;
+	}
 
 }
