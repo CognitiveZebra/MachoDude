@@ -22,34 +22,5 @@ public class GameStateControllerTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testGetGameState() {
-		assertTrue(GameStateController.getGameState().getID() == 3);
-	}
-
-	@Test
-	public void testGetMenuState() {
-		assertTrue(GameStateController.getMenuState().getID() == 2);
-	}
-
-	@Test
-	public void testGetQuitState() {
-		assertTrue(GameStateController.getQuitState().getID() == 666);
-	}
-
-	@Test
-	public void testGetGameOverState() {
-		assertTrue(GameStateController.getGameOverState().getID() == 1337);
-	}
-
-	@Test
-	public void testGetSettingsState() {
-		assertTrue(GameStateController.getSettingsState().getID() == 15);
-	}
-
-	@Test
-	public void testGetStatsState() {
-		assertTrue(GameStateController.getStatsState().getID() == 42);
-	}
 
 }
