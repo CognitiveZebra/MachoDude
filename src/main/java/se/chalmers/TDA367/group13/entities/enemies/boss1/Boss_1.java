@@ -36,9 +36,9 @@ public class Boss_1 extends MoveableEntity {
 		direction = Direction.LEFT;
 		initAnimations();
 		up = new Boss_1Moving(closeMouth);
-		up.setVelocity(new Vector2f(0,-2));
+		up.setVelocity(new Vector2f(0,-0.2f));
 		down = new Boss_1Moving(closeMouth);
-		down.setVelocity(new Vector2f(0,2));
+		down.setVelocity(new Vector2f(0,0.2f));
 		shooting = new Boss_1Shooting(openMouth);
 		state = shooting;
 		healthBar = new Boss_1HealthBar();
