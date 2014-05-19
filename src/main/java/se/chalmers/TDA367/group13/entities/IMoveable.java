@@ -4,15 +4,15 @@ import se.chalmers.TDA367.group13.util.Direction;
 
 public interface IMoveable {
 
-	public float getNextRightX();
+	public float getNextRightX(int delta);
 	
-	public float getNextLeftX();
+	public float getNextLeftX(int delta);
 	
-	public float getNextY();
+	public float getNextY(int delta);
 
-	public void moveRight();
+	public void moveRight(int delta);
 	
-	public void moveLeft();
+	public void moveLeft(int delta);
 
-	public void moveY();
+	public void moveY(int delta);
 }

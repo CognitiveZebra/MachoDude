@@ -170,9 +170,10 @@ public class Level {
 		return (map.getWidth() * map.getTileWidth());
 	}
 
-	public void updateBoss(Player player) throws WinException{
+	public void updateBoss(Player player, int delta) throws WinException{
 		if (boss.getHealth() <= 0){
 			Stats.getInstance().updateHighestLevel(level_number);
+			Stats.getInstance().addScore(boss.getScoreValue());
 			throw new WinException();
 		} else if (boss.getX() < Game.WIDTH){
 			
@@ -183,10 +184,10 @@ public class Level {
 			
 			boss.update(player);
 			
-			Rectangle hitbox = new Rectangle(boss.getX(), boss.getNextY(), boss.getWidth(), boss.getHeight());
+			Rectangle hitbox = new Rectangle(boss.getX(), boss.getNextY(delta), boss.getWidth(), boss.getHeight());
 			
 			if(isLegal(hitbox)){
-				boss.moveY();
+				boss.moveY(delta);
 			}
 			
 
@@ -212,7 +213,7 @@ public class Level {
 				nextYPos = new Rectangle(e.getMaxX(), e.getY(), e.getWidth(), e.getHeight());
 			}
 
-			nextYPos.setY(e.getNextY());
+			nextYPos.setY(e.getNextY(delta));
 			if (isLegal(nextYPos)) {
 				e.setDirection(((e.getDirection() == Direction.LEFT) ?  Direction.RIGHT: Direction.LEFT));
 			}
@@ -226,21 +227,21 @@ public class Level {
 			if (e.getState() == e.getWalkingState()) {
 				Rectangle nextXPos = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
 				if (e.getDirection() == Direction.LEFT) {
-					nextXPos.setX(e.getNextLeftX());
+					nextXPos.setX(e.getNextLeftX(delta));
 					if (isLegal(nextXPos)) {
-						e.moveLeft();
+						e.moveLeft(delta);
 					} else {
 						e.setDirection(Direction.RIGHT);
 					}
 				} else if (e.getDirection() == Direction.RIGHT) {
-					nextXPos.setX(e.getNextRightX());
+					nextXPos.setX(e.getNextRightX(delta));
 					if (isLegal(nextXPos)) {
-						e.moveRight();
+						e.moveRight(delta);
 					} else {
 						e.setDirection(Direction.LEFT);
 					} 
 				}
-				nextXPos.setX(e.getNextLeftX());
+				nextXPos.setX(e.getNextLeftX(delta));
 				if (!isLegal(nextXPos)) {
 					e.setState(e.getStillState());
 				}

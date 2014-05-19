@@ -7,7 +7,7 @@ import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public class PlayerProjectile extends ParticleProjectile {
-	private static float speed = 10;
+	private static float speed = 1;
 
 	
 	public PlayerProjectile(float x, float y, float angle, Direction direction) {

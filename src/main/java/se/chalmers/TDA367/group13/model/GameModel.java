@@ -3,13 +3,11 @@ package se.chalmers.TDA367.group13.model;
 import java.util.LinkedList;
 
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.particles.ConfigurableEmitter;
-import org.newdawn.slick.particles.ParticleSystem;
 
+import se.chalmers.TDA367.group13.Game;
 import se.chalmers.TDA367.group13.entities.block.Block;
 import se.chalmers.TDA367.group13.entities.enemies.Enemy;
 import se.chalmers.TDA367.group13.entities.player.Player;
@@ -18,8 +16,6 @@ import se.chalmers.TDA367.group13.exception.GameOverException;
 import se.chalmers.TDA367.group13.exception.WinException;
 import se.chalmers.TDA367.group13.level.Level;
 import se.chalmers.TDA367.group13.level.LevelFactory;
-import se.chalmers.TDA367.group13.level.Level_1;
-import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.util.Stats;
 
@@ -38,7 +34,7 @@ public class GameModel {
 		this.container = gc;
 		try {
 			this.level = LevelFactory.createLevel(level);
-			player = new Player(300, 300, "res/Sprites/MachoDude/sheet.png",
+			player = new Player(250, Game.HEIGHT - 300 , "res/Sprites/MachoDude/sheet.png",
 					"res/Sprites/MachoDude/sheet.xml");
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -52,12 +48,12 @@ public class GameModel {
 		Rectangle nextXPos = new Rectangle(player.getX(), player.getY(), player.getWidth(), player.getHeight());
 
 		if (input.isKeyDown(Controls.getInstance().getLeftKey())) {
-			nextXPos.setX(player.getNextLeftX());
+			nextXPos.setX(player.getNextLeftX(delta));
 			if (isBlockCollision(level.getBlocks(), nextXPos)) {
-				player.moveLeft();
+				player.moveLeft(delta);
 			} 
 		} else if (input.isKeyDown(Controls.getInstance().getRightKey())) {
-			nextXPos.setX(player.getNextRightX());
+			nextXPos.setX(player.getNextRightX(delta));
 			if (isBlockCollision(level.getBlocks(), nextXPos)) {
 
 				if (nextXPos.getCenterX() > (container.getWidth() / 2) && !(-level.getCamera().getX() > (level.getWidth() - container.getWidth()))) {
@@ -67,7 +63,7 @@ public class GameModel {
 					level.moveProjectiles(player.getX() - nextXPos.getX());
 					level.getCamera().move(player.getX() - nextXPos.getX());
 				} else {
-					player.moveRight();
+					player.moveRight(delta);
 				}
 			}
 		}
@@ -77,11 +73,10 @@ public class GameModel {
 				player.setPlayerJumping();
 		}
 
-		Rectangle nextYPos = new Rectangle(player.getX(), player.getY(),
+		Rectangle nextYPos = new Rectangle(player.getX(), player.getNextY(delta),
 				player.getWidth(), player.getHeight());
-		nextYPos.setY(player.getNextY());
 		if (isBlockCollision(level.getBlocks(), nextYPos)) {
-			player.moveY();
+			player.moveY(delta);
 		} else if(collisionY > player.getY()){
  				player.setPlayerStill();
 		}
@@ -104,7 +99,7 @@ public class GameModel {
 		}
 		
 		level.updateEnemies(player,delta);
-		level.updateBoss(player);
+		level.updateBoss(player, delta);
 		level.updateScore();
 		
 
@@ -134,15 +129,13 @@ public class GameModel {
 		}
 		
 		if(player.isDead()){
+			System.out.println();
 			gameEnded = System.currentTimeMillis();
 			Stats.getInstance().addTimePlayed(gameEnded - gameStarted);
 			Stats.getInstance().incrementDeaths();
 			throw new GameOverException();
 		}
-		
-		
 		level.updateWeather(input, delta);
-		
 	}
 		
 	public boolean isBlockCollision(LinkedList<Block> blocks, Rectangle hitbox) {

@@ -26,7 +26,7 @@ public class Boss_1 extends MoveableEntity {
 	private float health, maxHealth;
 	private int score, yOffset = 80;
 	private AbstractBoss_1State up, down, shooting;
-	private float scale;
+	public static float bossScale = 5, projectileScale = 1.25f;
 	
 	public Boss_1(float x, float y) throws SlickException {
 		super(x, y, new Image("/res/Sprites/Bosses/1/boss_1_head.png"));
@@ -36,9 +36,9 @@ public class Boss_1 extends MoveableEntity {
 		direction = Direction.LEFT;
 		initAnimations();
 		up = new Boss_1Moving(closeMouth);
-		up.setVelocity(new Vector2f(0,-2));
+		up.setVelocity(new Vector2f(0,-0.2f));
 		down = new Boss_1Moving(closeMouth);
-		down.setVelocity(new Vector2f(0,2));
+		down.setVelocity(new Vector2f(0,0.2f));
 		shooting = new Boss_1Shooting(openMouth);
 		state = shooting;
 		healthBar = new Boss_1HealthBar();
@@ -83,7 +83,7 @@ public class Boss_1 extends MoveableEntity {
 		laserBegin = new Image("/res/Sprites/Bosses/1/laser_begin.png");
 		laserBeam = new Image("/res/Sprites/Bosses/1/laser_beam.png");
 
-		resize(5);
+		resize(bossScale);
 
 		openMouth = new Animation(mouthOpen, animationSpeed);
 		closeMouth = new Animation(mouthClose, animationSpeed);
@@ -109,16 +109,16 @@ public class Boss_1 extends MoveableEntity {
 
 	public void resize(float scale){
 		super.resize(scale);
-		resizeBeam();
+		resizeBeam(projectileScale);
 		resizeImages(mouthClose, scale);
 		resizeImages(mouthOpen, scale);
 	}
 
-	public void resizeBeam(){
+	public void resizeBeam(float scale){
 		laserBegin.setFilter(Image.FILTER_NEAREST);
-		laserBegin = laserBegin.getScaledCopy(Player.scale);
+		laserBegin = laserBegin.getScaledCopy(scale);
 		laserBeam.setFilter(Image.FILTER_NEAREST);
-		laserBeam = laserBeam.getScaledCopy(Player.scale);
+		laserBeam = laserBeam.getScaledCopy(scale);
 	}
 
 	public Projectile fireLaser(){
@@ -195,12 +195,16 @@ public class Boss_1 extends MoveableEntity {
 	}
 
 	public AbstractBoss_1State getMovingState(Player p) {	
-		if(p.getY() < this.getCenterY()){
+		if(p.getCenterY() < this.getCenterY()){
 			return up;
 		} else {
 			return down;
 		}
 		
+	}
+	
+	public int getScoreValue(){
+		return score;
 	}
 
 }

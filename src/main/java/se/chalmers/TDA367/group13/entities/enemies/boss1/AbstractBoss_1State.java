@@ -36,5 +36,6 @@ public class AbstractBoss_1State extends AbstractMoveableEntityState {
 		velocity = v;
 		
 	}
+
 	
 }

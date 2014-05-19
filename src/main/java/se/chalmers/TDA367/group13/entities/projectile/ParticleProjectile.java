@@ -21,7 +21,7 @@ public abstract class ParticleProjectile extends Projectile {
 	
 	@Override 
 	public void update(int delta){
-		super.update();
+		super.update(delta);
 		particleEmitter.setPosition(getCenterX(),getCenterY(), false);
 		ps.update(delta);
 	}
