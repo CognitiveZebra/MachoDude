@@ -77,3 +77,6 @@ local.properties
 .texlipse
 
 .classpath
+
+#MACShit
+.DS_Store
