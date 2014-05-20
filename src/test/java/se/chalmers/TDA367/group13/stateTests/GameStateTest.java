@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.Group13.stateTests;
+package se.chalmers.TDA367.group13.stateTests;
 
 import static org.junit.Assert.*;
 

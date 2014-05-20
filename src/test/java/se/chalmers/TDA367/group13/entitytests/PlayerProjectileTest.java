@@ -1,32 +1,30 @@
-package se.chalmers.TDA367.Group13.entitytests;
+package se.chalmers.TDA367.group13.entitytests;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 
-import se.chalmers.TDA367.group13.entities.projectile.Enemy1Projectile;
+import se.chalmers.TDA367.group13.entities.projectile.PlayerProjectile;
 import se.chalmers.TDA367.group13.util.Direction;
 
-public class Enemy1ProjectileTest {
+public class PlayerProjectileTest {
 
 	@BeforeClass
-	public static void startUp() throws Exception{
+	public static void startUp() throws Exception {
 		Display.create();
 	}
 	
 	@Test
-	public void testEnemy1Projectile() {
-		Enemy1Projectile test = new Enemy1Projectile(1, 1, 1, Direction.RIGHT);
+	public void testPlayerProjectile() {
+		PlayerProjectile test = new PlayerProjectile(1, 1, 1, Direction.RIGHT);
 		assertTrue(test.getDamage() == 1);
 	}
-	
+
 	@AfterClass
 	public static void close(){
 		Display.destroy();
 	}
-
 }

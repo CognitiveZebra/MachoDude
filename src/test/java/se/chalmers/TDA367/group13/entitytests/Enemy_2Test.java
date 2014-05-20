@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.Group13.entitytests;
+package se.chalmers.TDA367.group13.entitytests;
 
 import static org.junit.Assert.assertTrue;
 
