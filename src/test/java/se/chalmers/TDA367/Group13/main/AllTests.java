@@ -1,8 +1,12 @@
 package se.chalmers.TDA367.Group13.main;
 
+import java.io.File;
+
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
+import org.lwjgl.LWJGLUtil;
 
 import se.chalmers.TDA367.Group13.blocktests.BlockTest;
 import se.chalmers.TDA367.Group13.blocktests.DestructableBlockTest;
@@ -33,5 +37,14 @@ import se.chalmers.TDA367.Group13.stateTests.StatsStateTest;
 	GameStateTest.class, MenuStateTest.class, QuitStateTest.class,
 	SettingsStateTest.class, StatsStateTest.class })
 public class AllTests {
+
+	@BeforeClass
+	public static void startUp(){
+		
+		System.setProperty("org.lwjgl.librarypath", new File(new File(System.getProperty("user.dir"),"target"), "natives").getAbsolutePath());
+		  
+		System.setProperty("net.java.games.input.librarypath",System.getProperty("org.lwjgl.librarypath"));
+	}
+
 
 }
