@@ -1,7 +1,6 @@
-MachoDude
+MachoDude 
 =====
-Add to VM aguments in run configurations
-`-Djava.library.path=target/natives`
+Project for TDA367, Chalmers University of Technology
 
 In GitInspector:
 
