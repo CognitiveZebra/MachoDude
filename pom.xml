@@ -62,11 +62,17 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>${main.class}</mainClass>
+							<mainClass>se.chalmers.TDA367.group13.Game</mainClass>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
 						</manifest>
 					</archive>
+					<resources>
+						<resource>
+							<directory>${basedir}/res</directory>
+							<filtering>false</filtering>
+						</resource>
+					</resources>
 				</configuration>
 			</plugin>
 			<plugin>

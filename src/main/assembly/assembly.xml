@@ -33,6 +33,10 @@
 			<filtered>true</filtered>
 			<fileMode>0755</fileMode>
 		</fileSet>
+				<fileSet>
+			<directory>res</directory>
+			<outputDirectory>res</outputDirectory>
+		</fileSet>
 	</fileSets>
 
 	<dependencySets>
