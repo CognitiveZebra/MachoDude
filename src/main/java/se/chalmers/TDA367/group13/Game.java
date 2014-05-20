@@ -1,9 +1,8 @@
 package se.chalmers.TDA367.group13;
 
+import java.io.File;
+
 import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 import se.chalmers.TDA367.group13.controller.GameStateController;
@@ -20,7 +19,10 @@ public class Game  {
     public static final int FRAME_TARGET = 60;
         
     public static void main(String[] args) throws SlickException {
-        AppGameContainer app = new AppGameContainer(new GameStateController("MachoDude"),WIDTH, HEIGHT, false);
+		System.setProperty("org.lwjgl.librarypath", new File(new File(System.getProperty("user.dir"),"target"), "natives").getAbsolutePath());
+		System.setProperty("net.java.games.input.librarypath",System.getProperty("org.lwjgl.librarypath"));
+    	
+    	AppGameContainer app = new AppGameContainer(new GameStateController("MachoDude"),WIDTH, HEIGHT, false);
         app.setForceExit(false);
         app.setTargetFrameRate(FRAME_TARGET);
         app.start();
