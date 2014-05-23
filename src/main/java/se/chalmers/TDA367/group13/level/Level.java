@@ -210,12 +210,11 @@ public class Level {
 			moveEnemy(delta, e);
 			testAggro(player, e);
 		}
-		LinkedList<Projectile> removed = updateProjectiles(player, delta);
-		getProjectiles().removeAll(removed);
+		updateProjectiles(player, delta);
 		enemies.removeAll(dead);
 	}
 
-	private LinkedList<Projectile> updateProjectiles(Player player, int delta) {
+	private void updateProjectiles(Player player, int delta) {
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
 		if (!projectiles.isEmpty()){
 			for (Projectile projectile : projectiles) {
@@ -229,7 +228,7 @@ public class Level {
 				}
 			}
 		}
-		return removed;
+		getProjectiles().removeAll(removed);
 	}
 
 	private void moveEnemy(int delta, Enemy e) {
