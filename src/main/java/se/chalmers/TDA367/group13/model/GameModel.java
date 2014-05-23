@@ -25,13 +25,21 @@ public class GameModel {
 	private Level level;
 	private float collisionY;
 	private long gameStarted, gameEnded;
+	private Player player;
+	private LinkedList<Enemy> enemies;
+	private LinkedList<Projectile> projectiles; 
+	//private Boss boss;
 
-	public GameModel(GameContainer gc, int level) {
+	public GameModel(GameContainer gc, int levelNumber) {
 		gameStarted = System.currentTimeMillis();
 		Stats.getInstance().setScore(0);
 		this.container = gc;
 		try {
-			this.level = LevelFactory.createLevel(level);
+			this.level = LevelFactory.createLevel(levelNumber);
+			player = level.getPlayer();
+			enemies = level.getEnemies();
+			projectiles = level.getProjectiles();
+			//boss = level.getBoss();
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -56,31 +64,31 @@ public class GameModel {
 	}
 
 	public void movePlayerX(Input input, int delta) {
-		Rectangle nextXPos = new Rectangle(level.getPlayer().getX(), level
-				.getPlayer().getY(), level.getPlayer().getWidth(), level
+		Rectangle nextXPos = new Rectangle(player.getX(), level
+				.getPlayer().getY(), player.getWidth(), level
 				.getPlayer().getHeight());
 		if (input.isKeyDown(Controls.getInstance().getLeftKey())) {
-			nextXPos.setX(level.getPlayer().getNextLeftX(delta));
+			nextXPos.setX(player.getNextLeftX(delta));
 			if (isBlockCollision(level.getBlocks(), nextXPos)) {
-				level.getPlayer().moveLeft(delta);
+				player.moveLeft(delta);
 			}
 		} else if (input.isKeyDown(Controls.getInstance().getRightKey())) {
-			nextXPos.setX(level.getPlayer().getNextRightX(delta));
+			nextXPos.setX(player.getNextRightX(delta));
 			if (isBlockCollision(level.getBlocks(), nextXPos)) {
 
 				if (nextXPos.getCenterX() > (container.getWidth() / 2)
 						&& !(-level.getCamera().getX() > (level.getWidth() - container
 								.getWidth()))) {
-					level.moveBlocks(level.getPlayer().getX() - nextXPos.getX());
-					level.moveEnemies(level.getPlayer().getX()
+					level.moveBlocks(player.getX() - nextXPos.getX());
+					level.moveEnemies(player.getX()
 							- nextXPos.getX());
-					level.moveBoss(level.getPlayer().getX() - nextXPos.getX());
-					level.moveProjectiles(level.getPlayer().getX()
+					level.moveBoss(player.getX() - nextXPos.getX());
+					level.moveProjectiles(player.getX()
 							- nextXPos.getX());
 					level.getCamera().move(
-							level.getPlayer().getX() - nextXPos.getX());
+							player.getX() - nextXPos.getX());
 				} else {
-					level.getPlayer().moveRight(delta);
+					player.moveRight(delta);
 				}
 			}
 		}
@@ -88,61 +96,61 @@ public class GameModel {
 
 	public void movePlayerY(Input input, int delta) {
 		if (input.isKeyDown(Controls.getInstance().getJumpKey())
-				&& level.getPlayer().getState() != level.getPlayer()
+				&& player.getState() != player
 						.getPlayerJumping()) {
-			level.getPlayer().setPlayerJumping();
+			player.setPlayerJumping();
 		}
 
-		Rectangle nextYPos = new Rectangle(level.getPlayer().getX(), level
-				.getPlayer().getNextY(delta), level.getPlayer().getWidth(),
-				level.getPlayer().getHeight());
+		Rectangle nextYPos = new Rectangle(player.getX(), level
+				.getPlayer().getNextY(delta), player.getWidth(),
+				player.getHeight());
 		if (isBlockCollision(level.getBlocks(), nextYPos)) {
-			level.getPlayer().moveY(delta);
-		} else if (collisionY > level.getPlayer().getY()) {
-			level.getPlayer().setPlayerStill();
+			player.moveY(delta);
+		} else if (collisionY > player.getY()) {
+			player.setPlayerStill();
 		}
 	}
 	
 	public void determinePlayerState(Input input){
-		if (level.getPlayer().getState() != level.getPlayer()
+		if (player.getState() != player
 				.getPlayerJumping()) {
 			if (input.isKeyDown(Controls.getInstance().getRightKey())
 					|| input.isKeyDown(Controls.getInstance().getLeftKey())) {
-				level.getPlayer().setPlayerWalking();
+				player.setPlayerWalking();
 			}
 		}
 	}
 	
 	public void updatePlayerWeapon(Input input){
-		level.getPlayer().moveWeapon();
-		level.getPlayer()
+		player.moveWeapon();
+		player
 				.getWeapon()
 				.pointAt(input.getMouseX(), input.getMouseY(),
-						level.getPlayer().getDirection());
+						player.getDirection());
 	}
 	
 	public void playerShoot(Input input){
 		if (input.isMouseButtonDown(Controls.getInstance().getShootKey())
 				|| input.isKeyDown(Controls.getInstance().getShootKey())) {
-			if (level.getPlayer().getWeapon().isReady()) {
-				level.getPlayer().getProjectiles()
-						.add(level.getPlayer().fireWeapon());
+			if (player.getWeapon().isReady()) {
+				player.getProjectiles()
+						.add(player.fireWeapon());
 			}
 		}
 	}
 	
 	public void updateEnemies(int delta){
-		level.updateEnemies(level.getPlayer(), delta);
-		Rectangle nextXPos = new Rectangle(level.getPlayer().getX(), level
-				.getPlayer().getY(), level.getPlayer().getWidth(), level
+		level.updateEnemies(player, delta);
+		Rectangle nextXPos = new Rectangle(player.getX(), level
+				.getPlayer().getY(), player.getWidth(), level
 				.getPlayer().getHeight());
-		if (isEnemyCollision(level.getEnemies(), nextXPos)) {
-			level.getPlayer().loseHealth();
+		if (isEnemyCollision(enemies, nextXPos)) {
+			player.loseHealth();
 		}
 	}
 	
 	public void updateBoss(int delta) throws WinException{
-		level.updateBoss(level.getPlayer(), delta);
+		level.updateBoss(player, delta);
 	}
 	
 	public void updateScore(){
@@ -152,8 +160,8 @@ public class GameModel {
 	public void updateProjectiles(Input input, int delta){
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
 
-		for (Projectile projectile : level.getPlayer().getProjectiles()) {
-			Enemy victim = getVictim(level.getEnemies(), projectile);
+		for (Projectile projectile : player.getProjectiles()) {
+			Enemy victim = getVictim(enemies, projectile);
 			if (victim != null) {
 				victim.loseHealth();
 				removed.add(projectile);
@@ -168,7 +176,7 @@ public class GameModel {
 			}
 		}
 
-		level.getPlayer().getProjectiles().removeAll(removed);
+		player.getProjectiles().removeAll(removed);
 	}
 
 	
@@ -177,7 +185,7 @@ public class GameModel {
 	} 
 	
 	public void checkGameOver() throws GameOverException{
-		if(level.getPlayer().isDead()){
+		if(player.isDead()){
 			System.out.println();
 			gameEnded = System.currentTimeMillis();
 			Stats.getInstance().addTimePlayed(gameEnded - gameStarted);
@@ -222,7 +230,7 @@ public class GameModel {
 	}
 
 	public Player getPlayer() {
-		return level.getPlayer();
+		return player;
 	}
 
 	public void startMusic() {
