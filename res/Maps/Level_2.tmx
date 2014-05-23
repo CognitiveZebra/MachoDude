@@ -96,6 +96,14 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="19" name="PlayerTile" tilewidth="32" tileheight="32">
+  <image source="../Tiles/PlayerTile.png" width="32" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="player" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="blockLayer" width="200" height="24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3YSw6DMAwFQPpv73/h0kV3dZAQ4DqZkd4WooBtwjQBAAAAMIrTnHOQS+K64B9c59yC3BPXRd+q9GX1QYYq791jzjPIK3Fd9G3v+qgyn+CXvftylfkEGdRHrtb8NsPzOTfkavUnPYpezj9r50CrP+lR9PJ9lzEHopqs0FeO6IuZvXere/dSHxlzINq7Cvt2xHPPfLe2urfzz3rR3lXYN/XRB/+X9nFEX8zsvaP0ff+XIKY+GNXSt9Mnrdr4ZukaIhWzNBtERo76EInzBuTb79sASwAA
@@ -104,6 +112,11 @@
  <layer name="enemyLayer" width="200" height="24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3Xqw7AIBAEQDRN+v+fW08TXO9BZwzk1CJYwhgAAAAA/NGVHQCAF90MQDXeJgDobWYHAGjkpP+P/qeqOztAsO53MaoXM/v3pO4HAAAAiDCXdd3vZtm+zlTxzADQxQPP8cQUAEsAAA==
+  </data>
+ </layer>
+ <layer name="PlayerLayer" width="200" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OMQEAAAwCIDusf9fF8BASkAAAAAAAAACrrh0AAAAAAAAAAAAAAGDSA41+5DIASwAA
   </data>
  </layer>
 </map>

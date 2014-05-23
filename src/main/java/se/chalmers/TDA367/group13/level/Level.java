@@ -9,6 +9,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.particles.ConfigurableEmitter;
 import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.tiled.TiledMap;
@@ -41,6 +42,7 @@ public class Level {
 	private Image background;
 	private Camera camera;
 	private Boss_1 boss;
+	private Player player;
 	private LinkedList<Projectile> projectiles;
 	private ParticleSystem weather; 
 	private ConfigurableEmitter rain;
@@ -63,13 +65,17 @@ public class Level {
 
 		for (int x = 0; x < map.getWidth(); x++) {
 			for (int y = 0; y < map.getHeight(); y++) {
-				String block = map.getTileProperty(map.getTileId(x, y, 0), "blocked", "false");
-				String enemy = map.getTileProperty(map.getTileId(x, y, 1), "enemy", "false");
-				if (block.equals("true")) {
+				String blockLocation = map.getTileProperty(map.getTileId(x, y, 0), "blocked", "false");
+				String enemyLocation = map.getTileProperty(map.getTileId(x, y, 1), "enemy", "false");
+				String playerLocation = map.getTileProperty(map.getTileId(x, y, 2), "player", "false");
+				if (blockLocation.equals("true")) {
 					blocks.add(new Block(x * map.getTileWidth(), y
 							* map.getTileWidth(), map.getTileImage(x, y, 0)));
 				}
-				switch (enemy) {
+				if (playerLocation.equals("true")) {
+					player = new Player(x * map.getTileWidth(), y * map.getTileWidth(), "res/Sprites/MachoDude/sheet.png", "res/Sprites/MachoDude/sheet.xml");
+				}
+				switch (enemyLocation) {
 				case "1":
 					enemies.add(new Enemy_1(x * map.getTileWidth(), y
 							* map.getTileWidth()));
@@ -318,5 +324,9 @@ public class Level {
 
 	public LinkedList<Projectile> getProjectiles() {
 		return projectiles;
+	}
+
+	public Player getPlayer() {
+		return player;
 	}
 }
