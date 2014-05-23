@@ -79,12 +79,12 @@
  </tileset>
  <layer name="Tile Layer 1" width="181" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3a2Q6CMBBA0eL2/58sjWlCmm4DnUo79yR9QYI43iAanQMAAAAAAFjDa1/vwwJmR9NYzYxNPxKr9nhqP5fYltpHuj23L8aYsWmghKbxD9u+nkrHpmmM5nv2rX2Ujn/npkv3wStovedfSejZatNYy7Fnmsbs4p5pGjNL9UzTGEHjt4hczzT9Y+371GihBT/XXNuSmZd6ttC0f/2lWeIcyVyPLVzpLTxnqWcLTYfz0HqdVknm2qvpuCmaRg/xtZKmx6PpvuL31XLTpf+0xat2j7a59mOdPYee53sHkpm1ztN605JVO6crx9ZYM3wGaM3sjk1rXb8050TTctaaHrG+D0lZBLRGAAA=
+   H4sIAAAAAAAAC+3a2Q6DIBBAUez2/5+sPJAaAsioQ2TmnoQXa6jSG7qkIQAAAAAAANjw2cZ3N4DZ0TSsoWlYY6XpV2EcPV46LxSOlc6RHq+di/tZaRpzWbbxVpr76U239lPMKfYcW/spzf/0pr3o/Vw0u9QzTcOCfc80/Wd5D7Ms75mmMbNSzzSNETR+i6j1TNN1Hr5XjZJaiGtYa1uyvq2ePTQd77+1ljhHsq77Fq70lp6z1bOHptN1aN2nV5J1vavpvCmavp/H94B8r6Tp8TSb9vgekL+unptu/dcnH0f73hL65zp7DZK5Z2hasma96+m9ack4uqYrc2uMGZrWWrMnNq2xf/V8N6Xpsbw1PWKsfBS+GrRGAAA=
   </data>
  </layer>
  <layer name="enemies" width="181" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3ZMQoAIAgF0OaC7n/cbhBBklTvzQ4fcVAsBQAAAAAAmKlBNQAA8KqWHeAAOz8AAJCtZwfY8MPdyBvMKgAArPE7i6enANxoALPGa2i0RgAA
+   H4sIAAAAAAAAC+3ZsQkAIAwEQGsF9x/XFRQCUXNXp3hCioe0BgAAAAAAQHU9aAYAoAK9CPjByA4AAByb2QGC6SPcyF0CAMAe/7J4dgrAixaqAxmytEYAAA==
   </data>
  </layer>
  <layer name="PlayerLayer" width="181" height="25">
