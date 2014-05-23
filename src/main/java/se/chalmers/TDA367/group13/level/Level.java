@@ -205,75 +205,17 @@ public class Level {
 		this.delta = delta;
 		LinkedList<Enemy> dead = new LinkedList<Enemy>();
 		for (Enemy e : enemies) {
-
-			if (e.isDestroyed()) {
-				dead.add(e);
-				Stats.getInstance().addScore(e.getValue());
-				Stats.getInstance().incrementEnemiesKilled();
-			}
-
-			Rectangle nextYPos;
-			if (e.getDirection() == Direction.LEFT) {
-				nextYPos = new Rectangle(e.getX()-e.getWidth(), e.getY(), e.getWidth(), e.getHeight());
-			} else {
-				nextYPos = new Rectangle(e.getMaxX(), e.getY(), e.getWidth(), e.getHeight());
-			}
-
-			nextYPos.setY(e.getNextY(delta));
-			if (isLegal(nextYPos)) {
-				e.setDirection(((e.getDirection() == Direction.LEFT) ?  Direction.RIGHT: Direction.LEFT));
-			}
-
-			if (Math.abs((e.getCenterX() - player.getCenterX())) < 20 || isLegal(nextYPos)) {
-				e.setState(e.getStillState());
-			} else {
-				e.setState(e.getWalkingState());
-			}
-
-			if (e.getState() == e.getWalkingState()) {
-				Rectangle nextXPos = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
-				if (e.getDirection() == Direction.LEFT) {
-					nextXPos.setX(e.getNextLeftX(delta));
-					if (isLegal(nextXPos)) {
-						e.moveLeft(delta);
-					} else {
-						e.setDirection(Direction.RIGHT);
-					}
-				} else if (e.getDirection() == Direction.RIGHT) {
-					nextXPos.setX(e.getNextRightX(delta));
-					if (isLegal(nextXPos)) {
-						e.moveRight(delta);
-					} else {
-						e.setDirection(Direction.LEFT);
-					} 
-				}
-				nextXPos.setX(e.getNextLeftX(delta));
-				if (!isLegal(nextXPos)) {
-					e.setState(e.getStillState());
-				}
-			}
-			e.updateAggroRange();
-			if (e.getAggroRange().intersects(player)) {
-				if (e.getCenterX() < player.getCenterX()) {
-					e.setDirection(Direction.RIGHT);
-				} else {
-					e.setDirection(Direction.LEFT);
-				}
-				e.getWeapon().pointAt(player.getCenterX(), player.getCenterY(), e.getDirection());
-				if (e.getWeapon().isReady()) {	
-					projectiles.add(e.getWeapon().fireWeapon(e.getDirection()));
-				}
-			} else {
-				if (e.getDirection() == Direction.RIGHT) {
-					e.getWeapon().setImage(e.getWeapon().getRightImage());
-				} else if (e.getDirection() == Direction.LEFT) {
-					e.getWeapon().setImage(e.getWeapon().getLeftImage());
-				}
-				e.getWeapon().getImage().setRotation(0);
-			}
-
+			testDead(dead, e);
+			testDirection(player, delta, e);
+			moveEnemy(delta, e);
+			testAggro(player, e);
 		}
+		LinkedList<Projectile> removed = updateProjectiles(player, delta);
+		getProjectiles().removeAll(removed);
+		enemies.removeAll(dead);
+	}
 
+	private LinkedList<Projectile> updateProjectiles(Player player, int delta) {
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
 		if (!projectiles.isEmpty()){
 			for (Projectile projectile : projectiles) {
@@ -287,8 +229,82 @@ public class Level {
 				}
 			}
 		}
-		getProjectiles().removeAll(removed);
-		enemies.removeAll(dead);
+		return removed;
+	}
+
+	private void moveEnemy(int delta, Enemy e) {
+		if (e.getState() == e.getWalkingState()) {
+			Rectangle nextXPos = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
+			if (e.getDirection() == Direction.LEFT) {
+				nextXPos.setX(e.getNextLeftX(delta));
+				if (isLegal(nextXPos)) {
+					e.moveLeft(delta);
+				} else {
+					e.setDirection(Direction.RIGHT);
+				}
+			} else if (e.getDirection() == Direction.RIGHT) {
+				nextXPos.setX(e.getNextRightX(delta));
+				if (isLegal(nextXPos)) {
+					e.moveRight(delta);
+				} else {
+					e.setDirection(Direction.LEFT);
+				} 
+			}
+			nextXPos.setX(e.getNextLeftX(delta));
+			if (!isLegal(nextXPos)) {
+				e.setState(e.getStillState());
+			}
+		}
+	}
+
+	private void testDirection(Player player, int delta, Enemy e) {
+		Rectangle nextYPos;
+		if (e.getDirection() == Direction.LEFT) {
+			nextYPos = new Rectangle(e.getX()-e.getWidth(), e.getY(), e.getWidth(), e.getHeight());
+		} else {
+			nextYPos = new Rectangle(e.getMaxX(), e.getY(), e.getWidth(), e.getHeight());
+		}
+
+		nextYPos.setY(e.getNextY(delta));
+		if (isLegal(nextYPos)) {
+			e.setDirection(((e.getDirection() == Direction.LEFT) ?  Direction.RIGHT: Direction.LEFT));
+		}
+
+		if (Math.abs((e.getCenterX() - player.getCenterX())) < 20 || isLegal(nextYPos)) {
+			e.setState(e.getStillState());
+		} else {
+			e.setState(e.getWalkingState());
+		}
+	}
+
+	private void testDead(LinkedList<Enemy> dead, Enemy e) {
+		if (e.isDestroyed()) {
+			dead.add(e);
+			Stats.getInstance().addScore(e.getValue());
+			Stats.getInstance().incrementEnemiesKilled();
+		}
+	}
+
+	private void testAggro(Player player, Enemy e) {
+		e.updateAggroRange();
+		if (e.getAggroRange().intersects(player)) {
+			if (e.getCenterX() < player.getCenterX()) {
+				e.setDirection(Direction.RIGHT);
+			} else {
+				e.setDirection(Direction.LEFT);
+			}
+			e.getWeapon().pointAt(player.getCenterX(), player.getCenterY(), e.getDirection());
+			if (e.getWeapon().isReady()) {	
+				projectiles.add(e.getWeapon().fireWeapon(e.getDirection()));
+			}
+		} else {
+			if (e.getDirection() == Direction.RIGHT) {
+				e.getWeapon().setImage(e.getWeapon().getRightImage());
+			} else if (e.getDirection() == Direction.LEFT) {
+				e.getWeapon().setImage(e.getWeapon().getLeftImage());
+			}
+			e.getWeapon().getImage().setRotation(0);
+		}
 	}
 
 	public void updateWeather(Input input, int delta){
