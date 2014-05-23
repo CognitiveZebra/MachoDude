@@ -39,18 +39,21 @@ public class GameModel {
 	}
 	
 	public void update(Input input, int delta) throws GameOverException, WinException {
+		updatePlayer(input,delta);
+		updateEnemies(delta);
+		updateBoss(delta);
+		updateScore();
+		updateProjectiles(input, delta);
+	}
+	
+	public void updatePlayer(Input input, int delta) throws GameOverException{
+		checkGameOver();
 		movePlayerX(input, delta);
 		movePlayerY(input, delta);
 		determinePlayerState(input);
 		updatePlayerWeapon(input);
 		playerShoot(input);
-		updateEnemies(delta);
-		updateBoss(delta);
-		updateScore();
-		updateProjectiles(input, delta);
-		checkGameOver();
 	}
-	
 
 	public void movePlayerX(Input input, int delta) {
 		Rectangle nextXPos = new Rectangle(level.getPlayer().getX(), level
