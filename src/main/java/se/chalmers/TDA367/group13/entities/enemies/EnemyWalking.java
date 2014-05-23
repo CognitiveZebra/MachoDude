@@ -9,11 +9,11 @@ public class EnemyWalking extends AbstractEnemyState{
 	
 	public EnemyWalking(){
 		super();
-		velocity = new Vector2f(0.1f,Constants.GRAVITY);
+		velocity = new Vector2f(0.08f,Constants.GRAVITY);
 	}
 	
 	public EnemyWalking(Animation left, Animation right){
 		super(left, right);
-		velocity = new Vector2f(0.1f,Constants.GRAVITY);
+		velocity = new Vector2f(0.08f,Constants.GRAVITY);
 	}
 }

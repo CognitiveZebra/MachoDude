@@ -49,9 +49,8 @@ public class Level {
 	private int delta;
 	protected int level_number;
 
-	public Level(Camera camera, TiledMap map, Image background, Music music)
+	public Level(TiledMap map, Image background, Music music)
 			throws SlickException {
-		this.camera = camera;
 		this.map = map;
 		this.background = background;
 		this.music = music;
@@ -94,7 +93,7 @@ public class Level {
 
 			}
 		}
-
+		camera = new Camera(0);
 		weather = new ParticleSystem(new Image("res/Particles/particle_rain.png"),1500);
 		rain = ParticleFactory.createEmitter("rain");
 		weather.addEmitter(rain);

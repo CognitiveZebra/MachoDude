@@ -10,7 +10,7 @@ import se.chalmers.TDA367.group13.util.Camera;
 public class Level_1 extends Level{
 
 	public Level_1() throws SlickException {
-		super(new Camera(), new TiledMap("res/Maps/Level_1.tmx"), new Image("res/Backgrounds/Jungle_Test.gif"), new Music("res/Music/RoccoW_-_Something_Something_Knight.ogg"));
+		super(new TiledMap("res/Maps/Level_1.tmx"), new Image("res/Backgrounds/Jungle_Test.gif"), new Music("res/Music/RoccoW_-_Something_Something_Knight.ogg"));
 		level_number = 1;
 	}
 }

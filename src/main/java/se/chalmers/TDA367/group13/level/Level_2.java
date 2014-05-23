@@ -11,7 +11,7 @@ public class Level_2 extends Level {
 
 	public Level_2()
 			throws SlickException {
-		super(new Camera(), new TiledMap("res/Maps/Level_2.tmx"), new Image("res/Backgrounds/Jungle_Test.gif"), new Music("res/Music/RoccoW_-_Something_Something_Knight.ogg"));
+		super(new TiledMap("res/Maps/Level_2.tmx"), new Image("res/Backgrounds/Jungle_Test.gif"), new Music("res/Music/RoccoW_-_Something_Something_Knight.ogg"));
 		level_number = 2;
 	}
 

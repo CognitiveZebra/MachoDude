@@ -7,6 +7,7 @@ public class Camera {
 	public Camera() {
 		x = 0;
 	}
+
 	
 	public Camera(float x) {
 		this.x = x;
