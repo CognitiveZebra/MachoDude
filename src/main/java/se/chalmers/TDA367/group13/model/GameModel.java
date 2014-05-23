@@ -26,7 +26,6 @@ public class GameModel {
 	private float collisionY;
 	private long gameStarted, gameEnded;
 
-
 	public GameModel(GameContainer gc, int level) {
 		gameStarted = System.currentTimeMillis();
 		Stats.getInstance().setScore(0);
@@ -36,95 +35,145 @@ public class GameModel {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-		
-
 
 	}
-
+	
 	public void update(Input input, int delta) throws GameOverException, WinException {
-		Rectangle nextXPos = new Rectangle(level.getPlayer().getX(), level.getPlayer().getY(), level.getPlayer().getWidth(), level.getPlayer().getHeight());
+		movePlayerX(input, delta);
+		movePlayerY(input, delta);
+		determinePlayerState(input);
+		updatePlayerWeapon(input);
+		playerShoot(input);
+		updateEnemies(delta);
+		updateBoss(delta);
+		updateScore();
+		updateProjectiles(input, delta);
+		checkGameOver();
+	}
+	
 
+	public void movePlayerX(Input input, int delta) {
+		Rectangle nextXPos = new Rectangle(level.getPlayer().getX(), level
+				.getPlayer().getY(), level.getPlayer().getWidth(), level
+				.getPlayer().getHeight());
 		if (input.isKeyDown(Controls.getInstance().getLeftKey())) {
 			nextXPos.setX(level.getPlayer().getNextLeftX(delta));
 			if (isBlockCollision(level.getBlocks(), nextXPos)) {
 				level.getPlayer().moveLeft(delta);
-			} 
+			}
 		} else if (input.isKeyDown(Controls.getInstance().getRightKey())) {
 			nextXPos.setX(level.getPlayer().getNextRightX(delta));
 			if (isBlockCollision(level.getBlocks(), nextXPos)) {
 
-				if (nextXPos.getCenterX() > (container.getWidth() / 2) && !(-level.getCamera().getX() > (level.getWidth() - container.getWidth()))) {
+				if (nextXPos.getCenterX() > (container.getWidth() / 2)
+						&& !(-level.getCamera().getX() > (level.getWidth() - container
+								.getWidth()))) {
 					level.moveBlocks(level.getPlayer().getX() - nextXPos.getX());
-					level.moveEnemies(level.getPlayer().getX() - nextXPos.getX());
+					level.moveEnemies(level.getPlayer().getX()
+							- nextXPos.getX());
 					level.moveBoss(level.getPlayer().getX() - nextXPos.getX());
-					level.moveProjectiles(level.getPlayer().getX() - nextXPos.getX());
-					level.getCamera().move(level.getPlayer().getX() - nextXPos.getX());
+					level.moveProjectiles(level.getPlayer().getX()
+							- nextXPos.getX());
+					level.getCamera().move(
+							level.getPlayer().getX() - nextXPos.getX());
 				} else {
 					level.getPlayer().moveRight(delta);
 				}
 			}
 		}
+	}
 
-
-		if (input.isKeyDown(Controls.getInstance().getJumpKey()) && level.getPlayer().getState() != level.getPlayer().getPlayerJumping()) {
-				level.getPlayer().setPlayerJumping();
+	public void movePlayerY(Input input, int delta) {
+		if (input.isKeyDown(Controls.getInstance().getJumpKey())
+				&& level.getPlayer().getState() != level.getPlayer()
+						.getPlayerJumping()) {
+			level.getPlayer().setPlayerJumping();
 		}
 
-		Rectangle nextYPos = new Rectangle(level.getPlayer().getX(), level.getPlayer().getNextY(delta),
-				level.getPlayer().getWidth(), level.getPlayer().getHeight());
+		Rectangle nextYPos = new Rectangle(level.getPlayer().getX(), level
+				.getPlayer().getNextY(delta), level.getPlayer().getWidth(),
+				level.getPlayer().getHeight());
 		if (isBlockCollision(level.getBlocks(), nextYPos)) {
 			level.getPlayer().moveY(delta);
-		} else if(collisionY > level.getPlayer().getY()){
- 				level.getPlayer().setPlayerStill();
+		} else if (collisionY > level.getPlayer().getY()) {
+			level.getPlayer().setPlayerStill();
 		}
-		
-
-		if(level.getPlayer().getState() != level.getPlayer().getPlayerJumping()){
-			if(input.isKeyDown(Controls.getInstance().getRightKey()) || input.isKeyDown(Controls.getInstance().getLeftKey())) {
+	}
+	
+	public void determinePlayerState(Input input){
+		if (level.getPlayer().getState() != level.getPlayer()
+				.getPlayerJumping()) {
+			if (input.isKeyDown(Controls.getInstance().getRightKey())
+					|| input.isKeyDown(Controls.getInstance().getLeftKey())) {
 				level.getPlayer().setPlayerWalking();
 			}
 		}
-		
+	}
+	
+	public void updatePlayerWeapon(Input input){
 		level.getPlayer().moveWeapon();
-		level.getPlayer().getWeapon().pointAt(input.getMouseX(),input.getMouseY(), level.getPlayer().getDirection());
-		
-		
-		if (input.isMouseButtonDown(Controls.getInstance().getShootKey()) || input.isKeyDown(Controls.getInstance().getShootKey())){
+		level.getPlayer()
+				.getWeapon()
+				.pointAt(input.getMouseX(), input.getMouseY(),
+						level.getPlayer().getDirection());
+	}
+	
+	public void playerShoot(Input input){
+		if (input.isMouseButtonDown(Controls.getInstance().getShootKey())
+				|| input.isKeyDown(Controls.getInstance().getShootKey())) {
 			if (level.getPlayer().getWeapon().isReady()) {
-				level.getPlayer().getProjectiles().add(level.getPlayer().fireWeapon());
+				level.getPlayer().getProjectiles()
+						.add(level.getPlayer().fireWeapon());
 			}
 		}
-		
-		level.updateEnemies(level.getPlayer(),delta);
+	}
+	
+	public void updateEnemies(int delta){
+		level.updateEnemies(level.getPlayer(), delta);
+		Rectangle nextXPos = new Rectangle(level.getPlayer().getX(), level
+				.getPlayer().getY(), level.getPlayer().getWidth(), level
+				.getPlayer().getHeight());
+		if (isEnemyCollision(level.getEnemies(), nextXPos)) {
+			level.getPlayer().loseHealth();
+		}
+	}
+	
+	public void updateBoss(int delta) throws WinException{
 		level.updateBoss(level.getPlayer(), delta);
+	}
+	
+	public void updateScore(){
 		level.updateScore();
-		
-
-		
+	}
+	
+	public void updateProjectiles(Input input, int delta){
 		LinkedList<Projectile> removed = new LinkedList<Projectile>();
-		
+
 		for (Projectile projectile : level.getPlayer().getProjectiles()) {
 			Enemy victim = getVictim(level.getEnemies(), projectile);
 			if (victim != null) {
 				victim.loseHealth();
 				removed.add(projectile);
-			} else if(projectile.intersects(level.getBoss()) && !level.getBoss().isDestroyed()){
+			} else if (projectile.intersects(level.getBoss())
+					&& !level.getBoss().isDestroyed()) {
 				level.getBoss().loseHealth();
 				removed.add(projectile);
-			}
-				else if(isBlockCollision(level.getBlocks(), projectile)) {
+			} else if (isBlockCollision(level.getBlocks(), projectile)) {
 				projectile.update(delta);
 			} else {
 				removed.add(projectile);
 			}
 		}
-		
+
 		level.getPlayer().getProjectiles().removeAll(removed);
-		
-		if(isEnemyCollision(level.getEnemies(), nextXPos)){
-			level.getPlayer().loseHealth();
-		}
-		
+	}
+
+	
+	public void updateWeather(Input input, int delta){
+		level.updateWeather(input, delta);
+	} 
+	
+	public void checkGameOver() throws GameOverException{
 		if(level.getPlayer().isDead()){
 			System.out.println();
 			gameEnded = System.currentTimeMillis();
@@ -132,9 +181,11 @@ public class GameModel {
 			Stats.getInstance().incrementDeaths();
 			throw new GameOverException();
 		}
-		level.updateWeather(input, delta);
 	}
-		
+	
+	
+
+
 	public boolean isBlockCollision(LinkedList<Block> blocks, Rectangle hitbox) {
 		for (Block b : blocks) {
 			if (hitbox.intersects(b)) {
@@ -145,26 +196,24 @@ public class GameModel {
 		return (hitbox.getX() > 0 && hitbox.getMaxX() < container.getWidth());
 	}
 
-	public boolean isEnemyCollision(LinkedList<Enemy> enemies, Rectangle hitbox){
-		for(Enemy e : enemies){
-			if(hitbox.intersects(e)){
+	public boolean isEnemyCollision(LinkedList<Enemy> enemies, Rectangle hitbox) {
+		for (Enemy e : enemies) {
+			if (hitbox.intersects(e)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	public Enemy getVictim(LinkedList<Enemy> enemies, Rectangle hitbox) {
-		for(Enemy e : enemies){
-			if(hitbox.intersects(e)){
+		for (Enemy e : enemies) {
+			if (hitbox.intersects(e)) {
 				return e;
 			}
 		}
 		return null;
 	}
-	
 
-	
 	public Level getLevel() {
 		return level;
 	}
@@ -172,9 +221,9 @@ public class GameModel {
 	public Player getPlayer() {
 		return level.getPlayer();
 	}
-	
-	public void startMusic(){
+
+	public void startMusic() {
 		level.loopMusic();
 	}
-	
+
 }
