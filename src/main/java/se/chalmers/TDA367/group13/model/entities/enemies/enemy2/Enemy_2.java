@@ -19,7 +19,7 @@ public class Enemy_2 extends Enemy {
 
 	public Enemy_2(float x, float y)
 			throws SlickException {
-		super(x, y+64, "res/Sprites/Enemies/Enemy_2/Enemy_2Sheet.png", "res/Sprites/Enemies/Enemy_2/Enemy_2Sheet.xml", scale);
+		super(x, y, "res/Sprites/Enemies/Enemy_2/Enemy_2Sheet.png", "res/Sprites/Enemies/Enemy_2/Enemy_2Sheet.xml", scale);
 		rightShoulder = new Point(10, 20);
 		leftShoulder = new Point(5, 20);
 		weapon = new Enemy_2_Weapon(x, y);
