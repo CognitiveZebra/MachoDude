@@ -25,21 +25,16 @@ public class LevelMenuItem extends MenuItem {
 	
 	
 	@Override
-	public void clicked(StateBasedGame sbg){
-		if(Stats.getInstance().getHighestLevel() >= level){
-			((GameStateController)sbg).setLevel(level);
-			sbg.enterState(ID);
-		}
-	}
-	
-	@Override
 	public void render(Graphics g, boolean isSelected){
 		super.render(g, isSelected);
 		if(Stats.getInstance().getHighestLevel() < level){
 			g.drawImage(lock, getCenterX() + 80, getCenterY() - lock.getHeight()/2);
 		}
 	}
-
+	
+	public int getLevel(){
+		return level;
+	}
 }
 
 

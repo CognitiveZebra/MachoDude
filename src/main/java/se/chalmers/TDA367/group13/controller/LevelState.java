@@ -49,7 +49,13 @@ public class LevelState extends AbstractMachoDudeState {
 			}
 
 			if (item.contains(mouse) && isMousePressed) {
-				item.clicked(sbg);
+				if(item instanceof LevelMenuItem){
+					((GameStateController)sbg).setLevel(((LevelMenuItem)item).getLevel());
+					sbg.enterState(item.getID());
+				} else {
+					item.clicked(sbg);
+				}
+
 			}
 		}
 
@@ -62,7 +68,12 @@ public class LevelState extends AbstractMachoDudeState {
 		}
 
 		if (input.isKeyPressed(Input.KEY_ENTER)) {
-			menu.getSelected().clicked(sbg);
+			if(menu.getSelected() instanceof LevelMenuItem){
+				((GameStateController)sbg).setLevel(((LevelMenuItem)menu.getSelected()).getLevel());
+				sbg.enterState(menu.getSelected().getID());
+			} else {
+				menu.getSelected().clicked(sbg);
+			}
 		}
 		
 		weather.windFactor.setValue(-((gc.getWidth() / 2) - input.getMouseX()) / 20);
