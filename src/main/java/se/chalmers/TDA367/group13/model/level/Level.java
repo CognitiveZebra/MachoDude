@@ -13,10 +13,10 @@ import org.newdawn.slick.particles.ConfigurableEmitter;
 import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.tiled.TiledMap;
 
-import se.chalmers.TDA367.group13.entities.enemies.boss.AbstractBoss;
 import se.chalmers.TDA367.group13.exception.WinException;
 import se.chalmers.TDA367.group13.model.entities.block.Block;
 import se.chalmers.TDA367.group13.model.entities.enemies.Enemy;
+import se.chalmers.TDA367.group13.model.entities.enemies.boss.AbstractBoss;
 import se.chalmers.TDA367.group13.model.entities.enemies.boss1.Boss_1;
 import se.chalmers.TDA367.group13.model.entities.enemies.boss2.Boss_2;
 import se.chalmers.TDA367.group13.model.entities.enemies.enemy1.Enemy_1;
