@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.newdawn.slick.Image;
 
-import se.chalmers.TDA367.group13.entities.projectile.Boss1Projectile;
+import se.chalmers.TDA367.group13.model.entities.projectile.Boss1Projectile;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public class Boss1ProjectileTest {

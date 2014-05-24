@@ -12,9 +12,9 @@ import org.newdawn.slick.tests.InputTest;
 
 import se.chalmers.TDA367.group13.Game;
 import se.chalmers.TDA367.group13.controller.GameStateController;
-import se.chalmers.TDA367.group13.entities.player.Player;
-import se.chalmers.TDA367.group13.level.Level_1;
 import se.chalmers.TDA367.group13.model.GameModel;
+import se.chalmers.TDA367.group13.model.entities.player.Player;
+import se.chalmers.TDA367.group13.model.level.Level_1;
 
 public class GameModelTest {
 

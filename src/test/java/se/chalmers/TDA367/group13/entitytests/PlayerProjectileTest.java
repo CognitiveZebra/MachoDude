@@ -7,7 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
 
-import se.chalmers.TDA367.group13.entities.projectile.PlayerProjectile;
+import se.chalmers.TDA367.group13.model.entities.projectile.PlayerProjectile;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public class PlayerProjectileTest {

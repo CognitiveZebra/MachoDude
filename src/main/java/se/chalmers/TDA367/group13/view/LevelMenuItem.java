@@ -7,9 +7,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
-
 import se.chalmers.TDA367.group13.controller.GameStateController;
-import se.chalmers.TDA367.group13.entities.Entity;
+
+import se.chalmers.TDA367.group13.model.entities.Entity;
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
 

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import org.newdawn.slick.Graphics;
 
-import se.chalmers.TDA367.group13.entities.Entity;
+import se.chalmers.TDA367.group13.model.entities.Entity;
 
 
 public class SettingsView {
