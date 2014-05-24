@@ -23,8 +23,6 @@ public class Game  {
     public static void main(String[] args) throws SlickException {
 		System.setProperty("org.lwjgl.librarypath", new File(new File(System.getProperty("user.dir"),"target"), "natives").getAbsolutePath());
 		System.setProperty("net.java.games.input.librarypath",System.getProperty("org.lwjgl.librarypath"));
-		System.out.println(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-		System.out.println(Toolkit.getDefaultToolkit().getScreenSize().getHeight());
     	AppGameContainer app = new AppGameContainer(new GameStateController("MachoDude"),WIDTH, HEIGHT, true);
         app.setForceExit(false);
         app.setTargetFrameRate(FRAME_TARGET);
