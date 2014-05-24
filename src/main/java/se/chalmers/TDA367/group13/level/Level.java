@@ -54,7 +54,7 @@ public class Level {
 		this.map = map;
 		this.background = background;
 		this.music = music;
-		smallBackground = background.getSubImage(0, 0, 1216, 768);
+		smallBackground = background.getSubImage(0, 0, Game.WIDTH, Game.HEIGHT);
 		score = new TextItem("Score: " + Stats.getInstance().getScore(), Game.WIDTH - 200, 10);
 
 		projectiles = new LinkedList<Projectile>();
