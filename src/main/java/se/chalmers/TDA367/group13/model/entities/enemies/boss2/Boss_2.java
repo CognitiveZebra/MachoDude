@@ -14,7 +14,7 @@ import se.chalmers.TDA367.group13.model.entities.enemies.boss.BossHealthBar;
 import se.chalmers.TDA367.group13.model.entities.enemies.boss.BossMoving;
 import se.chalmers.TDA367.group13.model.entities.enemies.boss.BossShooting;
 import se.chalmers.TDA367.group13.model.entities.player.Player;
-import se.chalmers.TDA367.group13.model.entities.projectile.Boss1Projectile;
+import se.chalmers.TDA367.group13.model.entities.projectile.BossProjectile;
 import se.chalmers.TDA367.group13.model.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.util.Direction;
 
@@ -100,7 +100,7 @@ public class Boss_2 extends AbstractBoss {
 	}
 
 	public Projectile fireLaser(){
-		return new Boss1Projectile(x + xOffset + 12, y + getHeight() + laserBegin.getHeight(), (float)(Math.PI*1.5), direction);
+		return new BossProjectile(x + xOffset + 12, y + getHeight() + laserBegin.getHeight(), (float)(Math.PI*1.5), direction);
 	}
 
 	
