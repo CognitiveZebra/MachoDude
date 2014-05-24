@@ -37,6 +37,10 @@ import se.chalmers.TDA367.group13.stateTests.StatsStateTest;
 	PlayerProjectileTest.class, ProjectileImageFactoryTest.class, GameModelTest.class, GameOverStateTest.class, GameStateControllerTest.class,
 	GameStateTest.class, MenuStateTest.class, QuitStateTest.class,
 	SettingsStateTest.class, StatsStateTest.class })
+
+/*
+ * Run this class to go through all tests written in this project
+ */
 public class AllTests {
 
 	@BeforeClass
@@ -45,6 +49,8 @@ public class AllTests {
 		System.setProperty("org.lwjgl.librarypath", new File(new File(System.getProperty("user.dir"),"target"), "natives").getAbsolutePath());
 		  
 		System.setProperty("net.java.games.input.librarypath",System.getProperty("org.lwjgl.librarypath"));
+		
+		//To be able to test all OpenGL-methods a Display has to be created
 		Display.create();
 	}
 	
@@ -52,6 +58,4 @@ public class AllTests {
 	public static void close() {
 		Display.destroy();
 	}
-
-
 }
