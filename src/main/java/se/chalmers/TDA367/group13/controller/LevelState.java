@@ -25,7 +25,7 @@ public class LevelState extends AbstractMachoDudeState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		super.init(gc,sbg);
-		initMenu();	
+		initMenu(sbg);	
 
 	}
 
@@ -69,21 +69,21 @@ public class LevelState extends AbstractMachoDudeState {
 		super.update(gc,sbg,delta);
 	}
 
-	public void initMenu() {
+	public void initMenu(StateBasedGame sbg) {
 		try {
 			itemImage = new Image("res/GUI/menuItem.png");
 			int middleX = gc.getWidth() / 2 - itemImage.getWidth() / 2;
 
 			MenuItem level1 = new LevelMenuItem(middleX, 100,
-					itemImage, "Level 1", GameStateController.getGameState()
+					itemImage, "Level 1", ((GameStateController)sbg).getGameState()
 							.getID(),1);
 			
 			MenuItem level2 = new LevelMenuItem(middleX, 250,
-					itemImage, "Level 2", GameStateController.getGameState()
+					itemImage, "Level 2", ((GameStateController)sbg).getGameState()
 							.getID(),2);
 			
 			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 300,
-					itemImage, "MAIN MENU", GameStateController.getMenuState()
+					itemImage, "MAIN MENU", ((GameStateController)sbg).getMenuState()
 							.getID());
 
 

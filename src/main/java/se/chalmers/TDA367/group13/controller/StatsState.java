@@ -32,7 +32,7 @@ public class StatsState extends AbstractMachoDudeState {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.init(container, game);
-		initMenu();
+		initMenu(game);
 
 	}
 
@@ -90,13 +90,13 @@ public class StatsState extends AbstractMachoDudeState {
 		return ID;
 	}
 
-	public void initMenu() {
+	public void initMenu(StateBasedGame sbg) {
 		try {
 			itemImage = new Image("res/GUI/menuItem.png");
 			int middleX = gc.getWidth() / 2 - itemImage.getWidth() / 2;
 
 			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 300,
-					itemImage, "MAIN MENU", GameStateController.getMenuState()
+					itemImage, "MAIN MENU", ((GameStateController)sbg).getMenuState()
 							.getID());
 			MenuItem resetButton = new ResetStatsMenuItem(middleX, gc.getHeight() - 200,
 					itemImage, "RESET STATS");

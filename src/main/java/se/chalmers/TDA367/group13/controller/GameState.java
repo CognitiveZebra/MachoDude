@@ -19,12 +19,12 @@ public class GameState extends BasicGameState{
 	private GameView view;
 	private GameModel model;
 	private Input input;
-	private int level;
 
+	
 	
 	@Override
 	public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		model = new GameModel(gc,level);
+		model = new GameModel(gc,((GameStateController)sbg).getLevel());
 		view = new GameView(model);
 		input = gc.getInput();
 		model.startMusic();
@@ -40,9 +40,9 @@ public class GameState extends BasicGameState{
 			try {
 				model.update(input,delta);
 			} catch (GameOverException e) {
-				sbg.enterState(GameStateController.getGameOverState().getID(), new EmptyTransition(), new VerticalSplitTransition());
+				sbg.enterState(((GameStateController)sbg).getGameOverState().getID(), new EmptyTransition(), new VerticalSplitTransition());
 			} catch (WinException e) {
-				sbg.enterState(GameStateController.getWinState().getID(), new EmptyTransition(), new VerticalSplitTransition());
+				sbg.enterState(((GameStateController)sbg).getWinState().getID(), new EmptyTransition(), new VerticalSplitTransition());
 			}
 	}
 
@@ -55,13 +55,5 @@ public class GameState extends BasicGameState{
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		
-	}
-	
-	public void setLevel(int level){
-		this.level = level;
-	}
-	
-	public int getLevel(){
-		return level;
 	}
 }
