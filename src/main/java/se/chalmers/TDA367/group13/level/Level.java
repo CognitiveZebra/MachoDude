@@ -17,7 +17,9 @@ import org.newdawn.slick.tiled.TiledMap;
 import se.chalmers.TDA367.group13.Game;
 import se.chalmers.TDA367.group13.entities.block.Block;
 import se.chalmers.TDA367.group13.entities.enemies.Enemy;
+import se.chalmers.TDA367.group13.entities.enemies.boss.AbstractBoss;
 import se.chalmers.TDA367.group13.entities.enemies.boss1.Boss_1;
+import se.chalmers.TDA367.group13.entities.enemies.boss2.Boss_2;
 import se.chalmers.TDA367.group13.entities.enemies.enemy1.Enemy_1;
 import se.chalmers.TDA367.group13.entities.enemies.enemy2.Enemy_2;
 import se.chalmers.TDA367.group13.entities.player.Player;
@@ -41,7 +43,7 @@ public class Level {
 	private Image smallBackground;
 	private Image background;
 	private Camera camera;
-	private Boss_1 boss;
+	private AbstractBoss boss;
 	private Player player;
 	private LinkedList<Projectile> projectiles;
 	private ParticleSystem weather; 
@@ -84,6 +86,11 @@ public class Level {
 					break;
 				case "boss":
 					boss = new Boss_1((x-2) * map.getTileWidth(), 
+							y * map.getTileWidth());
+					break;
+					
+				case "boss2":
+					boss = new Boss_2((x-2) * map.getTileWidth(), 
 							y * map.getTileWidth());
 					break;
 				default:
@@ -137,7 +144,7 @@ public class Level {
 		return enemies;
 	}
 
-	public Boss_1 getBoss(){
+	public AbstractBoss getBoss(){
 		return boss;
 	}
 
@@ -191,7 +198,7 @@ public class Level {
 			Rectangle hitbox = new Rectangle(boss.getX(), boss.getNextY(delta), boss.getWidth(), boss.getHeight());
 			
 			if(isLegal(hitbox)){
-				boss.moveY(delta);
+				boss.move(delta);
 			}
 			
 

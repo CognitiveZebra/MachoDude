@@ -51,4 +51,9 @@ public class MoveableEntity extends Entity implements IMoveable{
 			setY(getY() + state.getVelocity().y*delta);
 		}
 	}
+	public void moveX(int delta){
+		if(!isLag(delta)){
+			setX(getX() + state.getVelocity().x*delta);
+		}
+	}
 }

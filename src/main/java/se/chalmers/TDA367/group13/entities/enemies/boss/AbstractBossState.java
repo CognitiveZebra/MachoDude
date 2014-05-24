@@ -1,20 +1,20 @@
-package se.chalmers.TDA367.group13.entities.enemies.boss1;
+package se.chalmers.TDA367.group13.entities.enemies.boss;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.geom.Vector2f;
 
 import se.chalmers.TDA367.group13.entities.AbstractMoveableEntityState;
 
-public class AbstractBoss_1State extends AbstractMoveableEntityState {
+public class AbstractBossState extends AbstractMoveableEntityState {
 	private long stateStartedMillis;
 	protected long coolDown;
 	
-	public AbstractBoss_1State(){
+	public AbstractBossState(){
 		super();
 		stateStartedMillis = System.currentTimeMillis();
 	}
 	
-	public AbstractBoss_1State(Animation left){
+	public AbstractBossState(Animation left){
 		super();
 		stateStartedMillis = System.currentTimeMillis();
 		animationLeft = left;

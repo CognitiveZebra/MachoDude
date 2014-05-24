@@ -1,20 +1,23 @@
-package se.chalmers.TDA367.group13.entities.enemies.boss1;
+package se.chalmers.TDA367.group13.entities.enemies.boss;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.RoundedRectangle;
 
 import se.chalmers.TDA367.group13.Game;
+import se.chalmers.TDA367.group13.entities.enemies.boss1.Boss_1;
 
-public class Boss_1HealthBar {
+public class BossHealthBar {
 	private float height, width;
 	private RoundedRectangle bg, bar;
 	private Color barColor, bgColor, textColor;
+	private String name;
 
-	public Boss_1HealthBar(){
+	public BossHealthBar(String name){
 		height = 30;
 		width = 300;
 		textColor = new Color(255, 255, 255);
+		this.name = name;
 	}
 
 	public Color getColor(int health, int max){
@@ -31,7 +34,7 @@ public class Boss_1HealthBar {
 	}
 
 	
-	public void updateHealthBar(Boss_1 b){
+	public void updateHealthBar(AbstractBoss b){
 		bg = new RoundedRectangle((Game.WIDTH/2)-(width/2),100,width, height, 2f);
 		bar = new RoundedRectangle((Game.WIDTH/2)-(width/2),100,(float) (width*getRatio((int)b.getHealth(),(int)b.getMaxHealth())),height, 2f);
 		barColor = getColor((int)b.getHealth(), (int)b.getMaxHealth());
@@ -39,14 +42,14 @@ public class Boss_1HealthBar {
 	}
 
 
-	public void render(Boss_1 b, Graphics g) {
+	public void render(AbstractBoss b, Graphics g) {
 		updateHealthBar(b);
 		g.setColor(bgColor);
 		g.fill(bg);
 		g.setColor(barColor);
 		g.fill(bar);
 		g.setColor(textColor);
-		g.drawString("KIM TRON IL", (Game.WIDTH/2)-(width/5), 70);
+		g.drawString(name, (Game.WIDTH/2)-(width/5), 70);
 	}
 
 }

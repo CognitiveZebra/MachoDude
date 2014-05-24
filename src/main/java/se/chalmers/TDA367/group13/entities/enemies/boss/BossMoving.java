@@ -1,16 +1,16 @@
-package se.chalmers.TDA367.group13.entities.enemies.boss2;
+package se.chalmers.TDA367.group13.entities.enemies.boss;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.geom.Vector2f;
 
-public class Boss_2Moving extends AbstractBoss_2State {
+public class BossMoving extends AbstractBossState {
 	
-	public Boss_2Moving(){
+	public BossMoving(){
 		velocity = new Vector2f(0,0);
 		coolDown = 1000;
 	}
 	
-	public Boss_2Moving(Animation a){
+	public BossMoving(Animation a){
 		super(a);
 		velocity = new Vector2f(0,0);
 		coolDown = 1000;

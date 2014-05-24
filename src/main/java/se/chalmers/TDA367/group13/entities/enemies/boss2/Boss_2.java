@@ -10,51 +10,41 @@ import org.newdawn.slick.geom.Vector2f;
 
 import se.chalmers.TDA367.group13.entities.AbstractMoveableEntityState;
 import se.chalmers.TDA367.group13.entities.MoveableEntity;
+import se.chalmers.TDA367.group13.entities.enemies.boss.*;
 import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.entities.projectile.Boss1Projectile;
 import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.util.Direction;
 
-public class Boss_2 extends MoveableEntity {
-	private XMLPackedSheet bossSheet;	
-	private Boss_2HealthBar healthBar;
-	private Boolean showHealthBar;
-	private Sound hurt;
+public class Boss_2 extends AbstractBoss {
+	private XMLPackedSheet bossSheet;
 	private Image laserBegin, laserBeam;
 	private Image[] mouthOpen, mouthClose;
 	private Animation openMouth, closeMouth;
-	private float health, maxHealth;
-	private int score, xOffset = 80;
-	private AbstractBoss_2State left, right, shooting;
+	private int xOffset = 100;
+	private AbstractBossState left, right, shooting;
 	public static float bossScale = 5, projectileScale = 1.25f;
 	
 	public Boss_2(float x, float y) throws SlickException {
 		super(x, y, new Image("/res/Sprites/Bosses/2/boss_2_Sheet.png"));
 		bossSheet = new XMLPackedSheet("/res/Sprites/Bosses/2/boss_2_Sheet.png","/res/Sprites/Bosses/2/boss_2_Sheet.xml");
-		this.health = 50;
-		maxHealth = health;
 		direction = Direction.LEFT;
 		initAnimations();
-		left = new Boss_2Moving(closeMouth);
+		left = new BossMoving(closeMouth);
 		left.setVelocity(new Vector2f(-0.2f,0));
-		right = new Boss_2Moving(closeMouth);
+		right = new BossMoving(closeMouth);
 		right.setVelocity(new Vector2f(0.2f,0));
-		shooting = new Boss_2Shooting(openMouth);
+		shooting = new BossShooting(openMouth);
 		state = shooting;
-		healthBar = new Boss_2HealthBar();
-		showHealthBar = false;
-		hurt = new Sound("res/Sound/Boss_1/hurt.wav");
-		score = 100;
+		healthBar = new BossHealthBar("KIM TRON UN");
 	}
 	
 	@Override
 	public void render(Graphics g){
+		super.render(g);
 		g.drawAnimation(state.getAnimation(Direction.LEFT), getX(), getY());
-		if(showHealthBar){
-			healthBar.render(this, g);
-		}
 		if(state == getShootingState()){
-			g.drawImage(laserBegin,x+xOffset, y+-laserBegin.getHeight());
+			g.drawImage(laserBegin,x+xOffset, y+getHeight());
 		}
 	}
 	
@@ -93,20 +83,6 @@ public class Boss_2 extends MoveableEntity {
 	}
 
 
-
-	public float getHealth() {
-		return health;
-	}
-
-	public float getMaxHealth(){
-		return maxHealth;
-	}
-
-
-	public void setHealth(int health) {
-		this.health = health;
-	}
-
 	public void resize(float scale){
 		super.resize(scale);
 		resizeBeam(projectileScale);
@@ -122,48 +98,12 @@ public class Boss_2 extends MoveableEntity {
 	}
 
 	public Projectile fireLaser(){
-		return new Boss1Projectile(x + xOffset, y-laserBeam.getHeight()-laserBegin.getHeight(), (float)(Math.PI*1.5), direction);
-	}
-
-
-	public void setHealth(float health) {
-		this.health = health;
-	}
-
-	public Image[] resizeImages(Image[] images, float scale){
-		for (int i = 0; i<images.length; i++){
-			images[i].setFilter(Image.FILTER_NEAREST);
-			images[i] = images[i].getScaledCopy(scale);
-
-		}
-		return images;
-	}
-
-
-	public void loseHealth() {
-		hurt.play();
-		health--;
-
-	}
-
-
-	public boolean isDestroyed() {
-		return health <= 0;
-	}
-
-
-	public boolean isHurt() {
-		return health < maxHealth;
-	}
-
-
-	public void showHealthBar(){
-		showHealthBar = true;
+		return new Boss1Projectile(x + xOffset, y + getHeight() + laserBegin.getHeight(), (float)(Math.PI*1.5), direction);
 	}
 
 	
 	public void update(Player p){
-		if(((AbstractBoss_2State)state).isNextState()){
+		if(((AbstractBossState)state).isNextState()){
 			if(state == shooting){
 				setState(getMovingState(p));
 			} else {
@@ -174,37 +114,39 @@ public class Boss_2 extends MoveableEntity {
 	
 	public void setState(AbstractMoveableEntityState state){
 		this.state = state;
-		((AbstractBoss_2State)state).setStateStartedMillis();
+		((AbstractBossState)state).setStateStartedMillis();
 		state.getAnimation(direction).restart();
 	}
-	public AbstractBoss_2State getLeftState(){
-		return (AbstractBoss_2State) left;
+	public AbstractBossState getLeftState(){
+		return (AbstractBossState) left;
 	}
 	
-	public AbstractBoss_2State getRightState(){
-		return (AbstractBoss_2State) right;
+	public AbstractBossState getRightState(){
+		return (AbstractBossState) right;
 	}
 	
 	
-	public AbstractBoss_2State getShootingState(){
-		return (AbstractBoss_2State) shooting;
+	public AbstractBossState getShootingState(){
+		return (AbstractBossState) shooting;
 	}
 	
-	public AbstractBoss_2State getState(){
-		return (AbstractBoss_2State) state;
+	public AbstractBossState getState(){
+		return (AbstractBossState) state;
 	}
 
-	public AbstractBoss_2State getMovingState(Player p) {	
-		if(p.getCenterY() < this.getCenterY()){
+	public AbstractBossState getMovingState(Player p) {	
+		if(p.getCenterX() < this.getCenterX()){
 			return left;
 		} else {
 			return right;
 		}
 		
 	}
-	
-	public int getScoreValue(){
-		return score;
+
+	@Override
+	public void move(int delta) {
+		moveX(delta);
+		
 	}
 
 }
