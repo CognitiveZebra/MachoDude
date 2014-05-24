@@ -10,6 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.view.LevelMenuItem;
 import se.chalmers.TDA367.group13.view.MenuItem;
 import se.chalmers.TDA367.group13.view.MenuView;
@@ -50,8 +51,10 @@ public class LevelState extends AbstractMachoDudeState {
 
 			if (item.contains(mouse) && isMousePressed) {
 				if(item instanceof LevelMenuItem){
-					((GameStateController)sbg).setLevel(((LevelMenuItem)item).getLevel());
-					sbg.enterState(item.getID());
+					if(((LevelMenuItem)item).getLevel() <= Stats.getInstance().getHighestLevel()){
+						((GameStateController)sbg).setLevel(((LevelMenuItem)item).getLevel());
+						sbg.enterState(item.getID());
+					}
 				} else {
 					item.clicked(sbg);
 				}
@@ -69,8 +72,10 @@ public class LevelState extends AbstractMachoDudeState {
 
 		if (input.isKeyPressed(Input.KEY_ENTER)) {
 			if(menu.getSelected() instanceof LevelMenuItem){
-				((GameStateController)sbg).setLevel(((LevelMenuItem)menu.getSelected()).getLevel());
-				sbg.enterState(menu.getSelected().getID());
+				if(((LevelMenuItem)menu.getSelected()).getLevel() <= Stats.getInstance().getHighestLevel()){
+					((GameStateController)sbg).setLevel(((LevelMenuItem)menu.getSelected()).getLevel());
+					sbg.enterState(menu.getSelected().getID());
+				}
 			} else {
 				menu.getSelected().clicked(sbg);
 			}
