@@ -5,7 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.RoundedRectangle;
 
 import se.chalmers.TDA367.group13.Game;
-import se.chalmers.TDA367.group13.entities.enemies.boss1.Boss_1;
+import se.chalmers.TDA367.group13.util.Constants;
 
 public class BossHealthBar {
 	private float height, width;
@@ -35,8 +35,8 @@ public class BossHealthBar {
 
 	
 	public void updateHealthBar(AbstractBoss b){
-		bg = new RoundedRectangle((Game.WIDTH/2)-(width/2),100,width, height, 2f);
-		bar = new RoundedRectangle((Game.WIDTH/2)-(width/2),100,(float) (width*getRatio((int)b.getHealth(),(int)b.getMaxHealth())),height, 2f);
+		bg = new RoundedRectangle((Constants.WIDTH/2)-(width/2),100,width, height, 2f);
+		bar = new RoundedRectangle((Constants.WIDTH/2)-(width/2),100,(float) (width*getRatio((int)b.getHealth(),(int)b.getMaxHealth())),height, 2f);
 		barColor = getColor((int)b.getHealth(), (int)b.getMaxHealth());
 		bgColor = getColor((int)b.getHealth(), (int)b.getMaxHealth()).darker().darker();
 	}
@@ -49,7 +49,7 @@ public class BossHealthBar {
 		g.setColor(barColor);
 		g.fill(bar);
 		g.setColor(textColor);
-		g.drawString(name, (Game.WIDTH/2)-(width/5), 70);
+		g.drawString(name, (Constants.WIDTH/2)-(width/5), 70);
 	}
 
 }

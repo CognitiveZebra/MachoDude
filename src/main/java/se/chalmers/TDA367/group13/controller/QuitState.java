@@ -1,6 +1,5 @@
 package se.chalmers.TDA367.group13.controller;
 
-import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;

@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 
-import se.chalmers.TDA367.group13.entities.projectile.Enemy1Projectile;
+import se.chalmers.TDA367.group13.model.entities.projectile.Enemy1Projectile;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public class Enemy1ProjectileTest {

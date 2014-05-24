@@ -1,8 +1,9 @@
 package se.chalmers.TDA367.group13.entities.enemies.boss;
 
-import se.chalmers.TDA367.group13.entities.IMoveable;
-import se.chalmers.TDA367.group13.entities.player.Player;
-import se.chalmers.TDA367.group13.entities.projectile.Projectile;
+import se.chalmers.TDA367.group13.model.entities.IMoveable;
+import se.chalmers.TDA367.group13.model.entities.player.Player;
+
+
 
 public interface IBoss extends IMoveable {
 	

@@ -3,7 +3,7 @@ package se.chalmers.TDA367.group13.entities.enemies.boss;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.geom.Vector2f;
 
-import se.chalmers.TDA367.group13.entities.AbstractMoveableEntityState;
+import se.chalmers.TDA367.group13.model.entities.AbstractMoveableEntityState;
 
 public class AbstractBossState extends AbstractMoveableEntityState {
 	private long stateStartedMillis;

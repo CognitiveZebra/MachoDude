@@ -1,6 +1,5 @@
 package se.chalmers.TDA367.group13.controller;
 
-import java.io.IOException;
 import java.util.LinkedList;
 
 import org.newdawn.slick.GameContainer;
@@ -9,12 +8,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
-import org.newdawn.slick.particles.ConfigurableEmitter;
-import org.newdawn.slick.particles.ParticleSystem;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.TDA367.group13.particles.ParticleFactory;
 import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.view.MenuItem;
 import se.chalmers.TDA367.group13.view.ResetControlsMenuItem;
@@ -33,7 +28,7 @@ public class SettingsState extends AbstractMachoDudeState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		super.init(gc,sbg);
-		initSettings();
+		initSettings(sbg);
 	}
 
 	@Override
@@ -132,7 +127,7 @@ public class SettingsState extends AbstractMachoDudeState {
 
 	}
 
-	public void initSettings() {
+	public void initSettings(StateBasedGame sbg) {
 		try {
 			menuItemImage = new Image("res/GUI/menuItem.png");
 			int settingMiddleX = gc.getWidth() / 2 - menuItemImage.getWidth()
@@ -149,7 +144,7 @@ public class SettingsState extends AbstractMachoDudeState {
 			MenuItem resetButton = new ResetControlsMenuItem(menuMiddleX, 525,
 					menuItemImage, "RESET CONTROLS");
 			MenuItem mainButton = new MenuItem(menuMiddleX, 625, menuItemImage,
-					"MAIN MENU", GameStateController.getMenuState().getID());
+					"MAIN MENU", ((GameStateController)sbg).getMenuState().getID());
 
 			LinkedList<SettingsItem> SettingsItems = new LinkedList<SettingsItem>();
 			LinkedList<MenuItem> menuItems = new LinkedList<MenuItem>();

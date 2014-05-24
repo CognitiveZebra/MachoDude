@@ -5,8 +5,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
-import se.chalmers.TDA367.group13.entities.MoveableEntity;
-import se.chalmers.TDA367.group13.entities.projectile.Projectile;
+import se.chalmers.TDA367.group13.model.entities.MoveableEntity;
+import se.chalmers.TDA367.group13.model.entities.projectile.Projectile;
 
 public abstract class AbstractBoss extends MoveableEntity implements IBoss {
 

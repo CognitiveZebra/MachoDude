@@ -26,7 +26,7 @@ public class MenuState extends AbstractMachoDudeState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		super.init(gc,sbg);
-		initMenu();
+		initMenu(sbg);
 
 	}
 
@@ -70,24 +70,24 @@ public class MenuState extends AbstractMachoDudeState {
 		super.update(gc,sbg,delta);
 	}
 
-	public void initMenu() {
+	public void initMenu(StateBasedGame sbg) {
 		try {
 			itemImage = new Image("res/GUI/menuItem.png");
 			settingsImage = new Image("res/GUI/settingsButton.png");
 			int middleX = gc.getWidth() / 2 - itemImage.getWidth() / 2;
 
 			MenuItem playButton = new MenuItem(middleX, gc.getHeight() - 400,
-					itemImage, "PLAY", GameStateController.getLevelState()
+					itemImage, "PLAY", ((GameStateController)sbg).getLevelState()
 							.getID());
 			MenuItem statsButton = new MenuItem(middleX, gc.getHeight() - 300,
-					itemImage, "STATS", GameStateController.getStatsState()
+					itemImage, "STATS", ((GameStateController)sbg).getStatsState()
 							.getID());
 			MenuItem quitButton = new MenuItem(middleX, gc.getHeight() - 200,
-					itemImage, "QUIT", GameStateController.getQuitState()
+					itemImage, "QUIT", ((GameStateController)sbg).getQuitState()
 							.getID());
 			MenuItem settingsButton = new MenuItem(20, gc.getHeight()
 					- settingsImage.getHeight() - 20, settingsImage, "",
-					GameStateController.getSettingsState().getID());
+					((GameStateController)sbg).getSettingsState().getID());
 
 			LinkedList<MenuItem> items = new LinkedList<MenuItem>();
 

@@ -10,10 +10,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.view.MenuItem;
 import se.chalmers.TDA367.group13.view.MenuView;
-import se.chalmers.TDA367.group13.view.ResetControlsMenuItem;
 import se.chalmers.TDA367.group13.view.ResetStatsMenuItem;
 import se.chalmers.TDA367.group13.view.StatsView;
 
@@ -34,7 +32,7 @@ public class StatsState extends AbstractMachoDudeState {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.init(container, game);
-		initMenu();
+		initMenu(game);
 
 	}
 
@@ -92,13 +90,13 @@ public class StatsState extends AbstractMachoDudeState {
 		return ID;
 	}
 
-	public void initMenu() {
+	public void initMenu(StateBasedGame sbg) {
 		try {
 			itemImage = new Image("res/GUI/menuItem.png");
 			int middleX = gc.getWidth() / 2 - itemImage.getWidth() / 2;
 
 			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 300,
-					itemImage, "MAIN MENU", GameStateController.getMenuState()
+					itemImage, "MAIN MENU", ((GameStateController)sbg).getMenuState()
 							.getID());
 			MenuItem resetButton = new ResetStatsMenuItem(middleX, gc.getHeight() - 200,
 					itemImage, "RESET STATS");

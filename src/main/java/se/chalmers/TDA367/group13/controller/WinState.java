@@ -8,17 +8,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
-import org.newdawn.slick.particles.ConfigurableEmitter;
-import org.newdawn.slick.particles.ParticleSystem;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.TDA367.group13.particles.ParticleFactory;
-import se.chalmers.TDA367.group13.util.Stats;
-import se.chalmers.TDA367.group13.util.Util;
-import se.chalmers.TDA367.group13.view.GameOverView;
-import se.chalmers.TDA367.group13.view.MenuView;
 import se.chalmers.TDA367.group13.view.MenuItem;
+import se.chalmers.TDA367.group13.view.MenuView;
 import se.chalmers.TDA367.group13.view.WinView;
 
 public class WinState extends AbstractMachoDudeState {
@@ -38,7 +31,7 @@ public class WinState extends AbstractMachoDudeState {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.init(container, game);
-		initMenu();
+		initMenu(game);
 	}
 
 	@Override
@@ -88,19 +81,19 @@ public class WinState extends AbstractMachoDudeState {
 		return ID;
 	}
 
-	public void initMenu() {
+	public void initMenu(StateBasedGame sbg) {
 		try {
 			itemImage = new Image("res/GUI/menuItem.png");
 			int middleX = gc.getWidth() / 2 - itemImage.getWidth() / 2;
 
 			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 350,
-					itemImage, "MAIN MENU", GameStateController.getMenuState()
+					itemImage, "MAIN MENU", ((GameStateController)sbg).getMenuState()
 							.getID());
 			MenuItem levelsButton = new MenuItem(middleX, gc.getHeight() - 250,
-					itemImage, "LEVELS", GameStateController.getLevelState()
+					itemImage, "LEVELS", ((GameStateController)sbg).getLevelState()
 							.getID());
 			MenuItem quitButton = new MenuItem(middleX, gc.getHeight() - 150,
-					itemImage, "QUIT", GameStateController.getQuitState()
+					itemImage, "QUIT", ((GameStateController)sbg).getQuitState()
 							.getID());
 
 			LinkedList<MenuItem> items = new LinkedList<MenuItem>();

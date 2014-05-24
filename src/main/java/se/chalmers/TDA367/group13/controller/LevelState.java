@@ -10,6 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.state.StateBasedGame;
 
+import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.view.LevelMenuItem;
 import se.chalmers.TDA367.group13.view.MenuItem;
 import se.chalmers.TDA367.group13.view.MenuView;
@@ -25,7 +26,7 @@ public class LevelState extends AbstractMachoDudeState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		super.init(gc,sbg);
-		initMenu();	
+		initMenu(sbg);	
 
 	}
 
@@ -49,7 +50,15 @@ public class LevelState extends AbstractMachoDudeState {
 			}
 
 			if (item.contains(mouse) && isMousePressed) {
-				item.clicked(sbg);
+				if(item instanceof LevelMenuItem){
+					if(((LevelMenuItem)item).getLevel() <= Stats.getInstance().getHighestLevel()){
+						((GameStateController)sbg).setLevel(((LevelMenuItem)item).getLevel());
+						sbg.enterState(item.getID());
+					}
+				} else {
+					item.clicked(sbg);
+				}
+
 			}
 		}
 
@@ -62,28 +71,35 @@ public class LevelState extends AbstractMachoDudeState {
 		}
 
 		if (input.isKeyPressed(Input.KEY_ENTER)) {
-			menu.getSelected().clicked(sbg);
+			if(menu.getSelected() instanceof LevelMenuItem){
+				if(((LevelMenuItem)menu.getSelected()).getLevel() <= Stats.getInstance().getHighestLevel()){
+					((GameStateController)sbg).setLevel(((LevelMenuItem)menu.getSelected()).getLevel());
+					sbg.enterState(menu.getSelected().getID());
+				}
+			} else {
+				menu.getSelected().clicked(sbg);
+			}
 		}
 		
 		weather.windFactor.setValue(-((gc.getWidth() / 2) - input.getMouseX()) / 20);
 		super.update(gc,sbg,delta);
 	}
 
-	public void initMenu() {
+	public void initMenu(StateBasedGame sbg) {
 		try {
 			itemImage = new Image("res/GUI/menuItem.png");
 			int middleX = gc.getWidth() / 2 - itemImage.getWidth() / 2;
 
 			MenuItem level1 = new LevelMenuItem(middleX, 100,
-					itemImage, "Level 1", GameStateController.getGameState()
+					itemImage, "Level 1", ((GameStateController)sbg).getGameState()
 							.getID(),1);
 			
 			MenuItem level2 = new LevelMenuItem(middleX, 250,
-					itemImage, "Level 2", GameStateController.getGameState()
+					itemImage, "Level 2", ((GameStateController)sbg).getGameState()
 							.getID(),2);
 			
 			MenuItem mainButton = new MenuItem(middleX, gc.getHeight() - 300,
-					itemImage, "MAIN MENU", GameStateController.getMenuState()
+					itemImage, "MAIN MENU", ((GameStateController)sbg).getMenuState()
 							.getID());
 
 

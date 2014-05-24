@@ -7,9 +7,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
 
-import se.chalmers.TDA367.group13.entities.Entity;
-import se.chalmers.TDA367.group13.entities.enemies.Enemy;
-import se.chalmers.TDA367.group13.entities.enemies.enemy2.Enemy_2;
+import se.chalmers.TDA367.group13.model.entities.Entity;
+import se.chalmers.TDA367.group13.model.entities.enemies.Enemy;
+import se.chalmers.TDA367.group13.model.entities.enemies.enemy2.Enemy_2;
 
 public class Enemy_2Test {
 

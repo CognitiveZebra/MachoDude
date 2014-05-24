@@ -12,8 +12,8 @@ import org.lwjgl.opengl.GLContext;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import se.chalmers.TDA367.group13.entities.Entity;
-import se.chalmers.TDA367.group13.entities.block.Block;
+import se.chalmers.TDA367.group13.model.entities.Entity;
+import se.chalmers.TDA367.group13.model.entities.block.Block;
 
 public class BlockTest {
 
