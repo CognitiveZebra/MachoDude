@@ -21,6 +21,7 @@ public class GameView {
 
 	public void renderLevel(Graphics g){
 		model.getLevel().render(g);
+		
 	}
 	
 //	public void renderEnemies(Graphics g){

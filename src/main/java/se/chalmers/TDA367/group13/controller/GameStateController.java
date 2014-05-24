@@ -2,19 +2,20 @@ package se.chalmers.TDA367.group13.controller;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 
 public class GameStateController extends StateBasedGame {
-	private static MenuState menuState;
-	private static GameState gameState;
-	private static QuitState quitState;
-	private static LevelState levelState; 
-	private static GameOverState gameOverState;
-	private static WinState winState;
-	private static SettingsState settingsState;
-	private static StatsState statsState;
-
+	private MenuState menuState;
+	private GameState gameState;
+	private QuitState quitState;
+	private LevelState levelState; 
+	private GameOverState gameOverState;
+	private WinState winState;
+	private SettingsState settingsState;
+	private StatsState statsState;
+	private int level = 1;
 	
 	public GameStateController(String name) {
 		super(name);
@@ -42,38 +43,46 @@ public class GameStateController extends StateBasedGame {
 		addState(statsState);
 	}
 	
-	public static GameState getGameState() {
+	public BasicGameState getGameState() {
 		return gameState;
 	}
 	
-	public static MenuState getMenuState() {
+	public BasicGameState getMenuState() {
 		return menuState;
 	}
 	
-	public static QuitState getQuitState() {
+	public BasicGameState getQuitState() {
 		return quitState;
 	}
 	
 	
-	public static GameOverState getGameOverState() {
+	public BasicGameState getGameOverState() {
 		return gameOverState;
 	}
 	
-	public static WinState getWinState() {
+	public BasicGameState getWinState() {
 		return winState;
 	}
 	
-	public static SettingsState getSettingsState() {
+	public BasicGameState getSettingsState() {
 		return settingsState;
 	}
 	
-	public static StatsState getStatsState(){
+	public BasicGameState getStatsState(){
 		return statsState;
 	}
 	
-	public static LevelState getLevelState(){
+	public BasicGameState getLevelState(){
 		return levelState;
 		
+	}
+	
+	public void setLevel(int level){
+		this.level = level;
+	}
+	
+	public int getLevel(){
+		return level;
 	}
 
 }

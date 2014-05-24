@@ -33,7 +33,7 @@ public class SettingsState extends AbstractMachoDudeState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		super.init(gc,sbg);
-		initSettings();
+		initSettings(sbg);
 	}
 
 	@Override
@@ -132,7 +132,7 @@ public class SettingsState extends AbstractMachoDudeState {
 
 	}
 
-	public void initSettings() {
+	public void initSettings(StateBasedGame sbg) {
 		try {
 			menuItemImage = new Image("res/GUI/menuItem.png");
 			int settingMiddleX = gc.getWidth() / 2 - menuItemImage.getWidth()
@@ -149,7 +149,7 @@ public class SettingsState extends AbstractMachoDudeState {
 			MenuItem resetButton = new ResetControlsMenuItem(menuMiddleX, 525,
 					menuItemImage, "RESET CONTROLS");
 			MenuItem mainButton = new MenuItem(menuMiddleX, 625, menuItemImage,
-					"MAIN MENU", GameStateController.getMenuState().getID());
+					"MAIN MENU", ((GameStateController)sbg).getMenuState().getID());
 
 			LinkedList<SettingsItem> SettingsItems = new LinkedList<SettingsItem>();
 			LinkedList<MenuItem> menuItems = new LinkedList<MenuItem>();
