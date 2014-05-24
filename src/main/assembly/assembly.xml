@@ -15,7 +15,7 @@
 	<fileSets>
 		<fileSet>
 			<directory>target/natives</directory>
-			<outputDirectory>lib</outputDirectory>
+			<outputDirectory>target/natives</outputDirectory>
 			<includes>
 				<include>*.dll</include>
 				<include>*.so</include>
