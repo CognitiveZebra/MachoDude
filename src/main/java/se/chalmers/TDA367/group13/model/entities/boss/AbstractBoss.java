@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.model.entities.enemies.boss;
+package se.chalmers.TDA367.group13.model.entities.boss;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;

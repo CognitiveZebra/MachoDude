@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.model.entities.enemies.boss1;
+package se.chalmers.TDA367.group13.model.entities.boss;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
@@ -8,37 +8,32 @@ import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 import se.chalmers.TDA367.group13.model.entities.AbstractMoveableEntityState;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss.AbstractBoss;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss.AbstractBossState;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss.BossHealthBar;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss.BossMoving;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss.BossShooting;
 import se.chalmers.TDA367.group13.model.entities.player.Player;
 import se.chalmers.TDA367.group13.model.entities.projectile.BossProjectile;
 import se.chalmers.TDA367.group13.model.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.util.Direction;
 
-public class Boss_1 extends AbstractBoss {
+public class Boss_2 extends AbstractBoss {
 	private XMLPackedSheet bossSheet;
 	private Image laserBegin, laserBeam;
 	private Image[] mouthOpen, mouthClose;
 	private Animation openMouth, closeMouth;
-	private int yOffset = 80;
-	private AbstractBossState up, down, shooting;
+	private int xOffset = 100;
+	private AbstractBossState left, right, shooting;
 	public static float bossScale = 5, projectileScale = 1.25f;
 	
-	public Boss_1(float x, float y) throws SlickException {
-		super(x, y, new Image("/res/Sprites/Bosses/1/boss_1_head.png"));
-		bossSheet = new XMLPackedSheet("/res/Sprites/Bosses/1/boss_1_sheet.png","/res/Sprites/Bosses/1/boss_1_sheet.xml");
+	public Boss_2(float x, float y) throws SlickException {
+		super(x, y, new Image("/res/Sprites/Bosses/2/boss_2_Sheet.png"));
+		bossSheet = new XMLPackedSheet("/res/Sprites/Bosses/2/boss_2_Sheet.png","/res/Sprites/Bosses/2/boss_2_Sheet.xml");
 		direction = Direction.LEFT;
 		initAnimations();
-		up = new BossMoving(closeMouth);
-		up.setVelocity(new Vector2f(0,-0.2f));
-		down = new BossMoving(closeMouth);
-		down.setVelocity(new Vector2f(0,0.2f));
+		left = new BossMoving(closeMouth);
+		left.setVelocity(new Vector2f(-0.2f,0));
+		right = new BossMoving(closeMouth);
+		right.setVelocity(new Vector2f(0.2f,0));
 		shooting = new BossShooting(openMouth);
 		state = shooting;
-		healthBar = new BossHealthBar("KIM TRON IL");
+		healthBar = new BossHealthBar("KIM TRON UN");
 	}
 	
 	@Override
@@ -46,7 +41,7 @@ public class Boss_1 extends AbstractBoss {
 		super.render(g);
 		g.drawAnimation(state.getAnimation(Direction.LEFT), getX(), getY());
 		if(state == getShootingState()){
-			g.drawImage(laserBegin,x-laserBegin.getWidth(), y+yOffset);
+			g.drawImage(laserBegin,x+xOffset, y+getHeight()+12);
 		}
 	}
 	
@@ -72,8 +67,8 @@ public class Boss_1 extends AbstractBoss {
 				bossSheet.getSprite("open1.png")
 		};
 
-		laserBegin = new Image("/res/Sprites/Bosses/1/laser_begin.png");
-		laserBeam = new Image("/res/Sprites/Bosses/1/laser_beam.png");
+		laserBegin = new Image("/res/Sprites/Bosses/2/laser_begin.png");
+		laserBeam = new Image("/res/Sprites/Bosses/2/laser_beam.png");
 
 		resize(bossScale);
 
@@ -83,8 +78,6 @@ public class Boss_1 extends AbstractBoss {
 		closeMouth.setLooping(false);
 
 	}
-
-
 
 
 	public void resize(float scale){
@@ -102,8 +95,9 @@ public class Boss_1 extends AbstractBoss {
 	}
 
 	public Projectile fireLaser(){
-		return new BossProjectile(x-laserBeam.getWidth()-laserBegin.getWidth(), y+yOffset, (float)Math.PI, direction);
+		return new BossProjectile(x + xOffset + 12, y + getHeight() + laserBegin.getHeight(), (float)(Math.PI*1.5), direction);
 	}
+
 	
 	public void update(Player p){
 		if(((AbstractBossState)state).isNextState()){
@@ -120,12 +114,12 @@ public class Boss_1 extends AbstractBoss {
 		((AbstractBossState)state).setStateStartedMillis();
 		state.getAnimation(direction).restart();
 	}
-	public AbstractBossState getUpState(){
-		return (AbstractBossState) up;
+	public AbstractBossState getLeftState(){
+		return (AbstractBossState) left;
 	}
 	
-	public AbstractBossState getDownState(){
-		return (AbstractBossState) down;
+	public AbstractBossState getRightState(){
+		return (AbstractBossState) right;
 	}
 	
 	
@@ -138,20 +132,18 @@ public class Boss_1 extends AbstractBoss {
 	}
 
 	public AbstractBossState getMovingState(Player p) {	
-		if(p.getCenterY() < this.getCenterY()){
-			return up;
+		if(p.getCenterX() < this.getCenterX()){
+			return left;
 		} else {
-			return down;
+			return right;
 		}
 		
 	}
 
 	@Override
 	public void move(int delta) {
-		moveY(delta);
+		moveX(delta);
 		
 	}
-	
-
 
 }

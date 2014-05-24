@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.model.entities.enemies.enemy2;
+package se.chalmers.TDA367.group13.model.entities.enemies;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
@@ -7,10 +7,7 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Point;
 
-import se.chalmers.TDA367.group13.model.entities.enemies.Enemy;
-import se.chalmers.TDA367.group13.model.entities.enemies.EnemyStill;
-import se.chalmers.TDA367.group13.model.entities.enemies.EnemyWalking;
-import se.chalmers.TDA367.group13.model.entities.weapon.enemy2weapon.Enemy_2_Weapon;
+import se.chalmers.TDA367.group13.model.entities.weapon.Enemy_2_Weapon;
 
 public class Enemy_2 extends Enemy {
 	

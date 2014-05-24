@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.model.entities.weapon.playerweapon;
+package se.chalmers.TDA367.group13.model.entities.weapon;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -8,7 +8,6 @@ import org.newdawn.slick.Sound;
 
 import se.chalmers.TDA367.group13.model.entities.projectile.PlayerProjectile;
 import se.chalmers.TDA367.group13.model.entities.projectile.Projectile;
-import se.chalmers.TDA367.group13.model.entities.weapon.Weapon;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public class PlayerWeapon extends Weapon {
