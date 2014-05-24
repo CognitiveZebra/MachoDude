@@ -18,7 +18,6 @@ public class Boss_1Test {
 	
 	@BeforeClass
 	public static void startUp() throws Exception{
-		Display.create();
 		test = new Boss_1(1, 1);
 	}
 	
@@ -84,12 +83,5 @@ public class Boss_1Test {
 		assertFalse(test.isHurt());
 		test.loseHealth();
 		assertTrue(test.isHurt());
-	}
-
-
-
-	@AfterClass
-	public static void close(){
-		Display.destroy();
 	}
 }

@@ -19,7 +19,6 @@ public class DestructableBlockTest {
 	
 	@BeforeClass
 	public static void startUp() throws Exception{
-		Display.create();
 		test = new DestructableBlock(1, 1, new Image("/res/Sprites/testArm.png"), 2);
 	}
 	
@@ -44,9 +43,6 @@ public class DestructableBlockTest {
 		assertTrue(test.isHurt());
 	}
 	
-	@AfterClass
-	public static void close(){
-		Display.destroy();
-	}
+
 
 }

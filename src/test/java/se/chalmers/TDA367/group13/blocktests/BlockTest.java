@@ -21,8 +21,6 @@ public class BlockTest {
 	
 	@Before
 	public void setUp() throws Exception{
-
-		Display.create();
 		test = new Block(1, 1, new Image("res/Sprites/testArm.png"));
 
 	}
@@ -30,11 +28,6 @@ public class BlockTest {
 	public void testBlock() {
 
 		assertTrue(test instanceof Entity);
-	}
-	
-	@AfterClass
-	public static void close(){
-		Display.destroy();
 	}
 
 }

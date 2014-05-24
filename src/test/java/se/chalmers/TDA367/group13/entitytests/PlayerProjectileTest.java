@@ -11,11 +11,6 @@ import se.chalmers.TDA367.group13.entities.projectile.PlayerProjectile;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public class PlayerProjectileTest {
-
-	@BeforeClass
-	public static void startUp() throws Exception {
-		Display.create();
-	}
 	
 	@Test
 	public void testPlayerProjectile() {
@@ -23,8 +18,4 @@ public class PlayerProjectileTest {
 		assertTrue(test.getDamage() == 1);
 	}
 
-	@AfterClass
-	public static void close(){
-		Display.destroy();
-	}
 }

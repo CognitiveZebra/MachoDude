@@ -17,7 +17,6 @@ public class Enemy_2Test {
 	
 	@BeforeClass
 	public static void startUp() throws Exception{
-		Display.create();
 		test = new Enemy_2(1, 1);
 	}
 
@@ -43,10 +42,5 @@ public class Enemy_2Test {
 	@Test
 	public void testResizeImages() {
 		//TODO: Discuss how to test resizeImage
-	}
-
-	@AfterClass
-	public static void close() {
-		Display.destroy();
 	}
 }

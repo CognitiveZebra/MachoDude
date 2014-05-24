@@ -21,7 +21,6 @@ public class Enemy_1Test {
 	
 	@BeforeClass
 	public static void startUp() throws Exception{
-		Display.create();
 		test = new Enemy_1(1, 1);
 	}
 
@@ -89,12 +88,6 @@ public class Enemy_1Test {
 	public void testSetImage() throws Exception{
 		test.setImage(new Image("/res/Sprites/testArm.png"));
 		assertTrue(test.getImage().getResourceReference().equals("/res/Sprites/testArm.png"));
-	}
-	
-	
-	@AfterClass
-	public static void close() {
-		Display.destroy();
 	}
 
 }

@@ -10,21 +10,25 @@ public class GameTest {
 	@Test
 	public void testRender() {
 		//No Rendering is done in Game
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testInitGameContainer() {
 		//No initializing is done in Game
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testUpdateGameContainerInt() {
 		//No update is done in Game
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testMain() {
 		//TODO: Find out a good way to test main method
+		fail("Not yet implemented");
 		
 	}
 

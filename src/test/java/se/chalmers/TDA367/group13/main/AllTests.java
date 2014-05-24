@@ -2,11 +2,13 @@ package se.chalmers.TDA367.group13.main;
 
 import java.io.File;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
-import org.lwjgl.LWJGLUtil;
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
 
 import se.chalmers.TDA367.group13.blocktests.BlockTest;
 import se.chalmers.TDA367.group13.blocktests.DestructableBlockTest;
@@ -39,11 +41,17 @@ import se.chalmers.TDA367.group13.stateTests.StatsStateTest;
 public class AllTests {
 
 	@BeforeClass
-	public static void startUp(){
+	public static void startUp() throws Exception{
 		
 		System.setProperty("org.lwjgl.librarypath", new File(new File(System.getProperty("user.dir"),"target"), "natives").getAbsolutePath());
 		  
 		System.setProperty("net.java.games.input.librarypath",System.getProperty("org.lwjgl.librarypath"));
+		Display.create();
+	}
+	
+	@AfterClass
+	public static void close() {
+		Display.destroy();
 	}
 
 

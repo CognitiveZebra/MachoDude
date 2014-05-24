@@ -19,7 +19,6 @@ public class GameModelTest {
 	
 	@BeforeClass
 	public static void startUp() throws Exception {
-		Display.create();
 		test = new GameModel(new AppGameContainer(new GameStateController("MachoDude")), 1);
 	}
 	
@@ -47,11 +46,6 @@ public class GameModelTest {
 	@Test
 	public void testStartMusic() {
 		test.startMusic();
-	}
-	
-	@AfterClass
-	public static void close(){
-		Display.destroy();
 	}
 
 }
