@@ -22,7 +22,6 @@ import se.chalmers.TDA367.group13.entitytests.HealthBarEnemyTest;
 import se.chalmers.TDA367.group13.entitytests.PlayerProjectileTest;
 import se.chalmers.TDA367.group13.entitytests.ProjectileImageFactoryTest;
 import se.chalmers.TDA367.group13.gameLogicTests.GameModelTest;
-import se.chalmers.TDA367.group13.gameLogicTests.GameTest;
 import se.chalmers.TDA367.group13.stateTests.GameOverStateTest;
 import se.chalmers.TDA367.group13.stateTests.GameStateControllerTest;
 import se.chalmers.TDA367.group13.stateTests.GameStateTest;
@@ -35,7 +34,7 @@ import se.chalmers.TDA367.group13.stateTests.StatsStateTest;
 @SuiteClasses({ BlockTest.class, DestructableBlockTest.class, Boss_1Test.class, Boss1ProjectileTest.class, Enemy_1Test.class,
 	Enemy_2Test.class, Enemy1ProjectileTest.class,
 	FireProjectileTest.class, HealthBarEnemyTest.class,
-	PlayerProjectileTest.class, ProjectileImageFactoryTest.class, GameModelTest.class, GameTest.class, GameOverStateTest.class, GameStateControllerTest.class,
+	PlayerProjectileTest.class, ProjectileImageFactoryTest.class, GameModelTest.class, GameOverStateTest.class, GameStateControllerTest.class,
 	GameStateTest.class, MenuStateTest.class, QuitStateTest.class,
 	SettingsStateTest.class, StatsStateTest.class })
 public class AllTests {

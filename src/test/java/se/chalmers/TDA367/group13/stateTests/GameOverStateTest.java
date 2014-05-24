@@ -3,8 +3,10 @@ package se.chalmers.TDA367.group13.stateTests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.newdawn.slick.AppGameContainer;
 
 import se.chalmers.TDA367.group13.controller.GameOverState;
+import se.chalmers.TDA367.group13.controller.GameStateController;
 
 public class GameOverStateTest {
 
@@ -12,30 +14,6 @@ public class GameOverStateTest {
 	@Test
 	public void testGetID() {
 		assertTrue(gos.getID() == 1337);
-	}
-
-	@Test
-	public void testInit() {
-		//TODO: Figure out a way to test Slick-methods
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRender() {
-		//TODO: Figure out a way to test Slick-methods
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUpdate() {
-		//TODO: Figure out a way to test Slick-methods
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testInitMenu() {
-		//TODO: Figure out a way to test Slick-methods
-		fail("Not yet implemented");
 	}
 
 }

@@ -38,9 +38,9 @@ public class Enemy_1Test {
 
 	@Test
 	public void testInitAnimations() {
-		float height = test.getHeight();
+		float height = test.getWeapon().getHeight();
 		test.initAnimations();
-		assertTrue(test.getHeight() == 2*height);
+		assertTrue(test.getWeapon().getHeight() == 2*height);
 	}
 
 	@Test

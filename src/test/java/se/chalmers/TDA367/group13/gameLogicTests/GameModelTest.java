@@ -7,7 +7,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.tests.InputTest;
 
+import se.chalmers.TDA367.group13.Game;
 import se.chalmers.TDA367.group13.controller.GameStateController;
 import se.chalmers.TDA367.group13.entities.player.Player;
 import se.chalmers.TDA367.group13.level.Level_1;
@@ -25,12 +28,6 @@ public class GameModelTest {
 	@Test
 	public void testGameModel() {
 		assertTrue(test instanceof GameModel);
-	}
-
-	@Test
-	public void testUpdate() {
-		//TODO: Test perhaps movement to right and see if coordinates moved.
-		fail("not yet implemented");
 	}
 
 	@Test

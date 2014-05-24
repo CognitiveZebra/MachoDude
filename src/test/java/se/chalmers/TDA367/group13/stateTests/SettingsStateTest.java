@@ -26,28 +26,4 @@ public class SettingsStateTest {
 		test.mousePressed(Input.MOUSE_LEFT_BUTTON, 1, 1);
 	}
 
-	@Test
-	public void testInit() {
-		//TODO: Find out a good way to test voidmethods/Slickmethods
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRender() {
-		//TODO: Find out a good way to test voidmethods/Slickmethods
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUpdate() {
-		//TODO: Find out a good way to test voidmethods/Slickmethods
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testInitSettings() {
-		//TODO: Find out a good way to test voidmethods/Slickmethods
-		fail("Not yet implemented");
-	}
-
 }

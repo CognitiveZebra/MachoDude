@@ -16,11 +16,4 @@ public class GameStateControllerTest {
 		assertTrue(test.getTitle() == "MachoDude");
 	}
 
-	@Test
-	public void testInitStatesListGameContainer() {
-		//TODO: Figure out a way to test Slick-methods
-		fail("Not yet implemented");
-	}
-
-
 }
