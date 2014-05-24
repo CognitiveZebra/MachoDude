@@ -9,7 +9,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Image;
 
-import se.chalmers.TDA367.group13.entities.projectile.ProjectileImageFactory;
+import se.chalmers.TDA367.group13.model.entities.projectile.ProjectileImageFactory;
 
 public class ProjectileImageFactoryTest {
 

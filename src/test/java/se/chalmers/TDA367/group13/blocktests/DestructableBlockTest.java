@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Image;
 
-import se.chalmers.TDA367.group13.entities.Entity;
-import se.chalmers.TDA367.group13.entities.block.Block;
-import se.chalmers.TDA367.group13.entities.block.DestructableBlock;
+import se.chalmers.TDA367.group13.model.entities.Entity;
+import se.chalmers.TDA367.group13.model.entities.block.Block;
+import se.chalmers.TDA367.group13.model.entities.block.DestructableBlock;
 
 public class DestructableBlockTest {
 

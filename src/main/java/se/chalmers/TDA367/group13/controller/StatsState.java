@@ -10,10 +10,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.state.StateBasedGame;
 
-import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.view.MenuItem;
 import se.chalmers.TDA367.group13.view.MenuView;
-import se.chalmers.TDA367.group13.view.ResetControlsMenuItem;
 import se.chalmers.TDA367.group13.view.ResetStatsMenuItem;
 import se.chalmers.TDA367.group13.view.StatsView;
 

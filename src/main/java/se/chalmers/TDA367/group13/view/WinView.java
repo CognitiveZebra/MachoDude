@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 
-import se.chalmers.TDA367.group13.Game;
+import se.chalmers.TDA367.group13.util.Constants;
 import se.chalmers.TDA367.group13.util.Stats;
 import se.chalmers.TDA367.group13.util.Util;
 
@@ -28,7 +28,7 @@ public class WinView {
 		Stats stats = Stats.getInstance();
 
 		float width = 350;
-		float middleX = Game.WIDTH/2 - width/2;
+		float middleX = Constants.WIDTH/2 - width/2;
 		
 		float heightY = 200;
 		

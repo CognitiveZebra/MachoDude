@@ -8,14 +8,14 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
 import se.chalmers.TDA367.group13.Game;
-import se.chalmers.TDA367.group13.entities.block.Block;
-import se.chalmers.TDA367.group13.entities.enemies.Enemy;
-import se.chalmers.TDA367.group13.entities.player.Player;
-import se.chalmers.TDA367.group13.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.exception.GameOverException;
 import se.chalmers.TDA367.group13.exception.WinException;
-import se.chalmers.TDA367.group13.level.Level;
-import se.chalmers.TDA367.group13.level.LevelFactory;
+import se.chalmers.TDA367.group13.model.entities.block.Block;
+import se.chalmers.TDA367.group13.model.entities.enemies.Enemy;
+import se.chalmers.TDA367.group13.model.entities.player.Player;
+import se.chalmers.TDA367.group13.model.entities.projectile.Projectile;
+import se.chalmers.TDA367.group13.model.level.Level;
+import se.chalmers.TDA367.group13.model.level.LevelFactory;
 import se.chalmers.TDA367.group13.util.Controls;
 import se.chalmers.TDA367.group13.util.Stats;
 
@@ -50,7 +50,6 @@ public class GameModel {
 		updatePlayer(input,delta);
 		updateEnemies(delta);
 		updateBoss(delta);
-		updateScore();
 		updateProjectiles(input, delta);
 	}
 	
@@ -151,10 +150,6 @@ public class GameModel {
 	
 	public void updateBoss(int delta) throws WinException{
 		level.updateBoss(player, delta);
-	}
-	
-	public void updateScore(){
-		level.updateScore();
 	}
 	
 	public void updateProjectiles(Input input, int delta){
