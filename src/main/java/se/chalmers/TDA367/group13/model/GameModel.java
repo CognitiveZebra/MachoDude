@@ -39,7 +39,7 @@ public class GameModel {
 			player = level.getPlayer();
 			enemies = level.getEnemies();
 			projectiles = level.getProjectiles();
-			//boss = level.getBoss();
+			//boss = level.getBoss();f
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
