@@ -46,7 +46,7 @@ public class Boss_2 extends AbstractBoss {
 		super.render(g);
 		g.drawAnimation(state.getAnimation(Direction.LEFT), getX(), getY());
 		if(state == getShootingState()){
-			g.drawImage(laserBegin,x+xOffset, y+getHeight());
+			g.drawImage(laserBegin,x+xOffset, y+getHeight()+12);
 		}
 	}
 	
@@ -100,7 +100,7 @@ public class Boss_2 extends AbstractBoss {
 	}
 
 	public Projectile fireLaser(){
-		return new Boss1Projectile(x + xOffset, y + getHeight() + laserBegin.getHeight(), (float)(Math.PI*1.5), direction);
+		return new Boss1Projectile(x + xOffset + 12, y + getHeight() + laserBegin.getHeight(), (float)(Math.PI*1.5), direction);
 	}
 
 	
