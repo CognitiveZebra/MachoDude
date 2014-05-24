@@ -106,12 +106,12 @@
  </tileset>
  <layer name="blockLayer" width="200" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3YSw6DMAwFQPpv73/h0kV3dZAQ4DqZkd4WooBtwjQBAAAAMIrTnHOQS+K64B9c59yC3BPXRd+q9GX1QYYq791jzjPIK3Fd9G3v+qgyn+CXvftylfkEGdRHrtb8NsPzOTfkavUnPYpezj9r50CrP+lR9PJ9lzEHopqs0FeO6IuZvXere/dSHxlzINq7Cvt2xHPPfLe2urfzz3rR3lXYN/XRB/+X9nFEX8zsvaP0ff+XIKY+GNXSt9Mnrdr4ZukaIhWzNBtERo76EInzBuTb79sASwAA
+   H4sIAAAAAAAAC+3Y3Q7CIAyG4Ym/u/8bHiQeUlgmtbS8T/LFxBMJri1s2wAAAAAAALCKW04ScjdcFzCDR85TyMtwXYjNS1+mPmDBy3P3zvkI2Q3Xhdi06iN9P73MJ6BGuy97mU+AtlT5jvqw1ZrfzHB73BtstfoTPUpfbWbMJMr95+ocaPUnehSinO8s5oBUkx76yj/6omXvHfXbUerDYg5Ie+dh37TP9eX5jHBu5f5znbR3q+9brzY81cfseL/kS/m/WnOcHjIW75cAGfWBVfXOTiXa59gzayDEIr3ZcCa/1seINRCiEeqDEDkHQlGt9gBLAAA=
   </data>
  </layer>
  <layer name="enemyLayer" width="200" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XIRLAIAwEQDRV/f9n8XQGV5LAroGJOgTH0BoAABm80QEAgOs80QEA+NDNAGTjbQKA2np0AIBCTvr/6H/Iofpd3NWLkf17UvcDAAAA7NCndd6vZtH+zpTxzABQxQDiM2UfAEsAAA==
+   H4sIAAAAAAAAC+3XIQ7AIBAEQDRV/f9n8TSpaAN3R2YM5NQiWEJrAAB8cUcHAAD46YoOAMCDbgYgG28TANTWowMAFHLS/0f/Qw7V7+KuXozs35O6HwAAAGCHPq3z/m0WbXWmjGcGgCoGdXV7bQBLAAA=
   </data>
  </layer>
  <layer name="PlayerLayer" width="200" height="24">
