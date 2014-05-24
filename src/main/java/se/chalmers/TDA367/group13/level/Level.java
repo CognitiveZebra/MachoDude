@@ -46,7 +46,6 @@ public class Level {
 	private LinkedList<Projectile> projectiles;
 	private ParticleSystem weather; 
 	private ConfigurableEmitter rain;
-	private int delta;
 	protected int level_number;
 
 	public Level(TiledMap map, Image background, Music music)
@@ -201,7 +200,6 @@ public class Level {
 	}
 
 	public void updateEnemies(Player player, int delta) {
-		this.delta = delta;
 		LinkedList<Enemy> dead = new LinkedList<Enemy>();
 		for (Enemy e : enemies) {
 			testDead(dead, e);
