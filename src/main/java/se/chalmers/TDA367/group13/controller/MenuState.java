@@ -26,6 +26,7 @@ public class MenuState extends AbstractMachoDudeState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		super.init(gc,sbg);
+		background = new Image("res/Backgrounds/MENYBAKGRUND.png");
 		initMenu(sbg);
 
 	}
