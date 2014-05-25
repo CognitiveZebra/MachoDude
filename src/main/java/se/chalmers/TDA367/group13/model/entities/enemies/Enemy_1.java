@@ -25,7 +25,7 @@ public class Enemy_1 extends Enemy{
 		leftShoulder = new Point(11, 13);
 		weapon = new Enemy_1_Weapon(x, y);
 		aggroRange = new Circle(getCenterX(), getCenterY(), 250);
-		maxHealth = 5;
+		maxHealth = 3;
 		health = maxHealth;
 		scoreValue = 5;
 		setImage(enemySheet.getSprite("walk1"));

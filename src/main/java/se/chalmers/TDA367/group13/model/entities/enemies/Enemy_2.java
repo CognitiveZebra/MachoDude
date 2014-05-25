@@ -21,7 +21,7 @@ public class Enemy_2 extends Enemy {
 		leftShoulder = new Point(5, 20);
 		weapon = new Enemy_2_Weapon(x, y);
 		aggroRange = new Circle(getCenterX(), getCenterY(), 300);
-		maxHealth = 8;
+		maxHealth = 5;
 		health = maxHealth;
 		scoreValue = 5;
 		hurtSound = new Sound("res/Sound/Enemy_1/Hurt.wav");
