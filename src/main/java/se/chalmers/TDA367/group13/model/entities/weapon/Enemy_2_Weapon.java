@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.model.entities.weapon.enemy2weapon;
+package se.chalmers.TDA367.group13.model.entities.weapon;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -8,7 +8,6 @@ import org.newdawn.slick.geom.Vector2f;
 
 import se.chalmers.TDA367.group13.model.entities.projectile.FireProjectile;
 import se.chalmers.TDA367.group13.model.entities.projectile.Projectile;
-import se.chalmers.TDA367.group13.model.entities.weapon.Weapon;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public class Enemy_2_Weapon extends Weapon {

@@ -15,12 +15,12 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import se.chalmers.TDA367.group13.exception.WinException;
 import se.chalmers.TDA367.group13.model.entities.block.Block;
+import se.chalmers.TDA367.group13.model.entities.boss.AbstractBoss;
+import se.chalmers.TDA367.group13.model.entities.boss.Boss_1;
+import se.chalmers.TDA367.group13.model.entities.boss.Boss_2;
 import se.chalmers.TDA367.group13.model.entities.enemies.Enemy;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss.AbstractBoss;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss1.Boss_1;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss2.Boss_2;
-import se.chalmers.TDA367.group13.model.entities.enemies.enemy1.Enemy_1;
-import se.chalmers.TDA367.group13.model.entities.enemies.enemy2.Enemy_2;
+import se.chalmers.TDA367.group13.model.entities.enemies.Enemy_1;
+import se.chalmers.TDA367.group13.model.entities.enemies.Enemy_2;
 import se.chalmers.TDA367.group13.model.entities.player.Player;
 import se.chalmers.TDA367.group13.model.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.particles.ParticleFactory;

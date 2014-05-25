@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.newdawn.slick.Color;
 
+import se.chalmers.TDA367.group13.model.entities.enemies.Enemy_1;
 import se.chalmers.TDA367.group13.model.entities.enemies.HealthBarEnemy;
-import se.chalmers.TDA367.group13.model.entities.enemies.enemy1.Enemy_1;
 
 public class HealthBarEnemyTest {
 

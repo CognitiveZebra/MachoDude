@@ -12,7 +12,7 @@ import se.chalmers.TDA367.group13.model.entities.Entity;
 import se.chalmers.TDA367.group13.model.entities.enemies.Enemy;
 import se.chalmers.TDA367.group13.model.entities.enemies.EnemyStill;
 import se.chalmers.TDA367.group13.model.entities.enemies.EnemyWalking;
-import se.chalmers.TDA367.group13.model.entities.enemies.enemy1.Enemy_1;
+import se.chalmers.TDA367.group13.model.entities.enemies.Enemy_1;
 import se.chalmers.TDA367.group13.util.Direction;
 
 public class Enemy_1Test {

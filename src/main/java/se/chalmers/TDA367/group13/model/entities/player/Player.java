@@ -13,8 +13,8 @@ import org.newdawn.slick.geom.Point;
 
 import se.chalmers.TDA367.group13.model.entities.MoveableEntity;
 import se.chalmers.TDA367.group13.model.entities.projectile.Projectile;
+import se.chalmers.TDA367.group13.model.entities.weapon.PlayerWeapon;
 import se.chalmers.TDA367.group13.model.entities.weapon.Weapon;
-import se.chalmers.TDA367.group13.model.entities.weapon.playerweapon.PlayerWeapon;
 import se.chalmers.TDA367.group13.util.Constants;
 import se.chalmers.TDA367.group13.util.Direction;
 import se.chalmers.TDA367.group13.util.Stats;

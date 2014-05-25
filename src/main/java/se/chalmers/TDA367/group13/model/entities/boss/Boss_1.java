@@ -1,4 +1,4 @@
-package se.chalmers.TDA367.group13.model.entities.enemies.boss1;
+package se.chalmers.TDA367.group13.model.entities.boss;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
@@ -8,13 +8,8 @@ import org.newdawn.slick.XMLPackedSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 import se.chalmers.TDA367.group13.model.entities.AbstractMoveableEntityState;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss.AbstractBoss;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss.AbstractBossState;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss.BossHealthBar;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss.BossMoving;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss.BossShooting;
 import se.chalmers.TDA367.group13.model.entities.player.Player;
-import se.chalmers.TDA367.group13.model.entities.projectile.Boss1Projectile;
+import se.chalmers.TDA367.group13.model.entities.projectile.BossProjectile;
 import se.chalmers.TDA367.group13.model.entities.projectile.Projectile;
 import se.chalmers.TDA367.group13.util.Direction;
 
@@ -102,7 +97,7 @@ public class Boss_1 extends AbstractBoss {
 	}
 
 	public Projectile fireLaser(){
-		return new Boss1Projectile(x-laserBeam.getWidth()-laserBegin.getWidth(), y+yOffset, (float)Math.PI, direction);
+		return new BossProjectile(x-laserBeam.getWidth()-laserBegin.getWidth(), y+yOffset, (float)Math.PI, direction);
 	}
 	
 	public void update(Player p){

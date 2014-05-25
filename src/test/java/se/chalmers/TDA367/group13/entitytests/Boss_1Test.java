@@ -10,7 +10,7 @@ import org.lwjgl.opengl.Display;
 import org.newdawn.slick.SlickException;
 
 import se.chalmers.TDA367.group13.model.entities.Entity;
-import se.chalmers.TDA367.group13.model.entities.enemies.boss1.Boss_1;
+import se.chalmers.TDA367.group13.model.entities.boss.Boss_1;
 
 public class Boss_1Test {
 
