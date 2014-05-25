@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<emitter imageName="" name="Healing Particle">
+<emitter imageName="" name="blood">
   <spawnInterval enabled="true" max="150.0" min="130.0"/>
   <spawnCount enabled="true" max="30.0" min="15.0"/>
   <initialLife enabled="true" max="600.0" min="200.0"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<emitter imageName="" name="Healing Particle">
+<emitter imageName="" name="smoke">
   <spawnInterval enabled="true" max="35.0" min="20.0"/>
   <spawnCount enabled="true" max="8.0" min="3.0"/>
   <initialLife enabled="true" max="400.0" min="200.0"/>

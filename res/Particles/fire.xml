@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<emitter imageName="" name="Flame">
+<emitter imageName="" name="fire">
   <spawnInterval enabled="false" max="2.0" min="10.0"/>
   <spawnCount enabled="true" max="12.0" min="8.0"/>
   <initialLife enabled="false" max="400.0" min="200.0"/>

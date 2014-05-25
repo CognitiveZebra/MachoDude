@@ -28,7 +28,6 @@ public class MenuState extends AbstractMachoDudeState {
 		super.init(gc,sbg);
 		background = new Image("res/Backgrounds/MENYBAKGRUND.png");
 		initMenu(sbg);
-
 	}
 
 	@Override

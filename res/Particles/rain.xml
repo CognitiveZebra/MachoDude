@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<emitter imageName="" name="Test Particle"> 
+<emitter imageName="" name="rain"> 
   <spawnInterval enabled="true" max="40.0" min="35.0"/>
   <spawnCount enabled="true" max="15.0" min="10.0"/>
   <initialLife enabled="true" max="4000.0" min="4000.0"/>
