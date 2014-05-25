@@ -11,7 +11,6 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 
 import se.chalmers.TDA367.group13.blocktests.BlockTest;
-import se.chalmers.TDA367.group13.blocktests.DestructableBlockTest;
 import se.chalmers.TDA367.group13.entitytests.Boss1ProjectileTest;
 import se.chalmers.TDA367.group13.entitytests.Boss_1Test;
 import se.chalmers.TDA367.group13.entitytests.Enemy1ProjectileTest;
@@ -31,7 +30,7 @@ import se.chalmers.TDA367.group13.stateTests.SettingsStateTest;
 import se.chalmers.TDA367.group13.stateTests.StatsStateTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ BlockTest.class, DestructableBlockTest.class, Boss_1Test.class, Boss1ProjectileTest.class, Enemy_1Test.class,
+@SuiteClasses({ BlockTest.class, Boss_1Test.class, Boss1ProjectileTest.class, Enemy_1Test.class,
 	Enemy_2Test.class, Enemy1ProjectileTest.class,
 	FireProjectileTest.class, HealthBarEnemyTest.class,
 	PlayerProjectileTest.class, ProjectileImageFactoryTest.class, GameModelTest.class, GameOverStateTest.class, GameStateControllerTest.class,
