@@ -6,11 +6,12 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 
-import se.chalmers.TDA367.group13.Game;
 import se.chalmers.TDA367.group13.exception.GameOverException;
 import se.chalmers.TDA367.group13.exception.WinException;
 import se.chalmers.TDA367.group13.model.entities.block.Block;
+import se.chalmers.TDA367.group13.model.entities.boss.IBoss;
 import se.chalmers.TDA367.group13.model.entities.enemies.Enemy;
 import se.chalmers.TDA367.group13.model.entities.player.Player;
 import se.chalmers.TDA367.group13.model.entities.projectile.Projectile;
@@ -28,7 +29,7 @@ public class GameModel {
 	private Player player;
 	private LinkedList<Enemy> enemies;
 	private LinkedList<Projectile> projectiles; 
-	//private Boss boss;
+	private IBoss boss;
 
 	public GameModel(GameContainer gc, int levelNumber) {
 		gameStarted = System.currentTimeMillis();
@@ -39,7 +40,7 @@ public class GameModel {
 			player = level.getPlayer();
 			enemies = level.getEnemies();
 			projectiles = level.getProjectiles();
-			//boss = level.getBoss();f
+			boss = level.getBoss();
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -51,6 +52,7 @@ public class GameModel {
 		updateEnemies(delta);
 		updateBoss(delta);
 		updateProjectiles(input, delta);
+		updateWeather(input,delta);
 	}
 	
 	public void updatePlayer(Input input, int delta) throws GameOverException{
@@ -160,9 +162,9 @@ public class GameModel {
 			if (victim != null) {
 				victim.loseHealth();
 				removed.add(projectile);
-			} else if (projectile.intersects(level.getBoss())
-					&& !level.getBoss().isDestroyed()) {
-				level.getBoss().loseHealth();
+			} else if (projectile.intersects((Shape) boss)
+					&& !boss.isDestroyed()) {
+				boss.loseHealth();
 				removed.add(projectile);
 			} else if (isBlockCollision(level.getBlocks(), projectile)) {
 				projectile.update(delta);

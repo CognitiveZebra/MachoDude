@@ -8,4 +8,7 @@ import se.chalmers.TDA367.group13.model.entities.player.Player;
 public interface IBoss extends IMoveable {
 	
 	public void update(Player p);
+
+	public void loseHealth();
+	public boolean isDestroyed();
 }
